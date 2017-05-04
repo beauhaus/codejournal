@@ -1,0 +1,299 @@
+/* SASS START:
+sass --watch master.scss:master.css
+*/
+$baseline: 1vw; // $baseline:
+$title-font: 40px Tahoma, Helvetica, Arial, Sans-Serif;
+$fonts: ( CodePro: ('Code Source Pro', monospace), TypeWriter: ('Special Elite', serif), Clean: ('Raleway', Sans-Serif) );
+$colors: (
+trans30: rgba(#808080, 0.35),
+ mango:#ebb861,
+sand:#d0b588,
+orange:#f28b02,
+dkgrey:#575757,
+ltgrey:#bdbdbd,
+ivr:#e6d8cc,
+ltblue:#3f71f1,
+dkblue:#18223b,
+ltgreen:#79e286,
+dkred:#441f1d,
+ltred:#eb473d,
+txtShadow: #f1e8ce,
+shadow: rgba(#000, 0.9),
+trim: #f5facf,
+dkbg: rgba(#2d2c2c, 0.7),
+ltbg: rgba(#c7be84, 0.5));
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+// This comment wont show on css
+/* this comment will show in css*/
+li {
+    list: {
+      style: none;
+    }
+}
+body {
+  background: url("img/blank_page.jpg") no-repeat center center fixed;
+  background-size: cover;
+  padding: $baseline;
+  font-family: map-get($fonts, CodePro);
+
+  nav {
+    a {
+      text-decoration: none;
+    }
+
+    ul {
+      width: 60%;
+      margin: auto;
+    }
+
+    ul li a {
+      color: map-get($colors, dkgrey);
+    }
+
+    ul li {
+      display: inline-block;
+
+      &::after {
+        content: " | ";
+      }
+
+      &:last-of-type::after {
+        content: none;
+      }
+    }
+  }
+
+
+  /*90 degree rot state-name*/
+  aside {
+    position: absolute;
+
+    span.rot90 {
+      top: 50%;
+      transform: rotate(90deg);
+      transform-origin: left top 0;
+      float: left;
+      left: 0.5vw;
+      position: absolute;
+    }
+  }
+
+/* quiz blur */
+.ans {
+    padding: 0;
+    -webkit-filter: blur(6px);
+    font-family: 'Raleway', sans-serif;
+    display: inline;
+    font-size: 2.8vw;
+    opacity: 1%;
+
+    &:hover {
+      /*-webkit-filter: blur(0px);*/
+      animation: blurtxt .5s 1 forwards;
+    }
+}
+@-webkit-keyframes blurtxt {
+    0% {
+        -webkit-filter: blur(3px);
+    }
+    100% {
+        -webkit-filter: blur(0px);
+        // opacity: 1;
+    }
+}
+
+
+
+
+
+
+
+  /*-------NG-ANIMATE--------------*/
+  /* start 'enter' transition on main view */
+  main.ng-enter {
+    /* transition on enter for .5s */
+    transition: 0.5s;
+    /* start with opacity 0 (invisible) */
+    opacity: 0;
+  }
+  /* end 'enter' transition on main view */
+  main.ng-enter-active {
+    /* end with opacity 1 (fade in) */
+    opacity: 1;
+  }
+
+  div.entry {
+    box-shadow: inset 2px 2px 20px 5px map-get($colors, shadow);
+    margin: $baseline;
+    padding: $baseline * 3;
+
+    hr {
+      width: 70%;
+      margin: 1vh auto;
+    }
+
+    h4 {
+      display: inline-block;
+      float: left;
+    }
+
+    h3 {
+      text: {
+        align: center;
+      }
+
+      &.subtitle {
+        text: {
+          align: left;
+        }
+      }
+    }
+
+    h2.date {
+      text: {
+        align: right;
+      }
+      font: {
+        size: 1vw;
+        family: map-get($fonts, Clean);
+      }
+    }
+
+    ol {
+      & a {
+        color: purple;
+
+        &:hover {
+          color: skyblue;
+        }
+      }
+    }
+
+    ol.todo {
+      & li {
+        list: {
+          style: none;
+        }
+      }
+    }
+
+    ol.done {
+      & li {
+        list {
+          style: decimal;
+        }
+      }
+    }
+
+    .done ol li {
+      & li {
+        padding: baseline;
+        font: {
+          weight: bold;
+        }
+      }
+
+      p {
+        margin: auto;
+      }
+    }
+  }
+}
+
+div.journal-entry {
+  background: {
+    color: map-get($colors, trans30);
+  }
+  border: 1px solid map-get($colors, trim);
+  height: 60vh;
+  font-family: map-get($fonts, TypeWriter);
+  overflow: auto;
+  text: {
+    shadow: 0 2px 5px map-get($colors, txtShadow);
+  }
+}
+/* width classes */
+.w20 {
+  width: 20vw;
+}
+.w40 {
+  width: 40vw;
+}
+.w60 {
+  width: 60vw;
+}
+.w80 {
+  width: 80vw;
+}
+
+
+pre.prettyprint {
+  font: {
+    size: 1.3em;
+  }
+  background-color: rgba(242, 219, 150, 0.89);
+}
+
+/* jquery styles */
+.jq-entry {
+    div {
+      margin: {
+        top: $baseline;
+        bottom: $baseline * 4;
+      }
+      border: 1px solid red;
+    }
+}
+.ctr {
+  text-align: left;
+  margin: auto;
+}
+.bg {
+  font-size: 2.5em;
+}
+
+/* color classes */
+.mango {
+  color: map-get($colors, mango)
+}
+.sand {
+  color: map-get($colors, sand)
+}
+.orange {
+  color: map-get($colors, orange)
+}
+.dkgrey {
+  color: map-get($colors, dkgrey)
+}
+.ltgrey {
+  color: map-get($colors, ltgrey )
+}
+.ivr {
+  color: map-get($colors, ivr)
+}
+.ltblue {
+  color: map-get($colors, ltblue)
+}
+.dkblue {
+  color: map-get($colors, dkblue)
+}
+.ltgreen {
+  color: map-get($colors, ltgreen)
+}
+.dkred {
+  color: map-get($colors, dkred)
+}
+.ltred {
+  color: map-get($colors, ltred)
+}
+.dkbg {
+  background-color: map-get($colors, dkbg)
+}
+.ltbg {
+  background-color: map-get($colors, ltbg)
+}

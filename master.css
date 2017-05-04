@@ -1,0 +1,178 @@
+/* SASS START:
+sass --watch master.scss:master.css
+*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+/* this comment will show in css*/
+li {
+  list-style: none; }
+
+body {
+  background: url("img/blank_page.jpg") no-repeat center center fixed;
+  background-size: cover;
+  padding: 1vw;
+  font-family: "Code Source Pro", monospace;
+  /*90 degree rot state-name*/
+  /* quiz blur */
+  /*-------NG-ANIMATE--------------*/
+  /* start 'enter' transition on main view */
+  /* end 'enter' transition on main view */ }
+  body nav a {
+    text-decoration: none; }
+  body nav ul {
+    width: 60%;
+    margin: auto; }
+  body nav ul li a {
+    color: #575757; }
+  body nav ul li {
+    display: inline-block; }
+    body nav ul li::after {
+      content: " | "; }
+    body nav ul li:last-of-type::after {
+      content: none; }
+  body aside {
+    position: absolute; }
+    body aside span.rot90 {
+      top: 50%;
+      transform: rotate(90deg);
+      transform-origin: left top 0;
+      float: left;
+      left: 0.5vw;
+      position: absolute; }
+  body .ans {
+    padding: 0;
+    -webkit-filter: blur(6px);
+    font-family: 'Raleway', sans-serif;
+    display: inline;
+    font-size: 2.8vw;
+    opacity: 1%; }
+    body .ans:hover {
+      /*-webkit-filter: blur(0px);*/
+      animation: blurtxt .5s 1 forwards; }
+@-webkit-keyframes blurtxt {
+  0% {
+    -webkit-filter: blur(3px); }
+  100% {
+    -webkit-filter: blur(0px); } }
+  body main.ng-enter {
+    /* transition on enter for .5s */
+    transition: 0.5s;
+    /* start with opacity 0 (invisible) */
+    opacity: 0; }
+  body main.ng-enter-active {
+    /* end with opacity 1 (fade in) */
+    opacity: 1; }
+  body div.entry {
+    box-shadow: inset 2px 2px 20px 5px rgba(0, 0, 0, 0.9);
+    margin: 1vw;
+    padding: 3vw; }
+    body div.entry hr {
+      width: 70%;
+      margin: 1vh auto; }
+    body div.entry h4 {
+      display: inline-block;
+      float: left; }
+    body div.entry h3 {
+      text-align: center; }
+      body div.entry h3.subtitle {
+        text-align: left; }
+    body div.entry h2.date {
+      text-align: right;
+      font-size: 1vw;
+      font-family: "Raleway", Sans-Serif; }
+    body div.entry ol a {
+      color: purple; }
+      body div.entry ol a:hover {
+        color: skyblue; }
+    body div.entry ol.todo li {
+      list-style: none; }
+    body div.entry ol.done li list {
+      style: decimal; }
+    body div.entry .done ol li li {
+      padding: baseline;
+      font-weight: bold; }
+    body div.entry .done ol li p {
+      margin: auto; }
+
+div.journal-entry {
+  background-color: rgba(128, 128, 128, 0.35);
+  border: 1px solid #f5facf;
+  height: 60vh;
+  font-family: "Special Elite", serif;
+  overflow: auto;
+  text-shadow: 0 2px 5px #f1e8ce; }
+
+/* width classes */
+.w20 {
+  width: 20vw; }
+
+.w40 {
+  width: 40vw; }
+
+.w60 {
+  width: 60vw; }
+
+.w80 {
+  width: 80vw; }
+
+pre.prettyprint {
+  font-size: 1.3em;
+  background-color: rgba(242, 219, 150, 0.89); }
+
+/* jquery styles */
+.jq-entry div {
+  margin-top: 1vw;
+  margin-bottom: 4vw;
+  border: 1px solid red; }
+
+.ctr {
+  text-align: left;
+  margin: auto; }
+
+.bg {
+  font-size: 2.5em; }
+
+/* color classes */
+.mango {
+  color: #ebb861; }
+
+.sand {
+  color: #d0b588; }
+
+.orange {
+  color: #f28b02; }
+
+.dkgrey {
+  color: #575757; }
+
+.ltgrey {
+  color: #bdbdbd; }
+
+.ivr {
+  color: #e6d8cc; }
+
+.ltblue {
+  color: #3f71f1; }
+
+.dkblue {
+  color: #18223b; }
+
+.ltgreen {
+  color: #79e286; }
+
+.dkred {
+  color: #441f1d; }
+
+.ltred {
+  color: #eb473d; }
+
+.dkbg {
+  background-color: rgba(45, 44, 44, 0.7); }
+
+.ltbg {
+  background-color: rgba(199, 190, 132, 0.5); }
+
+/*# sourceMappingURL=master.css.map */
