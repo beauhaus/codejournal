@@ -12,21 +12,28 @@ orange:#f28b02,
 dkgrey:#575757,
 ltgrey:#bdbdbd,
 ivr:#e6d8cc,
+wh: #fff,
+trim: #f5facf,
+txtShadow: #f1e8ce,
 ltblue:#3f71f1,
 dkblue:#18223b,
 ltgreen:#79e286,
+pastgreen: #a6b696,
+pastred: #c29d9d,
 dkred:#441f1d,
 ltred:#eb473d,
-txtShadow: #f1e8ce,
 shadow: rgba(#000, 0.9),
-trim: #f5facf,
 dkbg: rgba(#2d2c2c, 0.7),
-ltbg: rgba(#c7be84, 0.5));
+ltbg: rgba(#c7be84, 0.5),
+y: yellow,
+purp: purple,
+reddrk: #410211);
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-weight: 400;
 }
 // This comment wont show on css
 /* this comment will show in css*/
@@ -87,9 +94,12 @@ body {
 .ans {
     padding: 0;
     -webkit-filter: blur(6px);
-    font-family: 'Raleway', sans-serif;
-    display: inline;
-    font-size: 2.8vw;
+    font: {
+      family: map-get($fonts, Clean);
+      size: 2.8vw;
+      weight: 400;
+      }
+    display: inline-block;
     opacity: 1%;
 
     &:hover {
@@ -134,7 +144,7 @@ body {
 
     hr {
       width: 70%;
-      margin: 1vh auto;
+      margin: 5vh auto;
     }
 
     h4 {
@@ -206,17 +216,19 @@ body {
 }
 
 div.journal-entry {
+  line-height: 1.2em;
   background: {
     color: map-get($colors, trans30);
   }
   border: 1px solid map-get($colors, trim);
-  height: 60vh;
+  height: 80vh;
   font-family: map-get($fonts, TypeWriter);
   overflow: auto;
   text: {
-    shadow: 0 2px 5px map-get($colors, txtShadow);
+    shadow: 0 1px 3px map-get($colors, txtShadow);
   }
 }
+
 /* width classes */
 .w20 {
   width: 20vw;
@@ -241,12 +253,19 @@ pre.prettyprint {
 
 /* jquery styles */
 .jq-entry {
+  border: 1px solid map-get($colors, trim);
+  height: 80vh;
+  font: {
+    family:map-get($fonts, CodePro);
+    size: 2vw;
+  }
+  overflow: auto;
+  position: relative;
     div {
       margin: {
-        top: $baseline;
+        // top: $baseline;
         bottom: $baseline * 4;
       }
-      border: 1px solid red;
     }
 }
 .ctr {
@@ -254,46 +273,117 @@ pre.prettyprint {
   margin: auto;
 }
 .bg {
-  font-size: 2.5em;
+  font-size: 2em;
 }
 
 /* color classes */
 .mango {
-  color: map-get($colors, mango)
+  color: map-get($colors, mango);
 }
 .sand {
-  color: map-get($colors, sand)
+  color: map-get($colors, sand);
+}
+.y {
+  color: map-get($colors, y);
 }
 .orange {
-  color: map-get($colors, orange)
+  color: map-get($colors, orange);
 }
 .dkgrey {
-  color: map-get($colors, dkgrey)
+  color: map-get($colors, dkgrey);
 }
 .ltgrey {
-  color: map-get($colors, ltgrey )
+  color: map-get($colors, ltgrey );
 }
 .ivr {
-  color: map-get($colors, ivr)
+  color: map-get($colors, ivr);
+}
+.wh {
+  color: map-get($colors, wh);
 }
 .ltblue {
-  color: map-get($colors, ltblue)
+  color: map-get($colors, ltblue);
+}
+.purp {
+  color: map-get($colors, purp);
+}
+.reddrk {
+  color: map-get($colors, reddrk);
 }
 .dkblue {
-  color: map-get($colors, dkblue)
+  color: map-get($colors, dkblue);
 }
 .ltgreen {
-  color: map-get($colors, ltgreen)
+  color: map-get($colors, ltgreen);
 }
 .dkred {
-  color: map-get($colors, dkred)
+  color: map-get($colors, dkred);
 }
 .ltred {
-  color: map-get($colors, ltred)
+  color: map-get($colors, ltred);
 }
 .dkbg {
-  background-color: map-get($colors, dkbg)
+  background-color: map-get($colors, dkbg);
 }
 .ltbg {
-  background-color: map-get($colors, ltbg)
+  background-color: map-get($colors, ltbg);
+}
+
+.shadn {
+    box-shadow: 5px 5px 5px black;
+    border: 1px solid wheat;
+    margin: 1%;
+    padding: 1%;
+}
+.shadw {
+    box-shadow: 10px 10px 25px black;
+    margin: 1%;
+    padding: 1%;
+}
+.code-questions {
+    width: 80vw;
+    color: map-get($colors, ivr);
+    border: 1px solid white;
+    line-height: 2.5em;
+
+    font: {
+      size: .8em;
+      weight: 400;
+      family: map-get($fonts, Clean);
+    }
+    background-color: rgba(0, 0, 0, .8);
+    padding: 1.5vw;
+    margin: auto;
+
+    & .middle {
+      margin: {
+        left: 25%;
+      }
+    }
+}
+.code-questions2 {
+  position: relative;
+  border: 1px solid ivory;
+  background: map-get($colors, pastgreen);
+}
+
+.code-questions3 {
+  position: relative;
+  border: 1px solid lightgreen;
+  background: map-get($colors, pastred);
+}
+
+img {
+    margin: 1vw;
+    position: relative;
+    right: 0;
+    width: 60vw;
+    border: 1px solid maroon;
+}
+
+pre {
+    white-space: pre-wrap;
+}
+.fRight {
+  float: right;
 }

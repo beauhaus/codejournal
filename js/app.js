@@ -22,5 +22,9 @@ angular.module("codeJournal", ['ui.router', 'ngAnimate'])
       controller: 'miscCtrl',
       url: '/misc',
       templateUrl: './states/misc/misc.html'
+    }).state('javascript', {
+      controller: 'ecmaCtrl',
+      url: '/ecma',
+      templateUrl: './states/ecma/ecma.html'
     })
     });

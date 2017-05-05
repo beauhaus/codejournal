@@ -3,7 +3,8 @@
 
 <aside><span class="rot90">{{state}}</span></aside>
 <div class="jq-entry entry">
-
+<pre>
+<!--
 <pre class="prettyprint w40">
   function fun(foo, bar) {
     var num = 3;
@@ -11,22 +12,59 @@
     return "yes" + num + str;
     //example snippet
   }
+</pre> -->
+
+<div class="w40 ctr">
+  <pre class="ltbg shadn">
+    < div class="list">
+      < ol>
+        < li>bears< /li>
+        < li>pigs< /li>
+        < ul>
+          < li>miss piggy< /li>
+          < li>arnold the pig< /li>
+        < /ul>
+        < li>monkeys< /li>
+      < /ol>
+    < /div></pre>
+</div>
+<div class="code-questions">
+  <h2 class="ltgreen ">Select miss piggy and arnold the pig using .find()</h2><br>
+    <code class=" ans ctr">$('ul').find('li').css('color', 'red');</code>
+  <h2 class="ltgreen ">What will the following code do?</h2><br>
+    <code class=" ctr">$('ol').children('li').first().css('color', 'pink')</code>
+    <h2 class="ans">turn bears pink only</h2>
+  </div>
+<div class="code-questions2">
+  <code class="middle reddrk">$('ol').children('li').eq(1).css('color', 'pink')</code>
+  is going to select what?
+  <img class="w20 ans" src="./img/pigs.png" alt="pigs">
+  <i class="purp">Remember:</i> .eq(0) is javascript so it is zero-based.
+  <code>li:nth-child(2);</code> is also available to us from CSS.
+  <hr>
+  <code>$('ol li:nth-child(1)').css('color', 'pink');</code>
+  Whould give us what?
+  <img class="w20" src="./img/child.png" alt="child">
+  Beneath an < ol>... each child that is a first child.
+
+  The above would be the same as:
+  <code class="dkgrey">$('li:first-child').css('color', 'pink');</code>
+
+  You can also use .next() or .prev() in any situation.
+  
+</div>
+<div class="htmlbox">
+  so what is the difference between <i>.parent()</i> & <i>.parents()</i> & <i>.closest()</i> ?
+  <div class="shadw reddrk code-questions3">
+    .parent() will look for the direct parent of an element.
+    .parents() will look among all parents <br>
+    $(.container).parents()
+    This will move up the DOM tree to find a parent element with a class of .container.
+
+  </div>
+  link to jquery API <a href="http://api.jquery.com/">API.jquery</a>
+
+</div>
+
 </pre>
-
-<div class="w40 ctr sample-code">
-  <pre class="">
-    < ol>
-      < li>bears< /li>
-      < li>pigs< /li>
-      < ul>
-        < li>miss piggy< /li>
-        < li>arnold the pig< /li>
-      < /ul>
-      < li>monkeys< /li>
-    < /ol>
-  </pre>
-</div><br>
-<h2>Select miss piggy and arnold the pig using .find()</h2>
-  <code class="bg ans ctr">$('ul').find('li').css('color', 'black');</code>
-
 </div>

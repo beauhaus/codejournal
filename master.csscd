@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+/* this comment will show in css*/
+body {
+  background: url("img/blank_page.jpg") no-repeat center center fixed;
+  background-size: cover;
+  padding: 1em;
+  color: #000;
+  font-family: Trebuchet MS, monospace; }
+  body div {
+    border: 1px solid #f5facf;
+    font-family: "Special Elite", cursive;
+    font-size: 1.3em;
+    box-shadow: inset 2px 2px 20px 5px rgba(0, 0, 0, 0.9);
+    margin: 1em;
+    padding: 2em; }
+
+div.entry {
+  text-shadow: 0 2px 5px #f1e8ce; }
+  div.entry h4 {
+    display: inline-block;
+    float: right; }
+  div.entry h2 {
+    font: 40px Tahoma, Helvetica, Arial, Sans-Serif;
+    text-align: center; }
+  div.entry ol a {
+    color: purple; }
+    div.entry ol a:hover {
+      color: skyblue; }
+  div.entry ol.todo li {
+    list-style: none; }
+  div.entry ol.done li list {
+    style: decimal; }
+  div.entry .done ol li li {
+    padding: baseline;
+    font-weight: bold; }
+  div.entry .done ol li p {
+    margin: auto; }
+
+.container {
+  margin: 2em;
+  padding: 0.5em; }
+
+/*# sourceMappingURL=master.csscd.map */

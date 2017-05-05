@@ -1,0 +1,28 @@
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<aside><span class="rot90">{{state}}</span></aside>
+<div class="ecma-entry entry">
+
+<pre>
+  <h4 class="wh w40">Nice example of replace()</h4>
+  <h4><a target="_blank" href="https://www.freecodecamp.com/challenges/search-and-replace">search-and-replace</a></h4>
+
+<pre class="prettyprint w80">
+
+  function myReplace(str, before, after) {
+
+        if (before === before.toLowerCase()) {
+          str.replace(before, after);
+          return str.replace(before, after);
+        } else {
+
+          var newafter = after.replace(after[0], after[0].toUpperCase())
+          return str.replace(before, newafter);
+        }
+
+      }
+//myReplace('A quick brown fox jumped over the lazy dog', 'jumped', 'leaped')
+myReplace('He is Sleeping on the couch', 'Sleeping', 'sitting')
+.</pre>
+
+</pre>
+</div> <!--entry end-->

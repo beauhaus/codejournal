@@ -4,7 +4,8 @@ sass --watch master.scss:master.css
 * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  font-weight: 400; }
 
 /* this comment will show in css*/
 li {
@@ -45,9 +46,10 @@ body {
   body .ans {
     padding: 0;
     -webkit-filter: blur(6px);
-    font-family: 'Raleway', sans-serif;
-    display: inline;
+    font-family: "Raleway", Sans-Serif;
     font-size: 2.8vw;
+    font-weight: 400;
+    display: inline-block;
     opacity: 1%; }
     body .ans:hover {
       /*-webkit-filter: blur(0px);*/
@@ -71,7 +73,7 @@ body {
     padding: 3vw; }
     body div.entry hr {
       width: 70%;
-      margin: 1vh auto; }
+      margin: 5vh auto; }
     body div.entry h4 {
       display: inline-block;
       float: left; }
@@ -98,12 +100,13 @@ body {
       margin: auto; }
 
 div.journal-entry {
+  line-height: 1.2em;
   background-color: rgba(128, 128, 128, 0.35);
   border: 1px solid #f5facf;
-  height: 60vh;
+  height: 80vh;
   font-family: "Special Elite", serif;
   overflow: auto;
-  text-shadow: 0 2px 5px #f1e8ce; }
+  text-shadow: 0 1px 3px #f1e8ce; }
 
 /* width classes */
 .w20 {
@@ -123,17 +126,22 @@ pre.prettyprint {
   background-color: rgba(242, 219, 150, 0.89); }
 
 /* jquery styles */
-.jq-entry div {
-  margin-top: 1vw;
-  margin-bottom: 4vw;
-  border: 1px solid red; }
+.jq-entry {
+  border: 1px solid #f5facf;
+  height: 80vh;
+  font-family: "Code Source Pro", monospace;
+  font-size: 2vw;
+  overflow: auto;
+  position: relative; }
+  .jq-entry div {
+    margin-bottom: 4vw; }
 
 .ctr {
   text-align: left;
   margin: auto; }
 
 .bg {
-  font-size: 2.5em; }
+  font-size: 2em; }
 
 /* color classes */
 .mango {
@@ -141,6 +149,9 @@ pre.prettyprint {
 
 .sand {
   color: #d0b588; }
+
+.y {
+  color: yellow; }
 
 .orange {
   color: #f28b02; }
@@ -154,8 +165,17 @@ pre.prettyprint {
 .ivr {
   color: #e6d8cc; }
 
+.wh {
+  color: #fff; }
+
 .ltblue {
   color: #3f71f1; }
+
+.purp {
+  color: purple; }
+
+.reddrk {
+  color: #410211; }
 
 .dkblue {
   color: #18223b; }
@@ -174,5 +194,53 @@ pre.prettyprint {
 
 .ltbg {
   background-color: rgba(199, 190, 132, 0.5); }
+
+.shadn {
+  box-shadow: 5px 5px 5px black;
+  border: 1px solid wheat;
+  margin: 1%;
+  padding: 1%; }
+
+.shadw {
+  box-shadow: 10px 10px 25px black;
+  margin: 1%;
+  padding: 1%; }
+
+.code-questions {
+  width: 80vw;
+  color: #e6d8cc;
+  border: 1px solid white;
+  line-height: 2.5em;
+  font-size: .8em;
+  font-weight: 400;
+  font-family: "Raleway", Sans-Serif;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 1.5vw;
+  margin: auto; }
+  .code-questions .middle {
+    margin-left: 25%; }
+
+.code-questions2 {
+  position: relative;
+  border: 1px solid ivory;
+  background: #a6b696; }
+
+.code-questions3 {
+  position: relative;
+  border: 1px solid lightgreen;
+  background: #c29d9d; }
+
+img {
+  margin: 1vw;
+  position: relative;
+  right: 0;
+  width: 60vw;
+  border: 1px solid maroon; }
+
+pre {
+  white-space: pre-wrap; }
+
+.fRight {
+  float: right; }
 
 /*# sourceMappingURL=master.css.map */
