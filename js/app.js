@@ -26,5 +26,10 @@ angular.module("codeJournal", ['ui.router', 'ngAnimate'])
       controller: 'ecmaCtrl',
       url: '/ecma',
       templateUrl: './states/ecma/ecma.html'
+    }).state('sass', {
+      controller: 'sassCtrl',
+      url: '/sass',
+      templateUrl: './states/sass/sass.html'
     })
-    });
+});
+//

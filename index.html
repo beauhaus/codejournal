@@ -8,10 +8,12 @@
     <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,500" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
 
   </head>
   <body>
-  <h2 class="fRight">CodeJournal</h2>
+  <div class="bg-image"></div>
+  <h2 id="appName">Code Journal</h2>
   <nav>
     <ul>
       <li><a ui-sref="home">home</a></li>
@@ -19,6 +21,7 @@
       <li><a ui-sref="jquery">jquery</a></li>
       <li><a ui-sref="javascript">javascript</a></li>
       <li><a ui-sref="misc">misc</a></li>
+      <li><a ui-sref="sass">sass</a></li>
     </ul>
   </nav>
 <main ui-view></main>
@@ -41,6 +44,8 @@
 <script src="./states/jquery/jqueryCtrl.js"></script>
 <script src="./states/misc/miscCtrl.js"></script>
 <script src="./states/ecma/ecmaCtrl.js"></script>
+<script src="./states/sass/sassCtrl.js"></script>
+
 
   </body>
 </html>

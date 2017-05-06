@@ -1,3 +1,4 @@
+<div class="jq-container">
 <!-- google code prettyprint -->
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
 
@@ -14,8 +15,8 @@
   }
 </pre> -->
 <hr>
-<img class="w80" src="img/this1.png" alt=""><i class="dkred">
-  <br>
+<h4><a href="https://youtu.be/x_Rh6qCmN5s?list=PLHJPCYLtEMaKdvFGcFk3ud-FEJv5j5dwR">tuts+ video link</a></h4>
+<i class="dkred">
 THIS</i> in two different contexts:<br>
 <i class="dkblue">'this'</i> can refer--here--to the element that <em>fired</em> this
 ...or the object created by the triggering of that element.
@@ -40,8 +41,42 @@ btn.on('click', function(e) {
 })
 
 </pre>
-
 <hr>
+<img class="w80" src="img/this3.png" alt="this3">
+I can use the call method & send another arg to the doIt function;
+<hr>
+<pre class="prettyprint">
+  btn = $('button');
+  var obj = {
+    doIt: function(e) {
+      e.hide();
+    }
+  }
+  btn.on('click', function(e) {
+    obj.doIt.call(this, btn.siblings());
+  })</pre>
+  <p>This will cause all things but the button to hide</p>
+  <hr>
+  !Important!
+
+  How to execute code/animation after completion of one animation?
+  SIMPLE!
+  <pre class="dkbg">
+
+  var obj = {
+    doIt: function(e) {
+      e.slideUp(1500,<span class="orange"> function() {
+        console.log('done')
+      }</span>);
+    }
+  }
+  btn.on('click', function(e) {
+    obj.doIt.call(this, btn.siblings());
+  })
+  </pre>
+  <span class="dkred">You can also do a <b>.delay(1200)</b></span>
+
+  <a href="https://youtu.be/BOx8FzOTFfc?list=PLHJPCYLtEMaKdvFGcFk3ud-FEJv5j5dwR&t=115">Tuts+ Video</a>
 <div class="w40 ctr">
   <pre class="ltbg shadn">
     < div class="list">
@@ -95,4 +130,7 @@ btn.on('click', function(e) {
 </div>
 
 </pre>
+</div>
+
+  
 </div>

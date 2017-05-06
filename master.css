@@ -12,8 +12,6 @@ li {
   list-style: none; }
 
 body {
-  background: url("img/blank_page.jpg") no-repeat center center fixed;
-  background-size: cover;
   padding: 1vw;
   font-family: "Code Source Pro", monospace;
   /*90 degree rot state-name*/
@@ -21,19 +19,40 @@ body {
   /*-------NG-ANIMATE--------------*/
   /* start 'enter' transition on main view */
   /* end 'enter' transition on main view */ }
-  body nav a {
-    text-decoration: none; }
-  body nav ul {
-    width: 60%;
-    margin: auto; }
-  body nav ul li a {
-    color: #575757; }
-  body nav ul li {
-    display: inline-block; }
-    body nav ul li::after {
-      content: " | "; }
-    body nav ul li:last-of-type::after {
-      content: none; }
+  body nav {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around; }
+    body nav a {
+      text-decoration: none; }
+    body nav ul {
+      width: 60%;
+      margin: auto; }
+    body nav ul li a {
+      color: #575757; }
+    body nav ul li {
+      display: inline-block;
+      text-align: center;
+      width: 8vw; }
+  body div.bg-image:before {
+    content: "";
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    display: block;
+    background-image: url("img/steelbg.jpg");
+    width: 100%;
+    height: 100%;
+    /* Apply multiple filters */
+    filter: contrast(175%) brightness(23%); }
+  body .jq-container {
+    margin: 0;
+    padding: 0; }
+  body .journal-container {
+    overflow-x: hidden; }
   body aside {
     position: absolute; }
     body aside span.rot90 {
@@ -42,7 +61,11 @@ body {
       transform-origin: left top 0;
       float: left;
       left: 0.5vw;
-      position: absolute; }
+      position: absolute;
+      font-family: "Cabin", Sans-Serif;
+      font-size: 1.4vw;
+      letter-spacing: 1.4em;
+      color: #c29d9d; }
   body .ans {
     padding: 0;
     -webkit-filter: blur(6px);
@@ -53,7 +76,7 @@ body {
     opacity: 1%; }
     body .ans:hover {
       /*-webkit-filter: blur(0px);*/
-      animation: blurtxt .5s 1 forwards; }
+      animation: blurtxt 0.5s 1 forwards; }
 @-webkit-keyframes blurtxt {
   0% {
     -webkit-filter: blur(3px); }
@@ -68,7 +91,6 @@ body {
     /* end with opacity 1 (fade in) */
     opacity: 1; }
   body div.entry {
-    box-shadow: inset 2px 2px 20px 5px rgba(0, 0, 0, 0.9);
     margin: 1vw;
     padding: 3vw; }
     body div.entry p {
@@ -102,7 +124,19 @@ body {
     body div.entry .done ol li p {
       margin: auto; }
 
+div.ecma-entry div.misc-entry {
+  background-color: #f5facf; }
+
+div.misc-entry {
+  background-color: #ebb861; }
+
 div.journal-entry {
+  box-shadow: inset 2px 2px 20px 5px rgba(0, 0, 0, 0.9);
+  margin: 1vw;
+  padding: 3vw;
+  background: url("img/blank_page.jpg") no-repeat center center fixed;
+  background-size: cover;
+  filter: contrast(140%);
   line-height: 1.4em;
   background-color: rgba(128, 128, 128, 0.35);
   border: 1px solid #f5facf;
@@ -110,7 +144,7 @@ div.journal-entry {
   font-family: "Special Elite", serif;
   font-size: 1.4vw;
   overflow: auto;
-  text-shadow: 0 1px 2px #f1e8ce; }
+  text-shadow: 0 2px 3px #f1e8ce; }
 
 /* width classes */
 .w20 {
@@ -219,7 +253,7 @@ pre.prettyprint {
   color: #e6d8cc;
   border: 1px solid white;
   line-height: 2.5em;
-  font-size: .8em;
+  font-size: 0.8em;
   font-weight: 400;
   font-family: "Raleway", Sans-Serif;
   background-color: rgba(0, 0, 0, 0.8);
@@ -248,7 +282,24 @@ img {
 pre {
   white-space: pre-wrap; }
 
-.fRight {
-  float: right; }
+#appName {
+  position: absolute;
+  right: 30px;
+  top: 10px;
+  opacity: 1;
+  color: #a6b696;
+  font-family: "Cabin", Sans-Serif;
+  font-size: 1.5vw;
+  letter-spacing: 0.4em; }
+
+a[ui-sref] {
+  font-family: "Cabin", Sans-Serif;
+  font-size: 1.2vw;
+  text-decoration: overline;
+  text-decoration-color: #a6b696;
+  transition: background-color 2s; }
+
+a[ui-sref]:hover {
+  background-color: rgba(166, 182, 150, 0.66); }
 
 /*# sourceMappingURL=master.css.map */
