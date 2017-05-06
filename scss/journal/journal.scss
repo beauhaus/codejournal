@@ -1,0 +1,32 @@
+
+div.journal-entry {
+  box-shadow: inset 2px 2px 20px 5px map-get($colors, shadow);
+  margin: $baseline;
+  padding: $baseline * 3;
+  background: url("img/blank_page.jpg") no-repeat center center fixed;
+  background-size: cover;
+  // filter: blur(5px);
+  // filter: brightness(0.4);
+  filter: contrast(140%);
+  // filter: drop-shadow(16px 16px 20px blue);
+  // filter: grayscale(50%);
+  // filter: hue-rotate(90deg);
+  // filter: invert(75%);
+  // filter: opacity(25%);
+  // filter: saturate(30%);
+  // filter: sepia(20%);
+  line-height: 1.4em;
+  background: {
+    color: map-get($colors, trans30);
+  }
+  border: 1px solid map-get($colors, trim);
+  height: 80vh;
+  font: {
+    family: map-get($fonts, TypeWriter);
+    size: 1.4vw;
+  }
+  overflow: auto;
+  text: {
+    shadow: 0 2px 3px map-get($colors, txtShadow);
+  }
+}

@@ -1,0 +1,409 @@
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+}
+// This comment wont show on css
+/* this comment will show in css*/
+li {
+  list: {
+    style: none;
+  }
+}
+
+body {
+  padding: $baseline;
+  font-family: map-get($fonts, CodePro);
+
+  nav {
+    position: static; //FIXME: not sure what to do here.
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    a {
+      text-decoration: none;
+    }
+
+    ul {
+      width: 60%;
+      margin: auto;
+    }
+
+    ul li a {
+      color: map-get($colors, dkgrey);
+    }
+
+    ul li {
+      display: inline-block;
+      text-align: center;
+      width: 8vw;
+      // &::after {
+      //   content: " | ";
+      // }
+      // &:last-of-type::after {
+      //   content: none;
+      // }
+    }
+  }
+
+  div.bg-image:before {
+    content: "";
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    display: block;
+    background-image: url('img/steelbg.jpg');
+    width: 100%;
+    height: 100%;
+    // filter: blur(5px);
+    // filter: blur(5px);
+    // filter: brightness(0.4);
+    // filter: contrast(200%);
+    // filter: drop-shadow(16px 16px 20px blue);
+    // filter: grayscale(50%);
+    // filter: hue-rotate(90deg);
+    // filter: invert(75%);
+    // filter: opacity(25%);
+    // filter: saturate(30%);
+    // filter: sepia(20%);
+    // background: url("img/steelbg.jpg") no-repeat center center fixed;
+    // background-size: cover;
+    //   filter: url("filters.svg#filter-id");
+    /* Apply multiple filters */
+    filter: contrast(175%) brightness(23%);
+  }
+}
+/*90 degree rot state-name*/
+aside {
+  position: absolute;
+
+  span.rot90 {
+    top: 50%;
+    transform: rotate(90deg);
+    transform-origin: left top 0;
+    float: left;
+    left: 0.5vw;
+    position: absolute;
+    font: {
+      family: map-get($fonts, Cabin);
+      size: 1.4vw;
+    }
+    letter-spacing: 1.4em;
+    // opacity: .5;
+    color: map-get($colors, pastred);
+  }
+}
+/* quiz blur */
+.ans {
+  padding: 0;
+  -webkit-filter: blur(6px);
+  font: {
+    family: map-get($fonts, Clean);
+    size: 2.8vw;
+    weight: 400;
+  }
+  display: inline-block;
+  opacity: 1%;
+
+  &:hover {
+    /*-webkit-filter: blur(0px);*/
+    animation: blurtxt 0.5s 1 forwards;
+  }
+}
+@-webkit-keyframes blurtxt {
+  0% {
+    -webkit-filter: blur(3px);
+  }
+
+  100% {
+    -webkit-filter: blur(0px);
+  }
+}
+/*-------NG-ANIMATE--------------*/
+/* start 'enter' transition on main view */
+main.ng-enter {
+  /* transition on enter for .5s */
+  transition: 0.5s;
+  /* start with opacity 0 (invisible) */
+  opacity: 0;
+}
+/* end 'enter' transition on main view */
+main.ng-enter-active {
+  /* end with opacity 1 (fade in) */
+  opacity: 1;
+}
+
+
+div.entry {
+  margin: $baseline;
+  padding: $baseline * 3;
+
+  p {
+    font: {
+      size: 2.5vh;
+      family: Trebuchet, Sans-Serif;
+    }
+  }
+
+  hr {
+    width: 70%;
+    margin: 5vh auto;
+  }
+
+  h4 {
+    display: inline-block;
+    float: left;
+  }
+
+  h3 {
+    text: {
+      align: center;
+    }
+
+    &.subtitle {
+      text: {
+        align: left;
+      }
+    }
+  }
+
+  h2.date {
+    text: {
+      align: right;
+    }
+    font: {
+      size: 1vw;
+      family: map-get($fonts, Clean);
+    }
+  }
+
+  ol {
+    & a {
+      color: purple;
+
+      &:hover {
+        color: skyblue;
+      }
+    }
+  }
+
+  ol.todo {
+    & li {
+      list: {
+        style: none;
+      }
+    }
+  }
+
+  ol.done {
+    & li {
+      list {
+        style: decimal;
+      }
+    }
+  }
+
+  .done ol li {
+    & li {
+      padding: baseline;
+      font: {
+        weight: bold;
+      }
+    }
+
+    p {
+      margin: auto;
+    }
+  }
+}
+
+/* width classes */
+.w20 {
+  width: 20vw;
+}
+
+.w40 {
+  width: 40vw;
+}
+
+.w60 {
+  width: 60vw;
+}
+
+.w80 {
+  width: 80vw;
+}
+
+pre.prettyprint {
+  font: {
+    size: 1.3em;
+  }
+  background-color: rgba(242, 219, 150, 0.89);
+}
+.ctr {
+  text-align: left;
+  margin: auto;
+}
+
+.bg {
+  font-size: 2em;
+}
+/* color classes */
+.mango {
+  color: map-get($colors, mango);
+}
+
+.sand {
+  color: map-get($colors, sand);
+}
+
+.y {
+  color: map-get($colors, y);
+}
+
+.orange {
+  color: map-get($colors, orange);
+}
+
+.dkgrey {
+  color: map-get($colors, dkgrey);
+}
+
+.ltgrey {
+  color: map-get($colors, ltgrey );
+}
+
+.ivr {
+  color: map-get($colors, ivr);
+}
+
+.wh {
+  color: map-get($colors, wh);
+}
+
+.ltblue {
+  color: map-get($colors, ltblue);
+}
+
+.purp {
+  color: map-get($colors, purp);
+}
+
+.reddrk {
+  color: map-get($colors, reddrk);
+}
+
+.dkblue {
+  color: map-get($colors, dkblue);
+}
+
+.ltgreen {
+  color: map-get($colors, ltgreen);
+}
+
+.dkred {
+  color: map-get($colors, dkred);
+}
+
+.ltred {
+  color: map-get($colors, ltred);
+}
+
+.dkbg {
+  background-color: map-get($colors, dkbg);
+}
+
+.ltbg {
+  background-color: map-get($colors, ltbg);
+}
+
+.shadn {
+  box-shadow: 5px 5px 5px black;
+  border: 1px solid wheat;
+  margin: 1%;
+  padding: 1%;
+}
+
+.shadw {
+  box-shadow: 10px 10px 25px black;
+  margin: 1%;
+  padding: 1%;
+}
+
+.code-questions {
+  width: 80vw;
+  color: map-get($colors, ivr);
+  border: 1px solid white;
+  line-height: 2.5em;
+  font: {
+    size: 0.8em;
+    weight: 400;
+    family: map-get($fonts, Clean);
+  }
+  background-color: rgba(0, 0, 0, .8);
+  padding: 1.5vw;
+  margin: auto;
+
+  & .middle {
+    margin: {
+      left: 25%;
+    }
+  }
+}
+
+.code-questions2 {
+  position: relative;
+  border: 1px solid ivory;
+  background: map-get($colors, pastgreen);
+}
+
+.code-questions3 {
+  position: relative;
+  border: 1px solid lightgreen;
+  background: map-get($colors, pastred);
+}
+
+img {
+  margin: 1vw;
+  position: relative;
+  right: 0;
+  width: 60vw;
+  border: 1px solid maroon;
+}
+
+pre {
+  white-space: pre-wrap;
+}
+
+#appName {
+  position: absolute;
+  right: 30px;
+  top: 10px;
+  opacity: 1;
+  color: map-get($colors, pastgreen);
+  font: {
+    family: map-get($fonts, Cabin);
+    size: 1.5vw;
+  }
+  letter-spacing: 0.4em;
+}
+
+a[ui-sref] {
+  font: {
+    family: map-get($fonts, Cabin);
+    size: 1.2vw;
+  }
+  text-decoration: overline;
+  text-decoration-color: map-get($colors, pastgreen);
+  transition: background-color 2s;
+}
+
+a[ui-sref]:hover {
+  background-color: map-get($colors, transPastGreen);
+}

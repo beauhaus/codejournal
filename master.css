@@ -13,12 +13,7 @@ li {
 
 body {
   padding: 1vw;
-  font-family: "Code Source Pro", monospace;
-  /*90 degree rot state-name*/
-  /* quiz blur */
-  /*-------NG-ANIMATE--------------*/
-  /* start 'enter' transition on main view */
-  /* end 'enter' transition on main view */ }
+  font-family: "Code Source Pro", monospace; }
   body nav {
     position: static;
     display: flex;
@@ -48,117 +43,86 @@ body {
     height: 100%;
     /* Apply multiple filters */
     filter: contrast(175%) brightness(23%); }
-  body .jq-container {
-    margin: 0;
-    padding: 0; }
-  body .journal-container {
-    overflow-x: hidden; }
-  body aside {
-    position: absolute; }
-    body aside span.rot90 {
-      top: 50%;
-      transform: rotate(90deg);
-      transform-origin: left top 0;
-      float: left;
-      left: 0.5vw;
-      position: absolute;
-      font-family: "Cabin", Sans-Serif;
-      font-size: 1.4vw;
-      letter-spacing: 1.4em;
-      color: #c29d9d; }
-  body .ans {
-    padding: 0;
-    -webkit-filter: blur(6px);
-    font-family: "Raleway", Sans-Serif;
-    font-size: 2.8vw;
-    font-weight: 400;
-    display: inline-block;
-    opacity: 1%; }
-    body .ans:hover {
-      /*-webkit-filter: blur(0px);*/
-      animation: blurtxt 0.5s 1 forwards; }
+
+/*90 degree rot state-name*/
+aside {
+  position: absolute; }
+  aside span.rot90 {
+    top: 50%;
+    transform: rotate(90deg);
+    transform-origin: left top 0;
+    float: left;
+    left: 0.5vw;
+    position: absolute;
+    font-family: "Cabin", Sans-Serif;
+    font-size: 1.4vw;
+    letter-spacing: 1.4em;
+    color: #c29d9d; }
+
+/* quiz blur */
+.ans {
+  padding: 0;
+  -webkit-filter: blur(6px);
+  font-family: "Raleway", Sans-Serif;
+  font-size: 2.8vw;
+  font-weight: 400;
+  display: inline-block;
+  opacity: 1%; }
+  .ans:hover {
+    /*-webkit-filter: blur(0px);*/
+    animation: blurtxt 0.5s 1 forwards; }
+
 @-webkit-keyframes blurtxt {
   0% {
     -webkit-filter: blur(3px); }
   100% {
     -webkit-filter: blur(0px); } }
-  body main.ng-enter {
-    /* transition on enter for .5s */
-    transition: 0.5s;
-    /* start with opacity 0 (invisible) */
-    opacity: 0; }
-  body main.ng-enter-active {
-    /* end with opacity 1 (fade in) */
-    opacity: 1; }
-  body div.entry {
-    margin: 1vw;
-    padding: 3vw; }
-    body div.entry p {
-      font-size: 2.5vh;
-      font-family: Trebuchet, Sans-Serif; }
-    body div.entry hr {
-      width: 70%;
-      margin: 5vh auto; }
-    body div.entry h4 {
-      display: inline-block;
-      float: left; }
-    body div.entry h3 {
-      text-align: center; }
-      body div.entry h3.subtitle {
-        text-align: left; }
-    body div.entry h2.date {
-      text-align: right;
-      font-size: 1vw;
-      font-family: "Raleway", Sans-Serif; }
-    body div.entry ol a {
-      color: purple; }
-      body div.entry ol a:hover {
-        color: skyblue; }
-    body div.entry ol.todo li {
-      list-style: none; }
-    body div.entry ol.done li list {
-      style: decimal; }
-    body div.entry .done ol li li {
-      padding: baseline;
-      font-weight: bold; }
-    body div.entry .done ol li p {
-      margin: auto; }
+/*-------NG-ANIMATE--------------*/
+/* start 'enter' transition on main view */
+main.ng-enter {
+  /* transition on enter for .5s */
+  transition: 0.5s;
+  /* start with opacity 0 (invisible) */
+  opacity: 0; }
 
-div.misc-entry {
-  background-color: #f5facf; }
+/* end 'enter' transition on main view */
+main.ng-enter-active {
+  /* end with opacity 1 (fade in) */
+  opacity: 1; }
 
-div.ecma-entry {
-  border: 1px solid #f5facf;
-  height: 80vh;
-  font-family: "Code Source Pro", monospace;
-  font-size: 2vw;
-  overflow: auto;
-  position: relative; }
-  div.ecma-entry .prettyprint {
-    font-size: 1.5vw;
-    background-color: #445e5e;
-    padding: 2vh 2vw; }
-  div.ecma-entry div {
-    margin-bottom: 4vw; }
-
-div.misc-entry {
-  background-color: #ebb861; }
-
-div.journal-entry {
-  box-shadow: inset 2px 2px 20px 5px rgba(0, 0, 0, 0.9);
+div.entry {
   margin: 1vw;
-  padding: 3vw;
-  background: url("img/blank_page.jpg") no-repeat center center fixed;
-  background-size: cover;
-  filter: contrast(140%);
-  line-height: 1.4em;
-  background-color: rgba(128, 128, 128, 0.35);
-  border: 1px solid #f5facf;
-  height: 80vh;
-  font-family: "Special Elite", serif;
-  font-size: 1.4vw;
-  overflow: auto;
-  text-shadow: 0 2px 3px #f1e8ce; }
+  padding: 3vw; }
+  div.entry p {
+    font-size: 2.5vh;
+    font-family: Trebuchet, Sans-Serif; }
+  div.entry hr {
+    width: 70%;
+    margin: 5vh auto; }
+  div.entry h4 {
+    display: inline-block;
+    float: left; }
+  div.entry h3 {
+    text-align: center; }
+    div.entry h3.subtitle {
+      text-align: left; }
+  div.entry h2.date {
+    text-align: right;
+    font-size: 1vw;
+    font-family: "Raleway", Sans-Serif; }
+  div.entry ol a {
+    color: purple; }
+    div.entry ol a:hover {
+      color: skyblue; }
+  div.entry ol.todo li {
+    list-style: none; }
+  div.entry ol.done li list {
+    style: decimal; }
+  div.entry .done ol li li {
+    padding: baseline;
+    font-weight: bold; }
+  div.entry .done ol li p {
+    margin: auto; }
 
 /* width classes */
 .w20 {
@@ -176,21 +140,6 @@ div.journal-entry {
 pre.prettyprint {
   font-size: 1.3em;
   background-color: rgba(242, 219, 150, 0.89); }
-
-/* jquery styles */
-.jq-entry {
-  border: 1px solid #f5facf;
-  height: 80vh;
-  font-family: "Code Source Pro", monospace;
-  font-size: 2vw;
-  overflow: auto;
-  position: relative; }
-  .jq-entry .prettyprint {
-    font-size: 1.5vw;
-    background-color: #445e5e;
-    padding: 2vh 2vw; }
-  .jq-entry div {
-    margin-bottom: 4vw; }
 
 .ctr {
   text-align: left;
@@ -315,5 +264,56 @@ a[ui-sref] {
 
 a[ui-sref]:hover {
   background-color: rgba(166, 182, 150, 0.66); }
+
+/* jquery styles */
+.jq-entry {
+  border: 1px solid #f5facf;
+  height: 80vh;
+  font-family: "Code Source Pro", monospace;
+  font-size: 2vw;
+  overflow: auto;
+  position: relative; }
+  .jq-entry .prettyprint {
+    font-size: 1.5vw;
+    background-color: #445e5e;
+    padding: 2vh 2vw; }
+  .jq-entry div {
+    margin-bottom: 4vw; }
+
+div.journal-entry {
+  box-shadow: inset 2px 2px 20px 5px rgba(0, 0, 0, 0.9);
+  margin: 1vw;
+  padding: 3vw;
+  background: url("img/blank_page.jpg") no-repeat center center fixed;
+  background-size: cover;
+  filter: contrast(140%);
+  line-height: 1.4em;
+  background-color: rgba(128, 128, 128, 0.35);
+  border: 1px solid #f5facf;
+  height: 80vh;
+  font-family: "Special Elite", serif;
+  font-size: 1.4vw;
+  overflow: auto;
+  text-shadow: 0 2px 3px #f1e8ce; }
+
+div.ecma-entry {
+  border: 1px solid #f5facf;
+  height: 80vh;
+  font-family: "Code Source Pro", monospace;
+  font-size: 2vw;
+  overflow: auto;
+  position: relative; }
+  div.ecma-entry .prettyprint {
+    font-size: 1.5vw;
+    background-color: #445e5e;
+    padding: 2vh 2vw; }
+  div.ecma-entry div {
+    margin-bottom: 4vw; }
+
+div.misc-entry {
+  background-color: #f5facf; }
+
+div.misc-entry {
+  background-color: #ebb861; }
 
 /*# sourceMappingURL=master.css.map */

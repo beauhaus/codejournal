@@ -1,0 +1,25 @@
+/* jquery styles */
+.jq-entry {
+
+  border: 1px solid map-get($colors, trim);
+  height: 80vh;
+  font: {
+    family: map-get($fonts, CodePro);
+    size: 2vw;
+  }
+
+  .prettyprint {
+    font-size: 1.5vw;
+    background-color: #445e5e;
+    padding: 2vh 2vw;
+  }
+  overflow: auto;
+  position: relative;
+
+  div {
+    margin: {
+      // top: $baseline;
+      bottom: $baseline * 4;
+    }
+  }
+}
