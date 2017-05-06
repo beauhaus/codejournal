@@ -143,6 +143,13 @@ body {
     margin: $baseline;
     padding: $baseline * 3;
 
+    p {
+      font: {
+        size: 2.5vh;
+        family: Trebuchet, Sans-Serif
+      }
+    }
+
     hr {
       width: 70%;
       margin: 5vh auto;
