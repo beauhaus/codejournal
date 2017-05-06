@@ -1,0 +1,16 @@
+div.sass-entry {
+  background: {
+    color: map-get($colors, dkred);
+  }
+  h4 a{
+    margin: 2vh auto;
+    color: ivr;
+    text-decoration: {
+      color: ivr;
+    }
+  }
+  .prettyprint {
+    border: 1px solid map-get($colors, trim);
+    margin: 2vh auto;
+  }
+}

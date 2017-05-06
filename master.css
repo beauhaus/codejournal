@@ -265,8 +265,14 @@ a[ui-sref] {
 a[ui-sref]:hover {
   background-color: rgba(166, 182, 150, 0.66); }
 
+h4 a, a:link, a:visited, a:focus, a:hover, a:active {
+  margin: 2vh auto;
+  color: ivr;
+  text-decoration-color: ivr; }
+
 /* jquery styles */
 .jq-entry {
+  background-color: #a6b696;
   border: 1px solid #f5facf;
   height: 80vh;
   font-family: "Code Source Pro", monospace;
@@ -286,7 +292,6 @@ div.journal-entry {
   padding: 3vw;
   background: url("img/blank_page.jpg") no-repeat center center fixed;
   background-size: cover;
-  filter: contrast(140%);
   line-height: 1.4em;
   background-color: rgba(128, 128, 128, 0.35);
   border: 1px solid #f5facf;
@@ -315,5 +320,15 @@ div.misc-entry {
 
 div.misc-entry {
   background-color: #ebb861; }
+
+div.sass-entry {
+  background-color: #441f1d; }
+  div.sass-entry h4 a {
+    margin: 2vh auto;
+    color: ivr;
+    text-decoration-color: ivr; }
+  div.sass-entry .prettyprint {
+    border: 1px solid #f5facf;
+    margin: 2vh auto; }
 
 /*# sourceMappingURL=master.css.map */

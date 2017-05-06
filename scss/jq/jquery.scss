@@ -1,5 +1,6 @@
 /* jquery styles */
 .jq-entry {
+  background-color: map-get($colors, pastgreen);
 
   border: 1px solid map-get($colors, trim);
   height: 80vh;

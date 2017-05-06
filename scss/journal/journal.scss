@@ -5,16 +5,6 @@ div.journal-entry {
   padding: $baseline * 3;
   background: url("img/blank_page.jpg") no-repeat center center fixed;
   background-size: cover;
-  // filter: blur(5px);
-  // filter: brightness(0.4);
-  filter: contrast(140%);
-  // filter: drop-shadow(16px 16px 20px blue);
-  // filter: grayscale(50%);
-  // filter: hue-rotate(90deg);
-  // filter: invert(75%);
-  // filter: opacity(25%);
-  // filter: saturate(30%);
-  // filter: sepia(20%);
   line-height: 1.4em;
   background: {
     color: map-get($colors, trans30);

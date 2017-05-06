@@ -407,3 +407,12 @@ a[ui-sref] {
 a[ui-sref]:hover {
   background-color: map-get($colors, transPastGreen);
 }
+
+//FIXME: trying to remove the visited purple color
+h4 a, a:link, a:visited, a:focus, a:hover, a:active{
+  margin: 2vh auto;
+  color: ivr;
+  text-decoration: {
+    color: ivr;
+  }
+}
