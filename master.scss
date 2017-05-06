@@ -137,6 +137,7 @@ body {
     opacity: 1;
   }
 
+
   div.entry {
     box-shadow: inset 2px 2px 20px 5px map-get($colors, shadow);
     margin: $baseline;
@@ -216,16 +217,19 @@ body {
 }
 
 div.journal-entry {
-  line-height: 1.2em;
+  line-height: 1.4em;
   background: {
     color: map-get($colors, trans30);
   }
   border: 1px solid map-get($colors, trim);
   height: 80vh;
-  font-family: map-get($fonts, TypeWriter);
+  font: {
+    family: map-get($fonts, TypeWriter);
+    size: 1.4vw;
+  }
   overflow: auto;
   text: {
-    shadow: 0 1px 3px map-get($colors, txtShadow);
+    shadow: 0 1px 2px map-get($colors, txtShadow);
   }
 }
 

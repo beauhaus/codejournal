@@ -1,9 +1,61 @@
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
 <aside><span class="rot90">{{state}}</span></aside>
 <div class="ecma-entry entry">
+  <pre>
 
-<pre>
-  <h4 class="wh w40">Nice example of replace()</h4>
+<h2 class="ltblue">Nice version of isPalindrome() using regex</h2>
+<h4><a href="https://medium.freecodecamp.com/two-ways-to-check-for-palindromes-in-javascript-64fea8191fd7">FCC Link</a></h4>
+<pre class="prettyprint w80">
+
+  function isPalindrome(str) {
+    var re = /[\W_]/g;
+    var lowRegStr = str.toLowerCase().replace(re, ''); //replaces all non chars with nothing.
+    var revStr = lowRegStr.split('').reverse().join(''); //makes Arr, revs, joins.
+    var bool = lowRegStr === revStr; //two Strings compared
+    return bool; //truthy return
+  }
+  isPalindrome("naan")
+  isPalindrome("Beau")
+
+</pre>
+<h2 class="ltblue">Nice example of <span class="dkred">.replace()</span> String method</h2>
+<h4><a href="https://www.tutorialspoint.com/java/java_string_replace.htm">link</a></h4>
+
+<pre class="prettyprint w80">
+
+  var happyThought = "This is really great!";
+  var sadThought = "tragic!";
+
+  var newThought = happyThought.replace('great!', sadThought);
+  // Simple String Method: first arg is old substr, 2nd arg is nuSubstr.
+
+  console.log(newThought);
+
+</pre>
+  <hr>
+  <h2 class="ltblue">Nice example of <span class="dkred">recursion</span> with factorials</h2>
+  <h4><a target="_blank" href="https://frontendmasters.com/courses/computer-science/exercise-1-solution">solution explained here</a></h4>
+
+  <pre class="prettyprint w80">
+
+  function factorialize(num) {
+      if (num < 2) {
+        return 1;
+      }
+      return num * factorialize(num - 1);
+    }
+
+    factorialize(17);
+    factorialize(3);
+    factorialize(20);
+  </pre>
+  <span class="ltred bg">Open another browser to run it to avoid mishaps with infinite loops</span>
+
+  </pre>
+
+  <hr>
+  <pre>
+  <h2 class="ltblue">Nice example of String Method: <span class="dkred">.replace();</span></h2>
   <h4><a target="_blank" href="https://www.freecodecamp.com/challenges/search-and-replace">search-and-replace</a></h4>
 
 <pre class="prettyprint w80">
@@ -20,9 +72,11 @@
         }
 
       }
-//myReplace('A quick brown fox jumped over the lazy dog', 'jumped', 'leaped')
-myReplace('He is Sleeping on the couch', 'Sleeping', 'sitting')
-.</pre>
+  //myReplace('A quick brown fox jumped over the lazy dog', 'jumped', 'leaped')
+  myReplace('He is Sleeping on the couch', 'Sleeping', 'sitting')
 
 </pre>
-</div> <!--entry end-->
+
+  </pre>
+</div>
+<!--entry end-->

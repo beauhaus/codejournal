@@ -1,4 +1,22 @@
 <aside><span class="rot90">{{state}}</span></aside>
 <div class="misc-entry entry">
+<h3>Interesting point about this:</h3>
+(<span><a href="http://stackoverflow.com/questions/7479282/this-vs-this">FROM HERE</a></span>)
 
+<pre>
+  <p>In jQuery functions, this most often refers to the actual DOM element you're dealing with, whereas $(this) returns a jQuery object that wraps the element.
+
+  In JavaScript, this always refers to the current scope. Many of jQuery's functions will set that scope to be the element you're working with.</p>
+
+  For instance
+
+<pre class="prettyprint">
+  $("#someElement").click(function() {
+      this;    // the element itself
+      $(this); // a jQuery wrapper-object around the element
+  });
+</pre>
+
+<hr>
+</pre>
 </div>

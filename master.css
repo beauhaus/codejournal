@@ -100,13 +100,14 @@ body {
       margin: auto; }
 
 div.journal-entry {
-  line-height: 1.2em;
+  line-height: 1.4em;
   background-color: rgba(128, 128, 128, 0.35);
   border: 1px solid #f5facf;
   height: 80vh;
   font-family: "Special Elite", serif;
+  font-size: 1.4vw;
   overflow: auto;
-  text-shadow: 0 1px 3px #f1e8ce; }
+  text-shadow: 0 1px 2px #f1e8ce; }
 
 /* width classes */
 .w20 {
