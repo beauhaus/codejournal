@@ -13,7 +13,35 @@
     //example snippet
   }
 </pre> -->
+<hr>
+<img class="w80" src="img/this1.png" alt=""><i class="dkred">
+  <br>
+THIS</i> in two different contexts:<br>
+<i class="dkblue">'this'</i> can refer--here--to the element that <em>fired</em> this
+...or the object created by the triggering of that element.
 
+HOWEVER: What if I want to call the 'doIt()' method on that object
+& refer to that element <em>as <b class="dkblue">as 'this'</b></em>??
+
+Simple: We use javascript's .call(); method.
+
+<pre class="prettyprint w80">
+  btn = $('button');
+  var obj = {
+    doIt: function(e) {
+      console.log(this);
+    }
+  }
+
+btn.on('click', function(e) {
+  obj.doIt().call(this);
+  //we call this b/c within this click function
+  //we know that 'this' refers to the btn that was clicked.
+})
+
+</pre>
+
+<hr>
 <div class="w40 ctr">
   <pre class="ltbg shadn">
     < div class="list">
@@ -51,7 +79,7 @@
   <code class="dkgrey">$('li:first-child').css('color', 'pink');</code>
 
   You can also use .next() or .prev() in any situation.
-  
+
 </div>
 <div class="htmlbox">
   so what is the difference between <i>.parent()</i> & <i>.parents()</i> & <i>.closest()</i> ?
