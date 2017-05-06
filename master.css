@@ -124,8 +124,22 @@ body {
     body div.entry .done ol li p {
       margin: auto; }
 
-div.ecma-entry div.misc-entry {
+div.misc-entry {
   background-color: #f5facf; }
+
+div.ecma-entry {
+  border: 1px solid #f5facf;
+  height: 80vh;
+  font-family: "Code Source Pro", monospace;
+  font-size: 2vw;
+  overflow: auto;
+  position: relative; }
+  div.ecma-entry .prettyprint {
+    font-size: 1.5vw;
+    background-color: #445e5e;
+    padding: 2vh 2vw; }
+  div.ecma-entry div {
+    margin-bottom: 4vw; }
 
 div.misc-entry {
   background-color: #ebb861; }
