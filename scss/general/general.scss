@@ -290,6 +290,9 @@ pre.prettyprint {
 .dkred {
   color: map-get($colors, dkred);
 }
+.mustard {
+  color: map-get($colors, mustard)
+}
 
 .ltred {
   color: map-get($colors, ltred);
@@ -381,29 +384,36 @@ pre {
   letter-spacing: 0.4em;
 }
 
-.navlink{
-  font: {
-    family: map-get($fonts, Cabin);
-    size: 1.2vw;
+.navlink-container{
+  a[ui-sref] {
+    font: {
+      family: map-get($fonts, Cabin);
+      size: 1.2vw;
+      color: wheat;
+    }
+    // color: transparent;
+    text-decoration: overline;
+    text-decoration-color: map-get($colors, pastgreen);
+    transition: all 0.6s;
+    &:hover {
+      color: ivory;
+    }
   }
-  color: transparent;
-  text-decoration: overline;
-  text-decoration-color: map-get($colors, pastgreen);
-  transition: all 0.6s;
 }
 
-// a[ui-sref]:hover {
-//   // background-color: map-get($colors, transPastGreen);
-//   color: map-get($colors, ivr);
-//   opacity: 1;
-// }
+a[ui-sref] {
+  // background-color: map-get($colors, transPastGreen);
+  // color: map-get($colors, ivr);
+  opacity: 1;
+  // color: black;
+}
 .toTrans {
   color: transparent;
   transition: color 2s;
 }
-.toIvr {
-  color: ivory;
-  transition: color 2s;
+a[ui-sref]:hover {
+  color: #c8a868;
+  transition: color 1s;
 
 }
 

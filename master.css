@@ -191,6 +191,9 @@ pre.prettyprint {
 .dkred {
   color: #441f1d; }
 
+.mustard {
+  color: #a38853; }
+
 .ltred {
   color: #eb473d; }
 
@@ -259,21 +262,26 @@ pre {
   font-size: 1.5vw;
   letter-spacing: 0.4em; }
 
-.navlink {
+.navlink-container a[ui-sref] {
   font-family: "Cabin", Sans-Serif;
   font-size: 1.2vw;
-  color: transparent;
+  font-color: wheat;
   text-decoration: overline;
   text-decoration-color: #a6b696;
   transition: all 0.6s; }
+  .navlink-container a[ui-sref]:hover {
+    color: ivory; }
+
+a[ui-sref] {
+  opacity: 1; }
 
 .toTrans {
   color: transparent;
   transition: color 2s; }
 
-.toIvr {
-  color: ivory;
-  transition: color 2s; }
+a[ui-sref]:hover {
+  color: #c8a868;
+  transition: color 1s; }
 
 a:active,
 a:focus,
@@ -321,6 +329,7 @@ div.journal-entry {
 div.ecma-entry {
   border: 1px solid #f5facf;
   height: 80vh;
+  background-color: #410211;
   font-family: "Code Source Pro", monospace;
   font-size: 2vw;
   overflow: auto;
