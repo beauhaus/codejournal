@@ -1,6 +1,11 @@
 /* SASS START:
 sass --watch master.scss:master.css
 */
+@import url("https://fonts.googleapis.com/css?family=Special+Elite");
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,500");
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro");
+@import url("https://fonts.googleapis.com/css?family=Cabin");
+@import url("https://fonts.googleapis.com/css?family=Comfortaa");
 * {
   box-sizing: border-box;
   margin: 0;

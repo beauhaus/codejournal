@@ -1,6 +1,12 @@
 /* SASS START:
 sass --watch master.scss:master.css
 */
+@import url('https://fonts.googleapis.com/css?family=Special+Elite');
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,500');
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+@import url('https://fonts.googleapis.com/css?family=Cabin');
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+
 $baseline: 1vw; // $baseline:
 $title-font: 40px Tahoma, Helvetica, Arial, Sans-Serif;
 $fonts: ( Comfort: ('Comfortaa', cursive), Cabin: ('Cabin', Sans-Serif), CodePro: ('Code Source Pro', monospace), TypeWriter: ('Special Elite', serif), Clean: ('Raleway', Sans-Serif) );
@@ -13,7 +19,7 @@ dkgrey:#575757,
 ltgrey:#bdbdbd,
 ivr:#e6d8cc,
 wh: #fff,
-mustard: #a38853,  
+mustard: #a38853,
 trim: #f5facf,
 txtShadow: #f1e8ce,
 ltblue:#3f71f1,
