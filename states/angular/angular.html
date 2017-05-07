@@ -1,0 +1,31 @@
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<aside><span class="rot90">{{state}}</span></aside>
+<div class="angular-entry entry">
+
+<pre>
+<h2 class="ltblue">Angular</h2>
+<h4>A nice link for <a class="entry-link" target="_blank" href="https://vimeo.com/196481462">DM custom directives</a></h4>
+<pre class="prettyprint w80">
+  angular.module("myApp")
+    .directive('mydirective', function() {
+      return {
+        restrict: 'AE',
+        templateUrl: './dirSrc/mydirective.html',
+        link: function(scope, element, attrs) {
+          element.on('click', function() {
+            console.log("You clicked my directive");
+          })
+
+        }
+      }
+    })
+
+</pre>
+<p class="caption">For Directives: by default this function's <em class="wh">scope</em> will be the same as this directive's $scope.
+jqLite is only used inside of this link function. --but you can use a lot of jquery-type code here.
+
+<em class="y">Element</em> in this function refers to the directive.html itself. So you have to be more specifice (i.e. with <span class="wh">.children()</span>)
+in order to select the things inside.</p>
+
+<p class="caption"></p>
+</div><!--angular-entry END-->

@@ -9,27 +9,29 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,500" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
 
   </head>
   <body>
   <div class="bg-image"></div>
   <h2 id="appName">Code Journal</h2>
-  <nav>
+  <navdirective></navdirective>
+  <!-- <nav>
     <ul>
-      <li><a ui-sref="home">home</a></li>
-      <li><a ui-sref="journal">journal</a></li>
-      <li><a ui-sref="jquery">jquery</a></li>
-      <li><a ui-sref="javascript">javascript</a></li>
-      <li><a ui-sref="misc">misc</a></li>
-      <li><a ui-sref="sass">sass/css</a></li>
+      <li><a ui-sref="home">HOME</a></li>
+      <li><a ui-sref="journal">JOURNAL</a></li>
+      <li><a ui-sref="jquery">JQUERY</a></li>
+      <li><a ui-sref="javascript">JAVASCRIPT</a></li>
+      <li><a ui-sref="misc">MISC</a></li>
+      <li><a ui-sref="sass">CSS-SASS</a></li>
+      <li><a ui-sref="angular">ANGULAR</a></li>
     </ul>
-  </nav>
+  </nav> -->
 <main ui-view></main>
 
 
 <!-- ------------Scripts ------------------ -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.js"></script>
 <!-- NOTE: make certain that ng-animate's version matches that of angular's -->
@@ -38,6 +40,8 @@
 
 <script src="./js/app.js"></script>
 <script src="./js/mainservice.js"></script>
+<script src="./js/navdirective.js"></script>
+
 <!-- ----------STATES----------- -->
 <script src="./states/home/homeCtrl.js"></script>
 <script src="./states/journal/journalCtrl.js"></script>
@@ -45,6 +49,7 @@
 <script src="./states/misc/miscCtrl.js"></script>
 <script src="./states/ecma/ecmaCtrl.js"></script>
 <script src="./states/sass/sassCtrl.js"></script>
+<script src="./states/angular/angularCtrl.js"></script>
 
 
   </body>

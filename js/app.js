@@ -30,6 +30,9 @@ angular.module("codeJournal", ['ui.router', 'ngAnimate'])
       controller: 'sassCtrl',
       url: '/sass',
       templateUrl: './states/sass/sass.html'
+    }).state('angular', {
+      controller: 'angularCtrl',
+      url: '/angular',
+      templateUrl: './states/angular/angular.html'
     })
 });
-//

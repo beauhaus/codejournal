@@ -1,11 +1,10 @@
 /* jquery styles */
 .jq-entry {
   background-color: map-get($colors, pastgreen);
-
   border: 1px solid map-get($colors, trim);
   height: 80vh;
   font: {
-    family: map-get($fonts, CodePro);
+    family: map-get($fonts, Comfort);
     size: 2vw;
   }
 
@@ -19,8 +18,11 @@
 
   div {
     margin: {
-      // top: $baseline;
       bottom: $baseline * 4;
+    }
+    font: {
+      family: map-get($fonts, Comfort);
+      size: 2vw;
     }
   }
 }

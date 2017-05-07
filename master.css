@@ -16,20 +16,21 @@ body {
   font-family: "Code Source Pro", monospace; }
   body nav {
     position: static;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around; }
+    margin-top: 3vh; }
     body nav a {
       text-decoration: none; }
     body nav ul {
-      width: 60%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      width: 100%;
       margin: auto; }
-    body nav ul li a {
-      color: #575757; }
     body nav ul li {
-      display: inline-block;
+      display: inline;
       text-align: center;
-      width: 8vw; }
+      width: 7vw; }
+  body .prettyprint {
+    font-family: "Code Source Pro", monospace; }
   body div.bg-image:before {
     content: "";
     position: fixed;
@@ -41,7 +42,6 @@ body {
     background-image: url("img/steelbg.jpg");
     width: 100%;
     height: 100%;
-    /* Apply multiple filters */
     filter: contrast(175%) brightness(23%); }
 
 /*90 degree rot state-name*/
@@ -96,6 +96,8 @@ div.entry {
   div.entry p {
     font-size: 2.5vh;
     font-family: Trebuchet, Sans-Serif; }
+  div.entry .caption {
+    color: #d0b588; }
   div.entry hr {
     width: 70%;
     margin: 5vh auto; }
@@ -110,10 +112,8 @@ div.entry {
     text-align: right;
     font-size: 1vw;
     font-family: "Raleway", Sans-Serif; }
-  div.entry ol a {
-    color: purple; }
-    div.entry ol a:hover {
-      color: skyblue; }
+  div.entry ol a:hover {
+    color: skyblue; }
   div.entry ol.todo li {
     list-style: none; }
   div.entry ol.done li list {
@@ -200,6 +200,9 @@ pre.prettyprint {
 .ltbg {
   background-color: rgba(199, 190, 132, 0.5); }
 
+.trans {
+  color: transparent; }
+
 .shadn {
   box-shadow: 5px 5px 5px black;
   border: 1px solid wheat;
@@ -243,7 +246,8 @@ img {
   border: 1px solid maroon; }
 
 pre {
-  white-space: pre-wrap; }
+  white-space: pre-wrap;
+  font-family: "Comfortaa", cursive; }
 
 #appName {
   position: absolute;
@@ -255,17 +259,28 @@ pre {
   font-size: 1.5vw;
   letter-spacing: 0.4em; }
 
-a[ui-sref] {
+.navlink {
   font-family: "Cabin", Sans-Serif;
   font-size: 1.2vw;
+  color: transparent;
   text-decoration: overline;
   text-decoration-color: #a6b696;
-  transition: background-color 2s; }
+  transition: all 0.6s; }
 
-a[ui-sref]:hover {
-  background-color: rgba(166, 182, 150, 0.66); }
+.toTrans {
+  color: transparent;
+  transition: color 2s; }
 
-h4 a, a:link, a:visited, a:focus, a:hover, a:active {
+.toIvr {
+  color: ivory;
+  transition: color 2s; }
+
+a:active,
+a:focus,
+a:hover,
+a:link,
+a:visited,
+h4 a {
   margin: 2vh auto;
   color: ivr;
   text-decoration-color: ivr; }
@@ -275,7 +290,7 @@ h4 a, a:link, a:visited, a:focus, a:hover, a:active {
   background-color: #a6b696;
   border: 1px solid #f5facf;
   height: 80vh;
-  font-family: "Code Source Pro", monospace;
+  font-family: "Comfortaa", cursive;
   font-size: 2vw;
   overflow: auto;
   position: relative; }
@@ -284,7 +299,9 @@ h4 a, a:link, a:visited, a:focus, a:hover, a:active {
     background-color: #445e5e;
     padding: 2vh 2vw; }
   .jq-entry div {
-    margin-bottom: 4vw; }
+    margin-bottom: 4vw;
+    font-family: "Comfortaa", cursive;
+    font-size: 2vw; }
 
 div.journal-entry {
   box-shadow: inset 2px 2px 20px 5px rgba(0, 0, 0, 0.9);
@@ -328,6 +345,19 @@ div.sass-entry {
     color: ivr;
     text-decoration-color: ivr; }
   div.sass-entry .prettyprint {
+    border: 1px solid #f5facf;
+    margin: 2vh auto; }
+
+div.angular-entry {
+  color: #f28b02;
+  background-color: #441f1d; }
+  div.angular-entry h4 a {
+    margin: 2vh auto;
+    color: #e6d8cc;
+    text-decoration: none; }
+  div.angular-entry h4 a:hover {
+    color: #79e286; }
+  div.angular-entry .prettyprint {
     border: 1px solid #f5facf;
     margin: 2vh auto; }
 
