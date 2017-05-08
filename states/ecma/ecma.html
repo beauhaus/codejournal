@@ -1,13 +1,99 @@
 <div class="ecma-container">
-<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
 
-<aside><span class="rot90">{{state}}</span></aside>
-<div class="ecma-entry entry">
-<pre>
+  <aside><span class="rot90">{{state}}</span></aside>
+  <div class="ecma-entry entry">
+    <pre>
+      <!--entire page pre-->
+      <h2 class="ltblue">setTimeout & setInterval : using Kirupa & Dan Wellman's tutes</h2>
 
-<h2 class="ltblue">Nice version of isPalindrome() using regex</h2>
-<h4><a href="https://medium.freecodecamp.com/two-ways-to-check-for-palindromes-in-javascript-64fea8191fd7">FCC Link</a></h4>
-<pre class="prettyprint w80">
+  <pre class="prettyprint w80">
+        setTimeout('console.log("bad!")', 4000); // 'bad' (after 4 secs)</pre>
+    <p class="dkred"><sup class="ltred">*</sup>setTimeout is one of many methods that take a string and evaluate it as if it were code. But this is dangerous and insecure.
+    <span class="ltred">NEVER pass a str as a first argument.</span></p>
+    <pre class="prettyprint w40">
+function log() {
+  console.log("Hi there!");
+}
+setTimeout(log, 4000);
+//(after 4sec) Hi there!
+</pre>
+    <h5><sup class="dkred">Here we call the named Fn instead of an interpolated string.</h5>
+
+    <pre class="prettyprint w60">
+  setTimeout(function log(msg) {
+      console.log('Hi (using entire Fn as an arg)');
+  }, 4000);
+
+  <div class="dkbg">var logger = function log(msg) {
+      console.log('Hi (using variable)');
+  }
+  setTimeout(logger, 4000);</div></pre>
+  <h5 class="dkbg wh w60">2nd example uses setTimeout calling a Fn expression</h5>
+  <h5 class="ctrtxt"><span class="underline navy">SetInterval</span> is a setTimeout that simply repeats itself.</h5>
+  <pre class="prettyprint w60">
+  function bounce(msg) {
+    console.log("boing, boing");
+  }
+  setInterval(bounce, 3000);
+  // boing, boing (every 3secs ad infinitum)
+</pre>
+  <h5>Now, we must define the interval in order to end it.
+  We use <span class="dkorange">clearTimeout()</span> & <span class="dkorange">clearInterval()</span> methods.</h5>
+  <pre class="prettyprint w60">
+  let counter = 0;
+  function bounce() {
+    console.log("boing");
+    counter += 1;
+
+    if (counter === 5) {
+      clearInterval(interval);
+    }
+  }
+  var interval = setInterval(bounce, 3000);</pre>
+  <h4><a target="_blank" href="https://youtu.be/zucCjXApXOU">Kirupa Tutorial</a></h4>
+    <h4 class="ltbg w60">setTimeout(<span class="dkorange">anyFunction</span>, <em>timedelay</em>)</h4>
+    <h4 class="ltbg w60">clearTimeout(<span class="dkorange">timeID</span>)</h4>
+    <h6 class="">start it and cancel it.</h6>
+  requestAnimationFrame() --requests a repaint and runs code as part of that repaint.
+<pre class="prettyprint w40">
+let timeID = setTimeout(runCode, 4000);
+clearTimeout(timeID);</pre>
+Here's an example;
+<pre class="prettyprint w60">
+var btn = $('button');
+
+function drawText() {
+  btn.after('< h1>Boom!< /h1>')
+}
+
+var timeID = setTimeout(drawText, 14000);
+btn.on('click', function() {
+btn.after('< h4>You cancelled it.< /h4>')
+  clearTimeout(timeID);
+})</pre>
+<div class="ltbg w60"><h4 class="ctrtxt">var timeID =requestAnimationFrame(<em class="navy">anyFunction</em>)</h4>
+  <h4 class="ctrtxt">requestAnimationFrame(<em class="navy">timeID</em>)</h4></div>
+<h6>This is not part of some javascript browser's timer, but part of the browser's paint pipeline. It is more efficient and performant.</h6>
+<pre class="prettyprint w40">
+function drawText() {
+  btn.after('< hr /> < h1>Boom!< /h1>')
+}
+
+function animationLoop() {
+  drawText();
+}
+btn.on('click', function() {
+  animationLoop();
+})
+</pre>
+<h5>This uses gpu & cpu information to optimize performance.</h5>
+
+<em>cf.</em> <a href="https://youtu.be/rNsC1VI9388">Kirupa: requestAnimationFrame() for animation video</a>
+  <hr>
+  <h2 class="ltblue">Nice version of isPalindrome() using regex</h2>
+  <h4><a target="_blank" href="https://medium.freecodecamp.com/two-ways-to-check-for-palindromes-in-javascript-64fea8191fd7">FCC Link</a></h4>
+  <pre class="prettyprint w80">
 
   function isPalindrome(str) {
     var re = /[\W_]/g;
@@ -20,10 +106,10 @@
   isPalindrome("Beau")
 
 </pre>
-<h2 class="ltblue">Nice example of <span class="dkred">.replace()</span> String method</h2>
-<h4><a href="https://www.tutorialspoint.com/java/java_string_replace.htm">link</a></h4>
+    <h2 class="ltblue">Nice example of <span class="dkred">.replace()</span> String method</h2>
+    <h4><a target="_blank" href="https://www.tutorialspoint.com/java/java_string_replace.htm">link</a></h4>
 
-<pre class="prettyprint w80">
+    <pre class="prettyprint w80">
 
   var happyThought = "This is really great!";
   var sadThought = "tragic!";
@@ -34,11 +120,11 @@
   console.log(newThought);
 
 </pre>
-  <hr>
-  <h2 class="ltblue">Nice example of <span class="dkred">recursion</span> with factorials</h2>
-  <h4><a target="_blank" href="https://frontendmasters.com/courses/computer-science/exercise-1-solution">solution explained here</a></h4>
+    <hr>
+    <h2 class="ltblue">Nice example of <span class="dkred">recursion</span> with factorials</h2>
+    <h4><a target="_blank" href="https://frontendmasters.com/courses/computer-science/exercise-1-solution">solution explained here</a></h4>
 
-  <pre class="prettyprint w80">
+    <pre class="prettyprint w80">
 
   function factorialize(num) {
       if (num < 2) {
@@ -51,16 +137,16 @@
     factorialize(3);
     factorialize(20);
   </pre>
-  <span class="ltred bg">Open another browser to run it to avoid mishaps with infinite loops</span>
+    <span class="ltred bg">Open another browser to run it to avoid mishaps with infinite loops</span>
 
-  </pre>
 
-  <hr>
-  <pre>
-  <h2 class="ltblue">Nice example of String Method: <span class="dkred">.replace();</span></h2>
-  <h4><a target="_blank" href="https://www.freecodecamp.com/challenges/search-and-replace">search-and-replace</a></h4>
 
-<pre class="prettyprint w80">
+    <hr>
+
+    <h2 class="ltblue">Nice example of String Method: <span class="dkred">.replace();</span></h2>
+    <h4><a target="_blank" href="https://www.freecodecamp.com/challenges/search-and-replace">search-and-replace</a></h4>
+
+    <pre class="prettyprint w80">
 
   function myReplace(str, before, after) {
 
@@ -79,9 +165,17 @@
 
 </pre>
 
-  </pre>
-</div>
-<!--entry end-->
+    </pre>
+  </div>
+  <!--entry end-->
 
 
 </div>
+
+<!-- <h2 class="ltblue">TITLEHERE</h2>
+<h4><a target="_blank" href="LINKADDY">LINKTITLE</a></h4>
+<pre class="prettyprint w80">
+  CODEPLACEHOLDER
+</pre>
+<p>CAPTION PLACEHOLDER</p>
+-->

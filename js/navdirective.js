@@ -2,8 +2,12 @@ angular.module('codeJournal')
 .directive('navdirective', function() {
   return {
     restrict: 'AE',
-    templateUrl: './directives/navdirective.html',
+    templateUrl: './directive_templates/navdirective.html',
     // state: $scope.state;
+    link: function(scope, element, attrs){
+      // console.log("$scope.state is: ", $scope.state);
+      console.log("Hi from link!");
+    }
   }
 });
 

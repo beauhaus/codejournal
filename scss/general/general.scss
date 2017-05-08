@@ -20,6 +20,7 @@ body {
     position: static; //FIXME: not sure what to do here.
     margin-top:3vh;
     a {
+      color: map-get($colors, pastY);
       text-decoration: none;
     }
 
@@ -226,8 +227,8 @@ pre.prettyprint {
   background-color: rgba(242, 219, 150, 0.89);
 }
 
-.ctr {
-  text-align: left;
+.ctrtxt {
+  text-align: center;
   margin: auto;
 }
 
@@ -250,7 +251,9 @@ pre.prettyprint {
 .orange {
   color: map-get($colors, orange);
 }
-
+.dkorange{
+  color: map-get($colors, dkorange);
+}
 .dkgrey {
   color: map-get($colors, dkgrey);
 }
@@ -274,11 +277,19 @@ pre.prettyprint {
 .purp {
   color: map-get($colors, purp);
 }
+.paleY {
+  color: map-get($colors, paleY);
+}
+.pastY {
+  color: map-get($colors, pastY);
+}
 
 .reddrk {
   color: map-get($colors, reddrk);
 }
-
+.navy {
+  color: map-get($colors, navy);
+}
 .dkblue {
   color: map-get($colors, dkblue);
 }
@@ -391,7 +402,6 @@ pre {
       size: 1.2vw;
       color: wheat;
     }
-    // color: transparent;
     text-decoration: overline;
     text-decoration-color: map-get($colors, pastgreen);
     transition: all 0.6s;
@@ -429,4 +439,10 @@ h4 a {
   text-decoration: {
     color: ivr;
   }
+}
+.underline {
+  text-decoration: underline;
+}
+.txtLeft {
+  text-align: left;
 }

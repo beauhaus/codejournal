@@ -23,6 +23,7 @@ body {
     position: static;
     margin-top: 3vh; }
     body nav a {
+      color: #bfbc64;
       text-decoration: none; }
     body nav ul {
       display: flex;
@@ -146,8 +147,8 @@ pre.prettyprint {
   font-size: 1.3em;
   background-color: rgba(242, 219, 150, 0.89); }
 
-.ctr {
-  text-align: left;
+.ctrtxt {
+  text-align: center;
   margin: auto; }
 
 .bg {
@@ -165,6 +166,9 @@ pre.prettyprint {
 
 .orange {
   color: #f28b02; }
+
+.dkorange {
+  color: #945706; }
 
 .dkgrey {
   color: #575757; }
@@ -184,8 +188,17 @@ pre.prettyprint {
 .purp {
   color: purple; }
 
+.paleY {
+  color: #e8e598; }
+
+.pastY {
+  color: #bfbc64; }
+
 .reddrk {
   color: #410211; }
+
+.navy {
+  color: navy; }
 
 .dkblue {
   color: #18223b; }
@@ -298,6 +311,12 @@ h4 a {
   color: ivr;
   text-decoration-color: ivr; }
 
+.underline {
+  text-decoration: underline; }
+
+.txtLeft {
+  text-align: left; }
+
 /* jquery styles */
 .jq-entry {
   background-color: #a6b696;
@@ -334,7 +353,7 @@ div.journal-entry {
 div.ecma-entry {
   border: 1px solid #f5facf;
   height: 80vh;
-  background-color: #410211;
+  background-color: #bdbdbd;
   font-family: "Code Source Pro", monospace;
   font-size: 2vw;
   overflow: auto;
