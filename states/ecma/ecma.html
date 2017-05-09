@@ -88,7 +88,24 @@ btn.on('click', function() {
 })
 </pre>
 <h5>This uses gpu & cpu information to optimize performance.</h5>
+<pre class="prettyprint">
+  var currentPos = 0;
+  var thing = document.querySelector("#thing")
+  var requestAnimationFrame = window.requestAnimationFrame;
 
+  function moveThing () {
+    currentPos+= 5;
+    thing.style.left = currentPos + "px";
+
+    if (Math.abs(currentPos) >= 900) {
+      currentPos = - 500;
+    }
+
+    requestAnimationFrame(moveThing);
+  }
+
+  moveThing();
+</pre>
 <em>cf.</em> <a href="https://youtu.be/rNsC1VI9388">Kirupa: requestAnimationFrame() for animation video</a>
   <hr>
   <h2 class="ltblue">Nice version of isPalindrome() using regex</h2>
