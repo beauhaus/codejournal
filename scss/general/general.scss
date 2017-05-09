@@ -14,7 +14,10 @@ li {
 
 body {
   padding: $baseline;
-  font-family: map-get($fonts, CodePro);
+  font: {
+    family: map-get($fonts, CodePro);
+    size: 1.2vw;
+  }
 
   nav {
     position: static; //FIXME: not sure what to do here.
@@ -204,6 +207,9 @@ div.entry {
   }
 }
 /* width classes */
+.w10 {
+  width: 10vw;
+}
 .w20 {
   width: 20vw;
 }
@@ -445,4 +451,61 @@ h4 a {
 }
 .txtLeft {
   text-align: left;
+}
+.framed1 {
+  padding: 2%;
+  font: {
+    size: 1.4vw;
+  }
+  margin: auto;
+  background: {
+    color: #758a88;
+  }
+  border: 1px solid brown;
+  box-shadow: inset 2px 2px 10px 2px black;
+  pre {
+    color: map-get($colors, pastgreen);
+  }
+}
+.fLeft {
+  float: left;
+}
+.fRight {
+  float: right;
+}
+.framed2 {
+  // position: relative;
+  padding: 2%;
+  font: {
+    size: 1.4vw;
+  }
+  margin: auto;
+  background: {
+    color: #e3ab7e;
+  }
+  border: 1px solid brown;
+  box-shadow: inset 2px 2px 10px 2px black;
+  pre {
+    color: map-get($colors, pastgreen);
+  }
+}
+.sm {
+  font-size: $baseline / 2;
+}
+
+.caption-box {
+  position: relative;
+  border: 1px solid green;
+  background-color: #a2c0c6;
+  box-shadow: 2px 2px 12px 0px black;
+  height: auto;
+  font: {
+    family: map-get($fonts, Cabin);
+    size: 1.2vw;
+  }
+  padding: .5vh 2vw;
+}
+.caption-box img {
+  position: absolute;
+  top: 2px;
 }

@@ -5,6 +5,70 @@
   <div class="ecma-entry entry">
     <pre>
       <!--entire page pre-->
+      <h4 class="w20 ctr">events (Lynda)</h4>
+      <h5>Adding event listeners</h5>
+      <h6>Bascially they are no different in appearance from jQuery's events ('...on.('click', function(){}'...etc)</h6>
+      <pre class="prettyprint">document.getElementById('thing').addEventListener('click', function() {
+    alert("clicked the thing!")
+},<span class="y underline">false</span>)</pre>
+<h6>for some tags we can use preventDefault()  * see below *</h6>
+<pre class="prettyprint">document.getElementById('container').addEventListener('click', function(e) {
+      console.log("clicked the container!")
+  },false)
+document.getElementById('link').addEventListener('click', function(e) {
+    e.preventDefault()
+    console.log("clicked the link!")
+    <span class="underline y">e.stopPropagation();</span> // only 'clicked the link!' fires.
+},false)</pre>
+<h5 class="dkred w40 ctrtxt">Capturing vs Bubbling</h5>
+<p>Propagation is about how events are registered and 'caught' vis-a-vis other elements. Here, <span class="dkorange">e.stopPropagation()</span>
+is called to prevent any events on parent elements. Therefore, we don't log to console</p>
+
+<h5>2 ways to register an event.<br>You can 'catch' the event in the <em class="dkorange underline">Capturing Phase</em> so that a 'higher' DOM element listens down to its children for an event. div->ul->li->a <br><br>
+Otherwise, an evt can be registered on the lowest element until it <em>bubbles</em> up to the div <br>
+This is called capturing the event in <em class="dkorange underline">the Bubbling Phase</em></h5>
+<pre class="prettyprint">
+  document.getElementById('container').addEventListener('click', function(e) {
+        console.log("clicked the container!")
+  },<span class="underline">false</span>)
+  document.getElementById('journalLink').addEventListener('click', function(e) {
+    e.preventDefault()
+    document.querySelector('#journalLink').style.color ='white';
+      console.log(e.toElement.id);<sup class="ltred">*</sup>
+  },<span class="underline">false</span>)
+//having set both to false, the event will bubble up and return "journal" FIRST! and then "clicked container!"</pre>
+<p><sup class="wh">*</sup>this is part of the 'e' object which gives the id value</p>
+
+<div class="framed1"><pre>
+  When you add an event handler to the event target itself, bubble vs capture is not applicable. At that level, you're not capturing or bubbling--you're on the target itself. The event handlers fire in the order in which they were registered.
+</pre></div>
+<h4 class="w60 dkblue">One more example:</h4>
+<div class="caption-box">
+  <img class="fRight w10" src="./img/link1.png" alt="link1">
+  <br>
+< div <span class="dkorange">id="myDiv"></span>
+  < div>< a <span class="dkorange">id="coralLink"</span> href="https://www.google.com">LINK< /a>< /div>
+< /div>
+  </div><br><pre class="prettyprint">
+    var myDiv = document.getElementById('myDiv');
+      var coralLink = document.getElementById('coralLink');
+      coralLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        console.log('clicked CoralLink');
+      }, true)
+
+      myDiv.addEventListener('click', function() {
+        console.log("clicked container");
+      }, true)
+  </pre>
+  <div class="framed2 w40">
+    <h5 class="fLeft">What will log first if I click on link?</h5>
+    <img class="ans w20" src="./img/log1.png" alt="">
+  </div>
+<h4 class="w60 ctrtxt"><span class="dkred">REMEMBER: </span>'true' = capture phase.   'false' = Bubble Phase</h4>
+
+
+<hr>
       <h2 class="ltblue">setTimeout & setInterval : using Kirupa & Dan Wellman's tutes</h2>
 
   <pre class="prettyprint w80">
@@ -95,12 +159,10 @@ btn.on('click', function() {
 
   function moveThing () {
     currentPos+= 5;
-    thing.style.left = currentPos + "px";
-
+    thing.style.transform = "translate3d(" + currentPos + "px, 30px, 0px)";
     if (Math.abs(currentPos) >= 900) {
       currentPos = - 500;
     }
-
     requestAnimationFrame(moveThing);
   }
 

@@ -18,7 +18,8 @@ li {
 
 body {
   padding: 1vw;
-  font-family: "Code Source Pro", monospace; }
+  font-family: "Code Source Pro", monospace;
+  font-size: 1.2vw; }
   body nav {
     position: static;
     margin-top: 3vh; }
@@ -131,6 +132,9 @@ div.entry {
     margin: auto; }
 
 /* width classes */
+.w10 {
+  width: 10vw; }
+
 .w20 {
   width: 20vw; }
 
@@ -316,6 +320,49 @@ h4 a {
 
 .txtLeft {
   text-align: left; }
+
+.framed1 {
+  padding: 2%;
+  font-size: 1.4vw;
+  margin: auto;
+  background-color: #758a88;
+  border: 1px solid brown;
+  box-shadow: inset 2px 2px 10px 2px black; }
+  .framed1 pre {
+    color: #a6b696; }
+
+.fLeft {
+  float: left; }
+
+.fRight {
+  float: right; }
+
+.framed2 {
+  padding: 2%;
+  font-size: 1.4vw;
+  margin: auto;
+  background-color: #e3ab7e;
+  border: 1px solid brown;
+  box-shadow: inset 2px 2px 10px 2px black; }
+  .framed2 pre {
+    color: #a6b696; }
+
+.sm {
+  font-size: 0.5vw; }
+
+.caption-box {
+  position: relative;
+  border: 1px solid green;
+  background-color: #a2c0c6;
+  box-shadow: 2px 2px 12px 0px black;
+  height: auto;
+  font-family: "Cabin", Sans-Serif;
+  font-size: 1.2vw;
+  padding: .5vh 2vw; }
+
+.caption-box img {
+  position: absolute;
+  top: 2px; }
 
 /* jquery styles */
 .jq-entry {
