@@ -1,7 +1,11 @@
 div.ecma-entry {
-  border: 1px solid map-get($colors, trim);
+  // border: 1px solid map-get($colors, trim);
+  // border: 4px dashed red;
   height: 80vh;
   background-color: map-get($colors, ltgrey);
+  border: 1px solid map-get($colors, dkorange);
+  border-radius: 2%;
+box-shadow: -10px 10px 10px 0px rgba(0, 0, 0, 0.7) inset;
   font: {
     family: map-get($fonts, CodePro);
     size: 2vw;
@@ -21,5 +25,7 @@ div.ecma-entry {
       bottom: $baseline * 4;
     }
   }
-
+  pre {
+    background-color: map-get($colors, deep)
+  }
 }

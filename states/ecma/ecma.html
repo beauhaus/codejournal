@@ -13,8 +13,9 @@
 },<span class="y underline">false</span>)</pre>
 <h6>for some tags we can use preventDefault()  * see below *</h6>
 <pre class="prettyprint">document.getElementById('container').addEventListener('click', function(e) {
-      console.log("clicked the container!")
-  },false)
+    console.log("clicked the container!")
+},false)
+
 document.getElementById('link').addEventListener('click', function(e) {
     e.preventDefault()
     console.log("clicked the link!")
@@ -31,16 +32,20 @@ This is called capturing the event in <em class="dkorange underline">the Bubblin
   document.getElementById('container').addEventListener('click', function(e) {
         console.log("clicked the container!")
   },<span class="underline">false</span>)
+
   document.getElementById('journalLink').addEventListener('click', function(e) {
     e.preventDefault()
     document.querySelector('#journalLink').style.color ='white';
-      console.log(e.toElement.id);<sup class="ltred">*</sup>
+    console.log(e.toElement.id);<sup class="ltred">*</sup>
   },<span class="underline">false</span>)
+
 //having set both to false, the event will bubble up and return "journal" FIRST! and then "clicked container!"</pre>
 <p><sup class="wh">*</sup>this is part of the 'e' object which gives the id value</p>
 
 <div class="framed1"><pre>
-  When you add an event handler to the event target itself, bubble vs capture is not applicable. At that level, you're not capturing or bubbling--you're on the target itself. The event handlers fire in the order in which they were registered.
+  When you add an event handler to the event target itself, bubble vs capture is not applicable.
+  At that level, you're not capturing or bubbling--you're on the target itself.
+  The event handlers fire in the order in which they were registered.
 </pre></div>
 <h4 class="w60 dkblue">One more example:</h4>
 <div class="caption-box">
@@ -51,15 +56,15 @@ This is called capturing the event in <em class="dkorange underline">the Bubblin
 < /div>
   </div><br><pre class="prettyprint">
     var myDiv = document.getElementById('myDiv');
-      var coralLink = document.getElementById('coralLink');
-      coralLink.addEventListener('click', function(e) {
-        e.preventDefault();
-        console.log('clicked CoralLink');
-      }, true)
+    var coralLink = document.getElementById('coralLink');
+    coralLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log('clicked CoralLink');
+    }, true)
 
-      myDiv.addEventListener('click', function() {
-        console.log("clicked container");
-      }, true)
+    myDiv.addEventListener('click', function() {
+      console.log("clicked container");
+    }, true)
   </pre>
   <div class="framed2 w40">
     <h5 class="fLeft">What will log first if I click on link?</h5>

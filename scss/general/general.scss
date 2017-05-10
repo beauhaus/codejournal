@@ -125,7 +125,6 @@ main.ng-enter-active {
 div.entry {
   margin: $baseline;
   padding: $baseline * 3;
-
   p {
     font: {
       size: 2.5vh;
@@ -139,71 +138,6 @@ div.entry {
   hr {
     width: 70%;
     margin: 5vh auto;
-  }
-
-  h4 {
-    display: inline-block;
-    float: left;
-  }
-
-  h3 {
-    text: {
-      align: center;
-    }
-
-    &.subtitle {
-      text: {
-        align: left;
-      }
-    }
-  }
-
-  h2.date {
-    text: {
-      align: right;
-    }
-    font: {
-      size: 1vw;
-      family: map-get($fonts, Clean);
-    }
-  }
-
-  ol {
-    & a {
-      // color: purple;
-      &:hover {
-        color: skyblue;
-      }
-    }
-  }
-
-  ol.todo {
-    & li {
-      list: {
-        style: none;
-      }
-    }
-  }
-
-  ol.done {
-    & li {
-      list {
-        style: decimal;
-      }
-    }
-  }
-
-  .done ol li {
-    & li {
-      padding: baseline;
-      font: {
-        weight: bold;
-      }
-    }
-
-    p {
-      margin: auto;
-    }
   }
 }
 /* width classes */
@@ -459,13 +393,11 @@ h4 a {
   }
   margin: auto;
   background: {
-    color: #758a88;
+    color: map-get($colors, pastOlive);
   }
   border: 1px solid brown;
   box-shadow: inset 2px 2px 10px 2px black;
-  pre {
-    color: map-get($colors, pastgreen);
-  }
+  color: map-get($colors, ltgrey);
 }
 .fLeft {
   float: left;
