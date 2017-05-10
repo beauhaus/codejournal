@@ -73,22 +73,42 @@ This is called capturing the event in <em class="dkorange underline">the Bubblin
 <img class="w40" src="img/event2.png" alt="">
 <img class="w40" src="img/event1.png" alt="">
 <pre class="prettyprint">document.querySelector('#imgDiv').addEventListener('click', function(e) {
-  var tgtDad = e.target.parentNode;
   var tgt = e.target;
-  var elemAmt = this.parentNode.querySelectorAll('div.subdiv').length;
+  var tgtDad = e.target.parentNode; //parent of target
+  var elemAmt = this.parentNode.querySelectorAll('div.subdiv').length; //counter
 
-  if ((e.target.id !== 'imgDiv') && (elemAmt > 1)) {
+  if ((e.target.id !== 'imgDiv') && (elemAmt > 1)) { //until 1 remains and is not the containing div
     e.toElement.parentNode.removeChild(e.toElement);
-  } else {
-    var photoTitle = e.target.title;
-    document.getElementById('content').innerText = photoTitle
+  } else { // when only 1 remains...
+    var photoTitle = e.target.title; //get title attr value
+    document.getElementById('content').innerText = photoTitle //replace existing text
   }
-}, false); //regist evt on image first!
+}, false); //regist evt on image first! Bubble Phase
 </pre>
 </div>
 
-<h5></h5>
+<div class="framed1">
+<h4 class="ctrtxt w80 underline">Creating elements with events</h4>
+<h5 class="dkblue">This is always a 3 step process</h5>
+<pre>
+<p>1. Create element in memory (on a var)
+2. Modify/define attrs, etc.
+3. Attach it to the DOM</p>
+</pre>
+</div>
 
+<div class="framed3 ltbg">Here's a clever way to put targets on a nodeList
+<pre class="prettyprint">
+// this turns a nodelist into an array-like object [they have length and indices]
+// which can be queried.
+
+var myTgts = document.getElementsByClassName('subdiv');
+  for (var i = 0; i < myTgts.length; i++) {
+    myTgts[i].addEventListener('click', function myFunction(e){
+      alert("yes");
+      console.log("tgt", e.target);
+  }, false);
+}</pre></div>
 <hr>
       <h2 class="ltblue">setTimeout & setInterval : using Kirupa & Dan Wellman's tutes</h2>
 

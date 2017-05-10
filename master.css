@@ -347,6 +347,11 @@ h4 a {
   .framed2 pre {
     color: #a6b696; }
 
+.framed3 {
+  box-shadow: 4px 4px 8px 2px black;
+  background-color: rgba(50, 179, 132, 0.78);
+  padding: 2vh 2vw; }
+
 .sm {
   font-size: 0.5vw; }
 

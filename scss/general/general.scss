@@ -489,6 +489,12 @@ h4 a {
     color: map-get($colors, pastgreen);
   }
 }
+
+.framed3 {
+  box-shadow: 4px 4px 8px 2px black;
+  background-color: map-get($colors, transGreen);
+  padding: 2vh 2vw;
+}
 .sm {
   font-size: $baseline / 2;
 }
