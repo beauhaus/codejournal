@@ -68,6 +68,27 @@ This is called capturing the event in <em class="dkorange underline">the Bubblin
 <h4 class="w60 ctrtxt"><span class="dkred">REMEMBER: </span>'true' = capture phase.   'false' = Bubble Phase</h4>
 
 
+<h5 class="ctrtxt w80">Event Issues (lynda Vid 5)</h5>
+<div class="framed2">
+<img class="w40" src="img/event2.png" alt="">
+<img class="w40" src="img/event1.png" alt="">
+<pre class="prettyprint">document.querySelector('#imgDiv').addEventListener('click', function(e) {
+  var tgtDad = e.target.parentNode;
+  var tgt = e.target;
+  var elemAmt = this.parentNode.querySelectorAll('div.subdiv').length;
+
+  if ((e.target.id !== 'imgDiv') && (elemAmt > 1)) {
+    e.toElement.parentNode.removeChild(e.toElement);
+  } else {
+    var photoTitle = e.target.title;
+    document.getElementById('content').innerText = photoTitle
+  }
+}, false); //regist evt on image first!
+</pre>
+</div>
+
+<h5></h5>
+
 <hr>
       <h2 class="ltblue">setTimeout & setInterval : using Kirupa & Dan Wellman's tutes</h2>
 
