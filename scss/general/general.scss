@@ -19,29 +19,6 @@ body {
     size: 1.2vw;
   }
 
-  nav {
-    position: static; //FIXME: not sure what to do here.
-    margin-top:3vh;
-    a {
-      color: map-get($colors, pastY);
-      text-decoration: none;
-    }
-
-    ul {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      width: 100%;
-      margin: auto;
-    }
-
-    ul li {
-      display: inline;
-      text-align: center;
-      width: 7vw;
-    }
-  }
-
   .prettyprint {
     font: {
       family: map-get($fonts, CodePro);
@@ -125,12 +102,14 @@ main.ng-enter-active {
 div.entry {
   margin: $baseline;
   padding: $baseline * 3;
+
   p {
     font: {
       size: 2.5vh;
       family: Trebuchet, Sans-Serif;
     }
   }
+
   .caption {
     color: map-get($colors, sand);
   }
@@ -144,6 +123,7 @@ div.entry {
 .w10 {
   width: 10vw;
 }
+
 .w20 {
   width: 20vw;
 }
@@ -191,9 +171,11 @@ pre.prettyprint {
 .orange {
   color: map-get($colors, orange);
 }
-.dkorange{
+
+.dkorange {
   color: map-get($colors, dkorange);
 }
+
 .dkgrey {
   color: map-get($colors, dkgrey);
 }
@@ -217,9 +199,11 @@ pre.prettyprint {
 .purp {
   color: map-get($colors, purp);
 }
+
 .paleY {
   color: map-get($colors, paleY);
 }
+
 .pastY {
   color: map-get($colors, pastY);
 }
@@ -227,9 +211,11 @@ pre.prettyprint {
 .reddrk {
   color: map-get($colors, reddrk);
 }
+
 .navy {
   color: map-get($colors, navy);
 }
+
 .dkblue {
   color: map-get($colors, dkblue);
 }
@@ -241,8 +227,9 @@ pre.prettyprint {
 .dkred {
   color: map-get($colors, dkred);
 }
+
 .mustard {
-  color: map-get($colors, mustard)
+  color: map-get($colors, mustard);
 }
 
 .ltred {
@@ -256,6 +243,7 @@ pre.prettyprint {
 .ltbg {
   background-color: map-get($colors, ltbg);
 }
+
 .trans {
   color: transparent;
 }
@@ -335,19 +323,53 @@ pre {
   letter-spacing: 0.4em;
 }
 
-.navlink-container{
+.navlink-container {
   a[ui-sref] {
     font: {
       family: map-get($fonts, Cabin);
       size: 1.2vw;
       color: wheat;
     }
-    text-decoration: overline;
     text-decoration-color: map-get($colors, pastgreen);
     transition: all 0.6s;
+
     &:hover {
       color: ivory;
     }
+  }
+}
+
+nav.navbar {
+  background-color: map-get($colors, mutedBlue);
+  position: static; //FIXME: not sure what to do here.
+  margin-top: 3vh;
+  border: 2px solid map-get($colors, dkbg);
+  box-shadow: inset 1px 1px 20px 8px rgba(#000000, 0.8);
+  a {
+    color: transparent;
+    // background-color: map-get($colors, shadow);
+    text-decoration: none;
+  }
+  &:hover {
+    box-shadow: inset 0px 0px 0px 0px rgba(#000000, .8);
+    border: 2px solid map-get($colors, sand);
+    transition: all 2s;
+    a {
+      color: map-get($colors, sand);
+    }
+  }
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    margin: auto;
+  }
+
+  ul li {
+    display: inline;
+    text-align: center;
+    width: 7vw;
   }
 }
 
@@ -357,16 +379,17 @@ a[ui-sref] {
   opacity: 1;
   // color: black;
 }
-.toTrans {
-  color: transparent;
-  transition: color 2s;
-}
+
+// .toTrans {
+//   color: transparent;
+//   transition: color 2s;
+// }
+
 a[ui-sref]:hover {
-  color: #c8a868;
+  // color: #c8a868;
+  color: map-get($colors, mutedOrange);
   transition: color 1s;
-
 }
-
 //FIXME: trying to remove the visited purple color
 a:active,
 a:focus,
@@ -380,11 +403,27 @@ h4 a {
     color: ivr;
   }
 }
+
 .underline {
   text-decoration: underline;
 }
+
 .txtLeft {
   text-align: left;
+}
+
+.simple-frame {
+  border: 1px solid maroon;
+  box-shadow: inset 1px 1px 4px 1px rgba(#000000, 0.61);
+  background-color: map-get($colors, sand);
+  font-family: Trebuchet, sans-serif;
+  font-weight: 400;
+  padding: 1vh 2vw;
+  font: {
+    weight: 400;
+    family: Trebuchet, Sans-Serif;
+    size: 1.4vw;
+  }
 }
 .framed1 {
   padding: 2%;
@@ -399,12 +438,15 @@ h4 a {
   box-shadow: inset 2px 2px 10px 2px black;
   color: map-get($colors, ltgrey);
 }
+
 .fLeft {
   float: left;
 }
+
 .fRight {
   float: right;
 }
+
 .framed2 {
   // position: relative;
   padding: 2%;
@@ -417,6 +459,7 @@ h4 a {
   }
   border: 1px solid brown;
   box-shadow: inset 2px 2px 10px 2px black;
+
   pre {
     color: map-get($colors, pastgreen);
   }
@@ -427,6 +470,7 @@ h4 a {
   background-color: map-get($colors, transGreen);
   padding: 2vh 2vw;
 }
+
 .sm {
   font-size: $baseline / 2;
 }
@@ -435,14 +479,15 @@ h4 a {
   position: relative;
   border: 1px solid green;
   background-color: #a2c0c6;
-  box-shadow: 2px 2px 12px 0px black;
+  box-shadow: 2px 2px 12px 0 black;
   height: auto;
   font: {
     family: map-get($fonts, Cabin);
     size: 1.2vw;
   }
-  padding: .5vh 2vw;
+  padding: 0.5vh 2vw;
 }
+
 .caption-box img {
   position: absolute;
   top: 2px;

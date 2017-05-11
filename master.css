@@ -20,22 +20,6 @@ body {
   padding: 1vw;
   font-family: "Code Source Pro", monospace;
   font-size: 1.2vw; }
-  body nav {
-    position: static;
-    margin-top: 3vh; }
-    body nav a {
-      color: #bfbc64;
-      text-decoration: none; }
-    body nav ul {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      width: 100%;
-      margin: auto; }
-    body nav ul li {
-      display: inline;
-      text-align: center;
-      width: 7vw; }
   body .prettyprint {
     font-family: "Code Source Pro", monospace; }
   body div.bg-image:before {
@@ -266,21 +250,42 @@ pre {
   font-family: "Cabin", Sans-Serif;
   font-size: 1.2vw;
   font-color: wheat;
-  text-decoration: overline;
   text-decoration-color: #a6b696;
   transition: all 0.6s; }
   .navlink-container a[ui-sref]:hover {
     color: ivory; }
 
+nav.navbar {
+  background-color: #3f6a96;
+  position: static;
+  margin-top: 3vh;
+  border: 2px solid rgba(45, 44, 44, 0.7);
+  box-shadow: inset 1px 1px 20px 8px rgba(0, 0, 0, 0.8); }
+  nav.navbar a {
+    color: transparent;
+    text-decoration: none; }
+  nav.navbar:hover {
+    box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0.8);
+    border: 2px solid #d0b588;
+    transition: all 2s; }
+    nav.navbar:hover a {
+      color: #d0b588; }
+  nav.navbar ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    margin: auto; }
+  nav.navbar ul li {
+    display: inline;
+    text-align: center;
+    width: 7vw; }
+
 a[ui-sref] {
   opacity: 1; }
 
-.toTrans {
-  color: transparent;
-  transition: color 2s; }
-
 a[ui-sref]:hover {
-  color: #c8a868;
+  color: #9a854e;
   transition: color 1s; }
 
 a:active,
@@ -298,6 +303,17 @@ h4 a {
 
 .txtLeft {
   text-align: left; }
+
+.simple-frame {
+  border: 1px solid maroon;
+  box-shadow: inset 1px 1px 4px 1px rgba(0, 0, 0, 0.61);
+  background-color: #d0b588;
+  font-family: Trebuchet, sans-serif;
+  font-weight: 400;
+  padding: 1vh 2vw;
+  font-weight: 400;
+  font-family: Trebuchet, Sans-Serif;
+  font-size: 1.4vw; }
 
 .framed1 {
   padding: 2%;
@@ -336,11 +352,11 @@ h4 a {
   position: relative;
   border: 1px solid green;
   background-color: #a2c0c6;
-  box-shadow: 2px 2px 12px 0px black;
+  box-shadow: 2px 2px 12px 0 black;
   height: auto;
   font-family: "Cabin", Sans-Serif;
   font-size: 1.2vw;
-  padding: .5vh 2vw; }
+  padding: 0.5vh 2vw; }
 
 .caption-box img {
   position: absolute;

@@ -114,6 +114,43 @@ var myTgts = document.getElementsByClassName('subdiv');
       console.log("tgt", e.target);
   }, false);
 }</pre></div>
+
+<h4>Using the example above. We create a div element to appear & then disappear with a mouseover evt</h4>
+<pre class="prettyprint">var myTgts = document.getElementsByClassName('subdiv');
+// this turns a nodelist into an array-like object [they have length and indices]
+// which can be queried.
+
+for (var i = 0; i < myTgts.length; i++) { //placing listener on each elem.
+    myTgts[i].addEventListener('mouseover', handler, false);
+}
+
+function handler(e) {
+
+  var nuElem = document.createElement('div'); //created in memory
+  // New element 'profile'
+  nuElem.id = 'nuElem';
+  // NOTE: "nuElem.class" WILL NOT WORK (it's a .js keyword!)
+  nuElem.className = 'spawned';
+  e.target.parentNode.appendChild(nuElem); //attach
+
+  e.target.addEventListener('mouseout', function mOutHandler(f) {
+    var myNode = f.target.parentNode.querySelector('div.spawned'); //thing I want to delete or remove.
+    nuElem.parentNode.removeChild(myNode);
+  }, false);
+};</pre>
+<div class="ltbg">
+<p>While this seems to work well, it creates more mouseout events and throws errors.
+Therefore, we need to remove events. <br>This line of code can begin with 'this' or e.target. It will remove the mouseout with the named function mOutHandler</p>
+<pre class="prettyprint ctrtxt w60">  this.removeEventListener('mouseout', mOutHandler, false);</pre>
+</div>
+mOutHandler function looks like this (with the new line of code)
+<pre class="simple-frame">  e.target.addEventListener('mouseout', function mOutHandler(f) {
+    var myNode = f.target.parentNode.querySelector('div.spawned'); //thing I want to delete or remove.
+    nuElem.parentNode.removeChild(myNode);
+    <span class="dkorange">this.removeEventListener('mouseout', mOutHandler, false);</span>
+  }, false);</pre>
+
+
 <hr>
       <h2 class="ltblue">setTimeout & setInterval : using Kirupa & Dan Wellman's tutes</h2>
 
@@ -215,6 +252,7 @@ btn.on('click', function() {
   moveThing();
 </pre>
 <em>cf.</em> <a href="https://youtu.be/rNsC1VI9388">Kirupa: requestAnimationFrame() for animation video</a>
+<img  class="w40" src="./img/warning.png" alt="Don't use setTimeout in animations">
   <hr>
   <h2 class="ltblue">Nice version of isPalindrome() using regex</h2>
   <h4><a target="_blank" href="https://medium.freecodecamp.com/two-ways-to-check-for-palindromes-in-javascript-64fea8191fd7">FCC Link</a></h4>
