@@ -5,7 +5,7 @@ div.ecma-entry {
   background-color: map-get($colors, ltgrey);
   border: 1px solid map-get($colors, dkorange);
   border-radius: 2%;
-box-shadow: -10px 10px 10px 0px rgba(0, 0, 0, 0.7) inset;
+  box-shadow: -10px 10px 10px 0 rgba(0, 0, 0, 0.7) inset;
   font: {
     family: map-get($fonts, CodePro);
     size: 2vw;
@@ -14,18 +14,27 @@ box-shadow: -10px 10px 10px 0px rgba(0, 0, 0, 0.7) inset;
   .prettyprint {
     background-color: #445e5e;
     padding: 2vh 2vw;
+    border: 1px solid burlywood;
   }
   overflow: auto;
   position: relative;
 
-
   pre {
-    background-color: map-get($colors, deep)
+    background-color: map-get($colors, deep);
   }
 }
+
 div.ltbg {
-  padding: baseline baseline;
+  padding: baseline;
   p {
     margin: $baseline;
+  }
+}
+code, pre {
+  padding: $baseline;
+}
+pre.code-sample {
+  font: {
+    family: map-get($fonts, CodePro), Sans-Serif !important;
   }
 }

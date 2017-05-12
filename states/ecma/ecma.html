@@ -6,16 +6,16 @@
     <pre>
       <!--entire page pre-->
       <div class="simple-frame2">
-<h5>Audio Player (with some bugs)</h5>
+<h5>Audio Player (with some"> bugs)</h5>
 <h6><i class="underline">getAttribute</i> is useful. <br><i class="underline">setAttribute</i> is also available!
 <br>.paused & .ended are properties available to the a/v object in HTML5.
 <br><a target="_blank" href="https://www.w3schools.com/tags/ref_av_dom.asp">Breakdown of methods/properties on HTML5 audio/video object</a>
 </h6>
 
-<pre class="prettyprint shadn w60">
+<pre class="prettyprint w80">
 var jukebox = document.querySelector('ul.player');
-jukebox.addEventListener('click', function(e) {
-  //create dyname song src with data- attribute
+
+jukebox.addEventListener('click', function(e) { //create dyname song src with data- attribute
   var tgt = e.target;
   var song = tgt.getAttribute('data-src');
   var songPlaying = document.querySelector('#player');
@@ -33,13 +33,11 @@ jukebox.addEventListener('click', function(e) {
     audioPlayer.id = 'player'; // create id for new elem
     tgt.id = 'playing';
     audioPlayer.src = song;
-    document.body.appendChild(audioPlayer);
-    // now we need to execute the play method
+    document.body.appendChild(audioPlayer); // now we need to execute the play method
     audioPlayer.play();
 
     // IF DONE...remove playing id & audio tag in DOM
-    audioPlayer.addEventListener('ended', function() {
-    //'ended' is a property on a/v objects in raw js. (html5)
+    audioPlayer.addEventListener('ended', function() { //'ended' is a property on a/v objects in raw js. (html5)
     audioPlayer.parentNode.removeChild(audioPlayer);
     tgt.id = ''
 
@@ -47,7 +45,53 @@ jukebox.addEventListener('click', function(e) {
   }
 }, false);
 </pre>
-      </div>
+<p class="dkblue"><em class="mango">BUG:</em> clicking on a playing song pauses, but clicking on another song continues
+the playing of original song--rather than the new song.
+<br /><b class="ltgreen">HINT: </b>The fix lies within the logic of the if-statement.</p>
+<pre class="dkbg code-sample">
+var jukebox = document.querySelector('ul.player');
+    jukebox.addEventListener('click', function(e) {
+      //create dyname song src with data- attribute
+      var tgt = e.target;
+      var song = tgt.getAttribute('data-src');
+      var <span class="orange">audioPlayer</span> = document.querySelector('#player');
+
+      if (<span class="orange">audioPlayer</span>) {
+        if (song === <span class="orange">audioPlayer</span>.getAttribute('src')) {
+          if (<span class="orange">audioPlayer</span>.paused) {
+            <span class="orange">audioPlayer</span>.play();
+            tgt.id = 'playing';
+          } else { //if it hasn't been paused...
+            <span class="orange">audioPlayer</span>.pause();</span>
+            tgt.id = 'paused';
+          }
+        } else {
+          <span class="orange">audioPlayer</span>.src = song;
+          <span class="orange">audioPlayer</span>.play();
+          <span class="ltgrey">//whatever is playing (& has that id) --> remove that id.</span>
+          <span class="orange">if(document.querySelector('#playing')){
+            document.querySelector('#playing').id = '';
+          }else { //if anything is paused, remove that id.
+            document.querySelector('#paused').id = '';
+          }
+          tgt.id = 'playing';</span>
+        }
+      } else {
+        var audioPlayer = document.createElement('audio');
+        audioPlayer.id = 'player'; // create id for new elem
+        tgt.id = 'playing';
+        audioPlayer.src = song;
+        document.body.appendChild(audioPlayer);
+        audioPlayer.play();
+
+        audioPlayer.addEventListener('ended', function() {
+        audioPlayer.parentNode.removeChild(audioPlayer);
+        tgt.id = ''
+
+        }, false);
+      }
+    }, false);
+</pre></div>
       <h2 class="ltblue">Loading Image</h2>
       <h4><a target="_blank" href="LINKADDY">No Link Yet</a></h4>
 

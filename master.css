@@ -315,6 +315,17 @@ h4 a {
   font-family: Trebuchet, Sans-Serif;
   font-size: 1.4vw; }
 
+.simple-frame2 {
+  border: 1px solid maroon;
+  box-shadow: 1px 1px 4px 1px rgba(45, 44, 44, 0.7);
+  background-color: #a38853;
+  font-family: Trebuchet, sans-serif;
+  font-weight: 400;
+  padding: 1vh 2vw;
+  font-weight: 400;
+  font-family: Trebuchet, Sans-Serif;
+  font-size: 1.4vw; }
+
 .framed1 {
   padding: 2%;
   font-size: 1.4vw;
@@ -422,19 +433,26 @@ div.ecma-entry {
   background-color: #bdbdbd;
   border: 1px solid #945706;
   border-radius: 2%;
-  box-shadow: -10px 10px 10px 0px rgba(0, 0, 0, 0.7) inset;
+  box-shadow: -10px 10px 10px 0 rgba(0, 0, 0, 0.7) inset;
   font-family: "Code Source Pro", monospace;
   font-size: 2vw;
   overflow: auto;
   position: relative; }
   div.ecma-entry .prettyprint {
     background-color: #445e5e;
-    padding: 2vh 2vw; }
+    padding: 2vh 2vw;
+    border: 1px solid burlywood; }
 
 div.ltbg {
-  padding: baseline baseline; }
+  padding: baseline; }
   div.ltbg p {
     margin: 1vw; }
+
+code, pre {
+  padding: 1vw; }
+
+pre.code-sample {
+  font-family: "Code Source Pro", monospace, Sans-Serif !important; }
 
 div.misc-entry {
   background-color: #f5facf; }
