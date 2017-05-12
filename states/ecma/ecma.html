@@ -49,9 +49,8 @@ jukebox.addEventListener('click', function(e) { //create dyname song src with da
 the playing of original song--rather than the new song.
 <br /><b class="ltgreen">HINT: </b>The fix lies within the logic of the if-statement.</p>
 <pre class="dkbg code-sample">
-var jukebox = document.querySelector('ul.player');
+    var jukebox = document.querySelector('ul.player');
     jukebox.addEventListener('click', function(e) {
-      //create dyname song src with data- attribute
       var tgt = e.target;
       var song = tgt.getAttribute('data-src');
       var <span class="orange">audioPlayer</span> = document.querySelector('#player');
