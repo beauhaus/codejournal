@@ -110,7 +110,7 @@ div.entry {
   width: 80vw; }
 
 pre.prettyprint {
-  font-size: 1.3em;
+  font-size: 1vw;
   background-color: rgba(242, 219, 150, 0.89); }
 
 .ctrtxt {
@@ -346,7 +346,7 @@ h4 a {
   padding: 2vh 2vw; }
 
 .sm {
-  font-size: 0.5vw; }
+  font-size: 0.90909vw; }
 
 .caption-box {
   position: relative;
@@ -428,11 +428,13 @@ div.ecma-entry {
   overflow: auto;
   position: relative; }
   div.ecma-entry .prettyprint {
-    font-size: 1.5vw;
     background-color: #445e5e;
     padding: 2vh 2vw; }
-  div.ecma-entry div {
-    margin-bottom: 4vw; }
+
+div.ltbg {
+  padding: baseline baseline; }
+  div.ltbg p {
+    margin: 1vw; }
 
 div.misc-entry {
   background-color: #f5facf; }

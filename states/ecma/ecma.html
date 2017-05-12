@@ -5,10 +5,147 @@
   <div class="ecma-entry entry">
     <pre>
       <!--entire page pre-->
-      <h4 class="w20 ctr">events (Lynda)</h4>
-      <h5>Adding event listeners</h5>
-      <h6>Bascially they are no different in appearance from jQuery's events ('...on.('click', function(){}'...etc)</h6>
-      <pre class="prettyprint">document.getElementById('thing').addEventListener('click', function() {
+      <div class="simple-frame2">
+<h5>Audio Player (with some bugs)</h5>
+<h6><i class="underline">getAttribute</i> is useful. <br><i class="underline">setAttribute</i> is also available!
+<br>.paused & .ended are properties available to the a/v object in HTML5.
+<br><a target="_blank" href="https://www.w3schools.com/tags/ref_av_dom.asp">Breakdown of methods/properties on HTML5 audio/video object</a>
+</h6>
+
+<pre class="prettyprint shadn w60">
+var jukebox = document.querySelector('ul.player');
+jukebox.addEventListener('click', function(e) {
+  //create dyname song src with data- attribute
+  var tgt = e.target;
+  var song = tgt.getAttribute('data-src');
+  var songPlaying = document.querySelector('#player');
+
+  if (songPlaying) { // if playing, enable ability to pause.
+    if (songPlaying.paused) {
+      songPlaying.play();
+      tgt.id = 'playing';
+    } else { //if it hasn't been paused...
+      songPlaying.pause();
+      tgt.id = 'paused';
+    }
+  } else {
+    var audioPlayer = document.createElement('audio');
+    audioPlayer.id = 'player'; // create id for new elem
+    tgt.id = 'playing';
+    audioPlayer.src = song;
+    document.body.appendChild(audioPlayer);
+    // now we need to execute the play method
+    audioPlayer.play();
+
+    // IF DONE...remove playing id & audio tag in DOM
+    audioPlayer.addEventListener('ended', function() {
+    //'ended' is a property on a/v objects in raw js. (html5)
+    audioPlayer.parentNode.removeChild(audioPlayer);
+    tgt.id = ''
+
+    }, false);
+  }
+}, false);
+</pre>
+      </div>
+      <h2 class="ltblue">Loading Image</h2>
+      <h4><a target="_blank" href="LINKADDY">No Link Yet</a></h4>
+
+      <div class="simple-frame"><h5>Starting HTML</h5><img  class="w40" src="./img/spinnerStart.png" alt="spinner starting html">
+      <div class="shadn"><pre class="w40 framed3 prettyprint sm">
+body {
+  background: url(./img/sand.jpg), repeat;
+  box-sizing: border-box;
+}
+
+.preview {
+  display: block;
+  border-radius: 20%;
+  margin: 0 auto;
+  margin-top: 300px;
+}
+
+.overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 20;
+}
+
+.overlay img.bigImage {
+  display: block;
+  margin: 0 auto;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.spinner {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  margin-top: 400px;
+}
+
+.overlay img.spinner {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 50%;
+  margin: 0 auto;
+  margin-top: 300px;
+}
+</pre>
+
+<pre class="prettyprint w80">
+    document.querySelector('img.preview').addEventListener('click', function(e) {
+      var myOverlay = document.querySelector('.overlay');
+      myOverlay.style.display = ('block');
+
+      var mySpin = document.createElement('img');
+
+      var hiRes = document.createElement('img');
+      hiRes.className = "bigImage";
+
+      var lowRes = e.target.src;
+
+      // We chop off the last 11 letters of the name (sloth_LowRes.img) in the img file.
+      // Then rename that remaining substr PLUS '.jpg'
+      hiRes.src = lowRes.substr(0, lowRes.length - 11) + '.jpg';
+      myOverlay.appendChild(hiRes);
+
+      /* Up until now, on click of preview image, larger, hiRes img appears */
+      mySpin.className = "spinner";
+      mySpin.src = './img/spin.svg';
+      myOverlay.appendChild(mySpin);
+
+      hiRes.addEventListener('load', function() {
+        mySpin.parentNode.removeChild(mySpin);
+      })
+
+    }, false);
+
+      </pre>
+<p>The genius of this is the substr() method leveraging the smaller img file name<br />
+  <i class="dkorange">NOTE:</i> Fast machines render the .spinner image unable to view.</p>
+
+</div></div>
+
+
+
+
+
+<h4 class="w20 ctr">events (Lynda)</h4>
+<h5>Adding event listeners</h5>
+<h6>Bascially they are no different in appearance from jQuery's events ('...on.('click', function(){}'...etc)</h6>
+<pre class="prettyprint">document.getElementById('thing').addEventListener('click', function() {
     alert("clicked the thing!")
 },<span class="y underline">false</span>)</pre>
 <h6>for some tags we can use preventDefault()  * see below *</h6>
@@ -22,8 +159,7 @@ document.getElementById('link').addEventListener('click', function(e) {
     <span class="underline y">e.stopPropagation();</span> // only 'clicked the link!' fires.
 },false)</pre>
 <h5 class="dkred w40 ctrtxt">Capturing vs Bubbling</h5>
-<p>Propagation is about how events are registered and 'caught' vis-a-vis other elements. Here, <span class="dkorange">e.stopPropagation()</span>
-is called to prevent any events on parent elements. Therefore, we don't log to console</p>
+<p>Propagation is about how events are registered and 'caught' vis-a-vis other elements. Here, <span class="dkorange">e.stopPropagation()</span> is called to prevent any events on parent elements. Therefore, we don't log to console</p>
 
 <h5>2 ways to register an event.<br>You can 'catch' the event in the <em class="dkorange underline">Capturing Phase</em> so that a 'higher' DOM element listens down to its children for an event. div->ul->li->a <br><br>
 Otherwise, an evt can be registered on the lowest element until it <em>bubbles</em> up to the div <br>
@@ -51,10 +187,13 @@ This is called capturing the event in <em class="dkorange underline">the Bubblin
 <div class="caption-box">
   <img class="fRight w10" src="./img/link1.png" alt="link1">
   <br>
-< div <span class="dkorange">id="myDiv"></span>
-  < div>< a <span class="dkorange">id="coralLink"</span> href="https://www.google.com">LINK< /a>< /div>
-< /div>
-  </div><br><pre class="prettyprint">
+  < div <span class="dkorange">id="myDiv"></span>
+    < div>
+      < a <span class="dkorange">id="coralLink"</span> href="https://www.google.com">LINK
+        < /a>
+          < /div>
+            < /div>
+</div><br><pre class="prettyprint">
     var myDiv = document.getElementById('myDiv');
     var coralLink = document.getElementById('coralLink');
     coralLink.addEventListener('click', function(e) {
@@ -66,18 +205,18 @@ This is called capturing the event in <em class="dkorange underline">the Bubblin
       console.log("clicked container");
     }, true)
   </pre>
-  <div class="framed2 w40">
-    <h5 class="fLeft">What will log first if I click on link?</h5>
-    <img class="ans w20" src="./img/log1.png" alt="">
-  </div>
+<div class="framed2 w40">
+  <h5 class="fLeft">What will log first if I click on link?</h5>
+  <img class="ans w20" src="./img/log1.png" alt="">
+</div>
 <h4 class="w60 ctrtxt"><span class="dkred">REMEMBER: </span>'true' = capture phase.   'false' = Bubble Phase</h4>
 
 
 <h5 class="ctrtxt w80">Event Issues (lynda Vid 5)</h5>
 <div class="framed2">
-<img class="w40" src="img/event2.png" alt="">
-<img class="w40" src="img/event1.png" alt="">
-<pre class="prettyprint">document.querySelector('#imgDiv').addEventListener('click', function(e) {
+  <img class="w40" src="img/event2.png" alt="">
+  <img class="w40" src="img/event1.png" alt="">
+  <pre class="prettyprint">document.querySelector('#imgDiv').addEventListener('click', function(e) {
   var tgt = e.target;
   var tgtDad = e.target.parentNode; //parent of target
   var elemAmt = this.parentNode.querySelectorAll('div.subdiv').length; //counter
@@ -93,9 +232,9 @@ This is called capturing the event in <em class="dkorange underline">the Bubblin
 </div>
 
 <div class="framed1">
-<h4 class="ctrtxt w80 underline">Creating elements with events</h4>
-<h5 class="dkblue">This is always a 3 step process</h5>
-<pre>
+  <h4 class="ctrtxt w80 underline">Creating elements with events</h4>
+  <h5 class="dkblue">This is always a 3 step process</h5>
+  <pre>
 <p>1. Create element in memory (on a var)
 2. Modify/define attrs, etc.
 3. Attach it to the DOM</p>
@@ -103,7 +242,7 @@ This is called capturing the event in <em class="dkorange underline">the Bubblin
 </div>
 
 <div class="framed3 ltbg">Here's a clever way to put targets on a nodeList
-<pre class="prettyprint">
+  <pre class="prettyprint">
 // this turns a nodelist into an array-like object [they have length and indices]
 // which can be queried.
 
@@ -139,9 +278,8 @@ function handler(e) {
   }, false);
 };</pre>
 <div class="ltbg">
-<p>While this seems to work well, it creates more mouseout events and throws errors.
-Therefore, we need to remove events. <br>This line of code can begin with 'this' or e.target. It will remove the mouseout with the named function mOutHandler</p>
-<pre class="prettyprint ctrtxt w60">  this.removeEventListener('mouseout', mOutHandler, false);</pre>
+  <p>While this seems to work well, it creates more mouseout events and throws errors. Therefore, we need to remove events. <br>This line of code can begin with 'this' or e.target. It will remove the mouseout with the named function mOutHandler</p>
+  <pre class="prettyprint ctrtxt w60">  this.removeEventListener('mouseout', mOutHandler, false);</pre>
 </div>
 mOutHandler function looks like this (with the new line of code)
 <pre class="simple-frame">  e.target.addEventListener('mouseout', function mOutHandler(f) {
@@ -152,22 +290,22 @@ mOutHandler function looks like this (with the new line of code)
 
 
 <hr>
-      <h2 class="ltblue">setTimeout & setInterval : using Kirupa & Dan Wellman's tutes</h2>
+<h2 class="ltblue">setTimeout & setInterval : using Kirupa & Dan Wellman's tutes</h2>
 
-  <pre class="prettyprint w80">
+<pre class="prettyprint w80">
         setTimeout('console.log("bad!")', 4000); // 'bad' (after 4 secs)</pre>
-    <p class="dkred"><sup class="ltred">*</sup>setTimeout is one of many methods that take a string and evaluate it as if it were code. But this is dangerous and insecure.
-    <span class="ltred">NEVER pass a str as a first argument.</span></p>
-    <pre class="prettyprint w40">
+<p class="dkred"><sup class="ltred">*</sup>setTimeout is one of many methods that take a string and evaluate it as if it were code. But this is dangerous and insecure.
+  <span class="ltred">NEVER pass a str as a first argument.</span></p>
+<pre class="prettyprint w40">
 function log() {
   console.log("Hi there!");
 }
 setTimeout(log, 4000);
 //(after 4sec) Hi there!
 </pre>
-    <h5><sup class="dkred">Here we call the named Fn instead of an interpolated string.</h5>
+<h5><sup class="dkred">Here we call the named Fn instead of an interpolated string.</h5>
 
-    <pre class="prettyprint w60">
+<pre class="prettyprint w60">
   setTimeout(function log(msg) {
       console.log('Hi (using entire Fn as an arg)');
   }, 4000);
@@ -176,18 +314,18 @@ setTimeout(log, 4000);
       console.log('Hi (using variable)');
   }
   setTimeout(logger, 4000);</div></pre>
-  <h5 class="dkbg wh w60">2nd example uses setTimeout calling a Fn expression</h5>
-  <h5 class="ctrtxt"><span class="underline navy">SetInterval</span> is a setTimeout that simply repeats itself.</h5>
-  <pre class="prettyprint w60">
+<h5 class="dkbg wh w60">2nd example uses setTimeout calling a Fn expression</h5>
+<h5 class="ctrtxt"><span class="underline navy">SetInterval</span> is a setTimeout that simply repeats itself.</h5>
+<pre class="prettyprint w60">
   function bounce(msg) {
     console.log("boing, boing");
   }
   setInterval(bounce, 3000);
   // boing, boing (every 3secs ad infinitum)
 </pre>
-  <h5>Now, we must define the interval in order to end it.
+<h5>Now, we must define the interval in order to end it.
   We use <span class="dkorange">clearTimeout()</span> & <span class="dkorange">clearInterval()</span> methods.</h5>
-  <pre class="prettyprint w60">
+<pre class="prettyprint w60">
   let counter = 0;
   function bounce() {
     console.log("boing");
@@ -198,15 +336,13 @@ setTimeout(log, 4000);
     }
   }
   var interval = setInterval(bounce, 3000);</pre>
-  <h4><a target="_blank" href="https://youtu.be/zucCjXApXOU">Kirupa Tutorial</a></h4>
-    <h4 class="ltbg w60">setTimeout(<span class="dkorange">anyFunction</span>, <em>timedelay</em>)</h4>
-    <h4 class="ltbg w60">clearTimeout(<span class="dkorange">timeID</span>)</h4>
-    <h6 class="">start it and cancel it.</h6>
-  requestAnimationFrame() --requests a repaint and runs code as part of that repaint.
+<h4><a target="_blank" href="https://youtu.be/zucCjXApXOU">Kirupa Tutorial</a></h4>
+<h4 class="ltbg w60">setTimeout(<span class="dkorange">anyFunction</span>, <em>timedelay</em>)</h4>
+<h4 class="ltbg w60">clearTimeout(<span class="dkorange">timeID</span>)</h4>
+<h6 class="">start it and cancel it.</h6> requestAnimationFrame() --requests a repaint and runs code as part of that repaint.
 <pre class="prettyprint w40">
 let timeID = setTimeout(runCode, 4000);
-clearTimeout(timeID);</pre>
-Here's an example;
+clearTimeout(timeID);</pre> Here's an example;
 <pre class="prettyprint w60">
 var btn = $('button');
 
@@ -219,7 +355,8 @@ btn.on('click', function() {
 btn.after('< h4>You cancelled it.< /h4>')
   clearTimeout(timeID);
 })</pre>
-<div class="ltbg w60"><h4 class="ctrtxt">var timeID =requestAnimationFrame(<em class="navy">anyFunction</em>)</h4>
+<div class="ltbg w60">
+  <h4 class="ctrtxt">var timeID =requestAnimationFrame(<em class="navy">anyFunction</em>)</h4>
   <h4 class="ctrtxt">requestAnimationFrame(<em class="navy">timeID</em>)</h4></div>
 <h6>This is not part of some javascript browser's timer, but part of the browser's paint pipeline. It is more efficient and performant.</h6>
 <pre class="prettyprint w40">
@@ -252,11 +389,11 @@ btn.on('click', function() {
   moveThing();
 </pre>
 <em>cf.</em> <a href="https://youtu.be/rNsC1VI9388">Kirupa: requestAnimationFrame() for animation video</a>
-<img  class="w40" src="./img/warning.png" alt="Don't use setTimeout in animations">
-  <hr>
-  <h2 class="ltblue">Nice version of isPalindrome() using regex</h2>
-  <h4><a target="_blank" href="https://medium.freecodecamp.com/two-ways-to-check-for-palindromes-in-javascript-64fea8191fd7">FCC Link</a></h4>
-  <pre class="prettyprint w80">
+<img class="w40" src="./img/warning.png" alt="Don't use setTimeout in animations">
+<hr>
+<h2 class="ltblue">Nice version of isPalindrome() using regex</h2>
+<h4><a target="_blank" href="https://medium.freecodecamp.com/two-ways-to-check-for-palindromes-in-javascript-64fea8191fd7">FCC Link</a></h4>
+<pre class="prettyprint w80">
 
   function isPalindrome(str) {
     var re = /[\W_]/g;
@@ -269,10 +406,10 @@ btn.on('click', function() {
   isPalindrome("Beau")
 
 </pre>
-    <h2 class="ltblue">Nice example of <span class="dkred">.replace()</span> String method</h2>
-    <h4><a target="_blank" href="https://www.tutorialspoint.com/java/java_string_replace.htm">link</a></h4>
+<h2 class="ltblue">Nice example of <span class="dkred">.replace()</span> String method</h2>
+<h4><a target="_blank" href="https://www.tutorialspoint.com/java/java_string_replace.htm">link</a></h4>
 
-    <pre class="prettyprint w80">
+<pre class="prettyprint w80">
 
   var happyThought = "This is really great!";
   var sadThought = "tragic!";
@@ -283,11 +420,11 @@ btn.on('click', function() {
   console.log(newThought);
 
 </pre>
-    <hr>
-    <h2 class="ltblue">Nice example of <span class="dkred">recursion</span> with factorials</h2>
-    <h4><a target="_blank" href="https://frontendmasters.com/courses/computer-science/exercise-1-solution">solution explained here</a></h4>
+<hr>
+<h2 class="ltblue">Nice example of <span class="dkred">recursion</span> with factorials</h2>
+<h4><a target="_blank" href="https://frontendmasters.com/courses/computer-science/exercise-1-solution">solution explained here</a></h4>
 
-    <pre class="prettyprint w80">
+<pre class="prettyprint w80">
 
   function factorialize(num) {
       if (num < 2) {
@@ -300,16 +437,16 @@ btn.on('click', function() {
     factorialize(3);
     factorialize(20);
   </pre>
-    <span class="ltred bg">Open another browser to run it to avoid mishaps with infinite loops</span>
+<span class="ltred bg">Open another browser to run it to avoid mishaps with infinite loops</span>
 
 
 
-    <hr>
+<hr>
 
-    <h2 class="ltblue">Nice example of String Method: <span class="dkred">.replace();</span></h2>
-    <h4><a target="_blank" href="https://www.freecodecamp.com/challenges/search-and-replace">search-and-replace</a></h4>
+<h2 class="ltblue">Nice example of String Method: <span class="dkred">.replace();</span></h2>
+<h4><a target="_blank" href="https://www.freecodecamp.com/challenges/search-and-replace">search-and-replace</a></h4>
 
-    <pre class="prettyprint w80">
+<pre class="prettyprint w80">
 
   function myReplace(str, before, after) {
 
@@ -328,9 +465,9 @@ btn.on('click', function() {
 
 </pre>
 
-    </pre>
-  </div>
-  <!--entry end-->
+</pre>
+</div>
+<!--entry end-->
 
 
 </div>
