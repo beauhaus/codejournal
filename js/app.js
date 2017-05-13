@@ -34,5 +34,9 @@ angular.module("codeJournal", ['ui.router', 'ngAnimate'])
       controller: 'angularCtrl',
       url: '/angular',
       templateUrl: './states/angular/angular.html'
+    }).state('node', {
+      controller: 'nodeCtrl',
+      url: '/node',
+      templateUrl: './states/node/node.html'
     })
 });

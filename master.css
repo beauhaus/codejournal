@@ -483,4 +483,9 @@ div.angular-entry {
     border: 1px solid #f5facf;
     margin: 2vh auto; }
 
+div.node-entry {
+  background-color: #758a88;
+  border: 1px solid white;
+  color: white; }
+
 /*# sourceMappingURL=master.css.map */
