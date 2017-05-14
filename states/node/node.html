@@ -1,20 +1,31 @@
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
 <div class="node-container">
-<aside><span class="rot90">{{state}}</span></aside>
-<div class="node-entry entry">
-<h3 class="w40">PLACEHOLDER</h3>
+  <aside><span class="rot90">{{state}}</span></aside>
+  <div class="node-entry entry">
+    <h3 class="w40">PLACEHOLDER</h3>
 
-<pre class="prettyprint w40">
-Node code
+<pre class="prettyprint w60">
+var members = [
+  {name: "Bill", age: 34, phone: "Pixel"},
+  {name: "Sue", age: 12, phone: "Android"},
+  {name: "Lex", age: 44, phone: "iPhone"},
+  {name: "Amy", age: 52, phone: "Pixel"},
+  {name: "Don", age: 84, phone: "Landline"}
+];
+
+// localhost:3000/members?phone=Pixel
+app.get('/members', function(req, res, next) {
+  var filteredMembers = members.filter(function(members) {
+    return members.phone === req.query.phone;
+  })
+  res.status(200).json(filteredMembers);
+});
 </pre>
-  <hr>
 
+    <hr>
 
-<hr>
-</pre>
-<!-- end of entry pre -->
-</div>
-<!-- end of entry -->
+  </div>
+  <!-- end of entry -->
 
 
 </div>
