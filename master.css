@@ -120,76 +120,6 @@ pre.prettyprint {
 .bg {
   font-size: 2em; }
 
-/* color classes */
-.mango {
-  color: #ebb861; }
-
-.sand {
-  color: #d0b588; }
-
-.y {
-  color: yellow; }
-
-.orange {
-  color: #f28b02; }
-
-.dkorange {
-  color: #945706; }
-
-.dkgrey {
-  color: #575757; }
-
-.ltgrey {
-  color: #bdbdbd; }
-
-.ivr {
-  color: #e6d8cc; }
-
-.wh {
-  color: #fff; }
-
-.ltblue {
-  color: #3f71f1; }
-
-.purp {
-  color: purple; }
-
-.paleY {
-  color: #e8e598; }
-
-.pastY {
-  color: #bfbc64; }
-
-.reddrk {
-  color: #410211; }
-
-.navy {
-  color: navy; }
-
-.dkblue {
-  color: #18223b; }
-
-.ltgreen {
-  color: #79e286; }
-
-.dkred {
-  color: #441f1d; }
-
-.mustard {
-  color: #a38853; }
-
-.ltred {
-  color: #eb473d; }
-
-.dkbg {
-  background-color: rgba(45, 44, 44, 0.7); }
-
-.ltbg {
-  background-color: rgba(199, 190, 132, 0.5); }
-
-.trans {
-  color: transparent; }
-
 .shadn {
   box-shadow: 5px 5px 5px black;
   border: 1px solid wheat;
@@ -335,12 +265,6 @@ h4 a {
   box-shadow: inset 2px 2px 10px 2px black;
   color: #bdbdbd; }
 
-.fLeft {
-  float: left; }
-
-.fRight {
-  float: right; }
-
 .framed2 {
   padding: 2%;
   font-size: 1.4vw;
@@ -348,8 +272,9 @@ h4 a {
   background-color: #e3ab7e;
   border: 1px solid brown;
   box-shadow: inset 2px 2px 10px 2px black; }
-  .framed2 pre {
-    color: #a6b696; }
+
+pre {
+  color: #a6b696; }
 
 .framed3 {
   box-shadow: 4px 4px 8px 2px black;
@@ -372,6 +297,12 @@ h4 a {
 .caption-box img {
   position: absolute;
   top: 2px; }
+
+.fLeft {
+  float: left; }
+
+.fRight {
+  float: right; }
 
 /* jquery styles */
 .jq-entry {
@@ -487,5 +418,75 @@ div.node-entry {
   background-color: #758a88;
   border: 1px solid white;
   color: white; }
+
+/* color classes */
+.mango {
+  color: #ebb861; }
+
+.sand {
+  color: #d0b588; }
+
+.y {
+  color: yellow; }
+
+.orange {
+  color: #f28b02; }
+
+.dkorange {
+  color: #945706; }
+
+.dkgrey {
+  color: #575757; }
+
+.ltgrey {
+  color: #bdbdbd; }
+
+.ivr {
+  color: #e6d8cc; }
+
+.wh {
+  color: #fff; }
+
+.ltblue {
+  color: #3f71f1; }
+
+.purp {
+  color: purple; }
+
+.paleY {
+  color: #e8e598; }
+
+.pastY {
+  color: #bfbc64; }
+
+.reddrk {
+  color: #410211; }
+
+.navy {
+  color: navy; }
+
+.dkblue {
+  color: #18223b; }
+
+.ltgreen {
+  color: #79e286; }
+
+.dkred {
+  color: #441f1d; }
+
+.mustard {
+  color: #a38853; }
+
+.ltred {
+  color: #eb473d; }
+
+.dkbg {
+  background-color: rgba(45, 44, 44, 0.7); }
+
+.ltbg {
+  background-color: rgba(199, 190, 132, 0.5); }
+
+.trans {
+  color: transparent; }
 
 /*# sourceMappingURL=master.css.map */

@@ -155,98 +155,6 @@ pre.prettyprint {
 .bg {
   font-size: 2em;
 }
-/* color classes */
-.mango {
-  color: map-get($colors, mango);
-}
-
-.sand {
-  color: map-get($colors, sand);
-}
-
-.y {
-  color: map-get($colors, y);
-}
-
-.orange {
-  color: map-get($colors, orange);
-}
-
-.dkorange {
-  color: map-get($colors, dkorange);
-}
-
-.dkgrey {
-  color: map-get($colors, dkgrey);
-}
-
-.ltgrey {
-  color: map-get($colors, ltgrey );
-}
-
-.ivr {
-  color: map-get($colors, ivr);
-}
-
-.wh {
-  color: map-get($colors, wh);
-}
-
-.ltblue {
-  color: map-get($colors, ltblue);
-}
-
-.purp {
-  color: map-get($colors, purp);
-}
-
-.paleY {
-  color: map-get($colors, paleY);
-}
-
-.pastY {
-  color: map-get($colors, pastY);
-}
-
-.reddrk {
-  color: map-get($colors, reddrk);
-}
-
-.navy {
-  color: map-get($colors, navy);
-}
-
-.dkblue {
-  color: map-get($colors, dkblue);
-}
-
-.ltgreen {
-  color: map-get($colors, ltgreen);
-}
-
-.dkred {
-  color: map-get($colors, dkred);
-}
-
-.mustard {
-  color: map-get($colors, mustard);
-}
-
-.ltred {
-  color: map-get($colors, ltred);
-}
-
-.dkbg {
-  background-color: map-get($colors, dkbg);
-}
-
-.ltbg {
-  background-color: map-get($colors, ltbg);
-}
-
-.trans {
-  color: transparent;
-}
 
 .shadn {
   box-shadow: 5px 5px 5px black;
@@ -453,13 +361,6 @@ h4 a {
   color: map-get($colors, ltgrey);
 }
 
-.fLeft {
-  float: left;
-}
-
-.fRight {
-  float: right;
-}
 
 .framed2 {
   // position: relative;
@@ -473,10 +374,11 @@ h4 a {
   }
   border: 1px solid brown;
   box-shadow: inset 2px 2px 10px 2px black;
+}
 
-  pre {
-    color: map-get($colors, pastgreen);
-  }
+pre {
+  color: map-get($colors, pastgreen);
+  // border: 1px solid map-get($colors, purp);
 }
 
 .framed3 {
@@ -505,4 +407,12 @@ h4 a {
 .caption-box img {
   position: absolute;
   top: 2px;
+}
+
+.fLeft {
+  float: left;
+}
+
+.fRight {
+  float: right;
 }
