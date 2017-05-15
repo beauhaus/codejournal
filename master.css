@@ -238,8 +238,7 @@ h4 a {
   border: 1px solid maroon;
   box-shadow: inset 1px 1px 4px 1px rgba(0, 0, 0, 0.61);
   background-color: #d0b588;
-  font-family: Trebuchet, sans-serif;
-  font-weight: 400;
+  color: #18223b;
   padding: 1vh 2vw;
   font-weight: 400;
   font-family: Trebuchet, Sans-Serif;
@@ -294,6 +293,12 @@ pre {
 .sm {
   font-size: 0.90909vw; }
 
+.med {
+  font-size: 1.5vw; }
+
+.lg {
+  font-size: 2vw; }
+
 .caption-box {
   position: relative;
   border: 1px solid green;
@@ -319,6 +324,17 @@ pre {
   text-align: center;
   font-family: "Cabin", Sans-Serif;
   color: #945706; }
+
+.right {
+  position: relative;
+  margin-left: 40vw;
+  display: inline-block; }
+
+.pRel {
+  position: relative; }
+
+.pAbs {
+  position: absolute; }
 
 /* jquery styles */
 .jq-entry {

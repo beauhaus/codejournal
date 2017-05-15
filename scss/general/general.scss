@@ -324,8 +324,7 @@ h4 a {
   border: 1px solid maroon;
   box-shadow: inset 1px 1px 4px 1px rgba(#000000, 0.61);
   background-color: map-get($colors, sand);
-  font-family: Trebuchet, sans-serif;
-  font-weight: 400;
+  color: map-get($colors, dkblue);
   padding: 1vh 2vw;
   font: {
     weight: 400;
@@ -400,7 +399,12 @@ pre {
 .sm {
   font-size: $baseline / 1.1;
 }
-
+.med {
+  font-size: $baseline * 1.5;
+}
+.lg {
+  font-size: $baseline * 2;
+}
 .caption-box {
   position: relative;
   border: 1px solid green;
@@ -431,4 +435,15 @@ pre {
   text-align: center;
   font-family: map-get($fonts, Cabin);
   color: map-get($colors, dkorange);
+}
+.right {
+  position: relative;
+  margin-left: 40vw;
+  display: inline-block;
+}
+.pRel {
+  position: relative;
+}
+.pAbs {
+  position: absolute;
 }
