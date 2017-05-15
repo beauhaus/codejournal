@@ -2,6 +2,19 @@
 <div class="node-container">
   <aside><span class="rot90">{{state}}</span></aside>
   <div class="node-entry entry">
+<pre>
+  <div class="framed1">
+A session is something on the back end that is stored as an ID--associated to an object.
+A cookie is the mechanism by which we pass that ID back and forth.
+
+.sid = session id.
+(express-session is built on top of <em>Connect</em>)
+<img class="w40" src="./img/sessionID.png" alt="sessionID">
+This is what gets tossed back and forth on each of our requests.
+
+In headers... Here's a cookie!
+<img class="w40" src="./img/header.png" alt="cookie!">
+  </div>
     <h3 class="w40">PLACEHOLDER</h3>
 
 <pre class="prettyprint w60">
@@ -23,7 +36,8 @@ app.get('/members', function(req, res, next) {
 </pre>
 
     <hr>
-
+</pre>
+<!-- end of pre for all -->
   </div>
   <!-- end of entry -->
 
