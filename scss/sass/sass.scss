@@ -1,16 +1,89 @@
 div.sass-entry {
   background: {
-    color: map-get($colors, dkred);
+    color: map-get($colors, dkblue);
   }
-  h4 a{
+  overflow: auto;
+  height: 80vh;
+  border: 1px solid map-get($colors, ivr);
+
+  h4 a {
     margin: 2vh auto;
     color: ivr;
     text-decoration: {
       color: ivr;
     }
   }
+
   .prettyprint {
     border: 1px solid map-get($colors, trim);
     margin: 2vh auto;
   }
+}
+
+pre.cssnote {
+  text-align: left;
+  color: #785b41;
+}
+
+.ctr-container-ex1 {
+  border: 1px dashed grey;
+  box-shadow: none;
+  height: 25vh;
+  width: 100%;
+  text-align: center;
+}
+div.ctr-example1 {
+  display: inline-block;
+  height: 100%;
+  width: 20vw;
+  background-color: #637571;
+  color: wheat;
+  border: 1px solid #785b41;
+}
+
+
+.teal {
+  color: teal;
+}
+
+.ctr-container-ex2 {
+  border: 1px dashed map-get($colors, mutedOrange);
+  box-shadow: none;
+  height: 40vh;
+  position: relative;
+}
+
+.ctr-example2 {
+  color: map-get($colors, ltgreen);
+  background-color: map-get($colors, dkbg);
+  font-family: map-get($fonts, Clean);
+  height: 100%;
+  padding: 1%;
+  border: 1px solid map-get($colors, ltgreen);
+  width: 40vw;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -20vw;
+}
+
+.ctr-container-ex3 {
+  position: relative;
+  height: 50vh;
+  width: 100%;
+  border: 1px dashed map-get($colors, ltred);
+}
+
+.ctr-example3 {
+  height: 300px;
+  border: 1px solid map-get($colors, mustard);
+  width: 400px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.centering-entry {
+  background: #371a1a;
+  border: 1px solid map-get($colors, dkgrey);
 }

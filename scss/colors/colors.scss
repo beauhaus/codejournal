@@ -6,7 +6,9 @@
 .sand {
   color: map-get($colors, sand);
 }
-
+.mutedOrange {
+  color: map-get($colors, mutedOrange);
+}
 .y {
   color: map-get($colors, y);
 }
@@ -74,7 +76,9 @@
 .mustard {
   color: map-get($colors, mustard);
 }
-
+.fuch {
+  color: map-get($colors, fuch);
+}
 .ltred {
   color: map-get($colors, ltred);
 }

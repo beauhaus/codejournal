@@ -386,6 +386,16 @@ pre {
   background-color: map-get($colors, transGreen);
   padding: 2vh 2vw;
 }
+.framed4 {
+    font-family: 'Raleway', sans-serif;
+    padding: 2%;
+    margin: 1%;
+    background-color: rgb(55, 71, 78);
+    color: rgb(237, 153, 111);
+    padding: auto, 10%;
+    text-align: left;
+    border: 1px solid skyblue;
+}
 
 .sm {
   font-size: $baseline / 1.1;
@@ -415,4 +425,10 @@ pre {
 
 .fRight {
   float: right;
+}
+.chtitle {
+  margin: 0 auto;
+  text-align: center;
+  font-family: map-get($fonts, Cabin);
+  color: map-get($colors, dkorange);
 }

@@ -1,5 +1,8 @@
 div.angular-entry {
   color: map-get($colors, orange);
+  overflow: auto;
+  height: 80vh;
+  border: 1px solid map-get($colors, ivr);
   background: {
     color: map-get($colors, dkred);
   }
