@@ -532,6 +532,15 @@ div.node-entry {
   overflow: auto;
   height: 80vh; }
 
+div.es6-entry {
+  background-color: #f5facf; }
+
+div.es6-entry {
+  background-color: #945706;
+  overflow: auto;
+  height: 80vh;
+  border: 1px solid #e6d8cc; }
+
 /* color classes */
 .mango {
   color: #ebb861; }

@@ -1,0 +1,51 @@
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<div class="es6-container">
+<aside><span class="rot90">{{state}}</span></aside>
+<div class="es6-entry entry">
+<h3 class="w40">The "let" keyword.
+var has 2 kinds of scope. Global and Lexical (or functional) scope.</h3>
+<span class="ivr">This code doesn't throw an error in es5.</span>
+<pre class="prettyprint w40">
+var gimmeSum = function(sum) {
+  if(sum) {
+    var total = sum + 3;
+  }
+  return total;
+}
+alert(gimmeSum(7))
+// 10</pre>
+<h3 class="caption">However, let variables are not implicity hoisted</h3>
+<pre class="prettyprint w20">var gimmeSum = function(sum) {
+  if(sum) {
+    let total= sum + 3;
+  }
+  return total;
+} // undefined
+</pre>
+
+
+
+  <hr>
+<h3 class="wh">Interesting point about this:</h3>
+(<span><a href="http://stackoverflow.com/questions/7479282/this-vs-this">FROM HERE</a></span>)
+
+<pre>
+  <p>In jQuery functions, this most often refers to the actual DOM element you're dealing with, whereas $(this) returns a jQuery object that wraps the element.
+
+  In JavaScript, this always refers to the current scope. Many of jQuery's functions will set that scope to be the element you're working with.</p>
+
+  For instance
+
+<pre class="prettyprint w60">
+  $("#someElement").click(function() {
+      this;    // the element itself
+      $(this); // a jQuery wrapper-object around the element
+  });
+</pre>
+
+<hr>
+</pre>
+</div>
+
+
+</div>
