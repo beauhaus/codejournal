@@ -5,6 +5,31 @@
   <div class="ecma-entry entry">
     <pre>
       <!--entire page pre-->
+  <div class="simple-frame2">
+    <h3 class="chtitle">.map() example</h3>
+    <p>.map() returns a new array of same length. <br />It iterates over each item.</p>
+    <pre class="prettyprint w40">
+var people = [{
+    name: "Sue",
+    age: 23
+  },
+  {
+    name: "Kim",
+    age: 13
+  },
+  {
+    name: "Joe",
+    age: 21
+  }
+];
+
+var ageArr = people.map(function(person){
+  return person.age;
+});
+        // [23,13,21]
+</pre>
+
+  </div>
   <div class="framed2 dkblue"> JSON.parse();
     This object is in json and is useless to javascript:
     <h4 class="wh">...myObject.json file</h4><pre class="dkblue w20">{

@@ -87,7 +87,7 @@ Simple: We use javascript's .call(); method.
   }
 
 btn.on('click', function(e) {
-  obj.doIt().call(this);
+  obj.doIt().call(obj);
   //we call this b/c within this click function
   //we know that 'this' refers to the btn that was clicked.
 })

@@ -1,7 +1,75 @@
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
 <div class="es6-container">
 <aside><span class="rot90">{{state}}</span></aside>
+<pre>
+<!-- pre for entire page -->
 <div class="es6-entry entry">
+<div class="framed3"><h2 class="pastY ctrtxt">Object & Array destructuring</h2>
+Object Destructuring:
+<pre class="prettyprint w40">
+  var user = {
+    name: "Alex",
+    age: 34,
+    job: "Farmer"
+  };
+
+  var {name, age, job} = user;
+  console.log(name);
+  console.log(age);
+  console.log(job);
+</pre>
+
+Array destructuring:
+<pre class="prettyprint w40">
+  var arr = ["Alex", 34, "Farmer"];
+
+  //old way...
+  // var name = arr[0];
+  // var age = arr[1];
+  // var job = arr[2];
+
+  //ES6
+  var [name, age, job] = arr;
+  console.log(job);
+</pre>
+
+</div>
+<hr>
+<div class="framed4">
+<h3 class="wh ctrtxt">Arrow Functions ("fat-arrow")</h3>
+The following works in ES5:
+<pre class="prettyprint w40">
+var people = [
+  {name: "Sue",age: 23},
+  {name: "Kim",age: 13},
+  {name: "Joe",age: 21}
+];
+
+var ageArr = people.map(function(person){
+return person.age;
+});
+    // [23,13,21]
+</pre>
+But in ES6, it's much cleaner code.
+<span class="y">IF you only have ONE argument</span>, don't use parentheses<br />
+ALSO. <span class="y">If you are only returning one thing</span> and not doing other things in the Fn.
+<h3 class="ltred">GET RID OF the return statement and the "{}"</h3>
+<pre class="prettyprint w40">var ageArr = people.map(person => person.age;)</pre>
+
+Here is a promise callback using an Arrow Function.
+<span class="ivr"><em>Old way:</em></span>
+<pre class="prettyprint w40">
+$http.get(function('/api/people')
+.then(function(data) {
+  return res.data;
+})</pre>
+<span class="mango"><em>New ES6 way:</em></span>
+<pre class="prettyprint w40">
+$http.get(function('/api/people')
+.then(data => res.data)</pre>
+
+</div>
+  <hr>
 <h3 class="w40">The "let" keyword.
 var has 2 kinds of scope. Global and Lexical (or functional) scope.</h3>
 <span class="ivr">This code doesn't throw an error in es5.</span>
@@ -22,6 +90,12 @@ alert(gimmeSum(7))
   return total;
 } // undefined
 </pre>
+<h3 class="caption">This can be solved by:</h3>
+<pre class="prettyprint w20">if(sum) {
+  let total = sum + total;
+  return total;
+}</pre>
+<h3>block-scoping is what let is used for</h3>
 
 
 
@@ -46,6 +120,9 @@ alert(gimmeSum(7))
 <hr>
 </pre>
 </div>
+</pre>
+<!-- end of pre for entire page -->
+
 
 
 </div>
