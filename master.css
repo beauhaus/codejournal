@@ -336,6 +336,16 @@ pre {
 .pAbs {
   position: absolute; }
 
+/* Images side-by-side */
+.neighbors-container {
+  text-align: center; }
+
+.neighbors-item {
+  display: inline-block; }
+
+img.neighbors-item {
+  height: 12vw; }
+
 /* jquery styles */
 .jq-entry {
   background-color: #a6b696;

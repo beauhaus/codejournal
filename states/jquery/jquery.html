@@ -16,7 +16,21 @@
 <div class="simple-frame">
   <h4 class="chtitle">Jquery Intermediate Quiz</h4>
   $('img, div') selects both elements. What is another way?
-  <h5 class="right ans lg dkorange">$('img, div') </h5>
+  <h5 class="right ans lg dkorange">$('img').add('div')</h5>
+
+  If h3 containing "hint" is displayed, stop displaying it. If it isn't displayed, display it.
+  <h5 class="right ans lg dkorange">$("h3:contains('hint')").toggle();</h5>
+
+  Assign to a variable a user's entry in a form field.
+<pre class="prettyprint w60 ans">
+//< input id="txt_name" type="text" name="input">
+
+var btn2 = $('.btn2');
+btn2.on('click', function() {
+  var text = $("#txt_name").val();
+  console.log(text);
+});
+</pre>
 
   How would I remove all < p> tags entirely from the DOM?
   <h5 class="right ans lg dkorange">$("p").remove(); </h5>
@@ -33,19 +47,35 @@
   If any paragraphs contain "sad" replace their class with "happy".
   <h5 class="right ans lg dkorange">$("p:contains('sad')").attr("class", "happy");  </h5>
 
+  How to remove and replace an element with completely different HTML.
+  <h5 class="right ans lg dkorange">$("h3:contains('sad')").replaceWith('< h2>We are all Happy!< /h2>');</h5>
+</pre>
+<div class="simple-frame">
 
-
+  <section class="neighbors-container">
+    <h4 class="chtitle">This code grabs siblings with a certain word...Then, completely replaces the elements.</h4>
+    <img class="neighbors-item w20" src="./img/sadHappy.png" alt="sad happy jquery">
+    <img class="neighbors-item w20" src="./img/happy.png" alt="happy">
+  </section>
+<pre class="prettyprint w80">
+var btn = $('button');
+btn.on('click', function() {
+  var btnNeighbors =  $(this).siblings().text();
+  $("h3:contains('sad')").replaceWith('< h2>We are all Happy!< /h2>');
+});</pre>
 
 </div>
 <hr>
+<pre class="dkred">
+
 <h4><a href="https://youtu.be/x_Rh6qCmN5s?list=PLHJPCYLtEMaKdvFGcFk3ud-FEJv5j5dwR">tuts+ video link</a></h4>
-<i class="dkred">
-THIS</i> in two different contexts:<br>
+<i class="dkred">THIS </i>in two different contexts:<br>
+
 <i class="dkblue">'this'</i> can refer--here--to the element that <em>fired</em> this
 ...or the object created by the triggering of that element.
 
 HOWEVER: What if I want to call the 'doIt()' method on that object
-& refer to that element <em>as <b class="dkblue">as 'this'</b></em>??
+& refer to that element <em> <b class="dkblue">as 'this'</b></em>??
 
 Simple: We use javascript's .call(); method.
 
@@ -53,8 +83,7 @@ Simple: We use javascript's .call(); method.
   btn = $('button');
   var obj = {
     doIt: function(e) {
-      console.log(this);
-    }
+      console.log(this); // obj.
   }
 
 btn.on('click', function(e) {
@@ -62,7 +91,6 @@ btn.on('click', function(e) {
   //we call this b/c within this click function
   //we know that 'this' refers to the btn that was clicked.
 })
-
 </pre>
 <hr>
 <img class="w80" src="img/this3.png" alt="this3">
