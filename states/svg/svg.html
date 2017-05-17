@@ -10,16 +10,22 @@ as a css rule:
 //code
 </pre>
   <hr>
-<h3 class="wh">placeholder txt</h3>
+<h2>Setup SVGs for web</h2>
+<p class="mango">Export from AI with advanced> style elements.</p>
 
+<p class="mango">Then... Optimize!</p>
 
-<p></p>
+<div class="simple-frame w40"><a href="https://jakearchibald.github.io/svgomg/" target="_blank">SVG OMG</a>
+or
+<a href="http://petercollingridge.appspot.com/svg-optimiser">Peter Collingridge's Opitmizer</a>
+</div>
+<p class="mango">Then, replace ALL ids with classes cmd-f id=" (replace all with class=")</p>
+
+<h3 class="wh">PreserveAspect ratio</h3>
 <pre class="prettyprint w60">
-  $("#someElement").click(function() {
-      this;    // the element itself
-      $(this); // a jQuery wrapper-object around the element
-  });
+  <b><</b>svg .... preserveAspectRatio="xMinyMin meet" width="100%" height="100%"<b>></b>
 </pre>
+<p>This ensures that everything is scalable at the proper aspect ratio
 
 <hr>
 
