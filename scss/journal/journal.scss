@@ -47,15 +47,6 @@ div.journal-entry {
       }
     }
 
-    ol {
-      & a {
-        // color: purple;
-        &:hover {
-          color: skyblue;
-        }
-      }
-    }
-
     ol.todo {
       & li {
         list: {
@@ -84,4 +75,23 @@ div.journal-entry {
         margin: auto;
       }
 }
+}
+
+a:active,
+a:focus,
+a:link,
+a:visited,
+a {
+  margin: 2vh auto;
+  color: map-get($colors, ltblue);
+  text: {
+    decoration: none;
+  }
+}
+a::before {
+  content: "📌";
+}
+
+a:hover {
+  color: map-get($colors, ltgreen);
 }

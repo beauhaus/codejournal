@@ -42,5 +42,9 @@ angular.module("codeJournal", ['ui.router', 'ngAnimate'])
       controller: 'es6Ctrl',
       url: '/es6',
       templateUrl: './states/es6/es6.html'
+    }).state('svg', {
+      controller: 'svgCtrl',
+      url: '/svg',
+      templateUrl: './states/svg/svg.html'
     })
 });

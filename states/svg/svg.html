@@ -1,0 +1,34 @@
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<div class="svg-container">
+<aside><span class="rot90">{{state}}</span></aside>
+<div class="svg-entry entry">
+<h3 class="w40">Interesting cursor: image trick</h3>
+as a css rule:
+<pre class="prettyprint w40">
+div {
+  cursor: url('img/finger.png'), pointer;
+}</pre>
+  <hr>
+<h3 class="wh">Interesting point about this:</h3>
+(<span><a href="http://stackoverflow.com/questions/7479282/this-vs-this">FROM HERE</a></span>)
+
+<pre>
+  <p>In jQuery functions, this most often refers to the actual DOM element you're dealing with, whereas $(this) returns a jQuery object that wraps the element.
+
+  In JavaScript, this always refers to the current scope. Many of jQuery's functions will set that scope to be the element you're working with.</p>
+
+  For instance
+
+<pre class="prettyprint w60">
+  $("#someElement").click(function() {
+      this;    // the element itself
+      $(this); // a jQuery wrapper-object around the element
+  });
+</pre>
+
+<hr>
+</pre>
+</div>
+
+
+</div>

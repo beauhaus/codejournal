@@ -100,8 +100,9 @@ $http.get(function('/api/people')
 <pre class="prettyprint w40">
 $http.get(function('/api/people')
 .then(data => res.data)</pre>
-
 </div>
+Don't use arrow functions as method on an object! 'this' breaks everything!
+<a href="https://vimeo.com/216583233" target="_blank">dm link about arrow functions and this</a>
   <hr>
 <h3 class="w60">The "let" keyword.
 var has 2 kinds of scope. Global and Lexical (or functional) scope.</h3>

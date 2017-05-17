@@ -39,6 +39,25 @@ body {
     filter: contrast(175%) brightness(23%);
   }
 }
+/* links */
+a:active,
+a:focus,
+a:link,
+a:visited,
+a {
+  margin: 2vh auto;
+  color: map-get($colors, ivr);
+  text: {
+    decoration: none;
+  }
+}
+a::before {
+  content: "📌";
+}
+
+a:hover {
+  color: map-get($colors, ltgreen);
+}
 /*90 degree rot state-name*/
 aside {
   position: absolute;
@@ -246,6 +265,9 @@ pre {
     }
   }
 }
+a[ui-sref]::before {
+  content: none;
+}
 
 nav.navbar {
   background-color: map-get($colors, mutedBlue);
@@ -282,35 +304,15 @@ nav.navbar {
 }
 
 a[ui-sref] {
-  // background-color: map-get($colors, transPastGreen);
-  // color: map-get($colors, ivr);
   opacity: 1;
-  // color: black;
 }
 
-// .toTrans {
-//   color: transparent;
-//   transition: color 2s;
-// }
-
 a[ui-sref]:hover {
-  // color: #c8a868;
   color: map-get($colors, mutedOrange);
   transition: color 1s;
 }
-//FIXME: trying to remove the visited purple color
-a:active,
-a:focus,
-a:hover,
-a:link,
-a:visited,
-h4 a {
-  margin: 2vh auto;
-  color: ivr;
-  text-decoration: {
-    color: ivr;
-  }
-}
+
+
 
 .underline {
   text-decoration: underline;
@@ -460,3 +462,4 @@ pre {
 img.neighbors-item {
   height: 12vw;
 }
+//FIXME: trying to remove the visited purple color
