@@ -4,7 +4,40 @@
 <pre>
 <!-- pre for entire page -->
 <div class="es6-entry entry">
-<div class="framed3"><h2 class="pastY ctrtxt">Object & Array destructuring</h2>
+<div class="simple-frame2"><h2 class="ctrtxt">for of loops</h2>
+Plain es5 iteration:
+<pre class="prettyprint w40">
+  var car = {
+    color: "red",
+    wheels: 4,
+    transmission: "manual",
+    domestic: false
+  }
+
+  for (var prop in car) {
+    console.log(prop);
+  } // color wheels transmission domestic
+</pre>
+<em>for in</em> is for objects --but if you <b>must</b> use 'for of', this will work.
+<pre class="prettyprint w40">
+  for (var prop of Object.keys(car)) {
+    console.log(prop);
+  }
+</pre>
+
+for of is built for arrays
+<pre class="prettyprint w60">
+  var carArr = [{color: "red"}, { wheels: 4}, {transmission: "manual"}, {domestic: false}];
+
+  for (prop of carArr) {
+    console.log(prop);
+  }
+  <img class="w20" src="./img/forOf.png" alt="for of loop">
+</pre>
+
+</div>
+<hr>
+<div class="framed3"><h2 class="pastY ctrtxt">Object destructuring & Array destructuring</h2>
 Object Destructuring:
 <pre class="prettyprint w40">
   var user = {
@@ -46,7 +79,7 @@ var people = [
 ];
 
 var ageArr = people.map(function(person){
-return person.age;
+  return person.age;
 });
     // [23,13,21]
 </pre>
@@ -70,7 +103,7 @@ $http.get(function('/api/people')
 
 </div>
   <hr>
-<h3 class="w40">The "let" keyword.
+<h3 class="w60">The "let" keyword.
 var has 2 kinds of scope. Global and Lexical (or functional) scope.</h3>
 <span class="ivr">This code doesn't throw an error in es5.</span>
 <pre class="prettyprint w40">
@@ -80,7 +113,7 @@ var gimmeSum = function(sum) {
   }
   return total;
 }
-alert(gimmeSum(7))
+gimmeSum(7)
 // 10</pre>
 <h3 class="caption">However, let variables are not implicity hoisted</h3>
 <pre class="prettyprint w20">var gimmeSum = function(sum) {
@@ -88,38 +121,19 @@ alert(gimmeSum(7))
     let total= sum + 3;
   }
   return total;
-} // undefined
+}
+gimmeSum(7) // undefined b/c 'total' is block-scope
 </pre>
 <h3 class="caption">This can be solved by:</h3>
 <pre class="prettyprint w20">if(sum) {
   let total = sum + total;
   return total;
 }</pre>
-<h3>block-scoping is what let is used for</h3>
+<h3><em class="wh">let</em>'s entire purpose is for block-scoping</h3>
 
 
-
-  <hr>
-<h3 class="wh">Interesting point about this:</h3>
-(<span><a href="http://stackoverflow.com/questions/7479282/this-vs-this">FROM HERE</a></span>)
-
-<pre>
-  <p>In jQuery functions, this most often refers to the actual DOM element you're dealing with, whereas $(this) returns a jQuery object that wraps the element.
-
-  In JavaScript, this always refers to the current scope. Many of jQuery's functions will set that scope to be the element you're working with.</p>
-
-  For instance
-
-<pre class="prettyprint w60">
-  $("#someElement").click(function() {
-      this;    // the element itself
-      $(this); // a jQuery wrapper-object around the element
-  });
-</pre>
-
-<hr>
-</pre>
 </div>
+<!-- ES6 entry div end -->
 </pre>
 <!-- end of pre for entire page -->
 
