@@ -565,7 +565,9 @@ div.es6-entry {
   border: 1px solid #e6d8cc; }
 
 div.svg-entry {
-  background-color: rgba(45, 44, 44, 0.7);
+  background-color: #575757;
+  color: #d0b588;
+  box-shadow: inset 0px 0px 42px 2px black;
   overflow: auto;
   height: 80vh;
   border: 1px solid #e6d8cc; }

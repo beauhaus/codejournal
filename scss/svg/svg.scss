@@ -1,6 +1,7 @@
 div.svg-entry {
-  background-color: map-get($colors, dkbg);
-  // box-shadow: inset 0px 0px 0px rgba(#a6b696, 0);
+  background-color: map-get($colors, dkgrey);
+  color: map-get($colors, sand);
+  box-shadow: inset 0px 0px 42px 2px black;
   overflow: auto;
   height: 80vh;
   border: 1px solid map-get($colors, ivr);
