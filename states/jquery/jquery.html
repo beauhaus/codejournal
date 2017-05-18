@@ -23,7 +23,7 @@
 
   Assign to a variable a user's entry in a form field.
 <pre class="prettyprint w60 ans">
-//< input id="txt_name" type="text" name="input">
+<b><</b>input id="txt_name" type="text" name="input"<b>></b>
 
 var btn2 = $('.btn2');
 btn2.on('click', function() {
@@ -129,29 +129,28 @@ I can use the call method & send another arg to the doIt function;
   <span class="dkred">You can also do a <b>.delay(1200)</b></span>
 <hr>
   <a href="https://youtu.be/BOx8FzOTFfc?list=PLHJPCYLtEMaKdvFGcFk3ud-FEJv5j5dwR&t=115">Tuts+ Video</a>
-<div class="w40 ctr">
-  <pre class="ltbg shadn">
-    < div class="list">
-      < ol>
-        < li>bears< /li>
-        < li>pigs< /li>
-        < ul>
-          < li>miss piggy< /li>
-          < li>arnold the pig< /li>
-        < /ul>
-        < li>monkeys< /li>
-      < /ol>
-    < /div></pre>
-</div>
-<div class="code-questions">
-  <h2 class="ltgreen ">Select miss piggy and arnold the pig using .find()</h2><br>
-    <code class="ans">$('ul').find('li').css('color', 'red');</code>
-  <h2 class="ltgreen ">What will the following code do?</h2><br>
-    <code>$('ol').children('li').first().css('color', 'pink')</code>
-    <h2 class="ans">turn bears pink only</h2>
+
+<div class="code-question-compact">
+  <div class="w40 ctr">
+<pre class="prettyprint w40">
+    <b><</b>ol>
+      <b><</b>li>bears<b><</b>/li>
+      <b><</b>li>pigs<b><</b>/li>
+        <b><</b>ul>
+          <b><</b>li>miss piggy<b><</b>/li>
+        <b><</b>li>arnold the pig<b><</b>/li>
+      <b><</b>/ul>
+      <b><</b>li>monkeys<b><</b>/li>
+    <b><</b>/ol>
+  </pre>
   </div>
-<div class="code-questions2">
-  <code class="middle reddrk">$('ol').children('li').eq(1).css('color', 'pink')</code>
+  <h4 class="ltgreen ">Select miss piggy and arnold the pig using .find()</h4><br>
+  <code class="ans">$('ul').find('li').css('color', 'red');</code>
+  <h4 class="ltgreen ">What will the following code do?</h4><br>
+  <code>$('ol').children('li').first().css('color', 'pink')</code>
+  <h3 class="ans">turn bears pink only</h3>
+
+  <code class="reddrk">$('ol').children('li').eq(1).css('color', 'pink')</code>
   is going to select what?
   <img class="w20 ans" src="./img/pigs.png" alt="pigs">
   <i class="purp">Remember:</i> .eq(0) is javascript so it is zero-based.
@@ -186,3 +185,4 @@ I can use the call method & send another arg to the doIt function;
 
 
 </div>
+<!-- <b>></b><b><</b> -->

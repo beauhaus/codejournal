@@ -3,26 +3,31 @@
   background-color: map-get($colors, pastgreen);
   border: 1px solid map-get($colors, trim);
   height: 80vh;
+  overflow: auto;
+  position: relative;
   font: {
     family: map-get($fonts, Comfort);
     size: 2vw;
   }
 
   .prettyprint {
-    font-size: 1.5vw;
+    font-size: 1.2vw;
     background-color: #445e5e;
     padding: 2vh 2vw;
   }
-  overflow: auto;
-  position: relative;
 
   div {
     margin: {
-      bottom: $baseline * 4;
+      bottom: $baseline/2;
+      top: 0;
     }
     font: {
       family: map-get($fonts, Comfort);
       size: 2vw;
     }
   }
+}
+
+.code-question {
+
 }

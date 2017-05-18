@@ -5,4 +5,16 @@ div.svg-entry {
   overflow: auto;
   height: 80vh;
   border: 1px solid map-get($colors, ivr);
+  position: relative;
+}
+.top-right-box {
+  border: 1px solid maroon;
+  background-color: map-get($colors, ltbg);
+  font-size: .8em;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.box-border { // delineates svg samples in the entry
+  border: 1px solid wheat;
 }

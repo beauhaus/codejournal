@@ -1,37 +1,71 @@
-<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
 <div class="svg-container">
-<aside><span class="rot90">{{state}}</span></aside>
-<div class="svg-entry entry">
+  <aside><span class="rot90">{{state}}</span></aside>
+  <div class="svg-entry entry">
 <pre>
-<!-- pre for all -->
-<h3 class="w40">Interesting cursor: image trick</h3>
-as a css rule:
-<pre class="prettyprint w40">
-//code
-</pre>
-  <hr>
-<h2>Setup SVGs for web</h2>
-<p class="mango">Export from AI with advanced> style elements.</p>
-
-<p class="mango">Then... Optimize!</p>
-
-<div class="simple-frame w40"><a href="https://jakearchibald.github.io/svgomg/" target="_blank">SVG OMG</a>
-or
+    <!-- pre for all -->
+<!-- ===========top-right-box============ -->
+<div class="simple-frame w40 dkbg top-right-box sand"><h3 class=" orange ctrtxt">Setup SVGs</h3>
+1. Export from AI with advanced-> "style elements"
+2. Optimize!
+<a href="https://jakearchibald.github.io/svgomg/" target="_blank">SVG OMG</a>
 <a href="http://petercollingridge.appspot.com/svg-optimiser">Peter Collingridge's Opitmizer</a>
+3. Replace ALL ids with classes cmd-f id=" (replace all with class=")
+4. <span class="wh">PreserveAspect ratio</span>
+<span class="y dkbg ctrtxt"><b><</b>svg .... preserveAspectRatio="xMinyMin meet" width="100%" height="100%"<b>></b></span>
+(This ensures that everything is scalable at the proper aspect ratio)
+5. Add classname to svg & insert styles from SVG embedded into style rule in sass.
+6. You can safely erase version attrs, but erase xmlns attrs ONLY if embedded in HTML
 </div>
-<p class="mango">Then, replace ALL ids with classes cmd-f id=" (replace all with class=")</p>
 
-<h3 class="wh">PreserveAspect ratio</h3>
-<pre class="prettyprint w60">
-  <b><</b>svg .... preserveAspectRatio="xMinyMin meet" width="100%" height="100%"<b>></b>
+<!-- ===================================END OF TOP-RIGHT-BOX=================================== -->
+<div class="ivr"><span class="ltgreen">Elements</span>
+< g> elements
+< defs> element
+;laksjdf;lkajsdf;lkjasdf;lkjas;fdlkjas;lfkj lots and lots!
+</div>
+<div class="framed1 w80"><h3 class="ltgreen">the <b><</b>g> element</h3>
+  You can group shapes using the g element. The g element is a container for other shapes. If you apply style to a g element, that style will be applied to all its child elements. When you create SVG, it is very common to group some elements inside a g container.
+  <br />
+  <svg  class="box-border" width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+    <g>
+      <rect fill="red" x="20" y="20" width="100" height="75" />
+      <rect fill="blue" x="50" y="50" width="100" height="75" />
+    </g>
+  </svg>
+  <pre class="dkbg w40 sm">
+    < svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+    < g>
+    < rect fill="red" x="20" y="20" width="100" height="75" />
+    < rect fill="blue" x="50" y="50" width="100" height="75" />
+    < /g>
+    < /svg>
+  </pre>
+</div>
+
+<div class="framed1"><h3 class="ltgreen">the <b><</b>defs> element</h3>
+can be used to define special graphical SVG elements such as gradients, filters or patterns. When you want to use a special SVG element, you first define it inside the defs element and later on, you can use it in your SVG. <span class="mango">Make sure you specify an id for your special element, so that you can use it later.</span>
+
+
+<pre class="dkbg w40 sm">
+  < svg class="box-border" version="1.1" xmlns=" http: //www.w3.org/2000/svg ">
+    < defs>
+      < linearGradient id="lg1">
+      < stop offset="40%" stop-color="orange" />
+      < stop offset="60%" stop-color="green" />
+      < stop offset="80%" stop-color="blue" />
+      < /linearGradient>
+    < /defs>
+    < rect fill="url(#lg1)" x="50" y="50" width="100" height="100"/>
+  < / svg>
 </pre>
-<p>This ensures that everything is scalable at the proper aspect ratio
+</div>
 
-<hr>
+
 
 </pre>
-<!-- END of pre for all -->
+<!-- End of pre for all -->
 </div>
-<!-- END of pre for svg-entry div-->
+<!-- End of svg-entry -->
 </div>
-<!-- End of svg-container div-->
+<!-- End of SVG-Container -->
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>

@@ -2,12 +2,39 @@
 <aside><span class="rot90">{{state}}</span></aside>
 <div class="angular-entry entry">
   <pre>
-    <h4>Timers</h4>
-    <pre class="prettyprint w80">
-      function() {
-        //some code here.
-      }
+    <h4>A promise in it's most simple form</h4>
+    <pre class="prettyprint w60">
+    //myCtrl.js
+    var promise = $http.get('https://luckydogs.com/api/pets');
+
+    promise.then(function(results) {
+      var results = results.data;
+      var status = results.status;
+    })
     </pre>
+    <h4>In the $http injected service:</h4>
+    <pre class="prettyprint w60">
+this.getPets(function(puppy) {
+  return({
+    method: 'GET',
+    url: 'https://luckydogs.com/api/pets'
+  })
+})
+    </pre>
+<div class="simple-frame">What does $http always return? <span class="dkorange med ans">A promise.</span>
+<h4>Therefore, we are sending back to the controller <span class="dkorange med ans">A promise.</span></h4>
+<hr>
+A service-injected controller looks like this:
+<pre class="prettyprint">
+$scope.getPets(function() {
+  var promise = myservice.getPets();  // myservice.getPets() returns a promise so, we put it on a var called promise.
+  .then(function(data) {  // this callback takes in the entire response object.
+    $scope.puppies = response.data.data;
+  })
+})
+
+$scope.getPets(); //REMEMBER to invoke the function!</pre>
+</div>
   </pre>
 
 <hr>

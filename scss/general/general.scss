@@ -188,35 +188,31 @@ pre.prettyprint {
   padding: 1%;
 }
 
-.code-questions {
+.code-question-med {
   width: 80vw;
   color: map-get($colors, ivr);
   border: 1px solid white;
-  line-height: 2.5em;
+  line-height: .9em;
   font: {
     size: 0.8em;
     weight: 400;
     family: map-get($fonts, Clean);
   }
   background-color: rgba(0, 0, 0, .8);
-  padding: 1.5vw;
+  padding: 1%;
   margin: auto;
-
-  & .middle {
-    margin: {
-      left: 25%;
-    }
-  }
 }
 
-.code-questions2 {
+.code-question-compact {
   position: relative;
   border: 1px solid ivory;
   background: map-get($colors, pastgreen);
+  line-height: 1em;
 }
 
-.code-questions3 {
+.code-question-tall {
   position: relative;
+  line-height: $baseline;
   border: 1px solid lightgreen;
   background: map-get($colors, pastred);
 }
