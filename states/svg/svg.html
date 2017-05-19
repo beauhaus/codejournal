@@ -11,7 +11,7 @@
 <a href="http://petercollingridge.appspot.com/svg-optimiser">Peter Collingridge's Opitmizer</a>
 3. Replace ALL ids with classes cmd-f id=" (replace all with class=")
 4. <span class="wh">PreserveAspect ratio</span>
-<span class="y dkbg ctrtxt"><b><</b>svg .... preserveAspectRatio="xMinyMin meet" width="100%" height="100%"<b>></b></span>
+<span class="y dkbg ctrtxt"><b><</b>svg .... preserveAspectRatio="xMinYMin meet" width="100%" height="100%"<b>></b></span>
 (This ensures that everything is scalable at the proper aspect ratio)
 5. Add classname to svg & insert styles from SVG embedded into style rule in sass.
 6. You can safely erase version attrs, but erase xmlns attrs ONLY if embedded in HTML
@@ -19,10 +19,10 @@
 
 <!-- ===================================END OF TOP-RIGHT-BOX=================================== -->
 <div class="ivr"><span class="ltgreen">Elements</span>
-< g> elements
+< g> element
 < defs> element
-;laksjdf;lkajsdf;lkjasdf;lkjas;fdlkjas;lfkj lots and lots!
-</div>
+< linearGradient> element
+< ngAttr="{{<i class="y"> scope-property </i>}}"</div>
 <div class="framed1 w80"><h3 class="ltgreen">the <b><</b>g> element</h3>
   You can group shapes using the g element. The g element is a container for other shapes. If you apply style to a g element, that style will be applied to all its child elements. When you create SVG, it is very common to group some elements inside a g container.
   <br />
@@ -60,6 +60,10 @@ can be used to define special graphical SVG elements such as gradients, filters 
 </pre>
 </div>
 
+<div class="framed4"><h3>Angularjs & SVG</h3>
+   Since SVG has its own XML definition, it doesn’t understand AngularJS expressions. That means that if you will try to use SVG attributes with data binding expressions (curly brackets), you will get an error.<br><span class="med ivr"> The work around is to prefix all the dynamic attributes with ng-attr - and then set the binding expression.</span>
+<a href="https://docs.angularjs.org/guide/interpolation" target="_blank">angular explanation for ngAttr</a> (normalized as ng-attr=" ")
+</div>
 
 
 </pre>
