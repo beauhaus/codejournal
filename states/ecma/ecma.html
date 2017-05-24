@@ -5,6 +5,27 @@
   <div class="ecma-entry entry">
     <pre>
       <!--entire page pre-->
+
+  <div class="framed1">
+    <h3>Simple Callback</h3>
+    //Return the first in the array.
+    <pre class="prettyprint">
+var wines = ['Shiraz', 'Rose', 'Pinot', 'Cabernet', 'Grigio',  'Claret'];
+
+var sentence = first(wines, function(firstWine){
+  return 'The first wine of wines is ' + firstWine;
+});
+
+function first(arr, cb) {
+  var find = arr[0];
+  return cb(find);
+}
+
+console.log(sentence);
+// The first wine of wines is Shiraz.
+</pre>
+
+  </div>
   <div class="simple-frame2">
     <h3 class="chtitle">.map() example</h3>
     <p>.map() returns a new array of same length. <br />It iterates over each item.</p>

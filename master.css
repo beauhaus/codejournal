@@ -131,7 +131,6 @@ pre.prettyprint {
   background-color: rgba(242, 219, 150, 0.89); }
 
 .ctrtxt {
-  text-align: center;
   margin: auto; }
 
 .bg {
@@ -171,6 +170,13 @@ pre.prettyprint {
   line-height: 1vw;
   border: 1px solid lightgreen;
   background: #c29d9d; }
+
+.squat {
+  line-height: .8em; }
+
+.col-2 {
+  columns: 2 5vw;
+  column-rule: 1px solid fuchsia; }
 
 img {
   margin: 1vw;
@@ -257,7 +263,8 @@ a[ui-sref]:hover {
 .simple-frame2 {
   border: 1px solid maroon;
   box-shadow: 1px 1px 4px 1px rgba(45, 44, 44, 0.7);
-  background-color: #a38853;
+  background-color: #758a88;
+  color: #d0b588;
   font-family: Trebuchet, sans-serif;
   font-weight: 400;
   padding: 1vh 2vw;
@@ -591,6 +598,9 @@ div.svg-entry {
 
 .sand {
   color: #d0b588; }
+
+.mutedBlue {
+  color: #3f6a96; }
 
 .mutedOrange {
   color: #9a854e; }

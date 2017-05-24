@@ -167,7 +167,7 @@ pre.prettyprint {
 }
 
 .ctrtxt {
-  text-align: center;
+  // text-align: center;
   margin: auto;
 }
 
@@ -215,6 +215,13 @@ pre.prettyprint {
   line-height: $baseline;
   border: 1px solid lightgreen;
   background: map-get($colors, pastred);
+}
+.squat {
+  line-height: .8em;
+}
+.col-2{
+  columns: 2 5vw;
+  column-rule: 1px solid fuchsia;
 }
 
 img {
@@ -333,7 +340,8 @@ a[ui-sref]:hover {
 .simple-frame2 {
   border: 1px solid maroon;
   box-shadow: 1px 1px 4px 1px map-get($colors, dkbg);
-  background-color: map-get($colors, mustard);
+  background-color: map-get($colors, pastOlive);
+  color: map-get($colors, sand);
   font-family: Trebuchet, sans-serif;
   font-weight: 400;
   padding: 1vh 2vw;
