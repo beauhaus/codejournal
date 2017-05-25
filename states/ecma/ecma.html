@@ -6,7 +6,120 @@
     <pre>
       <!--entire page pre-->
 
-  <div class="framed1">
+<!--
+temp paste
+-->
+<div class="framed1">
+  <h3 class="chtitle">reduce()</h3>
+<h4 class="ltgreen">This method reduces entire array to a single value</h4>
+  <pre class="prettyprint">
+var array= [2,3,4,5,6,7];
+
+var result = array.reduce(function(prev, next){
+  return prev + next; // arr[0]=prev, arr[1]=next the return val is fed into first arg "prev" (then, iterate)
+});
+console.log(result); // 27
+</pre>
+However! reduce() has even more up it's sleeve!
+
+arr.reduce() has not <span class="y">one</span>, but <span class="orange">two</span> arguments!
+
+<h4 class="chtitle med dkbg ivr w40">arr.reduce(<span class="y">function(a,b){ return a+b }</span>, <span class="orange">{}</span>);</h4>
+
+This second arg defines the value of "prev" at initial iteration.
+
+<pre class="prettyprint">
+  var array= ["apples", "pears", "bananas", "grapes"];
+
+  var result = array.reduce(function(a, b){
+    a[b] = b;
+    return a;
+  }, {});
+  console.log(result);// Let's define "a" as an object and feed b as keys then values.
+  <img src="./img/reduceobject1.png" class="w40 ans right" alt="reduce()"></pre>
+
+Let's try initial argument as a string!
+<pre class="prettyprint">
+var result = array.reduce(function(a, b){
+  a = a + " " + b;
+  return a;
+}, "I Love"); // "I Love apples pears bananas grapes"
+</pre>
+
+Let's reduce array to divisible by 3s!
+<pre class="prettyprint">
+var array= [2,3,4,5,6,7,8,9];
+
+var divByThrees = array.reduce(function(arr, val){
+  if (val % 3 === 0) {
+    arr.push(val);
+  }
+  return arr;
+},[]);
+
+console.log(divByThrees);   // [3, 6, 9]</pre>
+
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce?v=example" target="_blank">MDN Says</a> that reduce can take 4 args...
+prev, next, index, array (over which to be iterated).
+
+Here's a simple use case: At which indices are there even numbers in this array?
+<pre class="prettyprint w60">
+//Months I jogged over 25 miles
+var jogRec2016 = [17, 32, 16, 41, 67, 29, 34, 15, 66, 56, 37, 66];
+
+var result = jogRec2016.reduce(function(prev, next, index) {
+  if (next > 25){
+    index = "Month " + index;
+    prev[index]= next + " miles";
+  }
+  return prev; //must return the Object
+},{}) <img src="./img/jobObject1.png" class="w10" alt="jogObject">
+</pre>
+
+Return an object with repeated words:
+<pre class="prettyprint w60">var sentence = "He's a good person doing a good thing for a good person.";
+var sentArr = sentence.split(' ');</pre>
+Let's first make an object.
+<pre class="prettyprint w60">
+var result = sentArr.reduce(function(prev, next, index) {
+
+  prev[next] = (prev[next] + 1) || 1; //each is given <em class="underline">at least</em> a val of one (so... "|| 1")
+
+  return prev; // return Obj
+
+},{})
+
+console.log(result); <img src="./img/goodObj1.png" class="w10 right" alt="goodObj"></pre>
+Now, simply test for <span class="pastY">val > 1</span>!!
+
+<pre class="prettyprint w60">var sentence = "He's a good person doing a good thing for a good person.";
+var sentArr = sentence.split(' ');
+var repeaters = [];
+var result = sentArr.reduce(function(prev, next, index) {
+  prev[next] = (prev[next] + 1) || 1;
+  var key = sentArr[index];
+  var val = prev[next];
+
+<pre class="dkbg w20">
+if (val > 1) {
+  repeaters[key] = val;
+}</pre>
+  return prev;
+},{})
+console.log(repeaters); // [a: 3, good: 3]</pre>
+<h4>Quiz: Why doesn't person show up in the object? <span class="ans mango med">Well, what does that item have that others don't?😎</span></h4>
+
+<h3>Of Course, it's useful to sum up array integers:</h3>
+<pre class="prettyprint">
+  const hoursOfSleep = [5, 9, 7, 8, 6, 7, 7];
+
+  const sum = hoursOfSleep.reduce((total, amount) =>  total + amount);
+
+  console.log("I slept", sum, "hours this week"); // I slept 49 hours this week.
+</pre>
+</div>
+
+<div class="framed1">
     <h3>Simple Callback</h3>
     //Return the first in the array.
     <pre class="prettyprint">
@@ -28,7 +141,7 @@ console.log(sentence);
   </div>
   <div class="simple-frame2">
     <h3 class="chtitle">.map() example</h3>
-    <p>.map() returns a new array of same length. <br />It iterates over each item.</p>
+    <h4>.map() iterates over each item, then returns a new array of same length. </h4>
     <pre class="prettyprint w40">
 var people = [{
     name: "Sue",
