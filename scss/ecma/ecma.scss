@@ -10,7 +10,9 @@ div.ecma-entry {
     family: map-get($fonts, CodePro);
     size: 2vw;
   }
-
+a {
+  background-color: map-get($colors, sand);
+}
   .prettyprint {
     background-color: #445e5e;
     padding: 2vh 2vw;

@@ -442,6 +442,8 @@ div.ecma-entry {
   font-size: 2vw;
   overflow: auto;
   position: relative; }
+  div.ecma-entry a {
+    background-color: #d0b588; }
   div.ecma-entry .prettyprint {
     background-color: #445e5e;
     padding: 2vh 2vw;
