@@ -4,17 +4,21 @@
 <pre>
     <!-- pre for all -->
 <!-- ===========top-right-box============ -->
-<div class="simple-frame w40 dkbg top-right-box sand"><h3 class=" orange ctrtxt">Setup SVGs</h3>
+<div class="simple-frame w40 dkbg top-right-box sand"><span class="med orange underline">Setup SVGs</span>
 1. Export from AI with advanced-> "style elements"
-2. Optimize!
-<a href="https://jakearchibald.github.io/svgomg/" target="_blank">SVG OMG</a>
-<a href="http://petercollingridge.appspot.com/svg-optimiser">Peter Collingridge's Opitmizer</a>
-3. Replace ALL ids with classes cmd-f id=" (replace all with class=")
-4. <span class="wh">PreserveAspect ratio</span>
+2. Optimize! <a href="https://jakearchibald.github.io/svgomg/" target="_blank">SVG OMG</a>
+3. Replace ids with classes cmd-f id=" (replace all with class=");6. Add classname to svg & insert styles from SVG embedded into style rule in sass.
+<pre class="dkbg sm">4.<span class="ivr">Embed with:</span>
+< object type="image/svg+xml" data="bblogo.svg">no SVG 😭 < /object>
+
+<span class="ivr">External SVG begins with:</span>
+< ?xml-stylesheet type="text/css" href="css/master.css"?>
+
+<span class="ivr">then, < svg> ...< /svg></span></pre>
+5. <span class="wh">PreserveAspect ratio</span>
 <span class="y dkbg ctrtxt"><b><</b>svg .... preserveAspectRatio="xMinYMin meet" width="100%" height="100%"<b>></b></span>
 (This ensures that everything is scalable at the proper aspect ratio)
-5. Add classname to svg & insert styles from SVG embedded into style rule in sass.
-6. You can safely erase version attrs, but erase xmlns attrs ONLY if embedded in HTML
+6. You can safely erase version attrs, but erase xmlns attrs ONLY if inline in HTML
 </div>
 
 <!-- ===================================END OF TOP-RIGHT-BOX=================================== -->
