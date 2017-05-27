@@ -1,6 +1,30 @@
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
 <aside><span class="rot90">{{state}}</span></aside>
 <div class="sass-entry entry">
+<div class="framed1"><h3 class="chtitle ltgreen">Using calc() with css variables</h3>
+
+You can calc and var() to time a delay with a var declared on :root
+
+Here, it is used as a multiplicand on animation-delay
+
+<pre class="prettyprint w40">
+:root {
+  --tick: .2s;
+}
+...
+#dot1 {
+  animation-delay: calc(var(--tick)*2);
+}
+#dot2 {
+  animation-delay: calc(var(--tick)*4);
+}
+#dot3 {
+  animation-delay: calc(var(--tick)*6);
+}
+...
+</pre>
+It's extremely effective and efficient. I haven't used it in sass, but I see no reason that it wouldn't work.</div>
+  <hr>
   <div class="centering-entry">
 <h2 class="chtitle">CSS Centering: 3 ways</h2>
   <pre class="cssnote">
@@ -70,6 +94,24 @@ Then, margin-left: <em>NEGATIVE HALF the width of the box</em></div>
 <br>
 <h3 class="chtitle ivr">This is centered both horiz & vertically!</h3><br>
 <img class="w20 ctrtxt" src="./img/ctrxy.png" alt="vert and horiz centering">
+<h3 class="chtitle sand">However, This code was perfect for an svg loader:</h3>
+<pre class="prettyprint w40">
+  .svg-container {
+    position: absolute;
+    height: 50vh;
+    left: 50vw;
+    top: 50vh;
+    margin-left: -25vw;
+    margin-top: -25vh;
+  }
+
+  svg {
+    position: relative;
+    width: 50vw;
+    height: 50vh;
+  }
+// It is also more 'robust' given absence of pixel values</pre>
+
 <br>
 </div>
 <br>

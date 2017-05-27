@@ -140,6 +140,85 @@ console.log(sentence);
 // The first wine of wines is Shiraz.
 </pre>
 
+Callback used to sift through an array of objects
+<pre class="prettyprint w40">
+const flags = [{
+    country: "Canada",
+    colors: "Red & White"
+  },
+  {
+    country: "USA",
+    colors: "Red, White & Blue"
+  },
+  {
+    country: "China",
+    colors: "Red & Gold"
+  }
+];
+
+function getFlagColorsByCountry(array, value, cb) {
+  for (let i = 0; i < array.length; i += 1) {
+    if (array[i].country === value) {
+      cb(flags[i]);
+    }
+  }
+}
+
+getFlagColorsByCountry(flags, 'China', function(nation) {
+  let result = nation.colors;
+  console.log(result);
+});  // "Red & white"
+
+// -- inline callback</pre><hr>
+<h4 class="chtitle y med">callback within a forEach();</h4>
+<h4 class="mango">function "arrayDisplay()" contains a .forEach(); & calls a cb on each item</h4>
+<pre class="ltbg dkred">
+
+      var names = ["Louie", "George", "Chris", "Richard", "Seinfeld"];
+      function arrayDisplay(names, cb) {
+          names.forEach(function(item, index) {
+              cb(item, index);
+          });
+      }
+
+      arrayDisplay(names, function(item, indice) {
+          console.log('Item at index ' + indice + ' is ' + item)
+      });
+
+</pre>
+<h4 class="chtitle dkblue med">❗️By the way this is solved easily in ES6❗️</h4>
+<pre class="prettyprint w40">for (prop of names) {
+  let indices = names.indexOf(prop);
+  console.log('Item at index', indices , " is ", prop);
+}
+</pre>
+<pre class="prettyprint w60">
+const meals = { "Asian": "Pork", "Italian": "Pasta", "American": "Chicken" };
+const pans = { "Pork": "Wok", "Pasta": "Frying Pan", "Chicken": "Deep Fryer" };
+const oils = { "Wok": "Sesame", "Frying Pan": "Olive", "Deep Fryer": "Corn" };
+
+var oil = function(pan, cb) {
+  console.log("They eat cook it in a " + oils[pan]);
+}
+
+var vessel = function(meal, cb)  {
+  console.log("They eat cook it in a " + pans[meal]);
+  cb(pans[meal]) // callback's argument, having been identified, is now fed to the oil Function
+}
+
+var carne = function(nationality) {
+  var mealArr = Object.keys(meals); // create array of meals
+  for (var i = 0; i < mealArr.length; i++) {
+    if (mealArr[i] === nationality) { // confirm key:val pair
+      let nat = mealArr[i];
+      let meal = meals[nat];
+      console.log(nat + 's eat '+ meal);
+      vessel(meal, oil); // Fn call with a callback
+    }
+  }
+}
+carne("Italian");
+</pre>
   </div>
   <div class="simple-frame2">
     <h3 class="chtitle">.map() example</h3>
