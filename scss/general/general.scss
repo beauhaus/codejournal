@@ -392,7 +392,7 @@ pre {
   padding: 2vh 2vw;
 }
 .framed4 {
-    font-family: 'Raleway', sans-serif;
+  font-family: map-get($fonts, Comfortaa);
     padding: 2%;
     margin: 1%;
     background-color: rgb(55, 71, 78);
@@ -400,6 +400,18 @@ pre {
     padding: auto, 10%;
     text-align: left;
     border: 1px solid skyblue;
+}
+.framed5 {
+    font-family: map-get($fonts, CodePro);
+    padding: 2%;
+    width: 100%;
+    margin: 1%;
+    box-shadow: inset 1px 1px 12px 2px black;
+    background-color: map-get($colors, mutedBlue);
+    color: map-get($colors, mango);
+    padding: auto, 10%;
+    text-align: left;
+    border: 1px solid map-get($colors, mutedOrange);
 }
 
 .sm {

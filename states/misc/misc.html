@@ -27,6 +27,58 @@ div {
 </pre>
 
 <hr>
+<div class="framed5">
+  <h3>Randomized Quiz over 3 objects</h3>
+<pre class="prettyprint">
+const asian = { nat: "Asians", meal: "pork", pan: "a wok", oil: "sesame oil" };
+const american = { nat: "Americans", meal: "chicken", pan: "a frying pan", oil: "corn oil" };
+const italian = { nat: "Italians", meal: "pasta", pan: "a pot", oil: "olive oil" };
+
+const objList = [asian, american, italian];
+
+function groomer(inputObj) { //takes object and removes 'nat' prop
+  let usables = Object.assign({}, inputObj);
+  delete usables.nat;
+  return usables;
+}
+
+function randObj() {
+  let objects = objList;
+  var rand = Math.floor(Math.random() * 3); //for objs
+  var rand2 = Math.floor(Math.random() * 3); //for props
+
+  let randObj = objects[rand];
+  let nation = randObj.nat; //defines nat before deletion
+
+  let groomed = groomer(randObj);
+
+  let keys = Object.keys(groomed); // ['meal', 'pan', 'oil']
+  let hintkey = keys[rand2]; //choses rand key
+  let hint = groomed[hintkey] //gets val
+
+  return {
+    country: nation,
+    prop: hint
+  };
+}
+
+function questions() {
+  let qObj = randObj();
+  let quizQ = `What nationality uses ${qObj.prop} to cook with?`;
+  let res = prompt(quizQ, "please capitalize");
+
+  if (res === qObj.country) {
+    alert(`YUP! The answer is ${qObj.country}`)
+  } else {
+    alert(`Noop! Your answer was ${res}😓
+       --It was ${qObj.country}`)
+  }
+}
+
+// questions();
+</pre>
+
+</div>
 </pre>
 </div>
 

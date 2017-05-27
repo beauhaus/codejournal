@@ -4,6 +4,27 @@
 <pre>
 <!-- pre for entire page -->
 <div class="es6-entry entry">
+<div class="framed4"><h3 class="chtitle">Template Literals</h3>
+  <pre class="prettyprint w60">
+const italian = {
+  name: "Italians",
+  meal: "pasta",
+  pan: "pot",
+  oil: "sesame",
+  info: function() {
+    console.log(`${this.name} cook ${this.meal} in a ${this.pan} with ${this.oil} oil.`);
+  }
+}
+american.info(); // Americans cook chicken in a frying pan with corn oil.
+</pre><hr>
+<h3 class="chtitle underline">ES6 string methods:</h3>
+<h4 class="pastY">startsWith() endsWith() includes()</h4>
+<pre class="prettyprint w40">  italian.info().includes('cook'); // true
+  italian.info().startsWith('cook'); // false
+  italian.info().endsWith('oil.'); // true
+</pre>
+
+</div>
 <div class="simple-frame2"><h2 class="ctrtxt">for of loops</h2>
 Plain es5 iteration:
 <pre class="prettyprint w40">

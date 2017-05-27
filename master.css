@@ -298,7 +298,6 @@ pre {
   padding: 2vh 2vw; }
 
 .framed4 {
-  font-family: 'Raleway', sans-serif;
   padding: 2%;
   margin: 1%;
   background-color: #37474e;
@@ -306,6 +305,18 @@ pre {
   padding: auto, 10%;
   text-align: left;
   border: 1px solid skyblue; }
+
+.framed5 {
+  font-family: "Code Source Pro", monospace;
+  padding: 2%;
+  width: 100%;
+  margin: 1%;
+  box-shadow: inset 1px 1px 12px 2px black;
+  background-color: #3f6a96;
+  color: #ebb861;
+  padding: auto, 10%;
+  text-align: left;
+  border: 1px solid #9a854e; }
 
 .sm {
   font-size: 0.90909vw; }
@@ -566,13 +577,16 @@ div.node-entry {
   height: 80vh; }
 
 div.es6-entry {
-  background-color: #f5facf; }
-
-div.es6-entry {
   background-color: #945706;
   overflow: auto;
   height: 80vh;
   border: 1px solid #e6d8cc; }
+
+.chtitle {
+  color: #d0b588; }
+
+.prettyprint {
+  border: 1px solid burlywood; }
 
 div.svg-entry {
   background-color: #575757;
