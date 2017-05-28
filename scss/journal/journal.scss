@@ -76,22 +76,24 @@ div.journal-entry {
       }
 }
 }
-
-a:active,
-a:focus,
-a:link,
-a:visited,
-a {
-  margin: 2vh auto;
-  color: map-get($colors, ltblue);
-  text: {
-    decoration: none;
+.journal-container {
+  a:active,
+  a:focus,
+  a:link,
+  a:visited,
+  a {
+    margin: 2vh auto;
+    color: map-get($colors, ltblue);
+    text: {
+      decoration: none;
+    }
   }
-}
-a::before {
-  content: "📌";
-}
+  a::before {
+    content: "📌";
+  }
 
-a:hover {
-  color: map-get($colors, ltgreen);
+  a:hover {
+    color: map-get($colors, ltgreen);
+  }
+
 }

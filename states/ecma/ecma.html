@@ -8,7 +8,23 @@
 
 <!--
 temp paste
+function groomer(inputObj) { //takes object and removes 'nat' prop
+  let usables = Object.assign({}, inputObj);
+  delete usables.nat;
+  return usables;
+}
 -->
+<div class="framed5"><h3 class="chtitle wh">Nice way to delete a prop from an object</h3>
+  <pre>
+function groomer(inputObj) { //takes object and removes 'nat' prop
+  let usables = Object.assign({}, inputObj);
+  delete usables.nat;
+  return usables;
+}
+
+  </pre>
+
+</div>
 <div class="framed1">
   <h3 class="chtitle">reduce()</h3>
 <h4 class="ltgreen">This method reduces entire array to a single value</h4>

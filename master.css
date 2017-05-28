@@ -393,56 +393,6 @@ img.neighbors-item {
     font-family: "Comfortaa", cursive;
     font-size: 2vw; }
 
-div.journal-entry {
-  box-shadow: inset 2px 2px 20px 5px rgba(0, 0, 0, 0.9);
-  margin: 1vw;
-  padding: 3vw;
-  background: url("img/blank_page.jpg") no-repeat center center fixed;
-  background-size: cover;
-  line-height: 1.4em;
-  background-color: rgba(128, 128, 128, 0.35);
-  border: 1px solid #f5facf;
-  font-family: "Special Elite", serif;
-  font-size: 1.4vw;
-  height: 80vh;
-  overflow: auto;
-  text-shadow: 0 2px 3px #f1e8ce; }
-  div.journal-entry h4 {
-    display: inline-block;
-    float: left; }
-  div.journal-entry h3 {
-    text-align: center; }
-    div.journal-entry h3.subtitle {
-      text-align: left; }
-  div.journal-entry h2.date {
-    text-align: right;
-    font-size: 1vw;
-    font-family: "Raleway", Sans-Serif; }
-  div.journal-entry ol.todo li {
-    list-style: none; }
-  div.journal-entry ol.done li list {
-    style: decimal; }
-  div.journal-entry .done ol li li {
-    padding: baseline;
-    font-weight: bold; }
-  div.journal-entry .done ol li p {
-    margin: auto; }
-
-a:active,
-a:focus,
-a:link,
-a:visited,
-a {
-  margin: 2vh auto;
-  color: #3f71f1;
-  text-decoration: none; }
-
-a::before {
-  content: "📌"; }
-
-a:hover {
-  color: #79e286; }
-
 div.ecma-entry {
   height: 80vh;
   background-color: #bdbdbd;
@@ -686,5 +636,53 @@ div.svg-entry {
 
 .trans {
   color: transparent; }
+
+div.journal-entry {
+  box-shadow: inset 2px 2px 20px 5px rgba(0, 0, 0, 0.9);
+  margin: 1vw;
+  padding: 3vw;
+  background: url("img/blank_page.jpg") no-repeat center center fixed;
+  background-size: cover;
+  line-height: 1.4em;
+  background-color: rgba(128, 128, 128, 0.35);
+  border: 1px solid #f5facf;
+  font-family: "Special Elite", serif;
+  font-size: 1.4vw;
+  height: 80vh;
+  overflow: auto;
+  text-shadow: 0 2px 3px #f1e8ce; }
+  div.journal-entry h4 {
+    display: inline-block;
+    float: left; }
+  div.journal-entry h3 {
+    text-align: center; }
+    div.journal-entry h3.subtitle {
+      text-align: left; }
+  div.journal-entry h2.date {
+    text-align: right;
+    font-size: 1vw;
+    font-family: "Raleway", Sans-Serif; }
+  div.journal-entry ol.todo li {
+    list-style: none; }
+  div.journal-entry ol.done li list {
+    style: decimal; }
+  div.journal-entry .done ol li li {
+    padding: baseline;
+    font-weight: bold; }
+  div.journal-entry .done ol li p {
+    margin: auto; }
+
+.journal-container a:active,
+.journal-container a:focus,
+.journal-container a:link,
+.journal-container a:visited,
+.journal-container a {
+  margin: 2vh auto;
+  color: #3f71f1;
+  text-decoration: none; }
+.journal-container a::before {
+  content: "📌"; }
+.journal-container a:hover {
+  color: #79e286; }
 
 /*# sourceMappingURL=master.css.map */

@@ -2,8 +2,61 @@
 <div class="es6-container">
 <aside><span class="rot90">{{state}}</span></aside>
 <pre>
+  <!--
+paste temp
+var myStuff = {
+  name: 'myStuff',
+  a: 3,
+  b: "puppies",
+  c: 18,
+  d: "babies",
+  e: false,
+  f: -1,
+  g: "worms"
+};
+
+function typeGroomer(input, test) {
+  for (let prop in input) {
+    if (typeof input[prop] !== test) {
+      delete input[prop];
+      var groomed = Object.assign({}, input);
+    }
+  }
+  console.log(groomed);
+  return groomed;
+}
+// let onlyNums =typeGroomer(myStuff, "number");
+// let onlyBools = typeGroomer(myStuff, "boolean");
+let onlyStrings =typeGroomer(myStuff, "string");
+
+-->
 <!-- pre for entire page -->
 <div class="es6-entry entry">
+<div class="framed5"><h3 class="chtitle ivr">The power of Object.assign()</h3>
+  <pre class="prettyprint">
+  var myStuff = { name: 'myStuff', a: 3, b: "puppies", c: 18, d: "babies", e: false, f: -1, g: "worms" };
+
+function typeGroomer(input, test) {
+  for (let prop in input) {
+    if (typeof input[prop] !== test) {
+      delete input[prop];
+      var groomed = Object.assign({}, input);
+    }
+  }
+  console.log(groomed);
+  return groomed;
+}
+// let onlyNums =typeGroomer(myStuff, "number");
+// let onlyBools = typeGroomer(myStuff, "boolean");
+let onlyStrings =typeGroomer(myStuff, "string");
+</pre>
+There is much more to Object.assign();
+<div class="dkbg pastOlive w40">
+<a class="sand" target="_blank" href="https://youtu.be/vM7Tif98Dlo">Here's a helpful link</a>
+<a class="sand" target="_blank" href="https://googlechrome.github.io/samples/object-assign-es6/">AND here</a>
+
+</div>
+</div>
 <div class="framed4"><h3 class="chtitle">Template Literals</h3>
   <pre class="prettyprint w60">
 const italian = {
