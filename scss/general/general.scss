@@ -478,4 +478,12 @@ pre {
 img.neighbors-item {
   height: 12vw;
 }
-//FIXME: trying to remove the visited purple color
+// linenumbers for prettyprint
+// .linenums li {
+//     list-style-type: decimal-leading-zero;
+// }
+.prettyprint ol.linenums > li { list-style-type: decimal-leading-zero; }
+
+.linenums {
+  margin-left: 2%;
+}

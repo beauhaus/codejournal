@@ -374,6 +374,12 @@ pre {
 img.neighbors-item {
   height: 12vw; }
 
+.prettyprint ol.linenums > li {
+  list-style-type: decimal-leading-zero; }
+
+.linenums {
+  margin-left: 2%; }
+
 /* jquery styles */
 .jq-entry {
   background-color: #a6b696;

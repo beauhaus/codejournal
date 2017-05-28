@@ -14,14 +14,54 @@ function groomer(inputObj) { //takes object and removes 'nat' prop
   return usables;
 }
 -->
+<div class="framed5"><h3 class="pastred">call(); Apply();</h3>
+<pre class="prettyprint linenums w60">
+var jim = {
+  name: "Jim",
+  opinion: function(fruit, dessert) {
+    fruit = fruit || "oh--anything"; // if fruit or dessert don't exist feed in defaults;
+    dessert = dessert || "a la mode";
+     var str = `Hi, I'm ${this.name}. I ${this.verb} ${fruit} ${dessert}.`;
+    console.log(str);
+  },
+  verb: "hate"
+}
+
+var liz = {
+  name: "Elizabeth",
+  fruit: "banana",
+  dessert: "pie",
+  opinion: jim.opinion,
+  verb: "adore"
+}
+
+jim.opinion();
+jim.opinion("choclate", "cake");
+jim.opinion.call(liz);
+jim.opinion.call(liz, "vanilla", "Sherbert" );
+</pre><h5 class="ivr">There's a few things going on here</h5>
+<span class="med">1. lines 04-05 establish conditional defaults. <br />  If no args are fed in, choose the defaults after "||".
+2. Of course, 'name' and 'verb' props exist. <br />  However, the <em class="y">${this.name}</em> allows for them to be 'hijacked' with call();
+3. line 16 'hijacks' the jim object's 'opinion' method.<br />
+  <span class="ltgreen">liz.opinion();</span> renders // <span class="ans med ltgreen">Hi, I'm Elizabeth. I adore oh--anything a la mode.</span><br />
+  <span class="ltgreen">jim.opinion.call(liz<sup class="ltred">*</sup>);</span> will give us the same.
+4.   <span class="ltgreen">jim.opinion();</span> renders // <span class="ans med ltgreen">Hi, I'm Jim. I hate oh--anything a la mode.</span><br />
+5.   <span class="ltgreen">jim.opinion("chocolate", "cake");</span> renders // <span class="ans med ltgreen">Hi, I'm Jim. I hate chocolate cake.</span><br />
+6.   <span class="ltgreen">jim.opinion.call(liz<sup class="ltred">*</sup>, "vanilla", "ice cream.");</span> renders // <span class="ans med ltgreen">Hi, I'm Jim. I hate chocolate cake.</span><br />
+
+<sup class="ltred">This context is established by first arg of .call();</sup>
+
+
+</span>
+</div>
 <div class="framed5"><h3 class="chtitle wh">Nice way to delete a prop from an object</h3>
+
   <pre>
 function groomer(inputObj) { //takes object and removes 'nat' prop
   let usables = Object.assign({}, inputObj);
   delete usables.nat;
   return usables;
 }
-
   </pre>
 
 </div>
