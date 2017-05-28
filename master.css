@@ -318,6 +318,15 @@ pre {
   text-align: left;
   border: 1px solid #9a854e; }
 
+.framed6 {
+  padding: 2%;
+  font-size: 1.4vw;
+  margin: auto;
+  background-color: rgba(166, 182, 150, 0.66);
+  border: 1px solid brown;
+  box-shadow: inset 2px 2px 10px 2px black;
+  color: #441f1d; }
+
 .sm {
   font-size: 0.90909vw; }
 

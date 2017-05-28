@@ -414,6 +414,21 @@ pre {
     border: 1px solid map-get($colors, mutedOrange);
 }
 
+.framed6 {
+  padding: 2%;
+  font: {
+    size: 1.4vw;
+  }
+  margin: auto;
+  background: {
+    color: map-get($colors, transPastGreen);
+  }
+  border: 1px solid brown;
+  box-shadow: inset 2px 2px 10px 2px black;
+  color: map-get($colors, dkred);
+}
+
+
 .sm {
   font-size: $baseline / 1.1;
 }

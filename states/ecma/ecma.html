@@ -7,13 +7,58 @@
       <!--entire page pre-->
 
 <!--
-temp paste
-function groomer(inputObj) { //takes object and removes 'nat' prop
-  let usables = Object.assign({}, inputObj);
-  delete usables.nat;
-  return usables;
-}
+
 -->
+<div class="framed6"><h2 class="chtitle wh">Objects</h2>
+  <h3>Dead-simple Constructor Fn</h3>
+<pre class="prettyprint w60">function Person(name) {
+  this.name = name;
+}
+var cara = new Person("Cara");
+console.log(cara.name); // "Cara"
+
+// "new" operator redefines context of 'this'--it is not window.
+</pre>
+<h3>Prototypal Inheritance</h3>
+<pre class="prettyprint linenums">
+var personConstruction = {
+  name: "Default Anon",
+  greet: function(name, mood) {
+    name = name || "you";
+    mood = mood || "great";
+    let str = `Hello, ${name}. I'm ${this.name} & I feel ${mood} because I'm a ${this.species}`
+    console.log(str);
+  },
+  species: "human"
+};
+
+function Person(name, species) {
+  this.name = name;
+  this.species = species;
+}
+
+Person.prototype = personConstruction;
+
+cara = new Person("Cara", "dog");
+cara.greet(); // Hello, you. I'm Cara & I feel great because I'm a dog
+</pre>
+<h4 class="chtitle dkblue">Line 19 nicely allows for overriding of the prototype by feeding in args to the <code class="dkred underline"><i class="y">new</i> <span class="ltgreen">Person</span> cara</code></h4>
+<div class="simple-frame"><h4 class="dkmango">This will blow your mind</h4>
+  the methods 'placed on', or 'fed to' the <i class="ltgreen">new</i> Person are placed ON TOP OF the prototype.
+  They STILL exist on the prototoype!
+<div class="framed4 w60"> Within the "var personConstruction" object... exist the defaults.
+  These defaults ARE STILL ACCESSIBLE via the "__proto__" property!
+</div>
+<pre class="prettyprint w40">
+cara.__proto__.name;
+// "Default Anon"
+cara.__proto__.species;
+// "human"
+...etc.
+<img  class="w20" src="./img/proto1.png" alt=""></pre>
+
+</div>
+</div>
 <div class="framed5"><h3 class="pastred">call(); Apply();</h3>
 <pre class="prettyprint linenums w60">
 var jim = {
@@ -45,11 +90,12 @@ jim.opinion.call(liz, "vanilla", "Sherbert" );
 3. line 16 'hijacks' the jim object's 'opinion' method.<br />
   <span class="ltgreen">liz.opinion();</span> renders // <span class="ans med ltgreen">Hi, I'm Elizabeth. I adore oh--anything a la mode.</span><br />
   <span class="ltgreen">jim.opinion.call(liz<sup class="ltred">*</sup>);</span> will give us the same.
+
 4.   <span class="ltgreen">jim.opinion();</span> renders // <span class="ans med ltgreen">Hi, I'm Jim. I hate oh--anything a la mode.</span><br />
 5.   <span class="ltgreen">jim.opinion("chocolate", "cake");</span> renders // <span class="ans med ltgreen">Hi, I'm Jim. I hate chocolate cake.</span><br />
 6.   <span class="ltgreen">jim.opinion.call(liz<sup class="ltred">*</sup>, "vanilla", "ice cream.");</span> renders // <span class="ans med ltgreen">Hi, I'm Jim. I hate chocolate cake.</span><br />
 
-<sup class="ltred">This context is established by first arg of .call();</sup>
+<sup class="orange">This context is established by first arg of .call();</sup>
 <hr>
 var args = ["peach", "cobbler"];
 <em class="dkblue">Obj.method</em>.apply(<span class="ltred"><em>this</em></span>, <span class="ivr">args</span>);
