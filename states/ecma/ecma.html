@@ -9,6 +9,53 @@
 <!--
 
 -->
+<div class="simple-frame2"><h4>quick quiz</h4>
+<pre class="prettyprint w40 linenums">
+scream();
+function scream() {
+  console.log("Ahhhhhhh!!");
+}
+
+quiet();
+var quiet = function() {
+  console.log("Shhhhhhhh!")
+}
+</pre>
+  What are the terms distinguishing quiet() vs scream()?
+  <i class="ans med dkred">scream (02.) is a <b class="wh">FUNCTION STATEMENT</b></i><br>
+  <i class="ans med dkred">quiet (07.) is a <b class="wh">FUNCTION EXPRESSION</b></i>
+
+  What is the return of this and why?
+<i class="ans med dkred">scream will run //Ahhhhh!  but quiet() will throw an error<br />
+  <b class="wh">because function expressions are NOT hoisted!</b></i>
+
+</div>
+
+<div class="framed2"><h4 class="chtitle dkred">TRIVIA</h4>
+  Proof that Functions are objects
+<pre class="prettyprint">
+  function greet() {
+    console.log("Hi");
+  }
+
+  greet.language = ('English'); // I place a prop on the Fn
+
+  console.log(greet.language); //❗️ English ❗️
+  console.log(greet.name); // greet❗️
+  console.log(greet);
+  // function greet() { console.log("Hi"); } ❗️This code is merely a property on the object!
+</pre><hr>
+<h4 class="chtitle dkred">Functional Programming</h4>
+I am going to pass an entire function as a parameter to another function.
+In the Fn to which I pass the parameter, I'm going to invoke that puppy!
+<pre class="prettyprint">function gimmeAFunk(funk) {
+  funk();
+}
+gimmeAFunk(function() {console.log("I'm a parameter!")});
+// I'm a parameter!
+</pre>
+This is the essence of "Functional Programming"!
+</div>
 <div class="framed6"><h2 class="chtitle wh">Objects</h2>
   <h3>Dead-simple Constructor Fn</h3>
 <pre class="prettyprint w60">function Person(name) {
@@ -228,6 +275,48 @@ Here is <a target="_blank" href="https://medium.freecodecamp.com/reduce-f47a7da5
 
 <div class="framed1">
     <h3>Simple Callback</h3>
+
+<pre class="prettyprint linenums w60">
+// First the bear bones
+function addBoolean(listb, callback) {
+  let bool = true;
+  listb.push(bool);
+  callback();
+}
+
+function runInOrder(list) {
+  list.push("runInOrder");
+  addBoolean(list, function() {
+    console.log("array comes back as: ", list);
+  });
+}
+runInOrder([])
+<hr />
+// Now, with the explanatory logs
+function addBoolean(listb, callback) {
+  console.log("Now I'm up in addBoolean receiving list as 'listb': ",
+  listb, "\r\n This funk's second arg is: 'callback'");
+  let bool = true;
+  listb.push(bool);
+  console.log("I push a bool 'true' onto it making 'listb ='", listb);
+  console.log("now I execute callback()");
+  callback();
+}
+
+function runInOrder(list) {
+  console.log("First, the empty arr enters as: ", list);
+  list.push("runInOrder");
+  console.log("Then I push a str: ", list);
+  console.log("Then I call addBoolean with: addBoolean()--that has 'list' plus a log() Funk");
+  addBoolean(list, function() {
+    console.log("array comes back as: ", list);
+  });
+}
+
+runInOrder([]) // sending empty array literal
+
+<a href="http://www.pythontutor.com/visualize.html#mode=edit" target="_blank">Try Running it here!</a>
+</pre>
     //Return the first in the array.
     <pre class="prettyprint">
 var wines = ['Shiraz', 'Rose', 'Pinot', 'Cabernet', 'Grigio',  'Claret'];

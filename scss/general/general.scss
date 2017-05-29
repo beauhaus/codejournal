@@ -373,6 +373,7 @@ a[ui-sref]:hover {
   font: {
     size: 1.4vw;
   }
+  color: map-get($colors, dkblue);
   margin: auto;
   background: {
     color: #e3ab7e;
