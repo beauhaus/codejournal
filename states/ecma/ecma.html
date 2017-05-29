@@ -278,42 +278,41 @@ Here is <a target="_blank" href="https://medium.freecodecamp.com/reduce-f47a7da5
 
 <pre class="prettyprint linenums w60">
 // First the bear bones
-function addBoolean(listb, callback) {
-  let bool = true;
-  listb.push(bool);
-  callback();
+function addBoolean(listBool, boing) {
+  listBool.push(true);
+  boing();
 }
 
 function runInOrder(list) {
   list.push("runInOrder");
   addBoolean(list, function() {
-    console.log("array comes back as: ", list);
+    console.log(list);
+//    console.log(listBool); --NB: listBool is undefined here. (Throws error)
   });
 }
-runInOrder([])
+runInOrder([]) // ["runInOrder", true]
 <hr />
 // Now, with the explanatory logs
 function addBoolean(listb, callback) {
-  console.log("Now I'm up in addBoolean receiving list as 'listb': ",
-  listb, "\r\n This funk's second arg is: 'callback'");
+  console.log(`4. up in addBoolean receiving list as 'listb'`, listb);
   let bool = true;
   listb.push(bool);
-  console.log("I push a bool 'true' onto it making 'listb ='", listb);
-  console.log("now I execute callback()");
+  console.log("5. push a bool 'true' onto list making 'listb ='", listb);
+  console.log("6. execute callback()");
   callback();
 }
 
-function runInOrder(list) {
-  console.log("First, the empty arr enters as: ", list);
-  list.push("runInOrder");
-  console.log("Then I push a str: ", list);
-  console.log("Then I call addBoolean with: addBoolean()--that has 'list' plus a log() Funk");
+function inOrder(list) {
+  console.log(`1. the empty arr enters inOrder as: `, list);
+  list.push("inOrder()");
+  console.log(`2. I push a str: `, list);
+  console.log(`3. I call addBoolean with: "addBoolean(listb, callback)"`);
   addBoolean(list, function() {
-    console.log("array comes back as: ", list);
+    console.log(`7. Array comes back as: `, list);
   });
 }
 
-runInOrder([]) // sending empty array literal
+inOrder([]) // sending empty array literal
 
 <a href="http://www.pythontutor.com/visualize.html#mode=edit" target="_blank">Try Running it here!</a>
 </pre>
