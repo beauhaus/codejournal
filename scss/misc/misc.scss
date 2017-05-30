@@ -1,6 +1,5 @@
-div.misc-entry {
-  background-color: map-get($colors, trim);
-  // box-shadow: inset 0px 0px 0px rgba(#a6b696, 0);
+pre.prettyprint {
+  border:1px solid map-get($colors, trim);
 }
 div.misc-entry {
   background-color: map-get($colors, dkorange);

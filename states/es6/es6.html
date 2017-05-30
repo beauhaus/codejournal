@@ -4,34 +4,72 @@
 <pre>
   <!--
 paste temp
-var myStuff = {
-  name: 'myStuff',
-  a: 3,
-  b: "puppies",
-  c: 18,
-  d: "babies",
-  e: false,
-  f: -1,
-  g: "worms"
-};
+// spread operator basics
 
-function typeGroomer(input, test) {
-  for (let prop in input) {
-    if (typeof input[prop] !== test) {
-      delete input[prop];
-      var groomed = Object.assign({}, input);
-    }
+function addItems(a, b, c) {
+  if(typeof a === 'string') {
+    console.log(`${a} ${b} ${c}`);
+  } else if (typeof a === 'number') {
+    console.log(a + b + c);
   }
-  console.log(groomed);
-  return groomed;
+
 }
-// let onlyNums =typeGroomer(myStuff, "number");
-// let onlyBools = typeGroomer(myStuff, "boolean");
-let onlyStrings =typeGroomer(myStuff, "string");
+
+var nums = [3, 4, 7];
+//instead of addItems(nums[0], nums[1], nums[2]);
+// use spread operator -> "..." plus arr name
+addItems(...nums); // 14
+
+var fruit = ['apple', 'grape', 'pear', 'kiwi'];
+//instead of addItems(nums[0], nums[1], nums[2]);
+addItems(...fruit); // apple grape pear
+
+// You can also join the arrays
+
+var meat = ["bacon", "ham"];
+var food = ["rice", "salad", "fries"];
+
+var foodNmeat = [...meat, ...food];
+
+console.log(foodNmeat);
+
 
 -->
 <!-- pre for entire page -->
 <div class="es6-entry entry">
+  <div class="simple-frame2"><h3 class="chtitle">The spread operator: ES6</h3>
+All you need is <span class="y">...</span> then <i class="y">varName</i>
+    <pre class="prettyprint w80 col-2">function addItems(a, b, c) {
+
+  if (typeof a === 'string') {
+    console.log(`${a} ${b} ${c}`);
+
+  } else if (typeof a === 'number') {
+    console.log(a + b + c);
+  }
+
+}
+
+var nums = [3, 4, 7];
+//instead of addItems(nums[0], nums[1], nums[2]);
+addItems(...nums); // 14
+
+var fruit = ['apple', 'grape', 'pear', 'kiwi'];
+// instead of addItems(nums[0], nums[1], nums[2]);
+addItems(...fruit); // apple grape pear
+
+// You can also join the arrays
+
+var peanutButter = ["plain", "chunky", "organic"];
+var jelly = ["strawberry", "apricot", "grape"];
+
+var pbNj = [...peanutButter, ...jelly];
+
+console.log(pbNj);
+// ["plain", "chunky", "organic", "strawberry", "apricot", "grape"]
+</pre>
+
+  </div>
 <div class="framed5"><h3 class="chtitle ivr">The power of Object.assign()</h3>
   <pre class="prettyprint">
   var myStuff = { name: 'myStuff', a: 3, b: "puppies", c: 18, d: "babies", e: false, f: -1, g: "worms" };

@@ -1,35 +1,209 @@
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
 <div class="misc-container">
-<aside><span class="rot90">{{state}}</span></aside>
-<div class="misc-entry entry">
+  <aside><span class="rot90">{{state}}</span></aside>
+  <div class="misc-entry entry">
+
+<!--
+function moodGreet(name, greet, mood) {
+  mood = mood || "fine";
+  greet = greet || "How's it going?";
+  console.log(greet + " I'm " + name + ". I'm feeling " + mood);
+}
+moodGreet("Ben", "Hi.")
+-->
+    <pre>
+    <!--entire page pre-->
+    <div class="simple-frame"><h3 class="chtitle dkblue">How to set up defaults in a function using "||" operator</h3>
+<pre class="prettyprint">
+function moodGreet(name, greet, mood) {
+  mood = mood || "fine";
+  greet = greet || "How's it going?";
+  console.log(greet + " I'm " + name + ". I'm feeling " + mood);
+}
+moodGreet("Ben", "Hi.")
+// Hi. I'm Ben. I'm feeling fine
+</pre>
+</div>
+    <div class="framed6">
+      <h3 class="chtitle dkred">🐜The "'this'/ self" bug in Javascript🐜</h3>
+<pre class="dkbg w40">var pet = "dog";  // global variable
+
+<span class="ltgreen sm">I can also use 'this' to put a var on the Global Scope</span>
+this.pet = "dog";  // also global</pre>
+<pre class="prettyprint w60">
+var myDog = {
+  name: "Skipper",
+  log: function() {
+    var nuName = "Skippy";
+    this.name = nuName;
+    console.log(this.name);
+  }
+}
+
+myDog.log(); // Skippy
+
+// Straightforward and expected.
+// The second property updates the object by calling 'this' within that property.</pre>
+However, what if I refer to 'this' inside that property with a function?
+<pre class="prettyprint w60">
+var myDog = {
+  name: "Skipper",
+  log: function() {
+    var nuName = "Skippy";
+    this.name = nuName;
+    console.log("1st update", this.name);
+
+    var secondUpDate = function(input) {
+      this.name = input;
+    }
+    secondUpDate("Scooter");
+    console.log("after secondUpDate: ", this.name);
+  }
+}
+
+myDog.log();
+
+// 1st update Skippy
+// after secondUpDate:  Skippy ⁉️
+</pre>
+<div class="col-2 simple-frame2">The problem (or BUG) is: that second 'this'
+(inside secondUpdate) puts input's value on the global Object!
+
+Try it!
+<pre class="prettyprint w20">console.log(name);
+// Scooter ‼️</pre>
+<span class="navy">The execution context that is created by secondUpdate funk
+makes 'this' point to the Global Object!
+
+<img src="./img/thisGlobal.png" class="w10" alt="">
+Now, there is uncertainty about which object 'this' is pointing to.
+</span>
+</div>
+<pre class="dkbg dkmango"><h3 class="chtitle ltblue">The solution for this bug is the following: We store 'this' on to a variable "self" or "that".</h3>
+  var myDog = {
+  name: "Skipper",
+  log: function() {
+    <span class="dkbg ltgreen">var self = this;</span>
+    var nuName = "Skippy";
+    <span class="dkbg ltgreen">self.</span>name = nuName;
+    console.log("1st update", <span class="dkbg ltgreen">self.</span>name);
+
+    var secondUpDate = function(input) {
+      <span class="dkbg ltgreen">self.</span>name = input;
+    }
+    secondUpDate("Scooter");
+    console.log("after secondUpDate: ", <span class="dkbg ltgreen">self.</span>name);
+  }
+}
+
+myDog.log();
+
+<pre class="prettyprint w40">//1st update Skippy
+//after secondUpDate:  Scooter</pre>
+</pre>
+</div>
+
+  <div class="simple-frame">
+      <h3 class="chtitle wh">Pass by reference vs Pass by value</h3>
+All primitives pass by value.
+  <div class="col-2">Primitives establish an address. A place in memory.
+a = 5;
+let's say I copy that with...
+a = b;
+b's val doesn't <em>look</em> or <em>point to</em> that address.
+b; // 5  is, in fact a copy of a.
+<span class="ltblue">a = 50;</span>
+The value at a's orig address has changed, but...
+b; // still --5❗️
+<pre class="prettyprint">a = 5;
+b = a;
+a = 50;
+console.log(a);
+// 50
+console.log(b);
+// 5
+</pre>
+</div>
+<hr>
+All objects <span class="ltblue">(including functions)</span> pass by reference.<br />
+<div class="col-2">I have two chicks: "chirpie" & "tweetie".
+<pre class="dkbg w20 sm">var chirpie = {feathers: "yellow"};
+var tweetie = chirpie;</pre>
+(left-to-right) the "=" recognizes chirpie as an Object.
+
+It then, creates an 'alias' for tweetie <em>pointing to</em> chirpie.
+This is <em><b class="underline">pass by reference</b></em>
+If I <em>mutate</em> chirpie with
+<pre class="dkbg w20 sm">chirpie.feathers = "purple";</pre>
+tweetie also mutates.
+<pre class="prettyprint w40">
+  var chirpie = {feathers: "yellow"};
+  var tweetie = chirpie;
+  console.log(chirpie);
+  tweetie.feathers = "purple";
+  console.log(tweetie);
+
+  // Object {feathers: "purple"}
+</pre>
+</div><hr><h3><span class="ltred">Important:</span> the "=" operator creates a place in memory.</h3>
+The equals operator will see the left side of this statement as unfamiliar and create a new space for it.
+
+<pre class="w40 prettyprint">...
+<pre class="ltbg w20 sm">  tweetie = {feathers: "black"};</pre>  console.log("chirpie", chirpie);
+  console.log("tweetie", tweetie);
+  // chirpie Object {feathers: "purple"}
+  // tweetie Object {feathers: "black"}</pre><hr>
+  Once more...
+  <pre class="prettyprint w80 linenums">  var chirpie = {feathers: "yellow"};
+  var tweetie = chirpie;
+  console.log('chirpie.feathers: ', chirpie.feathers);
+  console.log('tweetie.feathers: ', tweetie.feathers);
+  // chirpie.feathers:  yellow
+  // tweetie.feathers:  yellow
+
+  tweetie.feathers = "purple"; 🔶
+  console.log('chirpie.feathers: ', chirpie.feathers);
+  console.log('tweetie.feathers: ', tweetie.feathers);
+  // chirpie.feathers:  purple
+  // tweetie.feathers:  purple
+
+  tweetie = {feathers: "green"}; ⚠️
+  console.log('chirpie.feathers: ', chirpie.feathers);
+  console.log('tweetie.feathers: ', tweetie.feathers);
+  // chirpie.feathers:  purple
+  // tweetie.feathers:  green</pre>
+  🔶 --Notice: I didn't change the original! Changing either--bird changes the val at the address in memory.
+  Both return "purple" becase they are both links or "references" the same place in memory!
+  ⚠️ --This is special. Equals operator creates a totally new place in memory. both birds are referencing a different places!
+</div>
+
 <h3 class="w40">Interesting cursor: image trick</h3>
 as a css rule:
 <pre class="prettyprint w40">
 div {
   cursor: url('img/finger.png'), pointer;
 }</pre>
-  <hr>
-<h3 class="wh">Interesting point about this:</h3>
-(<span><a href="http://stackoverflow.com/questions/7479282/this-vs-this">FROM HERE</a></span>)
+    <hr>
+    <h3 class="wh">Interesting point about this:</h3> (
+    <span><a href="http://stackoverflow.com/questions/7479282/this-vs-this">FROM HERE</a></span>)
 
-<pre>
-  <p>In jQuery functions, this most often refers to the actual DOM element you're dealing with, whereas $(this) returns a jQuery object that wraps the element.
 
-  In JavaScript, this always refers to the current scope. Many of jQuery's functions will set that scope to be the element you're working with.</p>
+    <p>In jQuery functions, this most often refers to the actual DOM element you're dealing with, whereas $(this) returns a jQuery object that wraps the element. In JavaScript, this always refers to the current scope. Many of jQuery's functions will set
+      that scope to be the element you're working with.</p>
 
-  For instance
+    For instance
 
-<pre class="prettyprint w60">
+    <pre class="prettyprint w60">
   $("#someElement").click(function() {
       this;    // the element itself
       $(this); // a jQuery wrapper-object around the element
   });
 </pre>
 
-<hr>
-<div class="framed5">
-  <h3>Randomized Quiz over 3 objects</h3>
-<pre class="prettyprint linenums">
+    <hr>
+    <div class="framed5">
+      <h3>Randomized Quiz over 3 objects</h3>
+      <pre class="prettyprint linenums">
 const asian = { nat: "Asians", meal: "pork", pan: "a wok", oil: "sesame oil" };
 const american = { nat: "Americans", meal: "chicken", pan: "a frying pan", oil: "corn oil" };
 const italian = { nat: "Italians", meal: "pasta", pan: "a pot", oil: "olive oil" };
@@ -78,9 +252,11 @@ function questions() {
 // questions();
 </pre>
 
-</div>
-</pre>
-</div>
+    </div>
+
+    </pre>
+    <!--entire page pre-->
+  </div>
 
 
 </div>

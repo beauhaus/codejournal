@@ -9,8 +9,8 @@
 <!--
 
 -->
-<div class="simple-frame2"><h4>quick quiz</h4>
-<pre class="prettyprint w40 linenums">
+<div class="simple-frame2 col-2"><h4>quick quiz</h4>
+<pre class="prettyprint w40">
 scream();
 function scream() {
   console.log("Ahhhhhhh!!");
@@ -21,13 +21,14 @@ var quiet = function() {
   console.log("Shhhhhhhh!")
 }
 </pre>
-  What are the terms distinguishing quiet() vs scream()?
-  <i class="ans med dkred">scream (02.) is a <b class="wh">FUNCTION STATEMENT</b></i><br>
-  <i class="ans med dkred">quiet (07.) is a <b class="wh">FUNCTION EXPRESSION</b></i>
+<br /><br>
+  Difference between line 2 and line 7?
+  <i class="ans med dkred">scream is a <b class="wh">FUNCTION STATEMENT</b></i><br>
+  <i class="ans med dkred">quiet is a <b class="wh">FUNCTION EXPRESSION</b></i>
 
   What is the return of this and why?
-<i class="ans med dkred">scream will run //Ahhhhh!  but quiet() will throw an error<br />
-  <b class="wh">because function expressions are NOT hoisted!</b></i>
+<i class="ans med dkred"><img class="w20" src="./img/error1.png" alt="error1"><br />
+  <b class="wh">Function expressions are NOT hoisted!</b></i>
 
 </div>
 
@@ -46,16 +47,18 @@ var quiet = function() {
   // function greet() { console.log("Hi"); } ❗️This code is merely a property on the object!
 </pre><hr>
 <h4 class="chtitle dkred">Functional Programming</h4>
-I am going to pass an entire function as a parameter to another function.
-In the Fn to which I pass the parameter, I'm going to invoke that puppy!
-<pre class="prettyprint">function gimmeAFunk(funk) {
+<div class="col-2">
+  I am going to pass an entire function as a parameter to another function.
+  In the Fn to which I pass the parameter, I'm going to invoke that puppy!
+<pre class="prettyprint w40">
+function ohFunkThis(funk) {
   funk();
 }
-gimmeAFunk(function() {console.log("I'm a parameter!")});
+ohFunkThis(function() {console.log("I'm a parameter!")});
 // I'm a parameter!
 </pre>
-This is the essence of "Functional Programming"!
 </div>
+<h4 class="chtitle ltred">This is the essence of "Functional Programming"!</h4></div>
 <div class="framed6"><h2 class="chtitle wh">Objects</h2>
   <h3>Dead-simple Constructor Fn</h3>
 <pre class="prettyprint w60">function Person(name) {

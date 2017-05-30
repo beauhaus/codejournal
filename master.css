@@ -437,8 +437,8 @@ code, pre {
 pre.code-sample {
   font-family: "Code Source Pro", monospace, Sans-Serif !important; }
 
-div.misc-entry {
-  background-color: #f5facf; }
+pre.prettyprint {
+  border: 1px solid #f5facf; }
 
 div.misc-entry {
   background-color: #945706;
