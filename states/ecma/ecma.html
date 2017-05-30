@@ -46,7 +46,7 @@ engGreet("John", "Wilson");</pre>
 //  Hello, John Wilson
 //  Run in English 2 times.</pre>
 </div>
-<div class="framed1">
+<div class="framed5">
   <h3 class="chtitle ivr">Nice Closure creating Arrays, Objects & strings with args</h3>
   <pre class="prettyprint">
     function culledBits(type) {
@@ -109,11 +109,30 @@ engGreet("John", "Wilson");</pre>
   makeArr("hello");
   makeStr("oranges")
 </pre>
-</div>
-<!--
+</div><hr>
+<h3 class="chtitle dkred">Here's a nice little closure/callback combo with a timer</h3>
+<pre class="prettyprint w60">
+  <div class="fRight dkbg framed1 sm">
+    // okay wait a sec...
+    // Live reload enabled.
+    // Okay, I'm done
+    // (5000 milliseconds)
+  </div>
+  function tellMeWhenDone(callback) {
+  console.log("okay wait a sec...");
+    return function(timer) {
+      setTimeout(function() {
+        callback(); // it runs the function that I give it!
+        console.log(`(${timer} milliseconds)`);
+      },timer);
+    }
+  }
 
-  -->
-</div>
+  var doit = tellMeWhenDone(function() {
+    console.log("Okay, I'm done");
+  })
+  doit(5000);
+</pre></div>
 <div class="simple-frame2 col-2"><h4>quick quiz</h4>
 <pre class="prettyprint w40">
 scream();
@@ -546,6 +565,8 @@ carne("Italian");
   </div>
   <div class="simple-frame2">
     <h3 class="chtitle">.map() example</h3>
+Where .filter() returns a boolean (what criterion to test) that removes items...
+this method simply transforms the array and returns a new array.
     <h4>.map() iterates over each item, then returns a new array of same length. </h4>
     <pre class="prettyprint w40">
 var people = [{
@@ -566,6 +587,16 @@ var ageArr = people.map(function(person){
   return person.age;
 });
         // [23,13,21]
+var names = people.map(function(foo.name){
+  return foo.name;
+})
+</pre>
+<span class="orange">"ES6 anyone?"</span>
+<pre class="prettyprint w40">
+var names = people.map((foo) => console.log(foo.name));
+//or simply...
+var names = people.map((foo) => foo.name);
+      // ["Sue", "Kim", "Joe"]
 </pre>
 
   </div>

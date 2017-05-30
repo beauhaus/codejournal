@@ -2,41 +2,28 @@
 <div class="es6-container">
 <aside><span class="rot90">{{state}}</span></aside>
 <pre>
-  <!--
+  <!-- pre for entire page -->
+
+<!--
 paste temp
-// spread operator basics
-
-function addItems(a, b, c) {
-  if(typeof a === 'string') {
-    console.log(`${a} ${b} ${c}`);
-  } else if (typeof a === 'number') {
-    console.log(a + b + c);
-  }
-
-}
-
-var nums = [3, 4, 7];
-//instead of addItems(nums[0], nums[1], nums[2]);
-// use spread operator -> "..." plus arr name
-addItems(...nums); // 14
-
-var fruit = ['apple', 'grape', 'pear', 'kiwi'];
-//instead of addItems(nums[0], nums[1], nums[2]);
-addItems(...fruit); // apple grape pear
-
-// You can also join the arrays
-
-var meat = ["bacon", "ham"];
-var food = ["rice", "salad", "fries"];
-
-var foodNmeat = [...meat, ...food];
-
-console.log(foodNmeat);
-
-
 -->
-<!-- pre for entire page -->
+
 <div class="es6-entry entry">
+  <div class="framed6">
+    <h3>.map() with ES6</h3>
+    <h4>Note: <em class="ivr">implicit return</em></h4>
+    <pre class="prettyprint w40">
+    var riceCrispies = [
+      {character: "Snap!"},
+      {character: "Crackle!"},
+      {character: "Pop!"}
+    ];
+
+    var cereal = riceCrispies.map(key => key.character);
+          // ["snap!", "Crackle!", "Pop!"]
+    </pre>
+
+  </div>
   <div class="simple-frame2"><h3 class="chtitle">The spread operator: ES6</h3>
 All you need is <span class="y">...</span> then <i class="y">varName</i>
     <pre class="prettyprint w80 col-2">function addItems(a, b, c) {
@@ -162,6 +149,26 @@ Object Destructuring:
   console.log(name);
   console.log(age);
   console.log(job);
+</pre>
+This is also useful with a function
+<pre class="prettyprint w40">
+  function getTree() {
+    return {
+      residents: ['squirrel', 'robin family'],
+      foliage: "leaves",
+      branches: 14,
+      age: 25
+    }
+  }
+
+var {residents, foliage, brances, age} = getTree();
+console.log(getTree());
+// Object {
+//  residents: Array(2),
+//  foliage: "leaves",
+//  branches: 14,
+//  age: 25
+// }
 </pre>
 
 Array destructuring:
