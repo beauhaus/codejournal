@@ -38,6 +38,10 @@ angular.module("codeJournal", ['ui.router', 'ngAnimate'])
       controller: 'nodeCtrl',
       url: '/node',
       templateUrl: './states/node/node.html'
+    }).state('sql', {
+      controller: 'sqlCtrl',
+      url: '/sql',
+      templateUrl: './states/sql/sql.html'
     }).state('es6', {
       controller: 'es6Ctrl',
       url: '/es6',

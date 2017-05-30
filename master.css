@@ -554,6 +554,13 @@ div.node-entry {
   overflow: auto;
   height: 80vh; }
 
+div.sql-entry {
+  background-color: #758a88;
+  border: 1px solid white;
+  color: white;
+  overflow: auto;
+  height: 80vh; }
+
 div.es6-entry {
   background-color: #945706;
   overflow: auto;

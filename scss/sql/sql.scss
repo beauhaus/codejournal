@@ -1,0 +1,8 @@
+div.sql-entry {
+  background-color: map-get($colors, pastOlive);
+  border: 1px solid white;
+  color: white;
+  overflow: auto;
+  height: 80vh;
+  // box-shadow: inset 0px 0px 0px rgba(#a6b696, 0);
+}
