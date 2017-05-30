@@ -213,6 +213,29 @@ var divByThrees = array.reduce(function(arr, val){
 },[]);
 
 console.log(divByThrees);   // [3, 6, 9]</pre>
+<div class="framed5"><h3 class="chtitle">Filter out string items from an array with filter();</h3>
+  <pre class="prettyprint w40">function filter_list(l) {
+  return l.reduce(function(arr, val){
+    if (typeof val !== 'string') {
+      arr.push(val);
+    }
+    return arr;
+  },[]);
+}
+
+filter_list([1,'a','b',0,15]);
+// [1,0,15]</pre>
+<h3 class="chtitle wh">Solve this using filter();</h3>
+<pre class="prettyprint w60">function filter_list(l) {
+  return l.filter(function(v) {return typeof v == 'number'})
+}</pre>
+or... using coercion...
+<pre class="dkbg w20">function filter_list(l) {
+  return l.filter(x=>x+0==x);
+}
+<span class="ltgreen">// [1,0,15]</span></pre>
+</div>
+
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce?v=example" target="_blank">MDN Says</a> that reduce can take 4 args...
 prev, next, index, array (over which to be iterated).
