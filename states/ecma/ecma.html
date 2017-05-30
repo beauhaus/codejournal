@@ -9,6 +9,111 @@
 <!--
 
 -->
+<div class="simple-frame3"><h3 class="chtitle dkblue">Super-simple Closure</h3>
+<div class="col-2"><pre class="prettyprint w40">function makeGreeting(language) {
+
+  var counter = 0;
+  return function(firstName, lastName) {
+    counter++;
+    var lang;
+    if(language === "es") {
+      console.log(`Hola, ${firstName} ${lastName}`);
+      lang= "Spanish";
+    }
+    if(language === "en") {
+      console.log(`Hello, ${firstName} ${lastName}`);
+      lang = "English";
+    }
+    console.log(`Run in ${lang} ${counter} times.`);
+  }
+}
+
+var spanGreet = makeGreeting("es");
+var engGreet = makeGreeting("en");
+spanGreet("Susan", "Jenkins");
+engGreet("John", "Wilson");
+engGreet("John", "Wilson");</pre>
+<pre class="w40 dkbg ivr">
+  Fn returning a Fn. A counter that increments on each sucessive execution.
+
+  This example sets up a function factory of sorts.
+  Pay attention to separate execution contexts.
+<hr>
+//  Hola, Susan Jenkins
+//  Run in Spanish 1 times.
+//  Hello, John Wilson
+//  Run in English 1 times.
+//  Hello, John Wilson
+//  Run in English 2 times.</pre>
+</div>
+<div class="framed1">
+  <h3 class="chtitle ivr">Nice Closure creating Arrays, Objects & strings with args</h3>
+  <pre class="prettyprint">
+    function culledBits(type) {
+    var arrCull = [];
+    var objCull = {};
+    var strCull = "";
+    var counter = 0;
+    <div class="fRight dkbg dkorange w40">
+  // This is based on the same concept above.
+  // counter++ retains value of previous calls.
+
+  // One might create a func that sorts args--> and fills arrays, object, etc into type.
+    </div>
+
+    return function(item) {
+      counter++;
+      if (type === "obj") {
+        objCull[counter] = item;
+        var res = objCull;
+      } if (type === "arr") {
+          arrCull.push(item);
+          var res = arrCull;
+      } else if (type ==="str") {
+        item = item.toString();
+        strCull+=item + ' ';
+        res = `${strCull}`;
+        res = res.trim(" ") + ".";
+      }
+      console.log(res);
+      return res;
+    }
+  }
+
+  var makeArr = culledBits("arr");
+  var makeObj = culledBits("obj");
+  var makeStr = culledBits("str");
+
+  <div class="ltbg w40 fRight">
+// Object {1: 4}
+// [false]
+// (2) [false, Object]
+// Oh,.
+// Object {1: 4, 2: "what's up?"}
+// (3) [false, Object, 38]
+// Oh, How I Love.
+// Object {1: 4, 2: "what's up?", 3: 0}
+// (4) [false, Object, 38, null]
+// (5) [false, Object, 38, null, "hello"]
+// Oh, How I Love oranges.
+  </div>
+  makeObj(4);
+  makeArr(false);
+  makeArr({"key": "value"})
+  makeStr("Oh,")
+  makeObj("what's up?")
+  makeArr(38);
+  makeStr("How I Love")
+  makeObj(0)
+  makeArr(null);
+  makeArr("hello");
+  makeStr("oranges")
+</pre>
+</div>
+<!--
+
+  -->
+</div>
 <div class="simple-frame2 col-2"><h4>quick quiz</h4>
 <pre class="prettyprint w40">
 scream();

@@ -272,6 +272,18 @@ a[ui-sref]:hover {
   font-family: Trebuchet, Sans-Serif;
   font-size: 1.4vw; }
 
+.simple-frame3 {
+  border: 1px solid maroon;
+  box-shadow: 1px 1px 4px 1px rgba(45, 44, 44, 0.7);
+  background-color: #a6b696;
+  color: #f5facf;
+  font-family: Trebuchet, sans-serif;
+  font-weight: 400;
+  padding: 1vh 2vw;
+  font-weight: 400;
+  font-family: Trebuchet, Sans-Serif;
+  font-size: 1.4vw; }
+
 .framed1 {
   padding: 2%;
   font-size: 1.4vw;
