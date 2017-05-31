@@ -16,6 +16,14 @@
   color: map-get($colors, y);
 }
 
+.pastpink {
+  color: map-get($colors, pastpink);
+}
+
+.offWhite {
+  color: map-get($colors, offWhite);
+}
+
 .orange {
   color: map-get($colors, orange);
 }

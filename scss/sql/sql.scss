@@ -1,8 +1,33 @@
 div.sql-entry {
-  background-color: map-get($colors, pastOlive);
+  background-color: map-get($colors, dkblue);
   border: 1px solid white;
   color: white;
   overflow: auto;
   height: 80vh;
-  // box-shadow: inset 0px 0px 0px rgba(#a6b696, 0);
+  position: relative;
+  a {
+    background-color: map-get($colors, trans30);
+  }
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid black;
+    box-shadow: 2px 2px 6px 1px black;
+}
+
+th, td {
+    text-align: center;
+    padding: 1vh 1vw;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: brown;
+    color: white;
+}
+.col-2 {
+  column-rule: 1px solid burlywood;
 }

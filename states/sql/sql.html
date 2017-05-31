@@ -1,44 +1,92 @@
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
 <div class="sql-container">
   <aside><span class="rot90">{{state}}</span></aside>
-  <div class="sql-entry entry">
-<pre>
-  <div class="framed1">
-A session is something on the back end that is stored as an ID--associated to an object.
-A cookie is the mechanism by which we pass that ID back and forth.
+  <div class="sql-entry entry"><pre>
+  <!-- pre for all sql -->
+  <div class="simple-frame w40 dkbg top-right-box sand"><span class="med ltred underline">SQL Hotlist</span>
+  CREATE TABLE <em class="y">Name</em> ( personID INT, name varchar(50), hobby varchar(100) );
+  INSERT INTO people (personID, name, hobby);
+  VALUES (01, 'Sue Conlin', 'Drinking');
 
-.sid = session id.
-(express-session is built on top of <em>Connect</em>)
-<img class="w40" src="./img/sessionID.png" alt="sessionID">
-This is what gets tossed back and forth on each of our requests.
+
+  5. <span class="wh">PreserveAspect ratio</span>
+  <span class="y dkbg ctrtxt"><b><</b>svg .... preserveAspectRatio="xMinYMin meet" width="100%" height="100%"<b>></b></span>
+
+  <a class="fRight" target="_blank" href="https://chinook.ml/">Test in CHINOOK</a>
+  </div>
+
+  <div class="plain-frame1">
+    test
+
+
 
   </div>
-    <h3 class="w40">PLACEHOLDER</h3>
+<h3 class="chtitle">TitlePlaceholder</h3>
 
+<div class="framed7 col-2"><h3 class="chtitle wh">Sample DB creation</h3>
+  <table class="w40">
+    <tr>
+      <th>id</th>
+      <th>name</th>
+      <th>city</th>
+      <th>age</th>
+      <th>food</th>
+      <th>hobby</th>
+    </tr>
+    <tr>
+      <td>01</td>
+      <td>Sue</td>
+      <td>Boston</td>
+      <td>28</td>
+      <td>Lobster</td>
+      <td>Drinking</td>
+    </tr>
+    <tr>
+      <td>02</td>
+      <td>Jeff</td>
+      <td>Halifax</td>
+      <td>64</td>
+      <td>Pizza</td>
+      <td>Scrabble</td>
+    </tr>
+    <tr>
+      <td>03</td>
+      <td>Derrick</td>
+      <td>Provo</td>
+      <td>50</td>
+      <td>Tacos</td>
+      <td>Jogging</td>
+    </tr>
+  </table>
+
+<pre class="prettyprint w40">
+create table people (
+  personID INT,
+  name varchar(50),
+  city varchar(100),
+  age INT,
+  food varchar(100),
+  hobby varchar(100)
+);
+
+INSERT INTO people (personID, name, city, age, food, hobby)
+VALUES
+  (01, 'Sue', 'Boston', 28, 'Lobster', 'Drinking'),
+  (02, 'Jeff', 'Halifax', 64, 'Pizza', 'Scrabble'),
+  (03, 'Derrick', 'Provo', 50, 'Tacos', 'Jogging');
+</pre>
+It's extremely effective and efficient. I haven't used it in sass, but I see no reason that it wouldn't work.</div>
 <pre class="prettyprint w60">
-var members = [
-  {name: "Bill", age: 34, phone: "Pixel"},
-  {name: "Sue", age: 12, phone: "Android"},
-  {name: "Lex", age: 44, phone: "iPhone"},
-  {name: "Amy", age: 52, phone: "Pixel"},
-  {name: "Don", age: 84, phone: "Landline"}
-];
-
-// localhost:3000/members?phone=Pixel
-app.get('/members', function(req, res, next) {
-  var filteredMembers = members.filter(function(members) {
-    return members.phone === req.query.phone;
-  })
-  res.status(200).json(filteredMembers);
-});
+// code in here
 </pre>
 
     <hr>
+
+
 </pre>
 <!-- end of pre for all -->
   </div>
   <!-- end of entry -->
-
 
 </div>
 <!-- end of sql container -->

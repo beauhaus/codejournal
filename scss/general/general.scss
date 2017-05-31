@@ -325,6 +325,18 @@ a[ui-sref]:hover {
   text-align: left;
 }
 
+.plain-frame1 {
+  border: 1px solid maroon;
+  box-shadow: inset 1px 1px 4px 1px rgba(#000000, 0.61);
+  background-color: map-get($colors, offWhite);
+  color: map-get($colors, dkblue);
+  padding: 1vh 2vw;
+  font: {
+    weight: 400;
+    family: map-get($fonts, Clean), Sans-Serif;
+    size: 1.5vw;
+  }
+}
 .simple-frame {
   border: 1px solid maroon;
   box-shadow: inset 1px 1px 4px 1px rgba(#000000, 0.61);
@@ -439,6 +451,20 @@ pre {
     color: map-get($colors, transPastGreen);
   }
   border: 1px solid brown;
+  box-shadow: inset 2px 2px 10px 2px black;
+  color: map-get($colors, dkred);
+}
+
+.framed7 {
+  padding: 2%;
+  font: {
+    size: 1.4vw;
+  }
+  margin: auto;
+  background: {
+    color: map-get($colors, pastpink);
+  }
+  border: 1px solid burlywood;
   box-shadow: inset 2px 2px 10px 2px black;
   color: map-get($colors, dkred);
 }

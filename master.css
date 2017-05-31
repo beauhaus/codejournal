@@ -250,6 +250,16 @@ a[ui-sref]:hover {
 .txtLeft {
   text-align: left; }
 
+.plain-frame1 {
+  border: 1px solid maroon;
+  box-shadow: inset 1px 1px 4px 1px rgba(0, 0, 0, 0.61);
+  background-color: #d9d4c5;
+  color: #18223b;
+  padding: 1vh 2vw;
+  font-weight: 400;
+  font-family: "Raleway", Sans-Serif, Sans-Serif;
+  font-size: 1.5vw; }
+
 .simple-frame {
   border: 1px solid maroon;
   box-shadow: inset 1px 1px 4px 1px rgba(0, 0, 0, 0.61);
@@ -337,6 +347,15 @@ pre {
   margin: auto;
   background-color: rgba(166, 182, 150, 0.66);
   border: 1px solid brown;
+  box-shadow: inset 2px 2px 10px 2px black;
+  color: #441f1d; }
+
+.framed7 {
+  padding: 2%;
+  font-size: 1.4vw;
+  margin: auto;
+  background-color: #9e869b;
+  border: 1px solid burlywood;
   box-shadow: inset 2px 2px 10px 2px black;
   color: #441f1d; }
 
@@ -555,11 +574,34 @@ div.node-entry {
   height: 80vh; }
 
 div.sql-entry {
-  background-color: #758a88;
+  background-color: #18223b;
   border: 1px solid white;
   color: white;
   overflow: auto;
-  height: 80vh; }
+  height: 80vh;
+  position: relative; }
+  div.sql-entry a {
+    background-color: rgba(128, 128, 128, 0.35); }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid black;
+  box-shadow: 2px 2px 6px 1px black; }
+
+th, td {
+  text-align: center;
+  padding: 1vh 1vw; }
+
+tr:nth-child(even) {
+  background-color: #f2f2f2; }
+
+th {
+  background-color: brown;
+  color: white; }
+
+.col-2 {
+  column-rule: 1px solid burlywood; }
 
 div.es6-entry {
   background-color: #945706;
@@ -608,6 +650,12 @@ div.svg-entry {
 
 .y {
   color: yellow; }
+
+.pastpink {
+  color: #9e869b; }
+
+.offWhite {
+  color: #d9d4c5; }
 
 .orange {
   color: #f28b02; }
