@@ -10,7 +10,7 @@
   <i class="orange">INSERT INTO</i> people (personID, name, hobby);
   <i class="orange">VALUES</i> (01, 'Sue', 'Drinking');
   <i class="orange">DROP TABLE</i> table_name;
-  <i class="orange">ALTER TABLE</i><em class="y">Name</em> <i class="orange">ADD COLUMN </i><em class="y">Name</em>
+  <i class="orange">ALTER TABLE</i> <em class="y">Name</em> <i class="orange">ADD COLUMN </i><em class="y">col_Name</em>
                                                  <i class="orange">INTEGER REFERENCES</i><em class="y">pets(petID)</em>
 
 
@@ -20,16 +20,20 @@
   </div>
 
   <!-- <div class="plain-frame1 w60"> -->
-<pre class="dkbg w40">sample terms
-  <i class="orange">desc/asc</i>
-  <i class="orange">limit</i> 4
-  <i class="orange">sum()</i> 🔸 select sum(age) from people
-  <i class="orange">avg()</i> 🔸 select avg(personID) from people
-  <i class="orange">upper()</i> 🔸 SELECT upper(name) FROM people
+<pre class="ltbg w60"><span class="chtitle wh">Common Keywords</span>
+  <i class="orange">DESC/ASC</i> select age from pets asc limit 3
+  <i class="orange">LIMIT</i> select * from pets limit 4
+  <i class="orange">BETWEEN </i>X <i class="orange">AND</i> select * from pets where age between 3 and 5
+  <i class="orange">SUM()</i> 🔸 select sum(age) from people
+  <i class="orange">AVG()</i> 🔸 select avg(personID) from people
+  <i class="orange">UPPER()</i> 🔸 SELECT upper(name) FROM people
   <i class="orange">DISTINCT</i> 🔸 SELECT DISTINCT age FROM people; -no dupes
-  <i class="orange">upper()</i> 🔸 SELECT upper(name) FROM people
-  <i class="orange">upper()</i> 🔸 SELECT upper(name) FROM people
-
+  <i class="orange">ALTER TABLE</i> 🔸 ALTER TABLE t_name ADD COLUMN col_name
+  <i class="orange">ORDER BY</i> 🔸 SELECT * FROM people order by age;
+  <i class="orange">GROUP BY</i> 🔸 SELECT * FROM people group by city;
+  <i class="orange">PLACEHOLD()</i> 🔸 SELECT upper(name) FROM people
+  <i class="orange">PLACEHOLD()</i> 🔸 SELECT upper(name) FROM people
+  <i class="orange">PLACEHOLD()</i> 🔸 SELECT upper(name) FROM people
 </pre>
   <!-- </div> -->
 
@@ -93,11 +97,14 @@ VALUES
   (01, 'Sue', 'Boston', 28, 'Lobster', 'Drinking'),
   (02, 'Jeff', 'Halifax', 64, 'Pizza', 'Scrabble'),
   (03, 'Derrick', 'Provo', 50, 'Tacos', 'Jogging');
+  (04,	'Sam',	'Dallas',	12,	'Burgers',	'Nintendo')
 </pre>
 
   </div>
   <div class="plain-frame1 w60">
-    <table>
+"Select entries where food is neither Lobster nor Pizza nor Burgers"
+
+  <table>
       <tr class="sand">
         <th>personID</th>
         <th>name</th>
@@ -115,12 +122,13 @@ VALUES
         <td>Jogging</td>
       </tr>
     </table>
-    <pre class="prettyprint w40">select * from people
+<pre class="prettyprint w40">select * from people
     where food not in ('Lobster', 'Pizza', 'Burgers');</pre>
-"Select entries where food is neither Lobster or Pizza or Burgers"
   <i class="dkred med">IN / NOT IN</i> can achieve and "either or/neither nor" logical query.
+<br>
+"Show records of people not from Boston or age is not less than 55"
 <br><table>
-  <tr class="sand">
+  <tr>
     <th>personID</th>
     <th>name</th>
     <th>city</th>
@@ -140,56 +148,89 @@ VALUES
 <pre class="prettyprint w40">select * from people
   where not (age < 55 or city like '%osto%');</pre>
 
-  "Show records of people not from Boston or age is not less than 55"
   </div>
   <div class="framed6"><h3 class="chtitle wh med">new DB</h3>
-    <div class="framed7 col-2">
       <table class="w40 bright-table">
         <tr>
           <th>petID</th>
           <th>name</th>
           <th>age</th>
           <th>kind</th>
+          <th>legs</th>
         </tr>
         <tr>
           <td>01</td>
           <td>Scruffy</td>
           <td>2</td>
           <td>ferret</td>
+          <td>4</td>
         </tr>
         <tr>
           <td>02</td>
           <td>Scooby</td>
           <td>5</td>
           <td>dog</td>
+          <td>4</td>
         </tr>
         <tr>
           <td>03</td>
           <td>Mini</td>
           <td>1</td>
           <td>mouse</td>
+          <td>4</td>
         </tr>
         <tr>
           <td>04</td>
           <td>Grover</td>
           <td>5</td>
           <td>turtle</td>
+          <td>4</td>
+        </tr>
+        <tr>
+          <td>05</td>
+          <td>Robin</td>
+          <td>4</td>
+          <td>bird</td>
+          <td>2</td>
         </tr>
       </table>
-<pre class="prettyprint">
+<pre class="prettyprint w60">
 create table pets
-(petID int, name varchar(50), age int, kind varchar(50));
+(petID int, name varchar(50), age int, kind varchar(50), legs int);
 
 INSERT INTO pets (petID, name, age, kind)
 
 VALUES
-  (01, 'Scruffy', 2, 'ferret'),
-  (02, 'Scooby', 5, 'dog'),
-  (03, 'Mini', 1, 'mouse'),
-  (04, 'Grover', 5, 'turtle');</pre>
-  </div>
+  (01, 'Scruffy', 2, 'ferret', 4),
+  (02, 'Scooby', 5, 'dog', 4),
+  (03, 'Mini', 1, 'mouse', 4),
+  (04, 'Grover', 5, 'turtle', 4),
+  (05, 'Robin', 4, 'bird', 2);</pre>
 
-  <hr>
+<span class="lg wh">"Okay, Give me all records of the youngest pet"</span>
+
+<table class="w40 bright-table">
+    <tr>
+      <th>petID</th>
+      <th>name</th>
+      <th>age</th>
+      <th>kind</th>
+    </tr>
+    <tr>
+      <td>03</td>
+      <td>Mini</td>
+      <td>1</td>
+      <td>mouse</td>
+    </tr>
+  </table>
+<pre class="prettyprint w40">select * from pets order by age asc limit 1</pre>
+</div>
+<div class="plain-frame1"><h3 class="chtitle mutedBlue">Nested Queries</h3>
+
+
+</div>
+
+
 
 
   </pre>
