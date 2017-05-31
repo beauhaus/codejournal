@@ -1,32 +1,42 @@
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
 <div class="sql-container">
   <aside><span class="rot90">{{state}}</span></aside>
-  <div class="sql-entry entry"><pre>
+  <div class="sql-entry entry">
+    <pre>
   <!-- pre for all sql -->
-  <div class="simple-frame w40 dkbg top-right-box sand"><span class="med ltred underline">SQL Hotlist</span>
-  CREATE TABLE <em class="y">Name</em> ( personID INT, name varchar(50), hobby varchar(100) );
-  INSERT INTO people (personID, name, hobby);
-  VALUES (01, 'Sue Conlin', 'Drinking');
+  <div class="framed2 w40 dkbg top-right-box wh"><sup class="med ltred">SQL Hotlist</sup>
+  <i class="orange">CREATE TABLE</i> <em class="y">Name</em>
+  ( personID INT, name varchar(50), hobby varchar(100) );
+  <i class="orange">INSERT INTO</i> people (personID, name, hobby);
+  <i class="orange">VALUES</i> (01, 'Sue', 'Drinking');
+  <i class="orange">DROP TABLE</i> table_name;
+  <i class="orange">ALTER TABLE</i><em class="y">Name</em> <i class="orange">ADD COLUMN </i><em class="y">Name</em>
+                                                 <i class="orange">INTEGER REFERENCES</i><em class="y">pets(petID)</em>
 
 
-  5. <span class="wh">PreserveAspect ratio</span>
-  <span class="y dkbg ctrtxt"><b><</b>svg .... preserveAspectRatio="xMinYMin meet" width="100%" height="100%"<b>></b></span>
+
 
   <a class="fRight" target="_blank" href="https://chinook.ml/">Test in CHINOOK</a>
   </div>
 
-  <div class="plain-frame1">
-    test
+  <!-- <div class="plain-frame1 w60"> -->
+<pre class="dkbg w40">sample terms
+  <i class="orange">desc/asc</i>
+  <i class="orange">limit</i> 4
+  <i class="orange">sum()</i> 🔸 select sum(age) from people
+  <i class="orange">avg()</i> 🔸 select avg(personID) from people
+  <i class="orange">upper()</i> 🔸 SELECT upper(name) FROM people
+  <i class="orange">DISTINCT</i> 🔸 SELECT DISTINCT age FROM people; -no dupes
+  <i class="orange">upper()</i> 🔸 SELECT upper(name) FROM people
+  <i class="orange">upper()</i> 🔸 SELECT upper(name) FROM people
 
-
-
-  </div>
-<h3 class="chtitle">TitlePlaceholder</h3>
+</pre>
+  <!-- </div> -->
 
 <div class="framed7 col-2"><h3 class="chtitle wh">Sample DB creation</h3>
   <table class="w40">
     <tr>
-      <th>id</th>
+      <th>PersonID</th>
       <th>name</th>
       <th>city</th>
       <th>age</th>
@@ -57,9 +67,18 @@
       <td>Tacos</td>
       <td>Jogging</td>
     </tr>
+    <tr>
+      <td>04</td>
+      <td>Sam</td>
+      <td>Dallas</td>
+      <td>12</td>
+      <td>Burgers</td>
+      <td>Nintendo</td>
+    </tr>
   </table>
+  <hr>
 
-<pre class="prettyprint w40">
+<pre class="prettyprint w40 ">
 create table people (
   personID INT,
   name varchar(50),
@@ -75,18 +94,108 @@ VALUES
   (02, 'Jeff', 'Halifax', 64, 'Pizza', 'Scrabble'),
   (03, 'Derrick', 'Provo', 50, 'Tacos', 'Jogging');
 </pre>
-It's extremely effective and efficient. I haven't used it in sass, but I see no reason that it wouldn't work.</div>
-<pre class="prettyprint w60">
-// code in here
-</pre>
 
-    <hr>
-
-
-</pre>
-<!-- end of pre for all -->
   </div>
-  <!-- end of entry -->
+  <div class="plain-frame1 w60">
+    <table>
+      <tr class="sand">
+        <th>personID</th>
+        <th>name</th>
+        <th>city</th>
+        <th>age</th>
+        <th>food</th>
+        <th>hobby</th>
+      </tr>
+      <tr>
+        <td>03</td>
+        <td>Derrick</td>
+        <td>Provo</td>
+        <td>50</td>
+        <td>Tacos</td>
+        <td>Jogging</td>
+      </tr>
+    </table>
+    <pre class="prettyprint w40">select * from people
+    where food not in ('Lobster', 'Pizza', 'Burgers');</pre>
+"Select entries where food is neither Lobster or Pizza or Burgers"
+  <i class="dkred med">IN / NOT IN</i> can achieve and "either or/neither nor" logical query.
+<br><table>
+  <tr class="sand">
+    <th>personID</th>
+    <th>name</th>
+    <th>city</th>
+    <th>age</th>
+    <th>food</th>
+    <th>hobby</th>
+  </tr>
+  <tr>
+    <td>03</td>
+    <td>Derrick</td>
+    <td>Provo</td>
+    <td>50</td>
+    <td>Tacos</td>
+    <td>Jogging</td>
+  </tr>
+</table>
+<pre class="prettyprint w40">select * from people
+  where not (age < 55 or city like '%osto%');</pre>
+
+  "Show records of people not from Boston or age is not less than 55"
+  </div>
+  <div class="framed6"><h3 class="chtitle wh med">new DB</h3>
+    <div class="framed7 col-2">
+      <table class="w40 bright-table">
+        <tr>
+          <th>petID</th>
+          <th>name</th>
+          <th>age</th>
+          <th>kind</th>
+        </tr>
+        <tr>
+          <td>01</td>
+          <td>Scruffy</td>
+          <td>2</td>
+          <td>ferret</td>
+        </tr>
+        <tr>
+          <td>02</td>
+          <td>Scooby</td>
+          <td>5</td>
+          <td>dog</td>
+        </tr>
+        <tr>
+          <td>03</td>
+          <td>Mini</td>
+          <td>1</td>
+          <td>mouse</td>
+        </tr>
+        <tr>
+          <td>04</td>
+          <td>Grover</td>
+          <td>5</td>
+          <td>turtle</td>
+        </tr>
+      </table>
+<pre class="prettyprint">
+create table pets
+(petID int, name varchar(50), age int, kind varchar(50));
+
+INSERT INTO pets (petID, name, age, kind)
+
+VALUES
+  (01, 'Scruffy', 2, 'ferret'),
+  (02, 'Scooby', 5, 'dog'),
+  (03, 'Mini', 1, 'mouse'),
+  (04, 'Grover', 5, 'turtle');</pre>
+  </div>
+
+  <hr>
+
+
+  </pre>
+  <!-- end of pre for all -->
+</div>
+<!-- end of entry -->
 
 </div>
 <!-- end of sql container -->
