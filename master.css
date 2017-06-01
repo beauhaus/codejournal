@@ -270,6 +270,16 @@ a[ui-sref]:hover {
   font-family: "Raleway", Sans-Serif, Sans-Serif;
   font-size: 1.5vw; }
 
+.plain-frame3 {
+  border: 1px solid black;
+  box-shadow: inset 1px 1px 4px 1px rgba(0, 0, 0, 0.61);
+  background-color: #a38853;
+  color: #d9d4c5;
+  padding: 1vh 2vw;
+  font-weight: 400;
+  font-family: "Raleway", Sans-Serif, Sans-Serif;
+  font-size: 1.5vw; }
+
 .simple-frame {
   border: 1px solid maroon;
   box-shadow: inset 1px 1px 4px 1px rgba(0, 0, 0, 0.61);
@@ -303,6 +313,10 @@ a[ui-sref]:hover {
   font-weight: 400;
   font-family: Trebuchet, Sans-Serif;
   font-size: 1.4vw; }
+
+.simple-wine-frame {
+  border: 1px solid grey;
+  background-color: rgba(47, 9, 15, 0.45); }
 
 .framed1 {
   padding: 2%;
@@ -632,6 +646,7 @@ th {
   color: white; }
 
 .col-2 {
+  padding: 0 2%;
   column-rule: 1px solid burlywood; }
 
 hr {
@@ -682,6 +697,9 @@ div.svg-entry {
 
 .mutedBlue {
   color: #3f6a96; }
+
+.mutedPurp {
+  color: #827a90; }
 
 .mutedOrange {
   color: #9a854e; }
@@ -754,6 +772,9 @@ div.svg-entry {
 
 .dkbg {
   background-color: rgba(45, 44, 44, 0.7); }
+
+.dkbg2 {
+  background-color: rgba(47, 9, 15, 0.45); }
 
 .ltbg {
   background-color: rgba(199, 190, 132, 0.5); }

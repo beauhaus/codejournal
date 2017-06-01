@@ -9,7 +9,9 @@
 .mutedBlue {
   color: map-get($colors, mutedBlue);
 }
-
+.mutedPurp{
+  color: map-get($colors, mutedPurp);
+}
 .mutedOrange {
   color: map-get($colors, mutedOrange);
 }
@@ -99,6 +101,10 @@
 
 .dkbg {
   background-color: map-get($colors, dkbg);
+}
+
+.dkbg2 {
+  background-color: map-get($colors, dkbg2);
 }
 
 .ltbg {

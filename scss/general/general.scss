@@ -349,6 +349,18 @@ a[ui-sref]:hover {
     size: 1.5vw;
   }
 }
+.plain-frame3 {
+  border: 1px solid black;
+  box-shadow: inset 1px 1px 4px 1px rgba(#000000, 0.61);
+  background-color: map-get($colors, mustard);
+  color: map-get($colors, offWhite);
+  padding: 1vh 2vw;
+  font: {
+    weight: 400;
+    family: map-get($fonts, Clean), Sans-Serif;
+    size: 1.5vw;
+  }
+}
 .simple-frame {
   border: 1px solid maroon;
   box-shadow: inset 1px 1px 4px 1px rgba(#000000, 0.61);
@@ -389,7 +401,10 @@ a[ui-sref]:hover {
     size: 1.4vw;
   }
 }
-
+.simple-wine-frame {
+  border: 1px solid grey;
+  background-color: map-get($colors, dkbg2);
+}
 .framed1 {
   padding: 2%;
   font: {

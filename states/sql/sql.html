@@ -26,14 +26,14 @@
       <li><b class="orange">UPPER()</b> SELECT upper(name) FROM people</li>
       <li><b class="orange">DISTINCT</b> SELECT DISTINCT age FROM people; -no dupes</li>
       <li><b class="orange">ALTER TABLE</b> ALTER TABLE t_name ADD COLUMN col_name</li>
-      <li class="sm"><b class="orange">ALTER TABLE</b> <em class="y">Name</em> <b class="orange">ADD COLUMN </b><em class="y">col_Name</em> <b class="orange">INTEGER REFERENCES</b><em class="y"> pets(petID)<sup class="wh">links to other table</sup></em></li>
+      <li class="sm"><b class="orange">ALTER TABLE</b> <em class="y">Name</em> <b class="orange">ADD COLUMN </b><em class="y">col_Name</em> <b class="orange">INTEGER REFERENCES</b><em class="y"> pets(petID)<sup class="wh">foreign key</sup></em></li>
       <li><b class="orange">ORDER BY</b> SELECT * FROM people order by age;</li>
       <li><b class="orange">GROUP BY</b> SELECT * FROM people group by city;</li>
       <li><b class="orange">OFFSET</b> SELECT * FROM people limit 1 offset 1</li>
       <li><b class="orange">RANDOM()</b> select * from people order by random() limit 1<sup class="wh">single random record</sup></li>
-      <li><b class="orange">PLACEHOLD()</b> SELECT upper(name) FROM people</li>
-      <li><b class="orange">PLACEHOLD()</b> SELECT upper(name) FROM people</li>
-      <li><b class="orange">PLACEHOLD()</b> SELECT upper(name) FROM people</li>
+      <li><b class="orange">UPDATE</b> UPDATE pets SET name = 'Rover' where name='Scooby'</li>
+      <li><b class="orange">DELETE</b> DELETE DELETE FROM pets WHERE kind = 'human'</li>
+      <li><b class="orange">ALTER TABLE </b>ALTER TABLE pets DROP scratch_history</li>
     </ul>
   </div>
 
@@ -79,6 +79,14 @@
       <td>Burgers</td>
       <td>Nintendo</td>
     </tr>
+    <tr>
+      <td>05</td>
+      <td>Ann</td>
+      <td>Rome</td>
+      <td>31</td>
+      <td>Pasta</td>
+      <td>Coding</td>
+    </tr>
   </table>
   <hr>
 
@@ -97,12 +105,13 @@ VALUES
   (01, 'Sue', 'Boston', 28, 'Lobster', 'Drinking'),
   (02, 'Jeff', 'Halifax', 64, 'Pizza', 'Scrabble'),
   (03, 'Derrick', 'Provo', 50, 'Tacos', 'Jogging'),
-  (04, 'Sam', 'Dallas', 12, 'Burgers', 'Nintendo');
+  (04, 'Sam', 'Dallas', 12, 'Burgers', 'Nintendo'),
+  (05, 'Ann', 'Rome', 31, 'Pasta', 'Coding');
 </pre>
 
   </div>
   <div class="plain-frame1 w60">
-"Select entries where food is neither Lobster nor Pizza nor Burgers"
+"Select people where food is neither Lobster nor Pizza nor Burgers"
 
   <table>
       <tr class="sand">
@@ -121,6 +130,14 @@ VALUES
         <td>Tacos</td>
         <td>Jogging</td>
       </tr>
+      <tr>
+        <td>05</td>
+        <td>Ann</td>
+        <td>Rome</td>
+        <td>31</td>
+        <td>Pasta</td>
+        <td>Coding</td>
+      </tr>
     </table>
 <pre class="prettyprint w40">select * from people
     where food not in ('Lobster', 'Pizza', 'Burgers');</pre>
@@ -137,12 +154,12 @@ VALUES
     <th>hobby</th>
   </tr>
   <tr>
-    <td>03</td>
-    <td>Derrick</td>
-    <td>Provo</td>
-    <td>50</td>
-    <td>Tacos</td>
-    <td>Jogging</td>
+    <td>02</td>
+    <td>Jeff</td>
+    <td>Halifax</td>
+    <td>64</td>
+    <td>Pizza</td>
+    <td>Scrabble</td>
   </tr>
 </table>
 <pre class="prettyprint w40">select * from people
@@ -243,7 +260,7 @@ VALUES
   </table>
 <pre class="prettyprint w40">select * from pets order by age asc limit 1</pre>
 </div>
-<div class="col-2">
+<div class="col-2 simple-wine-frame">
   <div class="plain-frame1 w40"><h3 class="chtitle mutedBlue">"group by"</h3>
     "Give me number of pets for each gender"
 
@@ -292,11 +309,36 @@ VALUES
   select age, count(*) as animals from pets
   group by age
   having legs > 2
-  order by age desc
-</pre>
-
+  order by age desc</pre>
 <p></p>
   </div>
+</div>
+<div class="plain-frame3">
+  <pre class="prettyprint w60">
+    CREATE TABLE users
+  (
+    user_id SERIAL PRIMARY KEY,
+    name VARCHAR(20) NOT NULL,
+    username varchar(20) UNIQUE, // 'UNIQUE' here, makes certain that no 2 users have same nickname
+    auth0_id TEXT
+  );
+
+
+  INSERT INTO users
+  (
+    id,
+    name,
+    username
+  )
+
+  VALUES ('Alfred Brown'), // notice that no id is entered. It auto increments.
+  ('Leroy mJenkins', 'mJenk20'),
+  ('Susan Wilson', 'sxySuzi2000'),
+  ('Casey Affleck', 'citizen4'),
+  ('Jennifer Lawrence', 'jLo2017'),
+  ('Gordon Ramsey', 'michStar3');
+</pre>
+
 </div>
 
 
