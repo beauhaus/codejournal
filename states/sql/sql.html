@@ -18,19 +18,22 @@
 
   <div class="squat framed8 w60"><span class="chtitle wh">Common Keywords</span>
     <ul>
-      <li><i class="orange">DESC/ASC</i> select age from pets asc limit 3</li>
-      <li><i class="orange">LIMIT</i> select * from pets limit 4</li>
-      <li><i class="orange">BETWEEN </i>X <i class="orange">AND</i> select * from pets where age between 3 and 5</li>
-      <li><i class="orange">SUM()</i> select sum(age) from people</li>
-      <li><i class="orange">AVG()</i> select avg(personID) from people</li>
-      <li><i class="orange">UPPER()</i> SELECT upper(name) FROM people</li>
-      <li><i class="orange">DISTINCT</i> SELECT DISTINCT age FROM people; -no dupes</li>
-      <li><i class="orange">ALTER TABLE</i> ALTER TABLE t_name ADD COLUMN col_name</li>
-      <li><i class="orange">ORDER BY</i> SELECT * FROM people order by age;</li>
-      <li><i class="orange">GROUP BY</i> SELECT * FROM people group by city;</li>
-      <li><i class="orange">PLACEHOLD()</i> SELECT upper(name) FROM people</li>
-      <li><i class="orange">PLACEHOLD()</i> SELECT upper(name) FROM people</li>
-      <li><i class="orange">PLACEHOLD()</i> SELECT upper(name) FROM people</li>
+      <li><b class="orange">DESC/ASC</b> select age from pets asc limit 3</li>
+      <li><b class="orange">LIMIT</b> select * from pets limit 4</li>
+      <li><b class="orange">BETWEEN </b>X <b class="orange">AND</b> select * from pets where age between 3 and 5</li>
+      <li><b class="orange">SUM()</b> select sum(age) from people</li>
+      <li><b class="orange">AVG()</b> select avg(personID) from people</li>
+      <li><b class="orange">UPPER()</b> SELECT upper(name) FROM people</li>
+      <li><b class="orange">DISTINCT</b> SELECT DISTINCT age FROM people; -no dupes</li>
+      <li><b class="orange">ALTER TABLE</b> ALTER TABLE t_name ADD COLUMN col_name</li>
+      <li class="sm"><b class="orange">ALTER TABLE</b> <em class="y">Name</em> <b class="orange">ADD COLUMN </b><em class="y">col_Name</em> <b class="orange">INTEGER REFERENCES</b><em class="y"> pets(petID)<sup class="wh">links to other table</sup></em></li>
+      <li><b class="orange">ORDER BY</b> SELECT * FROM people order by age;</li>
+      <li><b class="orange">GROUP BY</b> SELECT * FROM people group by city;</li>
+      <li><b class="orange">OFFSET</b> SELECT * FROM people limit 1 offset 1</li>
+      <li><b class="orange">RANDOM()</b> select * from people order by random() limit 1<sup class="wh">single random record</sup></li>
+      <li><b class="orange">PLACEHOLD()</b> SELECT upper(name) FROM people</li>
+      <li><b class="orange">PLACEHOLD()</b> SELECT upper(name) FROM people</li>
+      <li><b class="orange">PLACEHOLD()</b> SELECT upper(name) FROM people</li>
     </ul>
   </div>
 
@@ -146,63 +149,75 @@ VALUES
   where not (age < 55 or city like '%osto%');</pre>
 
   </div>
-  <div class="framed6"><h3 class="chtitle wh med">new DB</h3>
+  <div class="framed6"><h3 class="chtitle wh med">pets DB</h3>
       <table class="w40 bright-table">
         <tr>
           <th>petID</th>
           <th>name</th>
           <th>age</th>
           <th>kind</th>
+          <th>sex</th>
           <th>legs</th>
+          <th>lbs</th>
         </tr>
         <tr>
           <td>01</td>
           <td>Scruffy</td>
           <td>2</td>
           <td>ferret</td>
+          <td>male</td>
           <td>4</td>
+          <td>3</td>
         </tr>
         <tr>
           <td>02</td>
           <td>Scooby</td>
           <td>5</td>
           <td>dog</td>
+          <td>female</td>
           <td>4</td>
+          <td>12</td>
         </tr>
         <tr>
           <td>03</td>
           <td>Mini</td>
           <td>1</td>
           <td>mouse</td>
+          <td>male</td>
           <td>4</td>
+          <td>1</td>
         </tr>
         <tr>
           <td>04</td>
           <td>Grover</td>
           <td>5</td>
           <td>turtle</td>
+          <td>female</td>
           <td>4</td>
+          <td>7</td>
         </tr>
         <tr>
           <td>05</td>
           <td>Robin</td>
           <td>4</td>
           <td>bird</td>
+          <td>male</td>
           <td>2</td>
+          <td>1</td>
         </tr>
       </table>
 <pre class="prettyprint w60">
 create table pets
-(petID int, name varchar(50), age int, kind varchar(50), legs int);
+(petID int, name varchar(50), age int, kind varchar(50), sex varchar(10), legs int, lbs int);
 
-INSERT INTO pets (petID, name, age, kind)
+INSERT INTO pets (petID, name, age, kind, sex, legs, lbs)
 
 VALUES
-  (01, 'Scruffy', 2, 'ferret', 4),
-  (02, 'Scooby', 5, 'dog', 4),
-  (03, 'Mini', 1, 'mouse', 4),
-  (04, 'Grover', 5, 'turtle', 4),
-  (05, 'Robin', 4, 'bird', 2);</pre>
+  (01, 'Scruffy', 2, 'ferret','male', 4, 3),
+  (02, 'Scooby', 5, 'dog','female', 4, 12),
+  (03, 'Mini', 1, 'mouse','male', 4, 1),
+  (04, 'Grover', 5, 'turtle','female', 4, 7),
+  (05, 'Robin', 4, 'bird','male', 2, 1);</pre>
 
 <span class="lg wh">"Okay, Give me all records of the youngest pet"</span>
 
@@ -212,21 +227,77 @@ VALUES
       <th>name</th>
       <th>age</th>
       <th>kind</th>
+      <th>sex</th>
+      <th>legs</th>
+      <th>lbs</th>
     </tr>
     <tr>
       <td>03</td>
       <td>Mini</td>
       <td>1</td>
       <td>mouse</td>
+      <td>male</td>
+      <td>4</td>
+      <td>1</td>
     </tr>
   </table>
 <pre class="prettyprint w40">select * from pets order by age asc limit 1</pre>
 </div>
-<div class="plain-frame1"><h3 class="chtitle mutedBlue">Nested Queries</h3>
+<div class="col-2">
+  <div class="plain-frame1 w40"><h3 class="chtitle mutedBlue">"group by"</h3>
+    "Give me number of pets for each gender"
 
+    <table class="bright-table">
+        <tr>
+          <th>gender</th>
+          <th>animals</th>
+        </tr>
+        <tr>
+          <td>female</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td>male</td>
+          <td>3</td>
+        </tr>
+      </table>
+  <pre class="prettyprint sm">
+  select sex as gender, count(*) as animals from pets
+  group by sex</pre>
+  <p>Notice that the 'count(*)' is alias<em>-able</em></p>
 
+  </div>
+  <div class="plain-frame2 w40"><h3 class="chtitle mutedBlue">"group by"</h3>
+"Among pets that aren't birds (or injured)... Give me a total per each age group."
+
+    <table class="bright-table">
+        <tr>
+          <th>age</th>
+          <th>animals</th>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>1</td>
+        </tr>
+      </table>
+<pre class="prettyprint sm">
+  select age, count(*) as animals from pets
+  group by age
+  having legs > 2
+  order by age desc
+</pre>
+
+<p></p>
+  </div>
 </div>
-
 
 
 
