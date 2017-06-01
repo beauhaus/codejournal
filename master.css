@@ -172,7 +172,7 @@ pre.prettyprint {
   background: #c29d9d; }
 
 .squat {
-  line-height: .8em; }
+  line-height: .5em; }
 
 .col-2 {
   columns: 2 5vw;
@@ -358,6 +358,26 @@ pre {
   border: 1px solid burlywood;
   box-shadow: inset 2px 2px 10px 2px black;
   color: #441f1d; }
+
+.framed8 {
+  font-family: "Code Source Pro", monospace;
+  padding: 2%;
+  margin: 1%;
+  box-shadow: inset 1px 1px 12px 2px black;
+  background-color: #58708a;
+  color: #ebb861;
+  padding: auto, 10%;
+  text-align: left;
+  border: 1px solid #9a854e; }
+
+.top-right-box {
+  border: 1px solid maroon;
+  background-color: rgba(199, 190, 132, 0.5);
+  font-size: .6em;
+  position: absolute;
+  top: 9.2vh;
+  right: 2.2vw;
+  z-index: 10; }
 
 .sm {
   font-size: 0.90909vw; }
@@ -639,14 +659,6 @@ div.svg-entry {
   border: 1px solid #e6d8cc;
   position: relative; }
 
-.top-right-box {
-  border: 1px solid maroon;
-  background-color: rgba(199, 190, 132, 0.5);
-  font-size: .8em;
-  position: absolute;
-  top: 0;
-  right: 0; }
-
 .box-border {
   border: 1px solid wheat; }
 
@@ -668,6 +680,9 @@ div.svg-entry {
 
 .pastpink {
   color: #9e869b; }
+
+.pastBlue {
+  color: #58708a; }
 
 .offWhite {
   color: #d9d4c5; }

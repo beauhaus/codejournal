@@ -1,10 +1,8 @@
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
 <div class="sql-container">
   <aside><span class="rot90">{{state}}</span></aside>
-  <div class="sql-entry entry">
-    <pre>
-  <!-- pre for all sql -->
   <div class="framed2 w40 dkbg top-right-box wh"><sup class="med ltred">SQL Hotlist</sup>
+  <pre>
   <i class="orange">CREATE TABLE</i> <em class="y">Name</em>
   ( personID INT, name varchar(50), hobby varchar(100) );
   <i class="orange">INSERT INTO</i> people (personID, name, hobby);
@@ -12,30 +10,29 @@
   <i class="orange">DROP TABLE</i> table_name;
   <i class="orange">ALTER TABLE</i> <em class="y">Name</em> <i class="orange">ADD COLUMN </i><em class="y">col_Name</em>
                                                  <i class="orange">INTEGER REFERENCES</i><em class="y">pets(petID)</em>
-
-
-
-
   <a class="fRight" target="_blank" href="https://chinook.ml/">Test in CHINOOK</a>
-  </div>
+  </pre></div>
+  <div class="sql-entry entry">
+    <pre>
+  <!-- pre for all sql -->
 
-  <!-- <div class="plain-frame1 w60"> -->
-<pre class="ltbg w60"><span class="chtitle wh">Common Keywords</span>
-  <i class="orange">DESC/ASC</i> select age from pets asc limit 3
-  <i class="orange">LIMIT</i> select * from pets limit 4
-  <i class="orange">BETWEEN </i>X <i class="orange">AND</i> select * from pets where age between 3 and 5
-  <i class="orange">SUM()</i> 🔸 select sum(age) from people
-  <i class="orange">AVG()</i> 🔸 select avg(personID) from people
-  <i class="orange">UPPER()</i> 🔸 SELECT upper(name) FROM people
-  <i class="orange">DISTINCT</i> 🔸 SELECT DISTINCT age FROM people; -no dupes
-  <i class="orange">ALTER TABLE</i> 🔸 ALTER TABLE t_name ADD COLUMN col_name
-  <i class="orange">ORDER BY</i> 🔸 SELECT * FROM people order by age;
-  <i class="orange">GROUP BY</i> 🔸 SELECT * FROM people group by city;
-  <i class="orange">PLACEHOLD()</i> 🔸 SELECT upper(name) FROM people
-  <i class="orange">PLACEHOLD()</i> 🔸 SELECT upper(name) FROM people
-  <i class="orange">PLACEHOLD()</i> 🔸 SELECT upper(name) FROM people
-</pre>
-  <!-- </div> -->
+  <div class="squat framed8 w60"><span class="chtitle wh">Common Keywords</span>
+    <ul>
+      <li><i class="orange">DESC/ASC</i> select age from pets asc limit 3</li>
+      <li><i class="orange">LIMIT</i> select * from pets limit 4</li>
+      <li><i class="orange">BETWEEN </i>X <i class="orange">AND</i> select * from pets where age between 3 and 5</li>
+      <li><i class="orange">SUM()</i> select sum(age) from people</li>
+      <li><i class="orange">AVG()</i> select avg(personID) from people</li>
+      <li><i class="orange">UPPER()</i> SELECT upper(name) FROM people</li>
+      <li><i class="orange">DISTINCT</i> SELECT DISTINCT age FROM people; -no dupes</li>
+      <li><i class="orange">ALTER TABLE</i> ALTER TABLE t_name ADD COLUMN col_name</li>
+      <li><i class="orange">ORDER BY</i> SELECT * FROM people order by age;</li>
+      <li><i class="orange">GROUP BY</i> SELECT * FROM people group by city;</li>
+      <li><i class="orange">PLACEHOLD()</i> SELECT upper(name) FROM people</li>
+      <li><i class="orange">PLACEHOLD()</i> SELECT upper(name) FROM people</li>
+      <li><i class="orange">PLACEHOLD()</i> SELECT upper(name) FROM people</li>
+    </ul>
+  </div>
 
 <div class="framed7 col-2"><h3 class="chtitle wh">Sample DB creation</h3>
   <table class="w40">
@@ -96,8 +93,8 @@ INSERT INTO people (personID, name, city, age, food, hobby)
 VALUES
   (01, 'Sue', 'Boston', 28, 'Lobster', 'Drinking'),
   (02, 'Jeff', 'Halifax', 64, 'Pizza', 'Scrabble'),
-  (03, 'Derrick', 'Provo', 50, 'Tacos', 'Jogging');
-  (04,	'Sam',	'Dallas',	12,	'Burgers',	'Nintendo')
+  (03, 'Derrick', 'Provo', 50, 'Tacos', 'Jogging'),
+  (04, 'Sam', 'Dallas', 12, 'Burgers', 'Nintendo');
 </pre>
 
   </div>

@@ -9,6 +9,7 @@
 .mutedBlue {
   color: map-get($colors, mutedBlue);
 }
+
 .mutedOrange {
   color: map-get($colors, mutedOrange);
 }
@@ -19,7 +20,9 @@
 .pastpink {
   color: map-get($colors, pastpink);
 }
-
+.pastBlue {
+  color: map-get($colors, pastBlue);
+}
 .offWhite {
   color: map-get($colors, offWhite);
 }

@@ -217,7 +217,7 @@ pre.prettyprint {
   background: map-get($colors, pastred);
 }
 .squat {
-  line-height: .8em;
+  line-height: .5em;
 }
 .col-2{
   columns: 2 5vw;
@@ -469,7 +469,30 @@ pre {
   color: map-get($colors, dkred);
 }
 
+.framed8 {
+    font-family: map-get($fonts, CodePro);
+    padding: 2%;
+    margin: 1%;
+    box-shadow: inset 1px 1px 12px 2px black;
+    background-color: map-get($colors, pastBlue);
+    color: map-get($colors, mango);
+    padding: auto, 10%;
+    text-align: left;
+    border: 1px solid map-get($colors, mutedOrange);
+}
+.top-right-box {
+  border: 1px solid maroon;
+  background-color: map-get($colors, ltbg);
 
+  font: {
+    size: .6em;
+    family: map-get($fonts, Comfortaa);
+  }
+  position: absolute;
+  top: 9.2vh;
+  right: 2.2vw;
+  z-index: 10;
+}
 .sm {
   font-size: $baseline / 1.1;
 }
