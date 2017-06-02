@@ -26,7 +26,8 @@
       <li><b class="orange">UPPER()</b> SELECT upper(name) FROM people</li>
       <li><b class="orange">DISTINCT</b> SELECT DISTINCT age FROM people; -no dupes</li>
       <li><b class="orange">ALTER TABLE</b> ALTER TABLE t_name ADD COLUMN col_name</li>
-      <li class="sm"><b class="orange">ALTER TABLE</b> <em class="y">Name</em> <b class="orange">ADD COLUMN </b><em class="y">col_Name</em> <b class="orange">INTEGER REFERENCES</b><em class="y"> pets(petID)<sup class="wh">foreign key</sup></em></li>
+      <li class="ltgrey">ALTER TABLE Name ADD COLUMN col_Name INTEGER REFERENCES pets(petID) <i class="wh sm">--foreign key</i></li>
+      <li class="sm grey"><b class="orange">ALTER TABLE</b> <em class="y">Name</em> <b class="orange">ADD COLUMN </b><em class="y">col_Name</em> <b class="orange">INTEGER REFERENCES</b><em class="y"> pets(petID)</em> <i></i>foreign key: </li>
       <li><b class="orange">ORDER BY</b> SELECT * FROM people order by age;</li>
       <li><b class="orange">GROUP BY</b> SELECT * FROM people group by city;</li>
       <li><b class="orange">OFFSET</b> SELECT * FROM people limit 1 offset 1</li>
@@ -339,9 +340,19 @@ VALUES
   ('Gordon Ramsey', 'michStar3');
 </pre>
 
+DROP column_to_be_deleted;
 </div>
-
-
+<div class="dkblue ltbg2">
+<h3>Rename column</h3>
+<h4 class="black"><i class="orange">ALTER TABLE</i> pets <i class="orange">RENAME COLUMN</i> petID <i class="orange">TO</i> pet_ID;</h4>
+<h3>Remove column</h3>
+<h4 class="black"><i class="orange">ALTER TABLE</i> pets <i class="orange">DROP</i> petID</h4>
+<h3>Rename column</h3>
+<h4 class="black"><i class="orange">ALTER TABLE</i> pets <i class="orange">RENAME COLUMN</i> petID <i class="orange">TO</i> pet_ID;</h4>
+<h3>Rename column</h3>
+<h4 class="black"><i class="orange">ALTER TABLE</i> pets <i class="orange">RENAME COLUMN</i> petID <i class="orange">TO</i> pet_ID;</h4>
+</div>
+<hr>
 
   </pre>
   <!-- end of pre for all -->

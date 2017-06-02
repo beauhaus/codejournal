@@ -98,6 +98,9 @@
 .ltred {
   color: map-get($colors, ltred);
 }
+.black {
+  color: map-get($colors, black);
+}
 
 .dkbg {
   background-color: map-get($colors, dkbg);
@@ -110,6 +113,12 @@
 .ltbg {
   background-color: map-get($colors, ltbg);
 }
+.ltbg2 {
+  color: map-get($colors, navy);
+  background-color: map-get($colors, ltbg2);
+  padding: 2%;
+}
+
 
 .trans {
   color: transparent;

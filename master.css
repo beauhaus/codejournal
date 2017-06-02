@@ -770,6 +770,9 @@ div.svg-entry {
 .ltred {
   color: #eb473d; }
 
+.black {
+  color: black; }
+
 .dkbg {
   background-color: rgba(45, 44, 44, 0.7); }
 
@@ -778,6 +781,11 @@ div.svg-entry {
 
 .ltbg {
   background-color: rgba(199, 190, 132, 0.5); }
+
+.ltbg2 {
+  color: navy;
+  background-color: rgba(160, 182, 184, 0.6);
+  padding: 2%; }
 
 .trans {
   color: transparent; }
