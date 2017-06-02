@@ -346,12 +346,14 @@ VALUES
 DROP column_to_be_deleted;
 </div>
 <div class="dkblue ltbg2">
+<h3>Rename table</h3>
+<h4 class="black"><i class="orange">ALTER TABLE</i> people <i class="orange">RENAME TO</i> humans</h4>
 <h3>Rename column</h3>
 <h4 class="black"><i class="orange">ALTER TABLE</i> pets <i class="orange">RENAME COLUMN</i> petID <i class="orange">TO</i> pet_ID;</h4>
 <h3>Remove column</h3>
 <h4 class="black"><i class="orange">ALTER TABLE</i> pets <i class="orange">DROP</i> petID</h4>
 <h3>Join table <em>using aliasing</em></h3>
-<h4 class="black"><i class="orange">SELECT</i> * from people h <i class="orange">JOIN</i> pets <i class="orange">ON</i> p.petid = h.personid;</h4>
+<h4 class="black"><i class="orange">SELECT</i> * from people h <i class="orange">JOIN</i> pets p <i class="orange">ON</i> p.petid = h.personid;</h4>
 <h3>Drop table (with dependents)</h3>
 <h4 class="black"><i class="orange">DROP TABLE</i> spammers <i class="orange">CASCADE</i> </h4>
 </div>
