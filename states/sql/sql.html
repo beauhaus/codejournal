@@ -5,7 +5,7 @@
   <pre>
   <i class="orange">CREATE TABLE</i> <em class="y">Name</em>
   ( personID INT, name varchar(50), hobby varchar(100) );
-  <i class="orange">INSERT INTO</i> people (personID, name, hobby);
+  <i class="orange">INSERT INTO</i> humans (personID, name, hobby);
   <i class="orange">VALUES</i> (01, 'Sue', 'Drinking');
   <i class="orange">DROP TABLE</i> table_name;
   <i class="orange">ALTER TABLE</i> <em class="y">Name</em> <i class="orange">ADD COLUMN </i><em class="y">col_Name</em>
@@ -22,20 +22,22 @@
       <li><b class="orange">DESC/ASC</b> select age from pets asc limit 3</li>
       <li><b class="orange">LIMIT</b> select * from pets limit 4</li>
       <li><b class="orange">BETWEEN </b>X <b class="orange">AND</b> select * from pets where age between 3 and 5</li>
-      <li><b class="orange">SUM()</b> select sum(age) from people</li>
-      <li><b class="orange">AVG()</b> select avg(personID) from people</li>
-      <li><b class="orange">UPPER()</b> SELECT upper(name) FROM people</li>
-      <li><b class="orange">DISTINCT</b> SELECT DISTINCT age FROM people; -no dupes</li>
+      <li><b class="orange">SUM()</b> select sum(age) from humans</li>
+      <li><b class="orange">AVG()</b> select avg(personID) from humans</li>
+      <li><b class="orange">UPPER()</b> SELECT upper(name) FROM humans</li>
+      <li><b class="orange">DISTINCT</b> SELECT DISTINCT age FROM humans; -no dupes</li>
       <li><b class="orange">ALTER TABLE</b> ALTER TABLE t_name ADD COLUMN col_name</li>
       <li class="ltgrey">ALTER TABLE Name ADD COLUMN col_Name INTEGER REFERENCES pets(petID) <i class="wh sm">--foreign key</i></li>
       <li class="sm grey"><b class="orange">ALTER TABLE</b> <em class="y">Name</em> <b class="orange">ADD COLUMN </b><em class="y">col_Name</em> <b class="orange">INTEGER REFERENCES</b><em class="y"> pets(petID)</em> <i></i>foreign key: </li>
-      <li><b class="orange">ORDER BY</b> SELECT * FROM people order by age;</li>
-      <li><b class="orange">GROUP BY</b> SELECT * FROM people group by city;</li>
-      <li><b class="orange">OFFSET</b> SELECT * FROM people limit 1 offset 1</li>
-      <li><b class="orange">RANDOM()</b> select * from people order by random() limit 1<sup class="wh">single random record</sup></li>
+      <li><b class="orange">ORDER BY</b> SELECT * FROM humans order by age;</li>
+      <li><b class="orange">GROUP BY</b> SELECT * FROM humans group by city;</li>
+      <li><b class="orange">OFFSET</b> SELECT * FROM humans limit 1 offset 1</li>
+      <li><b class="orange">RANDOM()</b> select * from humans order by random() limit 1<sup class="wh">single random record</sup></li>
       <li><b class="orange">UPDATE</b> UPDATE pets SET name = 'Rover' where name='Scooby'</li>
-      <li><b class="orange">DELETE</b> DELETE DELETE FROM pets WHERE kind = 'human'</li>
+      <li><b class="orange">DELETE</b> FROM pets WHERE kind = 'humans'</li>
       <li><b class="orange">ALTER TABLE </b>ALTER TABLE pets DROP scratch_history</li>
+      <li><b class="orange">SELECT current_database();</b> returns name of DB</li>
+
     </ul>
   </div>
 
@@ -93,7 +95,7 @@
   <hr>
 
 <pre class="prettyprint w40 ">
-create table people (
+create table humans (
   personID INT,
   name varchar(50),
   city varchar(100),
@@ -102,7 +104,7 @@ create table people (
   hobby varchar(100)
 );
 
-INSERT INTO people (personID, name, city, age, food, hobby)
+INSERT INTO humans (personID, name, city, age, food, hobby)
 VALUES
   (01, 'Sue', 'Boston', 28, 'Lobster', 'Drinking'),
   (02, 'Jeff', 'Halifax', 64, 'Pizza', 'Scrabble'),
@@ -113,7 +115,7 @@ VALUES
 
   </div>
   <div class="plain-frame1 w60">
-"Select people where food is neither Lobster nor Pizza nor Burgers"
+"Select humans where food is neither Lobster nor Pizza nor Burgers"
 
   <table>
       <tr class="sand">
@@ -141,11 +143,11 @@ VALUES
         <td>Coding</td>
       </tr>
     </table>
-<pre class="prettyprint w40">select * from people
+<pre class="prettyprint w40">select * from humans
     where food not in ('Lobster', 'Pizza', 'Burgers');</pre>
   <i class="dkred med">IN / NOT IN</i> can achieve and "either or/neither nor" logical query.
 <br>
-"Show records of people not from Boston or age is not less than 55"
+"Show records of humans not from Boston or age is not less than 55"
 <br><table>
   <tr>
     <th>personID</th>
@@ -164,7 +166,7 @@ VALUES
     <td>Scrabble</td>
   </tr>
 </table>
-<pre class="prettyprint w40">select * from people
+<pre class="prettyprint w40">select * from humans
   where not (age < 55 or city like '%osto%');</pre>
 
   </div>
@@ -348,13 +350,30 @@ DROP column_to_be_deleted;
 <h4 class="black"><i class="orange">ALTER TABLE</i> pets <i class="orange">RENAME COLUMN</i> petID <i class="orange">TO</i> pet_ID;</h4>
 <h3>Remove column</h3>
 <h4 class="black"><i class="orange">ALTER TABLE</i> pets <i class="orange">DROP</i> petID</h4>
-<h3>Rename column</h3>
-<h4 class="black"><i class="orange">ALTER TABLE</i> pets <i class="orange">RENAME COLUMN</i> petID <i class="orange">TO</i> pet_ID;</h4>
-<h3>Rename column</h3>
-<h4 class="black"><i class="orange">ALTER TABLE</i> pets <i class="orange">RENAME COLUMN</i> petID <i class="orange">TO</i> pet_ID;</h4>
+<h3>Join table <em>using aliasing</em></h3>
+<h4 class="black"><i class="orange">SELECT</i> * from people h <i class="orange">JOIN</i> pets <i class="orange">ON</i> p.petid = h.personid;</h4>
+<h3>Drop table (with dependents)</h3>
+<h4 class="black"><i class="orange">DROP TABLE</i> spammers <i class="orange">CASCADE</i> </h4>
 </div>
 <hr>
+<div class="framed5">
+  <h3>About massive.js & the connectionString</h3>
+<pre class="prettyprint w60">var db = massive.connectSync({
+   connectionString: '<span class="sand">postgres</span>:<span class="ltblue">//localhost</span><span class="orange">/superDatabase</span>' NOTE: '(1)://(2)/(3)'
+});</pre>
 
+<span class="sand">postgres</span> --kind of db
+<span class="ltblue">//localhost</span>-- can be 127.0.0.1 or (if remote server) enter ip address
+or 'db.myfunapp.com' (it's just a DNS or ip link)
+<span class="orange">/superDatabase</span> is the db to connect to --can be '/anyDBname' to connect to
+
+IMPORTANT: IF YOU HAVE A USERNAME AND PASSWORD,  FORMAT IS:
+'postgres://user:pass@localhost/massive-demo'
+or... if no PASSWORD: 'postgres://user:@localhost/massive-demo'
+(often it is your machine connecting to postgres)
+THEREFORE: Don't be putting this stuff up on a repo, okay?
+rather use an env variable passed in or some kind of config.
+</div>
   </pre>
   <!-- end of pre for all -->
 </div>
