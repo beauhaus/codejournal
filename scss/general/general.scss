@@ -329,6 +329,19 @@ a[ui-sref]:hover {
   text-align: left;
 }
 
+.plain-frame0 {
+  border: 1px solid black;
+  box-shadow: inset 1px 1px 2px 1px rgba(#000000, 0.61);
+  background-color: darkgrey;
+  color: map-get($colors, dkblue);
+  padding: 1vh 1vw;
+  margin: 10px;
+  font: {
+    weight: 400;
+    family: menlo, Sans-Serif;
+    size: 1vw;
+  }
+}
 .plain-frame1 {
   border: 1px solid maroon;
   box-shadow: inset 1px 1px 4px 1px rgba(#000000, 0.61);
