@@ -511,6 +511,22 @@ pre {
     text-align: left;
     border: 1px solid map-get($colors, mutedOrange);
 }
+.dk-frame {
+  padding: 1%;
+  font-family: map-get($fonts, Cabin);
+  color: map-get($colors, ltgrey);
+  border: 1px solid map-get($colors, ivr);
+  box-shadow: inset 1px 1px 12px 2px black;
+  background-color: map-get($colors, dkbg3);
+}
+.lt-frame {
+  font-family: map-get($fonts, Cabin);
+  color: black;
+  border: 1px solid map-get($colors, black);
+  box-shadow: inset 1px 1px 12px 2px black;
+  background-color: map-get($colors, ltbg3);
+}
+
 .top-right-box {
   border: 1px solid maroon;
   background-color: map-get($colors, ltbg);
