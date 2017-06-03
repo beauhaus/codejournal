@@ -564,6 +564,9 @@ pre {
   font-family: map-get($fonts, Cabin);
   color: map-get($colors, dkorange);
 }
+.ctr {
+  margin: 0 auto;
+}
 .right {
   position: relative;
   margin-left: 40vw;

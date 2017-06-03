@@ -414,7 +414,29 @@ var db = massive.connectSync({
                 {...}
            ]
 }</pre>
-
+<div class="ctr ltbg2 w50"><p>It's important to know why this convention exists.</p>
+<div class="txtLeft">returning a simple array will prevent inserting info along with the response.
+  <pre class="prettyprint w20">res.send(humans);</pre></p>
+Whereas, with an object <pre class="prettyprint w20">res.send(humans);</pre>
+I can now insert stuff: <pre class="prettyprint">app.get('/petsandowners', logQuery, function(req, res) {
+  db.get_pets_and_owners(function(err, response) {
+   res.send({
+     response_description: "Collection of pets and their owners",
+     data: response});
+ })
+});</pre>
+<pre class="w40 simple-frame sm">{
+  "response_description":"Collection of pets and their owners",
+  "data":[
+      {"petname":"Scruffy","owner":"Sue"},
+      {"petname":"Scooby","owner":"Jeff"},
+      {"petname":"Mini","owner":"Derrick"},
+      {"petname":"Grover","owner":"Sam"},
+      {"petname":"Robin","owner":"Ann"}
+    ]
+}</pre>
+</div>
+</div>
 </div>
   </pre>
   <!-- end of pre for all -->

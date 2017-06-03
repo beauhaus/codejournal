@@ -441,6 +441,9 @@ pre {
   font-family: "Cabin", Sans-Serif;
   color: #945706; }
 
+.ctr {
+  margin: 0 auto; }
+
 .right {
   position: relative;
   margin-left: 40vw;
