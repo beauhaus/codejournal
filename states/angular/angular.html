@@ -2,6 +2,65 @@
 <aside><span class="rot90">{{state}}</span></aside>
 <div class="angular-entry entry">
   <pre>
+    <!-- pre for all -->
+    <!-- <div >
+  <input type="text" ng-model="data.msg">
+  <h3>Msg: {{data.msg}}</h3>
+</div>
+<div ng-controller="firstCtrl" >
+  <input type="text" ng-model="data.msg">
+  <h3>Msg: {{data.msg}}</h3>
+</div>
+<div ng-controller="secondCtrl" >
+  <input type="text" ng-model="data.msg">
+  <h3>Msg: {{data.msg}}</h3>
+</div> -->
+<h4>A word about scope and modeling (scope inheritance)</h4>
+I. This example shows modeling as property on an Obj. This is best practice and exploits the advantages of ang's scope inheritance.
+TL;DR --> input in any field, entire scope gets updated.
+<pre class="framed4 w50">
+  < div > <span class="transGreen">//root scope</span>
+    < input type="text" ng-model="<span class="ltblue">data<b class="ltred">.</b>msg</span>" >
+    < h3>Msg: {{<span class="ltblue">data<b class="ltred">.</b>msg</span>}}< /h3 >
+  < /div>
+
+  < div ng-controller="firstCtrl" > <span class="transGreen">// 'firstCtrl'</span>
+    < input type="text" ng-model="<span class="ltblue">data<b class="ltred">.</b>msg</span>" >
+    < h3>Msg: {{<span class="ltblue">data<b class="ltred">.</b>msg</span>}}< /h3 >
+  < /div>
+
+  < div ng-controller="secondCtrl" > <span class="transGreen">// 'secondCtrl'</span>
+    < input type="text" ng-model="<span class="ltblue">data<b class="ltred">.</b>msg</span>" >
+    < h3>Msg: {{<span class="ltblue">data<b class="ltred">.</b>msg</span>}}< /h3 >
+  < /div> </pre>
+II. This example "breaks" the scope. The model in {{<em class="y">message</em>}} is essentially being overwritten.
+TL;DR type in any box, only the model scoped to that input field is updated.
+  <pre class="framed4 w50">
+    < div > <span class="transGreen">//root scope</span>
+      < input type="text" ng-model="<em class="y">message</em>" >
+      < h3>Msg: {{<em class="y">message</em>}}< /h3 >
+    < /div>
+
+    < div ng-controller="firstCtrl" > <span class="transGreen">// 'firstCtrl'</span>
+      < input type="text" ng-model="<em class="y">message</em>" >
+      < h3>Msg: {{<em class="y">message</em>}}< /h3 >
+    < /div>
+
+    < div ng-controller="secondCtrl" > <span class="transGreen">// 'secondCtrl'</span>
+      < input type="text" ng-model="<em class="y">message</em>" >
+      < h3>Msg: {{<em class="y">message</em>}}< /h3 >
+    < /div> </pre>
+
+<pre class="prettyprint w60">
+//myCtrl.js
+var promise = $http.get('https://luckydogs.com/api/pets');
+
+promise.then(function(results) {
+  var results = results.data;
+  var status = results.status;
+})
+</pre>
+
     <h4>A promise in it's most simple form</h4>
     <pre class="prettyprint w60">
     //myCtrl.js

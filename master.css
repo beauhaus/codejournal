@@ -799,6 +799,9 @@ div.svg-entry {
 .ltgreen {
   color: #79e286; }
 
+.transGreen {
+  color: rgba(50, 179, 132, 0.78); }
+
 .dkred {
   color: #441f1d; }
 
