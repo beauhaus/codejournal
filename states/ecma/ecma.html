@@ -9,6 +9,25 @@
 <!--
 
 -->
+
+<div class="framed4"><h3 class="chtitle">Recursion</h3>
+  II. Factorial
+  <pre class="prettyprint w40">function factorial(n) {
+    if(n< 2) {
+      return 1;
+    } else {
+      return n * factorial(n-1);
+    }
+  }
+  var result = factorial(5);
+  var result2 = factorial(3);
+
+  console.log(result); // 120
+  console.log(result2); // 6
+</pre>
+
+</div>
+
 <div class="framed8"><h5 class="chtitle mango">IFEE sending an argument to itself</h5>
 <pre class="prettyprint w40 ctr">const firstName = "Leroy";
 (function(input) {
