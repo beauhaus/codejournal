@@ -9,8 +9,17 @@
 <!--
 
 -->
-<div class="simple-frame3"><h3 class="chtitle dkblue">Super-simple Closure</h3>
-<div class="col-2"><pre class="prettyprint w40">function makeGreeting(language) {
+<div class="framed8"><h5 class="chtitle mango">IFEE sending an argument to itself</h5>
+<pre class="prettyprint w40 ctr">const firstName = "Leroy";
+(function(input) {
+  console.log(`Hello, I'm ${input}`);
+}(firstName));
+
+// Hello, I'm Leroy</pre>
+  </div>
+  <div class="simple-frame3">
+    <h3 class="chtitle dkblue">Super-simple Closure</h3>
+    <div class="col-2"><pre class="prettyprint w40">function makeGreeting(language) {
 
   var counter = 0;
   return function(firstName, lastName) {
@@ -34,6 +43,7 @@ spanGreet("Susan", "Jenkins");
 engGreet("John", "Wilson");
 engGreet("John", "Wilson");</pre>
 <pre class="w40 dkbg ivr">
+
   Fn returning a Fn. A counter that increments on each sucessive execution.
 
   This example sets up a function factory of sorts.
@@ -45,10 +55,10 @@ engGreet("John", "Wilson");</pre>
 //  Run in English 1 times.
 //  Hello, John Wilson
 //  Run in English 2 times.</pre>
-</div>
-<div class="framed5">
-  <h3 class="chtitle ivr">Nice Closure creating Arrays, Objects & strings with args</h3>
-  <pre class="prettyprint">
+    </div>
+    <div class="framed5">
+      <h3 class="chtitle ivr">Nice Closure creating Arrays, Objects & strings with args</h3>
+      <pre class="prettyprint">
     function culledBits(type) {
     var arrCull = [];
     var objCull = {};
@@ -109,9 +119,10 @@ engGreet("John", "Wilson");</pre>
   makeArr("hello");
   makeStr("oranges")
 </pre>
-</div><hr>
-<h3 class="chtitle dkred">Here's a nice little closure/callback combo with a timer</h3>
-<pre class="prettyprint w60">
+    </div>
+    <hr>
+    <h3 class="chtitle dkred">Here's a nice little closure/callback combo with a timer</h3>
+    <pre class="prettyprint w60">
   <div class="fRight dkbg framed1 sm">
     // okay wait a sec...
     // Live reload enabled.
@@ -133,8 +144,9 @@ engGreet("John", "Wilson");</pre>
   })
   doit(5000);
 </pre></div>
-<div class="simple-frame2 col-2"><h4>quick quiz</h4>
-<pre class="prettyprint w40">
+  <div class="simple-frame2 col-2">
+    <h4>quick quiz</h4>
+    <pre class="prettyprint w40">
 scream();
 function scream() {
   console.log("Ahhhhhhh!!");
@@ -145,20 +157,17 @@ var quiet = function() {
   console.log("Shhhhhhhh!")
 }
 </pre>
-<br /><br>
-  Difference between line 2 and line 7?
-  <i class="ans med dkred">scream is a <b class="wh">FUNCTION STATEMENT</b></i><br>
-  <i class="ans med dkred">quiet is a <b class="wh">FUNCTION EXPRESSION</b></i>
-
-  What is the return of this and why?
-<i class="ans med dkred"><img class="w20" src="./img/error1.png" alt="error1"><br />
+    <br /><br> Difference between line 2 and line 7?
+    <i class="ans med dkred">scream is a <b class="wh">FUNCTION STATEMENT</b></i><br>
+    <i class="ans med dkred">quiet is a <b class="wh">FUNCTION EXPRESSION</b></i> What is the return of this and why?
+    <i class="ans med dkred"><img class="w20" src="./img/error1.png" alt="error1"><br />
   <b class="wh">Function expressions are NOT hoisted!</b></i>
 
-</div>
+  </div>
 
-<div class="framed2"><h4 class="chtitle dkred">TRIVIA</h4>
-  Proof that Functions are objects
-<pre class="prettyprint">
+  <div class="framed2">
+    <h4 class="chtitle dkred">TRIVIA</h4> Proof that Functions are objects
+    <pre class="prettyprint">
   function greet() {
     console.log("Hi");
   }
@@ -169,23 +178,24 @@ var quiet = function() {
   console.log(greet.name); // greet❗️
   console.log(greet);
   // function greet() { console.log("Hi"); } ❗️This code is merely a property on the object!
-</pre><hr>
-<h4 class="chtitle dkred">Functional Programming</h4>
-<div class="col-2">
-  I am going to pass an entire function as a parameter to another function.
-  In the Fn to which I pass the parameter, I'm going to invoke that puppy!
-<pre class="prettyprint w40">
+</pre>
+    <hr>
+    <h4 class="chtitle dkred">Functional Programming</h4>
+    <div class="col-2">
+      I am going to pass an entire function as a parameter to another function. In the Fn to which I pass the parameter, I'm going to invoke that puppy!
+      <pre class="prettyprint w40">
 function ohFunkThis(funk) {
   funk();
 }
 ohFunkThis(function() {console.log("I'm a parameter!")});
 // I'm a parameter!
 </pre>
-</div>
-<h4 class="chtitle ltred">This is the essence of "Functional Programming"!</h4></div>
-<div class="framed6"><h2 class="chtitle wh">Objects</h2>
-  <h3>Dead-simple Constructor Fn</h3>
-<pre class="prettyprint w60">function Person(name) {
+    </div>
+    <h4 class="chtitle ltred">This is the essence of "Functional Programming"!</h4></div>
+  <div class="framed6">
+    <h2 class="chtitle wh">Objects</h2>
+    <h3>Dead-simple Constructor Fn</h3>
+    <pre class="prettyprint w60">function Person(name) {
   this.name = name;
 }
 var cara = new Person("Cara");
@@ -193,8 +203,8 @@ console.log(cara.name); // "Cara"
 
 // "new" operator redefines context of 'this'--it is not window.
 </pre>
-<h3>Prototypal Inheritance</h3>
-<pre class="prettyprint linenums">
+    <h3>Prototypal Inheritance</h3>
+    <pre class="prettyprint linenums">
 var personConstruction = {
   name: "Default Anon",
   greet: function(name, mood) {
@@ -216,14 +226,12 @@ Person.prototype = personConstruction;
 cara = new Person("Cara", "dog");
 cara.greet(); // Hello, you. I'm Cara & I feel great because I'm a dog
 </pre>
-<h4 class="chtitle dkblue">Line 19 nicely allows for overriding of the prototype by feeding in args to the <code class="dkred underline"><i class="y">new</i> <span class="ltgreen">Person</span> cara</code></h4>
-<div class="simple-frame"><h4 class="dkmango">This will blow your mind</h4>
-  the methods 'placed on', or 'fed to' the <i class="ltgreen">new</i> Person are placed ON TOP OF the prototype.
-  They STILL exist on the prototoype!
-<div class="framed4 w60"> Within the "var personConstruction" object... exist the defaults.
-  These defaults ARE STILL ACCESSIBLE via the "__proto__" property!
-</div>
-<pre class="prettyprint w40">
+    <h4 class="chtitle dkblue">Line 19 nicely allows for overriding of the prototype by feeding in args to the <code class="dkred underline"><i class="y">new</i> <span class="ltgreen">Person</span> cara</code></h4>
+    <div class="simple-frame">
+      <h4 class="dkmango">This will blow your mind</h4> the methods 'placed on', or 'fed to' the <i class="ltgreen">new</i> Person are placed ON TOP OF the prototype. They STILL exist on the prototoype!
+      <div class="framed4 w60"> Within the "var personConstruction" object... exist the defaults. These defaults ARE STILL ACCESSIBLE via the "__proto__" property!
+      </div>
+      <pre class="prettyprint w40">
 cara.__proto__.name;
 // "Default Anon"
 cara.__proto__.species;
@@ -231,10 +239,11 @@ cara.__proto__.species;
 ...etc.
 <img  class="w20" src="./img/proto1.png" alt=""></pre>
 
-</div>
-</div>
-<div class="framed5"><h3 class="pastred">call(); Apply();</h3>
-<pre class="prettyprint linenums w60">
+    </div>
+  </div>
+  <div class="framed5">
+    <h3 class="pastred">call(); Apply();</h3>
+    <pre class="prettyprint linenums w60">
 var jim = {
   name: "Jim",
   opinion: function(fruit, dessert) {
@@ -258,28 +267,25 @@ jim.opinion();
 jim.opinion("choclate", "cake");
 jim.opinion.call(liz);
 jim.opinion.call(liz, "vanilla", "Sherbert" );
-</pre><h5 class="ivr">There's a few things going on here</h5>
-<span class="med">1. lines 04-05 establish conditional defaults. <br />  If no args are fed in, choose the defaults after "||".
+</pre>
+    <h5 class="ivr">There's a few things going on here</h5>
+    <span class="med">1. lines 04-05 establish conditional defaults. <br />  If no args are fed in, choose the defaults after "||".
 2. Of course, 'name' and 'verb' props exist. <br />  However, the <em class="y">${this.name}</em> allows for them to be 'hijacked' with call();
 3. line 16 'hijacks' the jim object's 'opinion' method.<br />
   <span class="ltgreen">liz.opinion();</span> renders // <span class="ans med ltgreen">Hi, I'm Elizabeth. I adore oh--anything a la mode.</span><br />
-  <span class="ltgreen">jim.opinion.call(liz<sup class="ltred">*</sup>);</span> will give us the same.
+    <span class="ltgreen">jim.opinion.call(liz<sup class="ltred">*</sup>);</span> will give us the same. 4. <span class="ltgreen">jim.opinion();</span> renders // <span class="ans med ltgreen">Hi, I'm Jim. I hate oh--anything a la mode.</span><br /> 5.
+    <span class="ltgreen">jim.opinion("chocolate", "cake");</span> renders // <span class="ans med ltgreen">Hi, I'm Jim. I hate chocolate cake.</span><br /> 6. <span class="ltgreen">jim.opinion.call(liz<sup class="ltred">*</sup>, "vanilla", "ice cream.");</span>    renders // <span class="ans med ltgreen">Hi, I'm Jim. I hate chocolate cake.</span><br />
 
-4.   <span class="ltgreen">jim.opinion();</span> renders // <span class="ans med ltgreen">Hi, I'm Jim. I hate oh--anything a la mode.</span><br />
-5.   <span class="ltgreen">jim.opinion("chocolate", "cake");</span> renders // <span class="ans med ltgreen">Hi, I'm Jim. I hate chocolate cake.</span><br />
-6.   <span class="ltgreen">jim.opinion.call(liz<sup class="ltred">*</sup>, "vanilla", "ice cream.");</span> renders // <span class="ans med ltgreen">Hi, I'm Jim. I hate chocolate cake.</span><br />
+    <sup class="orange">This context is established by first arg of .call();</sup>
+    <hr> var args = ["peach", "cobbler"];
+    <em class="dkblue">Obj.method</em>.apply(<span class="ltred"><em>this</em></span>, <span class="ivr">args</span>); can, thus be really powerful.
 
-<sup class="orange">This context is established by first arg of .call();</sup>
-<hr>
-var args = ["peach", "cobbler"];
-<em class="dkblue">Obj.method</em>.apply(<span class="ltred"><em>this</em></span>, <span class="ivr">args</span>);
-can, thus be really powerful.
+    </span>
+  </div>
+  <div class="framed5">
+    <h3 class="chtitle wh">Nice way to delete a prop from an object</h3>
 
-</span>
-</div>
-<div class="framed5"><h3 class="chtitle wh">Nice way to delete a prop from an object</h3>
-
-  <pre>
+    <pre>
 function groomer(inputObj) { //takes object and removes 'nat' prop
   let usables = Object.assign({}, inputObj);
   delete usables.nat;
@@ -287,27 +293,22 @@ function groomer(inputObj) { //takes object and removes 'nat' prop
 }
   </pre>
 
-</div>
-<div class="framed1">
-  <h3 class="chtitle">reduce()</h3>
-<h4 class="ltgreen">This method reduces entire array to a single value</h4>
-  <pre class="prettyprint">
+  </div>
+  <div class="framed1">
+    <h3 class="chtitle">reduce()</h3>
+    <h4 class="ltgreen">This method reduces entire array to a single value</h4>
+    <pre class="prettyprint">
 var array= [2,3,4,5,6,7];
 
 var result = array.reduce(function(prev, next){
   return prev + next; // arr[0]=prev, arr[1]=next the return val is fed into first arg "prev" (then, iterate)
 });
 console.log(result); // 27
-</pre>
-However! reduce() has even more up it's sleeve!
+</pre> However! reduce() has even more up it's sleeve! arr.reduce() has not <span class="y">one</span>, but <span class="orange">two</span> arguments!
 
-arr.reduce() has not <span class="y">one</span>, but <span class="orange">two</span> arguments!
+    <h4 class="chtitle med dkbg ivr w40">arr.reduce(<span class="y">function(a,b){ return a+b }</span>, <span class="orange">{}</span>);</h4> This second arg defines the value of "prev" at initial iteration.
 
-<h4 class="chtitle med dkbg ivr w40">arr.reduce(<span class="y">function(a,b){ return a+b }</span>, <span class="orange">{}</span>);</h4>
-
-This second arg defines the value of "prev" at initial iteration.
-
-<pre class="prettyprint">
+    <pre class="prettyprint">
   var array= ["apples", "pears", "bananas", "grapes"];
 
   var result = array.reduce(function(a, b){
@@ -315,18 +316,14 @@ This second arg defines the value of "prev" at initial iteration.
     return a;
   }, {});
   console.log(result);// Let's define "a" as an object and feed b as keys then values.
-  <img src="./img/reduceobject1.png" class="w40 ans right" alt="reduce()"></pre>
-
-Let's try initial argument as a string!
-<pre class="prettyprint">
+  <img src="./img/reduceobject1.png" class="w40 ans right" alt="reduce()"></pre> Let's try initial argument as a string!
+    <pre class="prettyprint">
 var result = array.reduce(function(a, b){
   a = a + " " + b;
   return a;
 }, "I Love"); // "I Love apples pears bananas grapes"
-</pre>
-
-Let's reduce array to divisible by 3s!
-<pre class="prettyprint">
+</pre> Let's reduce array to divisible by 3s!
+    <pre class="prettyprint">
 var array= [2,3,4,5,6,7,8,9];
 
 var divByThrees = array.reduce(function(arr, val){
@@ -337,8 +334,9 @@ var divByThrees = array.reduce(function(arr, val){
 },[]);
 
 console.log(divByThrees);   // [3, 6, 9]</pre>
-<div class="framed5"><h3 class="chtitle">Filter out string items from an array with filter();</h3>
-  <pre class="prettyprint w40">function filter_list(l) {
+    <div class="framed5">
+      <h3 class="chtitle">Filter out string items from an array with filter();</h3>
+      <pre class="prettyprint w40">function filter_list(l) {
   return l.reduce(function(arr, val){
     if (typeof val !== 'string') {
       arr.push(val);
@@ -349,23 +347,20 @@ console.log(divByThrees);   // [3, 6, 9]</pre>
 
 filter_list([1,'a','b',0,15]);
 // [1,0,15]</pre>
-<h3 class="chtitle wh">Solve this using filter();</h3>
-<pre class="prettyprint w60">function filter_list(l) {
+      <h3 class="chtitle wh">Solve this using filter();</h3>
+      <pre class="prettyprint w60">function filter_list(l) {
   return l.filter(function(v) {return typeof v == 'number'})
-}</pre>
-or... using coercion...
-<pre class="dkbg w20">function filter_list(l) {
+}</pre> or... using coercion...
+      <pre class="dkbg w20">function filter_list(l) {
   return l.filter(x=>x+0==x);
 }
 <span class="ltgreen">// [1,0,15]</span></pre>
-</div>
+    </div>
 
 
-<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce?v=example" target="_blank">MDN Says</a> that reduce can take 4 args...
-prev, next, index, array (over which to be iterated).
-
-Here's a simple use case: At which indices are there even numbers in this array?
-<pre class="prettyprint w60">
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce?v=example" target="_blank">MDN Says</a> that reduce can take 4 args... prev, next, index, array (over which to be iterated). Here's a simple use
+    case: At which indices are there even numbers in this array?
+    <pre class="prettyprint w60">
 //Months I jogged over 25 miles
 var jogRec2016 = [17, 32, 16, 41, 67, 29, 34, 15, 66, 56, 37, 66];
 
@@ -376,13 +371,10 @@ var result = jogRec2016.reduce(function(prev, next, index) {
   }
   return prev; //must return the Object
 },{}) <img src="./img/jobObject1.png" class="w10" alt="jogObject">
-</pre>
-
-Return an object with repeated words:
-<pre class="prettyprint w60">var sentence = "He's a good person doing a good thing for a good person.";
-var sentArr = sentence.split(' ');</pre>
-Let's first make an object.
-<pre class="prettyprint w60">
+</pre> Return an object with repeated words:
+    <pre class="prettyprint w60">var sentence = "He's a good person doing a good thing for a good person.";
+var sentArr = sentence.split(' ');</pre> Let's first make an object.
+    <pre class="prettyprint w60">
 var result = sentArr.reduce(function(prev, next, index) {
 
   prev[next] = (prev[next] + 1) || 1; //each is given <em class="underline">at least</em> a val of one (so... "|| 1")
@@ -391,10 +383,9 @@ var result = sentArr.reduce(function(prev, next, index) {
 
 },{})
 
-console.log(result); <img src="./img/goodObj1.png" class="w10 right" alt="goodObj"></pre>
-Now, simply test for <span class="pastY">val > 1</span>!!
+console.log(result); <img src="./img/goodObj1.png" class="w10 right" alt="goodObj"></pre> Now, simply test for <span class="pastY">val > 1</span>!!
 
-<pre class="prettyprint w60">var sentence = "He's a good person doing a good thing for a good person.";
+    <pre class="prettyprint w60">var sentence = "He's a good person doing a good thing for a good person.";
 var sentArr = sentence.split(' ');
 var repeaters = [];
 var result = sentArr.reduce(function(prev, next, index) {
@@ -405,28 +396,23 @@ var result = sentArr.reduce(function(prev, next, index) {
 <pre class="dkbg w20">
 if (val > 1) {
   repeaters[key] = val;
-}</pre>
-  return prev;
-},{})
-console.log(repeaters); // [a: 3, good: 3]</pre>
-<h4>Quiz: Why doesn't person show up in the object? <span class="ans mango med">Well, what does that item have that others don't?😎</span></h4>
+}</pre> return prev; },{}) console.log(repeaters); // [a: 3, good: 3]</pre>
+    <h4>Quiz: Why doesn't person show up in the object? <span class="ans mango med">Well, what does that item have that others don't?😎</span></h4>
 
-<h3>Of Course, it's useful to sum up array integers:</h3>
-<pre class="prettyprint">
+    <h3>Of Course, it's useful to sum up array integers:</h3>
+    <pre class="prettyprint">
   const hoursOfSleep = [5, 9, 7, 8, 6, 7, 7];
 
   const sum = hoursOfSleep.reduce((total, amount) =>  total + amount);
 
   console.log("I slept", sum, "hours this week"); // I slept 49 hours this week.
-</pre>
+</pre> Here is <a target="_blank" href="https://medium.freecodecamp.com/reduce-f47a7da511a9">MUCH More on reduce();</a> at FCC.
+  </div>
 
-Here is <a target="_blank" href="https://medium.freecodecamp.com/reduce-f47a7da511a9">MUCH More on reduce();</a> at FCC.
-</div>
-
-<div class="framed1">
+  <div class="framed1">
     <h3>Simple Callback</h3>
 
-<pre class="prettyprint linenums w60">
+    <pre class="prettyprint linenums w60">
 // First the bear bones
 function addBoolean(listBool, boing) {
   listBool.push(true);
@@ -465,8 +451,7 @@ function inOrder(list) {
 inOrder([]) // sending empty array literal
 
 <a href="http://www.pythontutor.com/visualize.html#mode=edit" target="_blank">Try Running it here!</a>
-</pre>
-    //Return the first in the array.
+</pre> //Return the first in the array.
     <pre class="prettyprint">
 var wines = ['Shiraz', 'Rose', 'Pinot', 'Cabernet', 'Grigio',  'Claret'];
 
@@ -481,10 +466,8 @@ function first(arr, cb) {
 
 console.log(sentence);
 // The first wine of wines is Shiraz.
-</pre>
-
-Callback used to sift through an array of objects
-<pre class="prettyprint w40">
+</pre> Callback used to sift through an array of objects
+    <pre class="prettyprint w40">
 const flags = [{
     country: "Canada",
     colors: "Red & White"
@@ -512,10 +495,11 @@ getFlagColorsByCountry(flags, 'China', function(nation) {
   console.log(result);
 });  // "Red & white"
 
-// -- inline callback</pre><hr>
-<h4 class="chtitle y med">callback within a forEach();</h4>
-<h4 class="mango">function "arrayDisplay()" contains a .forEach(); & calls a cb on each item</h4>
-<pre class="ltbg dkred">
+// -- inline callback</pre>
+    <hr>
+    <h4 class="chtitle y med">callback within a forEach();</h4>
+    <h4 class="mango">function "arrayDisplay()" contains a .forEach(); & calls a cb on each item</h4>
+    <pre class="ltbg dkred">
 
       var names = ["Louie", "George", "Chris", "Richard", "Seinfeld"];
       function arrayDisplay(names, cb) {
@@ -529,13 +513,13 @@ getFlagColorsByCountry(flags, 'China', function(nation) {
       });
 
 </pre>
-<h4 class="chtitle dkblue med">❗️By the way this is solved easily in ES6❗️</h4>
-<pre class="prettyprint w40">for (prop of names) {
+    <h4 class="chtitle dkblue med">❗️By the way this is solved easily in ES6❗️</h4>
+    <pre class="prettyprint w40">for (prop of names) {
   let indices = names.indexOf(prop);
   console.log('Item at index', indices , " is ", prop);
 }
 </pre>
-<pre class="prettyprint w60">
+    <pre class="prettyprint w60">
 const meals = { "Asian": "Pork", "Italian": "Pasta", "American": "Chicken" };
 const pans = { "Pork": "Wok", "Pasta": "Frying Pan", "Chicken": "Deep Fryer" };
 const oils = { "Wok": "Sesame", "Frying Pan": "Olive", "Deep Fryer": "Corn" };
@@ -564,9 +548,7 @@ carne("Italian");
 </pre>
   </div>
   <div class="simple-frame2">
-    <h3 class="chtitle">.map() example</h3>
-Where .filter() returns a boolean (what criterion to test) that removes items...
-this method simply transforms the array and returns a new array.
+    <h3 class="chtitle">.map() example</h3> Where .filter() returns a boolean (what criterion to test) that removes items... this method simply transforms the array and returns a new array.
     <h4>.map() iterates over each item, then returns a new array of same length. </h4>
     <pre class="prettyprint w40">
 var people = [{
@@ -591,8 +573,8 @@ var names = people.map(function(foo.name){
   return foo.name;
 })
 </pre>
-<span class="orange">"ES6 anyone?"</span>
-<pre class="prettyprint w40">
+    <span class="orange">"ES6 anyone?"</span>
+    <pre class="prettyprint w40">
 var names = people.map((foo) => console.log(foo.name));
 //or simply...
 var names = people.map((foo) => foo.name);
@@ -600,8 +582,7 @@ var names = people.map((foo) => foo.name);
 </pre>
 
   </div>
-  <div class="framed2 dkblue"> JSON.parse();
-    This object is in json and is useless to javascript:
+  <div class="framed2 dkblue"> JSON.parse(); This object is in json and is useless to javascript:
     <h4 class="wh">...myObject.json file</h4><pre class="dkblue w20">{
   "people": [{
       "Name": "Alice",
