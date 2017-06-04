@@ -1,4 +1,4 @@
-<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
+<!-- <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script> -->
 <div class="sql-container">
   <aside><span class="rot90">{{state}}</span></aside>
   <div class="framed2 w40 dkbg top-right-box wh"><sup class="med ltred">SQL Hotlist</sup>
@@ -40,9 +40,12 @@
 
     </ul>
   </div>
+<div class="framed7 col-2">
 
-<div class="framed7 col-2"><h3 class="chtitle wh">Sample DB creation</h3>
-  <table class="w40">
+  <h3 class="chtitle wh">Sample DB creation</h3>
+
+
+<table class="w40">
     <tr>
       <th>PersonID</th>
       <th>name</th>
@@ -92,9 +95,11 @@
       <td>Coding</td>
     </tr>
   </table>
-  <hr>
+  <br><br><br>
 
-<pre class="prettyprint w40 ">
+
+
+<pre class="framed4 w40">
 create table humans (
   personID INT,
   name varchar(50),
@@ -111,9 +116,7 @@ VALUES
   (03, 'Derrick', 'Provo', 50, 'Tacos', 'Jogging'),
   (04, 'Sam', 'Dallas', 12, 'Burgers', 'Nintendo'),
   (05, 'Ann', 'Rome', 31, 'Pasta', 'Coding');
-</pre>
-
-  </div>
+</pre></div>
   <div class="plain-frame1 w60">
 "Select humans where food is neither Lobster nor Pizza nor Burgers"
 
@@ -143,7 +146,7 @@ VALUES
         <td>Coding</td>
       </tr>
     </table>
-<pre class="prettyprint w40">select * from humans
+<pre class="plain-frame2 w40">select * from humans
     where food not in ('Lobster', 'Pizza', 'Burgers');</pre>
   <i class="dkred med">IN / NOT IN</i> can achieve and "either or/neither nor" logical query.
 <br>
@@ -166,7 +169,7 @@ VALUES
     <td>Scrabble</td>
   </tr>
 </table>
-<pre class="prettyprint w40">select * from humans
+<pre class="plain-frame2 w40">select * from humans
   where not (age < 55 or city like '%osto%');</pre>
 
   </div>
@@ -233,7 +236,7 @@ VALUES
           <td>shy</td>
         </tr>
       </table>
-<pre class="prettyprint w60">
+<pre class="plain-frame3 w60">
 create table pets
 (petID int, name varchar(50), age int, kind varchar(50), sex varchar(10), legs int, lbs int);
 
@@ -270,7 +273,7 @@ VALUES
       <td>shy</td>
     </tr>
   </table>
-<pre class="prettyprint w40">select * from pets order by age asc limit 1</pre>
+<pre class="plain-frame3 w40">select * from pets order by age asc limit 1</pre>
 </div>
 <div class="col-2 simple-wine-frame">
   <div class="plain-frame1 w40"><h3 class="chtitle mutedBlue">"group by"</h3>
@@ -290,10 +293,10 @@ VALUES
           <td>3</td>
         </tr>
       </table>
-  <pre class="prettyprint sm">
+  <pre class="plain-frame0 sm">
   select sex as gender, count(*) as animals from pets
   group by sex</pre>
-  <p>Notice that the 'count(*)' is alias<em>-able</em></p>
+  <h5 class="chtitle dkorange">Notice that the 'count(*)' is alias<em>-able</em></h5>
 
   </div>
   <div class="plain-frame2 w40"><h3 class="chtitle mutedBlue">"group by"</h3>
@@ -317,7 +320,7 @@ VALUES
           <td>1</td>
         </tr>
       </table>
-<pre class="prettyprint sm">
+<pre class="plain-frame0 sm">
   select age, count(*) as animals from pets
   group by age
   having legs > 2
@@ -326,7 +329,7 @@ VALUES
   </div>
 </div>
 <div class="plain-frame3">
-  <pre class="prettyprint w60">
+  <pre class="plain-frame0 w60 sm ctr">
     CREATE TABLE users
   (
     user_id SERIAL PRIMARY KEY,
@@ -344,11 +347,11 @@ VALUES
   )
 
   VALUES ('Alfred Brown', 'Vincent'), // notice that no id is entered. It auto-increments.
-  ('Leroy mJenkins', 'mJenk20'),
-  ('Susan Wilson', 'sxySuzi2000'),
-  ('Casey Affleck', 'citizen4'),
-  ('Jennifer Lawrence', 'jLo2017'),
-  ('Gordon Ramsey', 'michStar3');
+    ('Leroy mJenkins', 'mJenk20'),
+    ('Susan Wilson', 'sxySuzi2000'),
+    ('Casey Affleck', 'citizen4'),
+    ('Jennifer Lawrence', 'jLo2017'),
+    ('Gordon Ramsey', 'michStar3');
 </pre>
 </div>
 
@@ -375,10 +378,19 @@ UPDATE staff SET salary = 1250 WHERE name IN ('Jane', 'Susan');
 </div>
 <hr>
 <div class="framed5">
-  <h3>About massive.js & the connectionString</h3>
-<pre class="prettyprint w60">var db = massive.connectSync({
+  <h3>A look at massive.js & the connectionString</h3>
+<pre class="plain-frame1 ctr w60">var db = massive.connectSync({
    connectionString: '<span class="sand">postgres</span>:<span class="ltblue">//localhost</span><span class="orange">/superDatabase</span>' NOTE: '(1)://(2)/(3)'
 });</pre>
+
+<div class="plain-frame0 sm">
+  var db = massive.connectSync({
+    connectionString: '<span class="dkorange">postgres</span>://<span class="ivr">mpulbuzhfzj</span><span class="ltred">:</span><span class="ltblue">e6fde2e5f22635339c</span><span class="y">@</span>blah-blah-129-blah-33.compute-1.amazonaws.com:5432/<span class="purp">d23c4p0029vls</span>?<span class="wh">?ssl=true</span>'
+  });
+<h3 class="chtitle black"><span class="dkorange">kind of db</span>     <span class="ivr">username</span>     <span class="ltblue">password</span>     DNS or ip link     <span class="purp">dbName<sup class="ltred">*</sup> </span>     <span class="wh">secure socket layer</span></h3>
+  <sup class="ltred">*</sup> Heroku DB names are auto-generated & cannot be edited
+</div>
+
 
 <span class="sand">postgres</span> --kind of db
 <span class="ltblue">//localhost</span>-- can be 127.0.0.1 or (if remote server) enter ip address
@@ -393,7 +405,7 @@ THEREFORE: Don't be putting this stuff up on a repo, okay?
 rather use an env variable passed in or some kind of config.
 </div>
 <div class="plain-frame"><h3>first lines of server.js file <span class="sm pastpink">(node.js/massive.js)</span></h3>
-<pre class="prettyprint">var express = require('express');
+<pre class="framed8 w60">var express = require('express');
 var bodyParser = require('body-parser');
 var massive = require('massive');
 var app = express();
@@ -411,12 +423,12 @@ app.use(bodyParser.json());</pre>
 <hr>
 <h3>A sample GET</h3>
 <div class="col-2"><b class="fuch">A. </b>Simplest way is this:
-<pre class="prettyprint w40">app.get('/humans', logQuery, function(req, res) {
+<pre class="framed6 w40">app.get('/humans', logQuery, function(req, res) {
   db.get_humans(function(err, humans) {
    res.send(humans);
  })
 });</pre><b class="fuch">B </b>The convention is to put responses on a property of an object:
-<pre class="prettyprint w40">app.get('/humans', logQuery, function(req, res) {
+<pre class="framed6 w40">app.get('/humans', logQuery, function(req, res) {
   db.get_humans(function(err, humans) {
    res.send({humans:humans});
   })
@@ -435,11 +447,12 @@ app.use(bodyParser.json());</pre>
                 {...}
            ]
 }</pre>
-<div class="ctr ltbg2 w50"><p>It's important to know why this convention exists.</p>
+<div class="ctr framed4 w60"><p>It's important to know why this convention exists.</p>
 <div class="txtLeft">returning a simple array will prevent inserting info along with the response.
-  <pre class="prettyprint w20">res.send(humans);</pre></p>
-Whereas, with an object <pre class="prettyprint w20">res.send({humans:humans});</pre>
-I can now insert stuff: <pre class="prettyprint">app.get('/petsandowners', logQuery, function(req, res) {
+  <pre class="ltbg2 w20">res.send(humans);</pre></p>
+Whereas, with an object <pre class="ltbg2 w20">res.send({humans:humans});</pre>
+I can now insert stuff:
+<pre class="dkbg2">app.get('/petsandowners', logQuery, function(req, res) {
   db.get_pets_and_owners(function(err, response) {
    res.send({
      response_description: "Collection of pets and their owners",
@@ -470,6 +483,7 @@ Only one will return.
 </div>
 </div>
 </div>
+<hr>
 <div class="simple-wine-frame">
 Endpoint receiving a query from url conditionally returning the response ('res')
   <pre class="dk-frame w80">app.get('/petsbytag', function(req, res) {  <i class="mutedOrange">.sql fileName</i>
@@ -492,7 +506,7 @@ Endpoint receiving a query from url conditionally returning the response ('res')
 });</pre>
 This URL <span class="sm orange">http://localhost:3000/petsbytag?tag=calm</span>
 hits the db.pets_by_tag.sql file
-<pre class="prettyprint w20">select * from pets
+<pre class="framed4 w20">select * from pets
 where tag = $1;</pre>
 Then, renders:
 <pre class="plain-frame0">
@@ -505,7 +519,7 @@ Then, renders:
   <b class="ltgreen">[tag, name, age, sex]</b> fed to the db> .sql file<br />
 <div class="col-2">
 <span class="sm orange">DB > pets_by_name.sql</span>
-<pre class="prettyprint w20">select * from pets
+<pre class="plain-frame0 w20">select * from pets
 where Tag = $1;
 where Name = $2;
 where Age = $3;
@@ -522,6 +536,35 @@ select * from pets
 </div>
 </div>
 
+<hr>
+<div class="simple-frame3 ctr w80"><div class="chtitle ivr">Storing SVGs in a SQL db</div>
+<div class="plain-frame0">
+CREATE TABLE mysvg
+( id INT, shapeName varchar(50), code text );
+
+INSERT INTO mysvg (id, shapename, code)
+  VALUES (01,
+    'squares',
+    '< svg width="400" height="200" xmlns=" http://www.w3.org/2000/svg ">< rect fill="red" x="20" y="20" width="100" height="75"/>< /svg>')
+</div>
+
+<div class="col-2 lt-frame">
+ENDPOINT:
+  <pre class="dk-frame w30">app.get('/mysvg', logQuery, function(req, res) {
+    db.get_mysvg(function(err, svg) {
+      svg = svg[0].code;
+      res.send(svg);
+    })
+  });</pre><br><br><br>
+FILE:
+  <span class="dkorange sm">db>get_mysvg.sql</span><pre class="plain-frame0 w20">select * from mysvg;</pre>
+URL : http://localhost:3000/mysvg
+<br>
+</div>
+<div class="chtitle purp">BOOM! It works!
+<svg width="400" height="200" xmlns="http://www.w3.org/2000/svg"><rect fill="red" x="20" y="20" width="100" height="75"/></svg>
+</div>
+</div>
 <hr>
 </div>
   </pre>
