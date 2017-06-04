@@ -633,3 +633,10 @@ img.neighbors-item {
 .linenums {
   margin-left: 2%;
 }
+
+.dkbg3 {
+  background-color: map-get($colors, dkbg3);
+}
+.ltbg3 {
+  background-color: map-get($colors, ltbg3);
+}

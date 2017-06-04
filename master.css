@@ -500,6 +500,12 @@ img.neighbors-item {
 .linenums {
   margin-left: 2%; }
 
+.dkbg3 {
+  background-color: rgba(30, 35, 55, 0.6); }
+
+.ltbg3 {
+  background-color: rgba(242, 225, 165, 0.5); }
+
 /* jquery styles */
 .jq-entry {
   background-color: #a6b696;

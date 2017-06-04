@@ -552,7 +552,7 @@ INSERT INTO mysvg (id, shapename, code)
 ENDPOINT:
   <pre class="dk-frame w30">app.get('/mysvg', logQuery, function(req, res) {
     db.get_mysvg(function(err, svg) {
-      svg = svg[0].code;
+      <span class="ltgreen">svg = svg[0].code;</span>
       res.send(svg);
     })
   });</pre><br><br><br>
@@ -566,6 +566,41 @@ URL : http://localhost:3000/mysvg
 </div>
 </div>
 <hr>
+<div class="plain-frame1 ltbg3">
+<h3 class="chtitle">The anatomy of a POST</h3>
+db>create_pet.sql <pre class="plain-frame0 w50">insert into pets(petid, name, age, kind, sex, legs, lbs, tag)
+  values(<span class="ltgreen">$1, $2, $3, $4, $5, $6, $7, $8</span>)
+  <span class="dkorange underline">returning *;</span></pre>
+'returning * ;' sends us back a msg that it has been posted and is good for ux and/or dev.
+<span class="dkred">returning id;</span> is also an option.
+
+  <pre class="w60 dk-frame ctr">app.post('/pets', logQuery, function(req, res) {
+  var <span class="ltgreen">pet</span> = req.body;
+  db.create_pet(<span class="ltgreen">[pet.petid, pet.name, pet.age, pet.kind, pet.sex, pet.legs, pet.lbs, pet.tag]</span>,
+    function(err, result) {
+      if(err) {
+        res.status(500).send(err);
+      } else {
+        res.send(result);
+    }
+  })
+});</pre>
+Object to post to db:
+<div class="plain-frame0 w20">
+{
+  "petid": "08",
+  "name": "Glue",
+  "age": "7",
+  "kind": "horse",
+  "sex": "male",
+  "legs": 4,
+  "lbs": 850,
+  "tag": "slow"
+}
+</div>
+URL: <span class="orange med">http://localhost:3000/pets</span>
+
+</div>
 </div>
   </pre>
   <!-- end of pre for all -->
