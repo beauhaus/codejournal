@@ -310,7 +310,7 @@ a[ui-sref]:hover {
 .simple-frame2 {
   border: 1px solid maroon;
   box-shadow: 1px 1px 4px 1px rgba(45, 44, 44, 0.7);
-  background-color: #758a88;
+  background-color: #2b503b;
   color: #d0b588;
   font-family: Trebuchet, sans-serif;
   font-weight: 400;
@@ -339,7 +339,7 @@ a[ui-sref]:hover {
   padding: 2%;
   font-size: 1.4vw;
   margin: auto;
-  background-color: #758a88;
+  background-color: #2b503b;
   border: 1px solid brown;
   box-shadow: inset 2px 2px 10px 2px black;
   color: #bdbdbd; }
@@ -652,7 +652,7 @@ div.angular-entry {
     margin: 2vh auto; }
 
 div.node-entry {
-  background-color: #758a88;
+  background-color: #2b503b;
   border: 1px solid white;
   color: white;
   overflow: auto;
@@ -801,6 +801,9 @@ div.svg-entry {
 
 .transGreen {
   color: rgba(50, 179, 132, 0.78); }
+
+.pastOlive {
+  color: #2b503b; }
 
 .dkred {
   color: #441f1d; }

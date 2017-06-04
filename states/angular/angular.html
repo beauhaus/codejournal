@@ -3,19 +3,65 @@
 <div class="angular-entry entry">
   <pre>
     <!-- pre for all -->
-    <!-- <div >
-  <input type="text" ng-model="data.msg">
-  <h3>Msg: {{data.msg}}</h3>
+<div class="plain-frame3"><h3>Custom Filter</h3>
+  1. Inside the <em class="dkred">{ { } }</em> place data with a pipe, then filter name.
+  <pre class="ltbg2 w50 ctr">
+    < div ng-controller="firstCtrl" >
+      < input type="text" ng-model="data.message">
+      < h3 >Msg: {{data.message <b class="y">| charTotal</b>}}< /h3 >
+    < / div></pre>
+The pipe looks for a filtername, function is fired.
+
+<span class="pastOlive">< script>charTotalFilter.js< / script>
+</span><pre class="prettyprint w40">//charTotalFilter.js
+angular.module("eggApp1")
+  .filter("charTotal", function() {
+    return function(text) {
+      return text.split('').length;
+    }
+  })</pre>
+
 </div>
-<div ng-controller="firstCtrl" >
-  <input type="text" ng-model="data.msg">
-  <h3>Msg: {{data.msg}}</h3>
+<div class="plain-frame1"><h3 class="chtitle purp">A method on $scope</h3>
+The ng-model is 'data.message'
+It is bound to what is called (or returned) by this Fn call { { reversed) } }
+<pre class="ltbg2 w50 ctr">
+  < div ng-controller="firstCtrl" >
+    < input type="text" ng-model="data.message">
+    < h3 >Msg: {{reversed()}}< /h3 >
+  < / div>
+</pre>
+<em>firstCtrl.js</em><pre class="prettyprint w50">angular.module("eggApp1")
+  .controller("firstCtrl", function($scope, FacData) {
+    $scope.data = FacData;
+    $scope.reversed = function() {
+      return $scope.data.message.split('').reverse().join('').toUpperCase();
+    }
+  })
+// "This is reversed" entered
+// return: DESREVER SI SIHT</pre>
+
+In truth... This is the sloppy way:<pre class="ctr dkbg w50 sm">...
+  return <span class="y">$scope.data.</span>message.split('').reverse().join('').toUpperCase();
+...</pre>
+Best practice is to <em>TRY</em> NOT to reference $scope inside of a function.
+Instead we can simply send the input from < input > to the "{ {<em class="purp">reversed(<i class="ltred">data.message</i>)</em>} }" and then to the controller's method.
+This then can just be <pre class="prettyprint w50">$scope.reversed = function(message) {
+  return message.split('').reverse().join('').toUpperCase();
+}</pre>NOTA BENE: <span class="ltred">DONT forget to put a parameter in the function signature in the controller! (cf. first line above)</span>
+
+This function, then fires at:
+<pre class="ltbg2 w50 ctr">
+  < div ng-controller="firstCtrl" >
+    < input type="text" ng-model="data.message">
+    < h3 >Msg: {{ <i class="ltblue">reversed( <span class="ltred">data.message</span> )</i> }}< /h3 >
+  < / div>
+</pre>
 </div>
-<div ng-controller="secondCtrl" >
-  <input type="text" ng-model="data.msg">
-  <h3>Msg: {{data.msg}}</h3>
-</div> -->
-<h4>A word about scope and modeling (scope inheritance)</h4>
+
+
+<div class="simple-frame">
+  <h4>A word about scope and modeling (scope inheritance)</h4>
 I. This example shows modeling as property on an Obj. This is best practice and exploits the advantages of ang's scope inheritance.
 TL;DR --> input in any field, entire scope gets updated.
 <pre class="framed4 w50">
@@ -33,6 +79,7 @@ TL;DR --> input in any field, entire scope gets updated.
     < input type="text" ng-model="<span class="ltblue">data<b class="ltred">.</b>msg</span>" >
     < h3>Msg: {{<span class="ltblue">data<b class="ltred">.</b>msg</span>}}< /h3 >
   < /div> </pre>
+
 II. This example "breaks" the scope. The model in {{<em class="y">message</em>}} is essentially being overwritten.
 TL;DR type in any box, only the model scoped to that input field is updated.
   <pre class="framed4 w50">
@@ -50,7 +97,16 @@ TL;DR type in any box, only the model scoped to that input field is updated.
       < input type="text" ng-model="<em class="y">message</em>" >
       < h3>Msg: {{<em class="y">message</em>}}< /h3 >
     < /div> </pre>
+One more thing about the example I. above:
+  <span class="med purp">firstCtrl & secondCtrl inherit from root. --Take the first div away and you have two siblings that don't update each other.</span>
+III.<hr>
+<h3 class="dkred">The problem:</h3> the 2 controllers don't share scope.
 
+<h3 class="dkred">The solution: </h3> create a service (as a factory) that returns smth that references that prop on the object inside "{ {} }"
+Then, feed that service to each controller
+<img class="w50 shadn" src="./img/sharingScope1.png" alt="shared scope">
+
+</div>
 <pre class="prettyprint w60">
 //myCtrl.js
 var promise = $http.get('https://luckydogs.com/api/pets');
@@ -83,7 +139,7 @@ this.getPets(function(puppy) {
 <div class="simple-frame">What does $http always return? <span class="dkorange med ans">A promise.</span>
 <h4>Therefore, we are sending back to the controller <span class="dkorange med ans">A promise.</span></h4>
 <hr>
-A service-injected controller looks like this:
+The Fn accessing the promise looks like this in the  service-injected controller:
 <pre class="prettyprint">
 $scope.getPets(function() {
   var promise = myservice.getPets();  // myservice.getPets() returns a promise so, we put it on a var called promise.
