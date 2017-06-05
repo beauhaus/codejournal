@@ -1,7 +1,7 @@
 # codejournal
-#### This is a current project of notes and references that I am curating to study and to accelerate my build process.
+This is a current project of notes and references that I am curating to study and to accelerate my build process. #[Kaizen](https://en.wikipedia.org/wiki/Kaizen)🤓
 
-#### Includes (but isn't limited to) notes & examples on the following:
+###### codejournal includes notes, examples & advice on the following:
 ### Journal
 These are daily quick journal Entries: This is my "daily standup". What I did yesterday and what is on my todo list for today. End of the day (3am?-ish) --I revisit this and mark off what I've accomplished.
 ### Angularjs
