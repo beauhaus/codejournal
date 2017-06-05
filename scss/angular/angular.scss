@@ -18,4 +18,7 @@ div.angular-entry {
     border: 1px solid map-get($colors, trim);
     margin: 2vh auto;
   }
+  .col-2 {
+    column-rule: none;
+  }
 }

@@ -473,6 +473,12 @@ pre {
 .ctr {
   margin: 0 auto; }
 
+.brdr-lt {
+  border: 1px solid burlywood; }
+
+.brdr-dk {
+  border: 1px solid black; }
+
 .right {
   position: relative;
   margin-left: 40vw;
@@ -650,6 +656,8 @@ div.angular-entry {
   div.angular-entry .prettyprint {
     border: 1px solid #f5facf;
     margin: 2vh auto; }
+  div.angular-entry .col-2 {
+    column-rule: none; }
 
 div.node-entry {
   background-color: #2b503b;
@@ -804,6 +812,9 @@ div.svg-entry {
 
 .pastOlive {
   color: #2b503b; }
+
+.coral {
+  color: coral; }
 
 .dkred {
   color: #441f1d; }

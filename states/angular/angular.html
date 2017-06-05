@@ -20,6 +20,152 @@ angular.module("eggApp1")
       return text.split('').length;
     }
   })</pre>
+<hr>
+<h3 class="chtitle purp">A proper ng-filter <i class="med ivr">(through an array fed from a service.)</i></h3>
+
+make a (Factory) service:
+<pre class="prettyprint w80">angular.module("eggApp1")
+  .factory("wordFacservice", function() {
+    var WordData = {};
+    WordData.vocab = [{
+      "word": "expiate",
+      "meaning": "atone for (guilt or sin)",
+      "example": "their sins must be expiated by sacrifice",
+      "tag": ["gre"]
+    }, {
+      "word": "Deprecated",
+      "meaning": "Declared non-standard and no longer used.",
+      "example": "I pray for the day that activeX is deprecated.",
+      "tag": ["Web", "CS"]
+    },  {
+      "word": "poleax",
+      "meaning": "hit, kill, or knock down with or as if with a poleax, to cause great shock.",
+      "example": "I was poleaxed by this revelation",
+      "tag": ["gre"]
+    }, {
+      "word": "CRUD",
+      "meaning": "create, read, update, delete.",
+      "example": "I really need to make a simple CRUD app",
+      "tag": ["web", "CS"]
+    },
+      ...
+    ];
+
+return WordData;
+
+})</pre>
+Make a controller that will 'deliver' & facilitate comms with that Factory's data:
+**inject the service**
+<pre class="prettyprint w50">angular.module("eggApp1")
+  .controller("wordDataCtrl", function($scope, wordFacservice) {
+    $scope.WordData = wordFacservice.vocab;
+  })</pre>
+
+Next, inject these puppies in html:
+  < scrpt src="wordDataCtrl.js">< /scrpt>
+  < scrpt src="wordFacservice.js">< /scrpt>
+
+Finally set up the html environment.
+<div class="col-2 brdr-lt">
+  <pre class="dkbg2 w30 ctr sm">
+  < div class="container" ng-controller="wordDataCtrl">
+    < h3>Vocab< / h3>
+    < h3>Search: <i class="y">< input ng-model="wordSearch" ></i> < / h3>
+    < ol <b class="sand">ng-repeat="vocab in data | filter: wordSearch"</b>>
+      < li>
+        < ul >
+          < li>{ {vocab.word } }< / li>
+          < li>{ {vocab.meaning } }< / li>
+          < li>{ {vocab.example } }< / li>
+          < li >
+            < ul > <b class="sand">ng-repeat="elem in vocab.tag"</b>>
+              < li >{ {elem } }< / li>
+            < /ul>
+          < /li>
+        < /ul>
+      < /li>
+    < /ol>
+  < /div></pre>
+  <pre class="dk-frame w40 ctr sm">
+  The controller "owns" this scope.
+
+  <i class="y">This input box's purpose is search. Therefore, it defines a filter name.</i>
+  <b class="sand">This iterates with a filter pointed to after the pipe.</b>
+
+
+
+(properties on the object in the service.)
+
+<b class="sand">Here, we have a nested array on the object's property tag</b>
+
+
+We are essentially running a nested loop to paint these to the html.
+
+
+
+
+
+</pre>
+</div>
+<div class="col-2 brdr-dk">
+<h4 class="chtitle purp">Search the entire object or refine it to certain properties.</h4>
+<pre class="dkbg2 w40 ctr sm">   < h3>Search: < input ng-model="wordSearch<i class="y">.word</i>" > < / h3>
+    < ol <b class="sand">ng-repeat="vocab in data | filter: wordSearch"</b>>
+      ...
+    < h3>Search: < input ng-model="wordSearch<i class="y">.meaning</i>" > < / h3>
+    < ol <b class="sand">ng-repeat="vocab in data | filter: wordSearch"</b>>
+      ...
+    < h3>Search: < input ng-model="wordSearch<i class="y">.$</i>" > < / h3>
+    < ol <b class="sand">ng-repeat="vocab in data | filter: wordSearch"</b>>
+      ...</pre>
+  <pre class="dk-frame w40 ctr sm">
+  To search the aggregate of all text on all 'word:' properties...
+  I place <i class="y">.word</i> onto the "defined" filter in ng-model.
+
+  Likewise, to search the aggregate of all text on all 'meaning:' properties...
+  I place <i class="y">.meaning</i> onto the "defined" filter in ng-model.
+
+  Finally, to search the aggregate of all text on all properties...
+  I place <i class="y">.$</i> onto the "defined" filter in ng-model.
+
+  <span class="paleY">This would be a kind of "Global" search</span>
+
+</pre>
+</div>
+<div class="col-2 brdr-lt">Let's do some built-in filter awesomeness!
+<pre class="dkbg w40 ctr sm">   < h3>Search: < input ng-model="wordSearch.$" > < / h3>
+    < ol <b class="sand">ng-repeat="vocab in data | filter: wordSearch | <i class="y">orderBy: word</i>"</b>>
+      ...
+
+    < h3>Search: < input ng-model="wordSearch.$" > < / h3>
+    < ol <b class="sand">ng-repeat="vocab in data | filter: wordSearch | <i class="y">orderBy: '<span class="ltred">-</span>word'</i>"</b>>
+      ...
+      
+    < h3>Search: < input ng-model="wordSearch.$" > < / h3>
+    < ol <b class="sand">ng-repeat="vocab in data | filter: wordSearch | "</b>>
+      ...</pre>
+  <pre class="lt-frame w40 ctr sm">
+
+Alphabetical by <i class="y">word</i>
+
+neg sign and '' around it reverses the logic.
+Reverse alphabetical. <sup class="ltred">*</sup> must take '' around it.
+
+  Finally, to search the aggregate of all text on all properties...
+  I place <i class="y">.$</i> onto the "defined" filter in ng-model.
+
+
+
+  <span class="paleY">This would be a kind of "Global" search</span>
+
+</pre>
+</div>
+
+
+
+
+
+
 
 </div>
 <div class="plain-frame1"><h3 class="chtitle purp">A method on $scope</h3>
