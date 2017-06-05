@@ -411,13 +411,6 @@ var massive = require('massive');
 var app = express();
 app.use(bodyParser.json());</pre>
 
-<div class="plain-frame0 sm">
-  var db = massive.connectSync({
-    connectionString: '<span class="dkorange">postgres</span>://<span class="ivr">mpulbuzhfzj</span><span class="ltred">:</span><span class="ltblue">e6fde2e5f22635339c</span><span class="y">@</span>blah-blah-129-blah-33.compute-1.amazonaws.com:5432/<span class="purp">d23c4p0029vls</span>?<span class="wh">?ssl=true</span>'
-  });
-<h3 class="chtitle black"><span class="dkorange">kind of db</span>     <span class="ivr">username</span>     <span class="ltblue">password</span>     DNS or ip link     <span class="purp">dbName<sup class="ltred">*</sup> </span>     <span class="wh">secure socket layer</span></h3>
-  <sup class="ltred">*</sup> Heroku DB names are auto-generated & cannot be edited
-</div>
 
 
 <hr>
@@ -557,7 +550,9 @@ ENDPOINT:
     })
   });</pre><br><br><br>
 FILE:
-  <span class="dkorange sm">db>get_mysvg.sql</span><pre class="plain-frame0 w20">select * from mysvg;</pre>
+  <span class="dkorange sm">db>get_mysvg.sql</span><pre class="plain-frame0 w20">select * from mysvg;
+  limit 1;
+(careful: "select *" should never be used in production queries)</pre>
 URL : http://localhost:3000/mysvg
 <br>
 </div>

@@ -200,9 +200,11 @@ var quiet = function() {
 </pre>
     <hr>
     <h4 class="chtitle dkred">Functional Programming</h4>
-    <div class="col-2">
-      I am going to pass an entire function as a parameter to another function. In the Fn to which I pass the parameter, I'm going to invoke that puppy!
-      <pre class="prettyprint w40">
+<div class="col-2">
+I am going to pass an entire function as a parameter to another function.
+--In the Fn to which I pass the parameter, I am going to invoke that puppy!
+
+<pre class="prettyprint w40">
 function ohFunkThis(funk) {
   funk();
 }
@@ -287,7 +289,7 @@ jim.opinion("choclate", "cake");
 jim.opinion.call(liz);
 jim.opinion.call(liz, "vanilla", "Sherbert" );
 </pre>
-    <h5 class="ivr">There's a few things going on here</h5>
+    <h5 class="ivr">There are a few things going on here</h5>
     <span class="med">1. lines 04-05 establish conditional defaults. <br />  If no args are fed in, choose the defaults after "||".
 2. Of course, 'name' and 'verb' props exist. <br />  However, the <em class="y">${this.name}</em> allows for them to be 'hijacked' with call();
 3. line 16 'hijacks' the jim object's 'opinion' method.<br />
