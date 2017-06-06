@@ -23,8 +23,15 @@
       });
     };
   });</pre>
-<h3 class="chtitle">Perfect. Now, give this directive <em>its own</em> controller</h3>
-<div class="purp w60 ctr">It's important that we change back from the 'shorthand' of directives (defaulting to "A" & returning a function) to returning an Object with properties.
+Sure. It does nothing. 'happy' in the .html has no value
+--CLICK on this and it returns a sad, lonely, empty string.
+<pre class="prettyprint w10">> <em>[]</em></pre>
+ --but no worries!
+
+In fact, let's get rid of that controller altogether, we don't need it.
+
+<h3 class="chtitle">Now, give this directive <em>its own</em> controller</h3>
+<div class="purp w60 ctr plain-frame1">It's important that we change back from the 'shorthand' of directives (defaulting to "A" & returning a function) to returning an Object with properties.
 
 We will declare the following properties...<div class="plain-frame0 w10 right">restrict:
 controller:
@@ -35,9 +42,9 @@ Let's have a look.
 <div class="dk-frame col-2"><pre class="w40">angular.module("happyApp")
   .directive("happy", function() {
     return {
-      restrict: "E",
+      <b class="paleY">restrict:</b> "E",
 
-      controller: function($scope) {
+      <b class="paleY">controller:</b> function($scope) {
         $scope.funArray = [];
 
         this.addParties = function() {
@@ -51,7 +58,7 @@ Let's have a look.
         }
       },
 
-      link: function(scope, element) {
+      <b class="paleY">link:</b> function(scope, element) {
         element.bind('click', function() {
           console.log(scope.funArray);
         })
@@ -84,12 +91,17 @@ funArray can be called on scope
 
 
 </pre></div>
-Okay, stick with me! We are now going to create a directive that talks to 'happy'!
-It is going to need to use something called <code class="dkred med">"require:"</code>
+<h2 class="chtitle dkred">"require:", directives working with other directives & "the fourth parameter"...</h2>
 
-It's nothing to fear--in fact--it's going to make your life easier!
+Okay, stick with me. We are now going to create a directive that talks to 'happy'. We'll need to use a <code class="dkred med">"require:"</code> property on the object that is usually returned.
 
-All <span class="dkred">require:</span> does is give to a directive access to another directive's controller property!
+This is nothing to fear. --In fact, this is going to expand your powers!
+
+These three directives are very much like the remora fish. <b class="bg">🐟</b>
+
+They latch onto the bigger directive with <code class="dkred">require:</code> and use it's powers as if they were their own.
+
+All <span class="dkred">require:</span> does is give to a directive access to another directive's controller property (and everything in it);
 
 <pre class="prettyprint w40">
 .directive("social", function() {
@@ -115,11 +127,36 @@ One More...<pre class="prettyprint w40">
         happysCtrl.addDates();
       }
     }</pre>
-There! That wasn't so hard, was it?
+There! That wasn't so hard.
+
+Wait! One important thing...
+
+They, then, must use <code class="dkred">the fourth parameter</code> (which can be named anything at all).
+
+"happysCtrl" then, is the key to grab those methods in happy's controller and fire them!
+
 Take a good look at the html: <code class="navy med"><<span>happy romance free-time social>😊<</span>/happy></code>
 
 Click on this baby! <img class="w30 shadn" src="./img/happy1.png" alt="happyness array in the console">
 Because it has those directives embedded, they reach into the directive's controller and fire those functions inside!
+
+<h3 class="dkred">Alright, time to test these out.</h3>
+<pre class="lt-frame purp">< happy freetime>Click< / happy>
+< happy social freetime>Click< / happy>
+< happy romance social freetime>Click< / happy></pre>
+clicking any of these returns:
+<h4 class="dkbg w40">// ["Party!", "First Date!", "New Years Day!"]</h4>
+<pre class="lt-frame purp">< happy romance social freetime>Click!</ happy>
+< happy social freetime>Click!</ happy>
+< happy freetime>Click!</ happy>
+</pre>
+clicking any of these returns:
+<h4 class="dkbg w20">// ["New Years Day!"]</h4>
+
+What have we learnt?
+<h3>The problem: </h3>--These are being overwritten. There is no scope that each keeps to itself.
+<h3>The solution: </h3>--Isolate scope.
+
 </div>
 
 
