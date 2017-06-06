@@ -3,12 +3,13 @@
 <div class="angular-entry entry">
   <pre>
     <!-- pre for all -->
-<div class="plain-frame3"><h3 class="chtitle purp">Let's make a simple directive with it's own controller</h3>
+<div class="plain-frame3"><h3 class="chtitle purp">Let's make a simple <em>Element</em> directive with it's own controller</h3>
 <div class="col-2 lt-frame">
-.html<pre><code class="wh sm">
-<<span>div</span> class="container" ng-controller="myCtrl">
-  <<span>h3 happy<b class="dkred underline">="makeHappy()"</b>😊< /</span>h3>
+.html<pre><code class="navy med">
+<<span>div</span> ng-controller="myCtrl">
+  <<span>happy>😊<</span>/happy>
 <<span>/</span>div></code>
+
 
 </pre>
 <pre class="prettyprint w30">.controller("myCtrl", function($scope) {
@@ -16,7 +17,7 @@
       console.log("I'm Happy!")
      }
    </pre></div>
-<h5 class="chtitle black">.happyDir.js</h5><pre class="prettyprint w40">angular.module("happyApp")
+<h5 class="chtitle black">.happyDir.js</h5><pre class="prettyprint w40 shadw">angular.module("happyApp")
   .directive("happy", function() {
     return function(scope, element, attrs) {
       element.bind('click', function() {
@@ -24,6 +25,70 @@
       });
     };
   });</pre>
+<h3 class="chtitle">Perfect. Now, give this directive <em>its own</em> controller</h3>
+<div class="purp w60 ctr">It's important that we change back from the 'shorthand' of directives (defaulting to "A" & returning a function) to returning an Object with properties.
+
+We will declare the following properties...<div class="plain-frame0 w10 right">restrict:
+controller:
+link:</div>
+The controller will be an array and a list of methods to add to that array.
+</div>
+Let's have a look.
+<div class="dk-frame col-2"><pre class="w40">angular.module("happyApp")
+  .directive("happy", function() {
+    return {
+      restrict: "E",
+
+      controller: function($scope) {
+        $scope.funArray = [];
+
+        this.addParties = function() {
+          $scope.funArray.push("Party!");
+        }
+        this.addHolidays = function() {
+          $scope.funArray.push("New Years Day!");
+        }
+        this.addDates = function() {
+          $scope.funArray.push("First Date!");
+        }
+      },
+
+      link: function(scope, element) {
+        element.bind('click', function() {
+          console.log(scope.funArray);
+        })
+      }
+    }
+  });</pre><pre class="w40 paleY lt-frame">
+
+Returning an object
+
+Declared as an Element
+
+"funArray" is now on  the injected $scope
+
+
+in context of "this", 'party!' is added
+
+
+in context of "this", 'New Years Day!' is added
+
+
+in context of "this", 'first Date!' is added
+
+
+"attrs" param is not needed for an "E"
+
+
+funArray can be called on scope
+
+
+
+
+</pre></div>
+Okay, stick with me! We are now going to create a directive that talks to 'happy'!
+It is going to need to use something called <code class="dkred med">"require:"</code>
+
 </div>
 
 
