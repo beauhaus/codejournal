@@ -131,3 +131,9 @@
 .trans {
   color: transparent;
 }
+.dkghost {
+  background-color: map-get($colors, dkghost);
+}
+.ltghost {
+  background-color: map-get($colors, ltghost);
+}

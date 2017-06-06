@@ -3,7 +3,31 @@
 <div class="angular-entry entry">
   <pre>
     <!-- pre for all -->
-<div class="dk-frame"><h3 class="chtitle ivr">Directive in it's simplest form</h3>
+<div class="plain-frame3"><h3 class="chtitle purp">Let's make a simple directive with it's own controller</h3>
+<div class="col-2 lt-frame">
+.html<pre><code class="wh sm">
+<<span>div</span> class="container" ng-controller="myCtrl">
+  <<span>h3 happy<b class="dkred underline">="makeHappy()"</b>😊< /</span>h3>
+<<span>/</span>div></code>
+
+</pre>
+<pre class="prettyprint w30">.controller("myCtrl", function($scope) {
+    $scope.makeHappy = function() {
+      console.log("I'm Happy!")
+     }
+   </pre></div>
+<h5 class="chtitle black">.happyDir.js</h5><pre class="prettyprint w40">angular.module("happyApp")
+  .directive("happy", function() {
+    return function(scope, element, attrs) {
+      element.bind('click', function() {
+        scope.$apply(attrs.happy);
+      });
+    };
+  });</pre>
+</div>
+
+
+<div class="dk-frame"><h3 class="chtitle">Directive in it's simplest form</h3>
 <h4 class="pastpink">< scr>hellodirective.js< / scr></h4>
 <pre class="prettyprint w30">// hellodirective.js
 
@@ -125,10 +149,81 @@ with rollover directive! #angularFTW!
 </pre>
 
 </div>
+<hr>
+<h3 class="chtitle">Custom Directives: <span class="coral">A direcive's 'scope param' & $apply()</span></h3>
+<div class="framed5 ctr w80">
+First let's simply call a func on scope from a directive...
+<div class="col-2"><pre class="w40 ltghost">
+<p class="ivr">A function locked and loaded in a controller:</p>
+.controller("myCtrl", function($scope) {
+  $scope.<span class="dkred">loadTweets = function() {
+    console.log("Loading Tweets!");
+  }</span>
+})
 
+</pre><br>
+<pre class="w40 ltghost"><p class="ivr">A directive placing the call to that Fn on scope</p>.directive("enter", function() {
+  return function(<span class="dkred">scope</span>, element, attrs){
+    element.bind('mouseover', function() {
+      <span class="dkred">scope.loadTweets();</span>
+    })
+  }
+});
+</pre>
+
+</div>
+
+<i class="coral sm">.html</i>
+<h4 class="pastpink">  < p <b class="ltgreen">enter</b>>ROLLOVER ME!< /p ></h4>
+
+<h3 class="coral">Boom!</h3><h4 class="dk-frame w10">Loading Tweets!</h4>
+(...This is, in fact, NOT best practice. --Not by a long shot!)
+<hr>
+<span>Let's fix this by implementing Angular's <i class="ltgreen">$apply()</i> method.</span>
+<div class="plain-frame0 sm w20">$apply(): <br>parses strings and looks for stuff on scope like our loadTweets() function. </div>
+<pre class="prettyprint w40">angular.module("twitterApp")
+  .directive("enter", function() {
+    return function(scope, element, attrs){
+      element.bind('mouseover', function() {
+        scope.$apply('loadTweets()'); // nice!
+      })
+    }
+  });// Loading Tweets!</pre>
+
+--Okay we're STILL not complying with BEST PRACTICES for angular.
+
+Instead of calling that in the directive --essentially, hardcoding the call... Let's do this in the .html!
+We employ the "attrs" parameter and reference 'enter' and run whatever is fed to it in .html
+
+<pre class="ctr dkghost w20">scope.$apply(<b class="ltred">attrs.enter</b>)</pre>
+
+<div class="col-2"><h4 class="ivr">Change the .html to accept a value of enter</h4>
+<pre class="w40 ltghost">
+
+
+<h3 class="chtitle dkred">< p <b class="ltgreen">enter="loadTweets()"</b>>ROLLOVER ME!< /p ></h3>
+
+
+</pre>
+<br>
+<h4 class="ivr">Refactor the directive</h4><pre class="w40 prettyprint">.directive("enter", function() {
+  return function(<span class="dkred">scope</span>, element, attrs){
+    element.bind('mouseover', function() {
+      <span class="dkred">scope.$apply(attrs.enter);</span>
+    })
+  }
+});
+</pre>
+
+</div>
+
+
+</div>
+</div>
+<!--  END OF CUST DIRECTIVES-->
 
 <div class="plain-frame3"><h3>Custom Filter</h3>
-  1. Inside the <em class="dkred">{ { } }</em> place data with a pipe, then filter name.
+  1. Inside the<code class="dkred">{<span>{}</span>}</code>place data with a pipe, then filter name.
   <pre class="ltbg2 w50 ctr">
     < div ng-controller="firstCtrl" >
       < input type="text" ng-model="data.message">
@@ -283,14 +378,8 @@ These features of angular are stackable
 
 </pre>
 </div>
+</div><!-- End of Cust filter -->
 
-
-
-
-
-
-
-</div>
 <div class="plain-frame1"><h3 class="chtitle purp">A method on $scope</h3>
 The ng-model is 'data.message'
 It is bound to what is called (or returned) by this Fn call { { reversed) } }

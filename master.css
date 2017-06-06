@@ -268,7 +268,7 @@ a[ui-sref]:hover {
   font-size: 1vw; }
 
 .plain-frame1 {
-  border: 1px solid maroon;
+  border: 1px solid black;
   box-shadow: inset 1px 1px 4px 1px rgba(0, 0, 0, 0.61);
   background-color: #d9d4c5;
   color: #18223b;
@@ -847,6 +847,12 @@ div.svg-entry {
 
 .trans {
   color: transparent; }
+
+.dkghost {
+  background-color: rgba(52, 54, 53, 0.6); }
+
+.ltghost {
+  background-color: rgba(161, 172, 166, 0.5); }
 
 div.journal-entry {
   box-shadow: inset 2px 2px 20px 5px rgba(0, 0, 0, 0.9);
