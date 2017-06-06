@@ -6,9 +6,7 @@
 <div class="plain-frame3"><h3 class="chtitle purp">Let's make a simple <em>Element</em> directive with it's own controller</h3>
 <div class="col-2 lt-frame">
 .html<pre><code class="navy med">
-<<span>div</span> ng-controller="myCtrl">
-  <<span>happy>😊<</span>/happy>
-<<span>/</span>div></code>
+<<span>happy>😊<</span>/happy></code>
 
 
 </pre>
@@ -89,6 +87,39 @@ funArray can be called on scope
 Okay, stick with me! We are now going to create a directive that talks to 'happy'!
 It is going to need to use something called <code class="dkred med">"require:"</code>
 
+It's nothing to fear--in fact--it's going to make your life easier!
+
+All <span class="dkred">require:</span> does is give to a directive access to another directive's controller property!
+
+<pre class="prettyprint w40">
+.directive("social", function() {
+  return {
+    require: 'happy',
+    link: function(scope, element, attrs, happysCtrl){
+      happysCtrl.addParties();
+    }
+  }</pre>
+And another!<pre class="prettyprint w40">
+.directive("freeTime", function() {
+    return {
+      require: 'happy',
+      link: function(scope, element, attrs, happysCtrl){
+        happysCtrl.addHolidays();
+      }
+    }</pre>
+One More...<pre class="prettyprint w40">
+.directive("romance", function() {
+    return {
+      require: 'happy',
+      link: function(scope, element, attrs, happysCtrl){
+        happysCtrl.addDates();
+      }
+    }</pre>
+There! That wasn't so hard, was it?
+Take a good look at the html: <code class="navy med"><<span>happy romance free-time social>😊<</span>/happy></code>
+
+Click on this baby! <img class="w30 shadn" src="./img/happy1.png" alt="happyness array in the console">
+Because it has those directives embedded, they reach into the directive's controller and fire those functions inside!
 </div>
 
 
