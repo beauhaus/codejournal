@@ -6,3 +6,7 @@
 .webloc
 .map
 .csscd
+
+# ignore template builders & instructions
+/scss/_newview
+/states/_newview

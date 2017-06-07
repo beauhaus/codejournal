@@ -1,0 +1,10 @@
+pre.prettyprint {
+  border:1px solid map-get($colors, trim);
+}
+div.gsap-entry {
+  background-color: map-get($colors, dkorange);
+  // box-shadow: inset 0px 0px 0px rgba(#a6b696, 0);
+  overflow: auto;
+  height: 80vh;
+  border: 1px solid map-get($colors, ivr);
+}

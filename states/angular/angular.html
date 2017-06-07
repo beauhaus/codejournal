@@ -4,17 +4,19 @@
   <pre>
     <!-- pre for all -->
 <div class="plain-frame3"><h3 class="chtitle purp">Let's make a simple <em>Element</em> directive with it's own controller</h3>
-<div class="col-2 lt-frame">
+<div class="col-2 lt-frame w80 ctr">
 .html<pre><code class="navy med">
 <<span>happy>😊<</span>/happy></code>
 
 
 </pre>
-<pre class="prettyprint w30">.controller("myCtrl", function($scope) {
-    $scope.makeHappy = function() {
-      console.log("I'm Happy!")
-     }
-   </pre></div>
+<pre class="prettyprint w30">
+.controller("myCtrl", function($scope) {
+  $scope.makeHappy = function() {
+    console.log("I'm Happy!")
+   }
+
+</pre></div>
 <h5 class="chtitle black">.happyDir.js</h5><pre class="prettyprint w40 shadw">angular.module("happyApp")
   .directive("happy", function() {
     return function(scope, element, attrs) {
@@ -156,6 +158,22 @@ clicking any of these returns:
 What have we learnt?
 <h3>The problem: </h3>--These are being overwritten. There is no scope that each keeps to itself.
 <h3>The solution: </h3>--Isolate scope.
+This can be fixed LITERALLY with ONE LINE OF CODE!
+<h2 class="chtitle wh">🔥<code class="med shadw dkred">scope: {},</code>🔥</h2>
+
+
+<h3 class="chtitle">This can be fixed LITERALLY with ONE LINE OF CODE!
+<div class="purp w50 ctr plain-frame1">--just slip this into the 'happy' directive and you're done!
+<br /><div class="plain-frame0 w10 ctr txtLeft">restrict:
+scope: {},
+controller:
+link:</div>
+--You're welcome!
+</div>
+
+
+Now each of those elements has it's own isolate scope.
+Stay tuned (or scroll down) for more!
 
 </div>
 
@@ -665,7 +683,7 @@ $scope.getPets(); //REMEMBER to invoke the function!</pre>
 
 </pre>
 <p class="caption">For Directives: by default this function's <em class="wh">scope</em> will be the same as this directive's $scope.
-jqLite is only used inside of this link function. --but you can use a lot of jquery-type code here.
+Only jQlite is used inside of this link function. --but you can use a lot of jquery-type code here.
 
 <em class="y">Element</em> in this function refers to the directive.html itself. So you have to be more specifice (i.e. with <span class="wh">.children()</span>)
 in order to select the things inside.</p>

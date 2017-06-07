@@ -50,5 +50,9 @@ angular.module("codeJournal", ['ui.router', 'ngAnimate'])
       controller: 'svgCtrl',
       url: '/svg',
       templateUrl: './states/svg/svg.html'
+    }).state('gsap', {
+      controller: 'gsapCtrl',
+      url: '/gsap',
+      templateUrl: './states/gsap/gsap.html'
     })
 });

@@ -854,6 +854,15 @@ div.svg-entry {
 .ltghost {
   background-color: rgba(161, 172, 166, 0.5); }
 
+pre.prettyprint {
+  border: 1px solid #f5facf; }
+
+div.gsap-entry {
+  background-color: #945706;
+  overflow: auto;
+  height: 80vh;
+  border: 1px solid #e6d8cc; }
+
 div.journal-entry {
   box-shadow: inset 2px 2px 20px 5px rgba(0, 0, 0, 0.9);
   margin: 1vw;
