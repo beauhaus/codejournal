@@ -512,6 +512,12 @@ img.neighbors-item {
 .ltbg3 {
   background-color: rgba(242, 225, 165, 0.5); }
 
+.brdr-w {
+  border: 1px solid ivory; }
+
+.brdr-b {
+  border: 1px solid black; }
+
 /* jquery styles */
 .jq-entry {
   background-color: #a6b696;
@@ -862,6 +868,12 @@ div.gsap-entry {
   overflow: auto;
   height: 80vh;
   border: 1px solid #e6d8cc; }
+
+.col-2 {
+  column-rule: none; }
+
+.fuck {
+  background-color: white; }
 
 div.journal-entry {
   box-shadow: inset 2px 2px 20px 5px rgba(0, 0, 0, 0.9);

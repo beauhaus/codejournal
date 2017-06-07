@@ -8,3 +8,10 @@ div.gsap-entry {
   height: 80vh;
   border: 1px solid map-get($colors, ivr);
 }
+.col-2 {
+  column-rule: none;
+  // column-rule-color: transparent;
+}
+.fuck {
+  background-color: white;
+}

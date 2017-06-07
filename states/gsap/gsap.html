@@ -4,10 +4,37 @@
   <div class="gsap-entry entry">
     <pre>
 <!--entire page pre-->
-<div class="simple-frame"><h3 class="chtitle dkblue">How to set up defaults in a function using "||" operator</h3>
-<pre class="prettyprint">
-//code here
+<div class="simple-frame2"><h3 class="chtitle dkblue">First, The Set-Up...</h3>
+<span><</span>script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"><span></</span>script>
+<span><</span>script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js"><span></</span>script>
+
+</div>
+<div class="col-2"><pre class="prettyprint w40">
+(function($) {
+
+  var header = $('header');
+  TweenMax.from(header, 2, {autoAlpha: 0, y: -300});
+
+}(jQuery))</pre>
+<pre class="w40">
+JQ
+
+selector on a var
+method on <code><i class="ltgreen">TMax</i>(<i class="orange">selector</i>,<i class="sand">duration</i>, <i class="paleY">Object & attrs</i> )</code>
+
+
 </pre>
+</div>
+A bit of easing:
+<pre class="brdr-w w50">
+  var img = $('img'),
+  tm = TweenMax;
+
+  tm.to(img, 3, {autoAlpha: 0, x: 200, ease:Power4.easeIn});
+</pre>
+
+
+
 </div>
 
 <div class="framed6">
