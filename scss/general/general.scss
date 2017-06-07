@@ -231,6 +231,10 @@ pre.prettyprint {
   columns: 2 5vw;
   column-rule: 1px solid fuchsia;
 }
+.col-3{
+  columns: 3 auto;
+  column-rule: 1px solid map-get($colors, mustard);
+}
 
 img {
   margin: 1vw;
