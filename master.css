@@ -508,7 +508,7 @@ img.neighbors-item {
   list-style-type: decimal-leading-zero; }
 
 .linenums {
-  margin-left: 2%; }
+  margin-left: 2vw; }
 
 .dkbg3 {
   background-color: rgba(30, 35, 55, 0.6); }

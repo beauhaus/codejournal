@@ -68,19 +68,17 @@ These can be tinkered with easily @
 <h1 class="chtitle">Methods of Greensock:</h1>
 <h2 class="chtitle pastpink">TweenMax<span class="pastY">.from</span>(header, 3, {autoAlpha: 0, x: 200, ease:Elastic.easeIn});</h2>
 <div class="framed6">
-<div class="col-2 simple-frame2">
-  <pre class="paleY">.to()
+<div class="col-2 simple-frame2 w60 ctr"><pre class="paleY">.to()
 .from()
-.fromTo()
 .set()
+.fromTo()
 autoAlpha
-
 </pre>
 <pre class="wh">
 specifies end point
 specifies start point
-reqires two values for start and end<b class="ltred">*</b>
-exactly like .css() property setting (no anim)
+exactly like .css()<em> no animation</em>
+reqires 2 values for start & end
 opacity
 </pre>
 </div>
@@ -93,22 +91,64 @@ tm.fromTo(img, 3,
 // Remove timing val
 tm.set(img,{ x: 200, y: -300 });
 </pre>
-the <span class="paleY">delay</span>s here render this in succession
+the <span class="paleY">delays</span> here render this in succession
 <div class="plain-frame0 ctr w30">  tm.from(h1, 3, { x: 200, y: -300 });
   tm.from(h3, 1, { x:-500, <span class="paleY">delay</span>: 4 });
   tm.from(h2, 1, { x:-500, <span class="paleY">delay</span>: 3 });
 </div>
 
-  <div class="framed8">The problem (or BUG) is: that second 'this'
-  <pre class="prettyprint w20">
-  //code column
-
-  </pre>
-  <pre>
-  comment collumn
-  </pre>
-  </div>
 </div>
+<hr>
+<h1 class="chtitle">Configuring timeline events with precision</h1>
+<div class="brdr-w shadn">
+
+<h4 class="med">We alter the delay to have them overlap
+Here, each subsequent animation starts <i class="navy">'0.5' seconds</i> before the previous one ends</h4>
+<pre class="ctr dkbg w60">tl.from(h1, 1, {y: -15}, <i class="ltblue">'-=0.5'</i> )
+                            .from(h2, 1, {y: -15}, <i class="ltblue">'-=0.5'</i> )
+                            .from(h3, 1, {y: -15}, <i class="ltblue">'-=0.5'</i> )
+                            .from(h4, 1, {y: -15}, <i class="ltblue">'-=0.5'</i> )
+                            .from(h5, 1, {y: -15}, <i class="ltblue">'-=0.5'</i> );
+</pre>
+<h3><b class="wh med">Absolute Positioning</b> of timelines is easy to understand:</h3>
+<p>REGARDLESS of other events, I want my h4 to run at 4 seconds. The rest can fire off as they like.</p>
+<pre class="prettyprint dkbg w40 linenums">
+var animation = new TimelineLite();
+
+animation.from(img, 3, {y: -15} )
+         .from(h2, 3, {y: -15}, '-=2' )
+         .from(span, 3, {y: -15}, '+=4' )
+         .from(h4, 3, {y: -15}, 4 );
+</pre>
+The span will fire AFTER the Abs-positioned h4.
+
+<h2 class="ctr wh">Labeling of delays</h2>
+
+<pre class="ctr dkbg w40">
+animation.from(<span class="wh">span</span>, 2, {y: -15, autoAlpha: 0} )
+   <span class="wh">.add(span)</span>
+   .from(h2, 2, {y: -15, autoAlpha: 0} )
+   .from(h4, 2, {y: -15, autoAlpha: 0} )
+   .from(img, 2, {y: -15, autoAlpha: 0}, <span class="wh">'span'</span> );
+</pre>
+<h3>This simply shows that labeling another animation (bottom) and then inserting with <em>.add()</em> will control where it fires in the timeline.</h3>
+<h3 class="sand">Here, 'img' will fire immediately after 'span'. .add() acts as an alias of that bottom animation</h3>
+<br><h3 class="orange">Infact, we can label any one of them and even modify them with an expression individually in quotes</h3>
+<pre class="ctr dkbg w40">
+animation.from(<span class="wh">span</span>, 2, {y: -15, autoAlpha: 0} )
+   <span class="wh">.add(span)</span>
+   .from(h2, 2, {y: -15, autoAlpha: 0}, <span class="wh">'span'</span> )
+   .from(h4, 2, {y: -15, autoAlpha: 0}, <span class="orange">'span+=2'</span> )
+   .from(img, 2, {y: -15, autoAlpha: 0}, <span class="wh">'span'</span> );
+</pre>
+
+</div>
+
+
+
+
+
+
 
 </pre>
 <!--entire page pre-->
