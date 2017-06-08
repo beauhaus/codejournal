@@ -124,16 +124,26 @@ The span will fire AFTER the Abs-positioned h4.
 
 <h2 class="ctr wh">Labeling of delays</h2>
 
-<pre class="ctr dkbg w40">
-animation.from(<span class="wh">span</span>, 2, {y: -15, autoAlpha: 0} )
-   <span class="wh">.add(span)</span>
+<h3>This simply shows that labeling another animation (bottom) and then inserting with <em>.add()</em> will control where it fires in the timeline.</h3>
+<div class="col-2">
+<pre class="dkbg w40">
+animation.from(span, 2, {y: -15, autoAlpha: 0} )
+   <span class="ltgreen">.add(poop)</span>
    .from(h2, 2, {y: -15, autoAlpha: 0} )
    .from(h4, 2, {y: -15, autoAlpha: 0} )
-   .from(img, 2, {y: -15, autoAlpha: 0}, <span class="wh">'span'</span> );
+   .from(img, 2, {y: -15, autoAlpha: 0}, '<span class="ltgreen">poop</span>' );
+
 </pre>
-<h3>This simply shows that labeling another animation (bottom) and then inserting with <em>.add()</em> will control where it fires in the timeline.</h3>
-<h3 class="sand">Here, 'img' will fire immediately after 'span'. .add() acts as an alias of that bottom animation</h3>
-<br><h3 class="orange">Infact, we can label any one of them and even modify them with an expression individually in quotes</h3>
+
+<pre class="w40 shadn">
+<h3 class="sand">Here, 'img' will fire immediately after 'span'.
+
+.add() acts as an alias of that bottom animation
+'<span class="ltgreen">poop</span>', of course, is an arbitrary 'var' name</h3></pre>
+
+</div>
+<br>
+<h3 class="orange">Infact, we can label any one of them and even modify them with an expression individually in quotes</h3>
 <pre class="ctr dkbg w40">
 animation.from(<span class="wh">span</span>, 2, {y: -15, autoAlpha: 0} )
    <span class="wh">.add(span)</span>
