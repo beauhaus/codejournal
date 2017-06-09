@@ -333,7 +333,7 @@ a[ui-sref]:hover {
   text-decoration: underline;
 }
 
-.txtLeft {
+.txt-left {
   text-align: left;
 }
 
@@ -541,6 +541,7 @@ pre {
   background-color: map-get($colors, dkbg3);
 }
 .lt-frame {
+  padding: 1%;
   font-family: map-get($fonts, Cabin);
   color: black;
   border: 1px solid map-get($colors, black);
@@ -594,6 +595,9 @@ pre {
 
 .fRight {
   float: right;
+}
+.txt-right {
+  text-align: right;
 }
 .chtitle {
   margin: 0 auto;

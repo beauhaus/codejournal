@@ -22,6 +22,9 @@ Start Sass
 sass --watch master.scss:master.css
 ### Node.js
 A basic node setup using express, passport, cors, endpoints to query a postgresDB.
+### Greensock (gsap)
+Notes, walkthroughs & valuable snippets for getting started and continuing into gsap animations with SVG.
+Will include embedded codepens as soon as I can figure those damned things out in Angularjs. #squadgoals
 ### Misc
 These are simply a miscellany of notes & snippets.
 ***

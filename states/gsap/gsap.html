@@ -4,7 +4,100 @@
   <div class="gsap-entry entry">
     <pre>
 <!--entire page pre-->
-<h3 class="chtitle dkblue">First, The Set-Up...</h3>
+<div class="lt-frame"><h3 class="chtitle dkblue">GSAP's Stagger Methods</h3>
+The Problem: I have all these individual elements (btns) that I want to stagger into frame.
+I have to code their tweens individually...<pre class="prettyprint w40">var tl2 = new TimelineMax();
+tl2
+  .from(play, 1, {y: -60, ease: Power4.easeIn}, 1)
+  .from(pause, 1, {y: -60, ease: Power4.easeIn}, '-=.2')
+  .from(resume, 1, {y: -60, ease: Power4.easeIn}, '-=.2');</pre>This is both messy and inefficient.
+
+The Solution: GSAP's stagger method or "stagger tween".<pre class="prettyprint w50">  var tl2 = new TimelineMax();
+  var button = $('button');
+  tl2.staggerFrom(button, .5, {y: -100, ease:Power4.easeOut}, 0.1);</pre>
+💥Boom! --3 lines of code.
+<h4 class="paleY">Of course, there's also <code class="wh">.staggerTo</code> and <code class="wh">.staggerFromTo</code> which requires two abscissa objects</h4>
+<pre class="dkbg w20"><code class="sm paleY">
+tl2.<span class="ltgreen">staggerFromTo</span>(button, .5,
+      {autoAlpha: 0,
+               y: -100,
+            ease:Power4.easeOut
+      },
+      {autoAlpha: 1,
+               y:600
+      }, 0.1);</code></pre>
+<h3 class="dkred">(In fact, <code>autoAlpha 0</code> is superfluous, here. So let's refactor.)</h3>
+Or, simply...
+
+<code class="ctr dkred ltbg3">tl2.staggerFromTo(button, .5, {y: -100, ease:Power4.easeOut}, {autoAlpha: 1, y:600}, 0.1);</code><br>
+<h2 class="navy">Stagger: 'Cycle':</h2>(Returning to staggerFrom...)
+
+GSAP's powerful "cycle" property will take an attribute--give it two values and distribute it to alternating tweens.
+<pre class="prettyprint w80">  tl2.staggerFrom(button, 5, { cycle:{x:[-100, 500, 1800]}, ease:Power4.easeOut}, {autoAlpha: 1, y:600}, 0.1);</pre>
+Here we will have buttons appear from 3 different directions.
+
+<h3 class="dkorange">One more cool example:</h3>
+We can even cycle through multiple properties. Here, we'll do scale and x
+<pre class="dkbg ctrtxt w80">tl2.staggerFrom(button, 5, { <b class="ltgreen">cycle:{x:[-100, 500]</b>, <b class="ltblue">scale: [2, 0.5] </b>}, ease:Power4.easeOut}, {autoAlpha: 1, y:600}, 0.1);</pre>
+So, twice the size and half the size (is the style rules that they 'come from'). They then arrive at a uniform height and position.
+</div>
+<div class="framed1"><h3>Useful methods to control events in a timeline</h3>
+In <a href="https://codepen.io/beau_dev/pen/dRYJjm?editors=0010">This Pen</a>, You'll find the following Fn calls placed inside various click events.
+
+
+<div class="col-2"><pre class="w40 brdr-dk">tl.play();
+tl.pause();
+tl.play(0).pause();
+tl.resume();
+tl.reverse();
+tl.timeScale(6);
+tl.timeScale(1 / 2);
+tl.play(3);
+tl.play("aftertwo");</pre>
+<pre class="w40 brdr-dk pastY">--run timeline
+--stop timeline midstream
+--reset to start
+--resume timeline
+--reverse mid-stream
+--speed up by a multiple
+--will slow down (if divisor) --will reverse if neg.
+--plays sending a second mark as an arg
+--plays sending a named var (a 'label') as an arg</pre>
+</div>
+For examle on the 'reverse' button... <pre class="prettyprint w40">reverse.on("click", function() {
+    tl.reverse();
+  });</pre>
+</div>
+<hr>
+<div class="framed1 dk-frame"><h3 class="chtitle pastY">GSAP Callbacks are very simple</h3>
+Inside of the tween's object place a key:value pair. Key is the Fn name, Value is the arg.
+<div class="col-2">
+Comma separated key:values are permissable as well.
+<pre class="prettyprint w40">
+...
+.to(eight, 2, { y: 262, x: 850, ease: Power1.easeOut, onStart:poop }, "-=0.5")
+...</pre>
+Then, the function definition below...
+<pre class="prettyprint w40">
+function poop() {
+  console.log("Eight has started!");
+}
+//"poop", of course, is an arbitrary value name. :)</pre>
+</div>
+
+<pre class="w50">GSAP callbacks give you 3 choices:
+
+{ ... , onStart:<em class="ltblue">funkName</em> }<br>
+<code>function <span class="ltblue">funkName</span>() { console.log("Started!")}</code>
+
+{ ... , onUpdate:<em class="sand">funkName</em> }<br>
+<code>function <span class="sand">funkName</span>() { console.log("We're running!")}</code>
+
+{ ... , onComplete:<em class="ltred">funkName</em> }<br>
+<code>function <span class="ltred">funkName</span>() { console.log("Done!")}</code></pre>
+</div>
+
+<h1 class="chtitle dkblue">First, The Set-Up...</h1>
 <div class="ctr shadn brdr-w ltbg ivr w50 sm">
 <span><</span>script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"><span></</span>script>
 
@@ -17,6 +110,7 @@ A simple example...
 
   var header = $('header');
   TweenMax.from(header, 2, {autoAlpha: 0, y: -300});
+  // this line is referred to as a 'tween'
 
 }(jQuery))</pre>
 <pre class="w40">
@@ -110,7 +204,7 @@ Here, each subsequent animation starts <i class="navy">'0.5' seconds</i> before 
                             .from(h4, 1, {y: -15}, <i class="ltblue">'-=0.5'</i> )
                             .from(h5, 1, {y: -15}, <i class="ltblue">'-=0.5'</i> );
 </pre>
-<h3><b class="wh med">Absolute Positioning</b> of timelines is easy to understand:</h3>
+<h2><b class="wh med">Absolute Positioning</b> of timelines is easy to understand:</h2>
 <p>REGARDLESS of other events, I want my h4 to run at 4 seconds. The rest can fire off as they like.</p>
 <pre class="prettyprint dkbg w40 linenums">
 var animation = new TimelineLite();

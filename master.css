@@ -257,7 +257,7 @@ a[ui-sref]:hover {
 .underline {
   text-decoration: underline; }
 
-.txtLeft {
+.txt-left {
   text-align: left; }
 
 .plain-frame0 {
@@ -424,6 +424,7 @@ pre {
   background-color: rgba(30, 35, 55, 0.6); }
 
 .lt-frame {
+  padding: 1%;
   font-family: "Cabin", Sans-Serif;
   color: black;
   border: 1px solid black;
@@ -467,6 +468,9 @@ pre {
 
 .fRight {
   float: right; }
+
+.txt-right {
+  text-align: right; }
 
 .chtitle {
   margin: 0 auto;
