@@ -25,19 +25,19 @@ First we need a bit of html <b class="paleY">at the top of <span><</span>body></
 </pre>
 <pre class="dkbg w30">
 #loader{
-    <span class="paleY">position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);</span>
+  <span class="paleY">position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);</span>
 
-      .dot {
-          width: 12px;
-          height: 12px;
-          display: inline-block;
-          border-radius: 100%;
-          margin-right: 6px;
-          border: 2px solid teal;
-      }
+}
+.dot {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    border-radius: 100%;
+    margin-right: 6px;
+    border: 2px solid teal;
 }
 </pre>
 </div>
@@ -45,10 +45,44 @@ First we need a bit of html <b class="paleY">at the top of <span><</span>body></
 
 
 TimelineMax is required to configure the number of repeats of the a given timeline.
-The object passed in the <code>new TimelineMax()</code> method can also have a onComplete property
+
+The object passed in the <code>new TimelineMax()</code> method can also have a "onComplete" property
 <pre class="prettyprint w50">
 tlLoader = new TimelineMax({ repeat: 3, onComplete:onComplete })</pre>
 
+So far, here's the loader set up:
+<div class="ctr"><pre class="prettyprint w50">// ========LOADER TIMELINE======================
+var tlLoader = new TimelineMax({ repeat: 3, onComplete:onComplete })
+function onComplete() {
+  console.log("Release the content!");
+}</pre>
+
+<h3 class="sand">With all other tl = <b class="ltgreen">new</b>... statements containing "{paused: true}"--The page is, now, blank except for the loader.</h3>
+
+(at this point, we may have trouble with content loading in browser, so "opacity: 0;" for the content container will help);
+
+
+<h3 class="paleY">Refactored Loader Timeline</h3>
+<pre class="prettyprint w50">// ========LOADER TIMELINE======================
+var tlLoader = new TimelineMax({ repeat: 3, onComplete:onComplete })
+tlLoader
+  .staggerFromTo(dot, 0.3,
+    {y:0, ease:Power4.easeIn, autoAlpha: 0},
+    {y:-20, ease:Back.easeInOut, autoAlpha: 1},
+     0.05)
+  .fromTo(loader, 0.3,
+    {autoAlpha:1, scale: 1.2},
+  {y:-20, ease:Back.easeNone, autoAlpha: 1}, 0.9)
+function onComplete() {
+  console.log("Release the content!");
+}</pre>
+
+We set the 'repeat: num' to whatever we want and change the onComplete to something like: "onComplete:loadContent"...
+<pre class="prettyprint w50">
+function loadContent() {
+  
+}</pre>
+</div>
 </div>
 <div class="lt-frame"><h3 class="chtitle dkblue">GSAP's Stagger Methods</h3>
 The Problem: I have all these individual elements (btns) that I want to stagger into frame.
