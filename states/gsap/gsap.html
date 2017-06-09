@@ -5,6 +5,12 @@
     <pre>
 <!--entire page pre-->
 <div class="framed4"><h3>A loader animation with GSAP</h3>
+
+  <div class="ctr intrinsic-ratio-wrapper w20">
+    <video  class="intrinsic-ratio-child" width="314" height="220" controls>
+      <source src="./img/loader.mov" type="video/mp4">
+    </video>
+  </div>
 First we need a bit of html <b class="paleY">at the top of <span><</span>body></b>
 <div class="col-2 brdr-w"><pre class="dkbg w30">
 < div id="loader">
@@ -80,7 +86,7 @@ function onComplete() {
 We set the 'repeat: num' to whatever we want and change the onComplete to something like: "onComplete:loadContent"...
 <pre class="prettyprint w50">
 function loadContent() {
-  
+
 }</pre>
 </div>
 </div>

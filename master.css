@@ -526,6 +526,19 @@ img.neighbors-item {
 .brdr-b {
   border: 1px solid black; }
 
+.intrinsic-ratio-wrapper {
+  position: relative;
+  padding-bottom: 20%;
+  height: 0; }
+
+.intrinsic-ratio-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent; }
+
 /* jquery styles */
 .jq-entry {
   background-color: #a6b696;

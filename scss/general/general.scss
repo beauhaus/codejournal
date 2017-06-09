@@ -660,3 +660,19 @@ img.neighbors-item {
 .brdr-b{
   border: 1px solid black;
 }
+
+// ben callis's intrinsic-ratio method
+.intrinsic-ratio-wrapper {
+  position: relative;
+  padding-bottom: 20%;
+  height: 0;
+}
+
+.intrinsic-ratio-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
