@@ -4,6 +4,52 @@
   <div class="gsap-entry entry">
     <pre>
 <!--entire page pre-->
+<div class="framed4"><h3>A loader animation with GSAP</h3>
+First we need a bit of html <b class="paleY">at the top of <span><</span>body></b>
+<div class="col-2 brdr-w"><pre class="dkbg w30">
+< div id="loader">
+
+  < div class="dot">< / div>
+
+  < div class="dot">< / div>
+
+  < div class="dot">< / div>
+
+  < div class="dot">< / div>
+
+  < div class="dot">< / div>
+
+  < div class="dot">< / div>
+
+< / div>
+</pre>
+<pre class="dkbg w30">
+#loader{
+    <span class="paleY">position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);</span>
+
+      .dot {
+          width: 12px;
+          height: 12px;
+          display: inline-block;
+          border-radius: 100%;
+          margin-right: 6px;
+          border: 2px solid teal;
+      }
+}
+</pre>
+</div>
+
+
+
+TimelineMax is required to configure the number of repeats of the a given timeline.
+The object passed in the <code>new TimelineMax()</code> method can also have a onComplete property
+<pre class="prettyprint w50">
+tlLoader = new TimelineMax({ repeat: 3, onComplete:onComplete })</pre>
+
+</div>
 <div class="lt-frame"><h3 class="chtitle dkblue">GSAP's Stagger Methods</h3>
 The Problem: I have all these individual elements (btns) that I want to stagger into frame.
 I have to code their tweens individually...<pre class="prettyprint w40">var tl2 = new TimelineMax();
@@ -46,27 +92,38 @@ In <a href="https://codepen.io/beau_dev/pen/dRYJjm?editors=0010">This Pen</a>, Y
 
 
 <div class="col-2"><pre class="w40 brdr-dk">tl.play();
-tl.pause();
+tl.pause();<b class="ltred med">*</b>
 tl.play(0).pause();
 tl.resume();
 tl.reverse();
 tl.timeScale(6);
 tl.timeScale(1 / 2);
 tl.play(3);
-tl.play("aftertwo");</pre>
+tl.play("aftertwo");
+</pre>
 <pre class="w40 brdr-dk pastY">--run timeline
 --stop timeline midstream
 --reset to start
 --resume timeline
 --reverse mid-stream
 --speed up by a multiple
---will slow down (if divisor) --will reverse if neg.
+--will slow down (if divisor) --will reverse if neg. (or decimal < 1)
 --plays sending a second mark as an arg
 --plays sending a named var (a 'label') as an arg</pre>
 </div>
-For examle on the 'reverse' button... <pre class="prettyprint w40">reverse.on("click", function() {
+
+For example on the 'reverse' button... <pre class="prettyprint w40">reverse.on("click", function() {
     tl.reverse();
   });</pre>
+
+<b class="ltred med">*</b> Another way to pause a timeline is with (<span>Be sure to type 'pause<b class="ltred">d</b>'</span>)
+<pre class="prettyprint w20">tl = new TimelineLite({paused: true})</pre>
+
+<h3 class="ltblue">☯️How to repeat timelines infinitely!☯️</h3>
+ltLoader = new TimelineMax({repeat: -1});
+<h5 class="wh">TimelineMax is required for repeating and is perfect for loaders</h5>
+TimelineMax enables the repeat object in order to set the amount of repeats. (-1) is the value for infinite repeat.
+
 </div>
 <hr>
 <div class="framed1 dk-frame"><h3 class="chtitle pastY">GSAP Callbacks are very simple</h3>
