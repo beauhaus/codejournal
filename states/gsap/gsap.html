@@ -5,7 +5,6 @@
     <pre>
 <!--entire page pre-->
 <div class="framed4"><h3>A loader animation with GSAP</h3>
-
   <div class="ctr intrinsic-ratio-wrapper w20">
     <video  class="intrinsic-ratio-child" width="314" height="220" controls>
       <source src="./img/loader.mov" type="video/mp4">
@@ -83,11 +82,44 @@ function onComplete() {
   console.log("Release the content!");
 }</pre>
 
-We set the 'repeat: num' to whatever we want and change the onComplete to something like: "onComplete:loadContent"...
-<pre class="prettyprint w50">
-function loadContent() {
+We set the 'repeat: num' to whatever we want and change the onComplete to something like: "onComplete:<code class="wh">loadContent</code>"...
+<pre class="dkbg w40 sm">
+<span class="ltgrey">// ========LOADER TIMELINE======================</span>
+var tlLoader = new TimelineMax({ <span class="pastBlue">repeat: 1, onComplete:<b class="paleY">loadContent</b> </span>})
+tlLoader
+  .staggerFromTo(dot, 0.3,
+    {y:0, ease:Power4.easeIn, autoAlpha: 0},
+    {y:-20, ease:Back.easeInOut, autoAlpha: 1},
+     0.05)
+  .fromTo(loader, 0.3,
+    {autoAlpha:1, scale: 1.2},
+  {y:-20, ease:Back.easeNone, autoAlpha: 1}, 0.9)
+</pre>
 
-}</pre>
+<pre class="prettyprint linenums w50">
+function loadContent() { //vanish the loader
+  var tlLoaderOut = new TimelineLite({onComplete:contentIn});
+
+  tlLoaderOut
+    .set(dot, {marginRight: 20, backgroundColor: '#ad481d'})
+    .staggerFromTo(dot, 1,
+      {autoAlpha: 0},
+      {autoAlpha: 1, scale:2, ease:Back.easeInOut}, 0.2)
+    .staggerTo(dot, 0.5, {autoAlpha: 0, y: -200, ease:Power4.easeIn}, '0.1')
+}
+</pre>
+<h5 class="wh">05: declares css style rules</h5>
+<h5 class="wh">06: stagger 'dot' ensures separate animations</h5>
+<h5 class="wh">07: fade from 0 </h5>
+<h5 class="wh">08: this ease 'overshoots' a bit then arrives at given value. scale * 2. 200ms of separation</h5>
+<h5 class="wh">09: final tween that shoots them up like balloons. '0.1' string indicates relative (timeline) pos.</h5>
+refactored loader
+<div class="ctr intrinsic-ratio-wrapper w20">
+  <video  class="intrinsic-ratio-child" width="314" height="220" controls>
+    <source src="./img/loadRefactor.mov" type="video/mp4">
+  </video>
+</div>
+<h3 class="sand"><h3 class="ltred">Important Note:</h3> In order to prevent "flicker" set loader (container) to <code>opacity: 0;</code> as a default. This acts much in the same way as 'ng-cloak' in Angularjs</h3>
 </div>
 </div>
 <div class="lt-frame"><h3 class="chtitle dkblue">GSAP's Stagger Methods</h3>
