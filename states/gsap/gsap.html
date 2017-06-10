@@ -7,13 +7,15 @@
 
 <div class="brdr-w grey-bg">
   <h2 class="chtitle">Animating html boxes vs. svg boxes with GSAP</h2>
-  <h3 class="sand">A step-by-step guide with code</h3>
     <div class="fRight intrinsic-ratio-wrapper w40">
       <video  class="intrinsic-ratio-child" controls>
         <source src="./img/gsapBoxes.mp4" type="video/mp4">
       </video>
     </div>
+<h3 class="sand">A step-by-step guide with code</h3>
+
 tl = new TimelineMax({paused:true});
+
 tl
  <h5 class="orange">step 1</h5>.to(boxHTML, 1, {x:'100%', y:'100%', ease:Power1.easeInOut})
  <h5 class="orange">step 2</h5>.to(boxSVG, 1, {x:'100%', y:'100%', ease:Power1.easeInOut})
@@ -35,6 +37,15 @@ tl
  <h5 class="orange">step 18</h5>.to(boxHTML, 1, {rotationX: -360, transformOrigin: '0% 50%', ease:Power1.easeInOut})
  <h5 class="orange">step 19</h5>.to(boxSVG, 1, {rotationY: -360, transformOrigin: '100% 50%', ease:Power1.easeInOut})
 
+ <div class="ctr w30 coral">
+ <h4>This entire thing is wrapped in a <br>div class="perspective"</h4>
+ <pre class="prettyprint w20">.perspective {
+   position: absolute;
+   perspective: 600px;
+   height: 100%;
+   width: 100%; }
+ </pre>
+</div>
 
 
 
