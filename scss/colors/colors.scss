@@ -44,6 +44,9 @@
 .dkgrey {
   color: map-get($colors, dkgrey);
 }
+.dkgrey2 {
+  color: map-get($colors, dkgrey2);
+}
 
 .ltgrey {
   color: map-get($colors, ltgrey );
@@ -99,6 +102,12 @@
 }
 .dkred {
   color: map-get($colors, dkred);
+}
+.dkred2 {
+  color: map-get($colors, dkred2);
+}
+.dkred3 {
+  color: map-get($colors, dkred3);
 }
 
 .mustard {

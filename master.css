@@ -7,6 +7,7 @@ sass --watch master.scss:master.css
 @import url("https://fonts.googleapis.com/css?family=Source+Code+Pro");
 @import url("https://fonts.googleapis.com/css?family=Cabin");
 @import url("https://fonts.googleapis.com/css?family=Comfortaa");
+@import url("https://fonts.googleapis.com/css?family=Roboto:100");
 * {
   box-sizing: border-box;
   margin: 0;
@@ -141,6 +142,9 @@ pre.prettyprint {
 
 .bg {
   font-size: 2em; }
+
+.xl-txt {
+  font-size: 3em; }
 
 .shadn {
   box-shadow: 5px 5px 5px black;
@@ -539,6 +543,17 @@ img.neighbors-item {
   height: 100%;
   background: transparent; }
 
+.thin {
+  font-family: "Roboto", Sans-Serif; }
+
+.debossed-dk-frame {
+  padding: 1%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.5) 20%, rgba(125, 185, 232, 0) 80%);
+  border: 1px solid rgba(52, 54, 53, 0.6);
+  border-right: 0px solid transparent;
+  border-bottom: 0px solid transparent;
+  box-shadow: inset 10px 7px 6px -2px black; }
+
 /* jquery styles */
 .jq-entry {
   background-color: #a6b696;
@@ -667,6 +682,12 @@ div.ctr-example1 {
 .centering-entry {
   background: #371a1a;
   border: 1px solid #575757; }
+
+.home-container, .home-entry {
+  font-family: "Roboto", Sans-Serif; }
+
+a::before {
+  content: none; }
 
 div.angular-entry {
   color: #f28b02;
@@ -805,6 +826,9 @@ div.svg-entry {
 .dkgrey {
   color: #575757; }
 
+.dkgrey2 {
+  color: #868585; }
+
 .ltgrey {
   color: #bdbdbd; }
 
@@ -849,6 +873,12 @@ div.svg-entry {
 
 .dkred {
   color: #441f1d; }
+
+.dkred2 {
+  color: #612c2a; }
+
+.dkred3 {
+  color: #963532; }
 
 .mustard {
   color: #a38853; }
@@ -901,7 +931,7 @@ div.gsap-entry {
   background-color: white; }
 
 div.journal-entry {
-  box-shadow: inset 2px 2px 20px 5px rgba(0, 0, 0, 0.9);
+  box-shadow: inset 2px 2px 20px 5px rgba(0, 0, 0, 0.5);
   margin: 1vw;
   padding: 3vw;
   background: url("img/blank_page.jpg") no-repeat center center fixed;
