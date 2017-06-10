@@ -528,7 +528,7 @@ img.neighbors-item {
 
 .intrinsic-ratio-wrapper {
   position: relative;
-  padding-bottom: 20%;
+  padding-bottom: 30%;
   height: 0; }
 
 .intrinsic-ratio-child {
@@ -797,6 +797,10 @@ div.svg-entry {
 
 .dkorange {
   color: #945706; }
+
+.grey-bg {
+  background-color: #575757;
+  padding: 1%; }
 
 .dkgrey {
   color: #575757; }

@@ -4,6 +4,42 @@
   <div class="gsap-entry entry">
     <pre>
 <!--entire page pre-->
+
+<div class="brdr-w grey-bg">
+  <h2 class="chtitle">Animating html boxes vs. svg boxes with GSAP</h2>
+  <h3 class="sand">A step-by-step guide with code</h3>
+    <div class="fRight intrinsic-ratio-wrapper w40">
+      <video  class="intrinsic-ratio-child" controls>
+        <source src="./img/gsapBoxes.mp4" type="video/mp4">
+      </video>
+    </div>
+tl = new TimelineMax({paused:true});
+tl
+ <h5 class="orange">step 1</h5>.to(boxHTML, 1, {x:'100%', y:'100%', ease:Power1.easeInOut})
+ <h5 class="orange">step 2</h5>.to(boxSVG, 1, {x:'100%', y:'100%', ease:Power1.easeInOut})
+ <h5 class="orange">step 3</h5>.to(boxHTML, 1, {left:'50%', top:'50%', ease:Power1.easeInOut})
+ <h5 class="orange">step 4</h5>.to(boxSVG, 1, {left:'50%', top:'50%', ease:Power1.easeInOut})
+ <h5 class="orange">step 5</h5>.to(boxHTML, 1, {left:'50%', top:'50%', x:'-50%', y:'-50%', ease:Power1.easeInOut})
+ <h5 class="orange">step 6</h5>.to(htmlDOT, 1, {left: 0, top: 0, ease:Power1.easeInOut})
+ <h5 class="orange">step 7</h5>.to(boxSVG, 1, {left:'50%', top:'50%', x:'-50%', y:'-50%', ease:Power1.easeInOut})
+ <h5 class="orange">step 8</h5>.to(svgDot, 1, {attr:{cx: 0, cy: 0}, ease:Power1.easeInOut})
+ <h5 class="orange">step 9</h5>.to(boxHTML, 1, {rotation: 90, transformOrigin: '100% 100%', ease:Power1.easeInOut})
+ <h5 class="orange">step 10</h5>.to(boxSVG, 1, { rotation: 90, transformOrigin: '100% 100%',ease:Power1.easeInOut})
+ <h5 class="orange">step 11</h5>.to(boxHTML, 1, {xPercent: -100, rotation: 0, ease:Power1.easeInOut})
+ <h5 class="orange">step 12</h5>.to(boxSVG, 1, {xPercent: 0, rotation: 0, ease:Power1.easeInOut})
+ <h5 class="orange">step 13</h5>.to(htmlDOT, 1, {left: '50%', top: '50%', ease:Power1.easeInOut})
+ <h5 class="orange">step 14</h5>.to(svgDot, 1, {attr:{cx: 100, cy: 100}, ease:Power1.easeInOut})
+ <h5 class="orange">step 15</h5>.to([boxSVG, boxHTML], 1, {rotation: 720, transformOrigin: '50% 50%', ease:Power1.easeInOut})
+ <h5 class="orange">step 16</h5>.to(boxHTML, 1, {rotationX: -180, transformOrigin: '0% 50%', ease:Power1.easeInOut})
+ <h5 class="orange">step 17</h5>.to(boxSVG, 1, {rotationY: -180, transformOrigin: '100% 50%', ease:Power1.easeInOut})
+ <h5 class="orange">step 18</h5>.to(boxHTML, 1, {rotationX: -360, transformOrigin: '0% 50%', ease:Power1.easeInOut})
+ <h5 class="orange">step 19</h5>.to(boxSVG, 1, {rotationY: -360, transformOrigin: '100% 50%', ease:Power1.easeInOut})
+
+
+
+
+</div>
+<hr>
 <div class="framed4"><h3>A loader animation with GSAP</h3>
   <div class="ctr intrinsic-ratio-wrapper w20">
     <video  class="intrinsic-ratio-child" width="314" height="220" controls>
@@ -46,8 +82,6 @@ First we need a bit of html <b class="paleY">at the top of <span><</span>body></
 }
 </pre>
 </div>
-
-
 
 TimelineMax is required to configure the number of repeats of the a given timeline.
 

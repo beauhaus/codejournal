@@ -36,6 +36,10 @@
 .dkorange {
   color: map-get($colors, dkorange);
 }
+.grey-bg {
+  background-color: map-get($colors, dkgrey);
+  padding: 1%;
+}
 
 .dkgrey {
   color: map-get($colors, dkgrey);
