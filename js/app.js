@@ -54,5 +54,9 @@ angular.module("codeJournal", ['ui.router', 'ngAnimate'])
       controller: 'gsapCtrl',
       url: '/gsap',
       templateUrl: './states/gsap/gsap.html'
+    }).state('grid', {
+      controller: 'gridCtrl',
+      url: '/grid',
+      templateUrl: './states/grid/grid.html'
     })
 });

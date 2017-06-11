@@ -1,0 +1,66 @@
+pre.prettyprint {
+  border:1px solid map-get($colors, dkgrey);
+  font-size: 1.2em;
+}
+div.grid-entry {
+background: linear-gradient(180deg, rgba(29, 30, 32, 1) 0%,rgba(23, 22, 31, 1) 100%);
+  box-shadow: inset 2px 2px 2px 0px rgba(#000, 4);
+  overflow: auto;
+  color: map-get($colors, softsand);
+  font-family: map-get($fonts, Thin);
+
+  height: 80vh;
+  border: 1px solid map-get($colors, softred);
+  pre {
+    font-family: map-get($fonts, Thin);
+    div {
+      color: map-get($colors, softsand);
+      margin: 1% auto;
+      border-radius: 10px;
+    }
+  }
+}
+.softred-fr {
+  padding: 1%;
+  background-color: map-get($colors, softred);
+box-shadow: inset 4px 2px 8px 1px map-get($colors, shadow);
+}
+.softbrown-fr {
+  padding: 1%;
+  background-color: map-get($colors, softbrown);
+  box-shadow: inset 4px 2px 8px 1px map-get($colors, shadow);
+}
+.softsand-fr {
+  padding: 1%;
+  background-color: map-get($colors, softsand);
+  box-shadow: inset 4px 2px 8px 1px map-get($colors, shadow);
+}
+.softblue-fr {
+  padding: 1%;
+  background-color: map-get($colors, softblue);
+  box-shadow: inset 4px 2px 8px 1px map-get($colors, shadow);
+}
+.softwhite-fr {
+  padding: 1%;
+  background-color: map-get($colors, softwhite);
+  box-shadow: inset 4px 2px 8px 1px map-get($colors, shadow);
+}
+.rad {
+  border-radius: 20px;
+}
+/* ===================CSS GRID for EXAMPLES ========================== */
+.grid-exA {
+ display: grid;
+ grid-template-columns: 20vw 20vw 15vw;
+ grid-template-rows: 20vh 15vh;
+ grid-auto-rows: 10vh;
+ grid-gap: 1vh;
+ border: 1px solid orange;
+}
+.grid-exA div{
+  background-color: map-get($colors, shadow);
+  padding: 0.2em;
+
+  margin: 1%;
+  border: 1px solid map-get($colors, transGreen);
+}

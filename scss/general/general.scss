@@ -183,7 +183,7 @@ pre.prettyprint {
   font-size: 2em;
 }
 .xl-txt {
-  font-size: 3em;  
+  font-size: 3em;
 }
 .shadn {
   box-shadow: 5px 5px 5px black;
@@ -688,4 +688,7 @@ img.neighbors-item {
   border-right: 0px solid transparent;
   border-bottom: 0px solid transparent;
   box-shadow: inset 10px 7px 6px -2px map-get($colors, black);
+}
+.bold {
+  font-weight: bold;
 }

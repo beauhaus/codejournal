@@ -554,6 +554,9 @@ img.neighbors-item {
   border-bottom: 0px solid transparent;
   box-shadow: inset 10px 7px 6px -2px black; }
 
+.bold {
+  font-weight: bold; }
+
 /* jquery styles */
 .jq-entry {
   background-color: #a6b696;
@@ -804,6 +807,24 @@ div.svg-entry {
 .y {
   color: yellow; }
 
+.softsand-bg {
+  background-color: #b38f59; }
+
+.softsand {
+  color: #b38f59; }
+
+.softbrown-bg {
+  background-color: #2c2d32; }
+
+.softbrown {
+  color: #2c2d32; }
+
+.softred-bg {
+  background-color: #b64d3e; }
+
+.softred {
+  color: #b64d3e; }
+
 .pastpink {
   color: #9e869b; }
 
@@ -931,7 +952,7 @@ div.gsap-entry {
   background-color: white; }
 
 div.journal-entry {
-  box-shadow: inset 2px 2px 20px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 2px 2px 20px 5px rgba(0, 0, 0, 0.8);
   margin: 1vw;
   padding: 3vw;
   background: url("img/blank_page.jpg") no-repeat center center fixed;
@@ -977,5 +998,67 @@ div.journal-entry {
   content: "📌"; }
 .journal-container a:hover {
   color: #79e286; }
+
+pre.prettyprint {
+  border: 1px solid #575757;
+  font-size: 1.2em; }
+
+div.grid-entry {
+  background: linear-gradient(180deg, #1d1e20 0%, #17161f 100%);
+  box-shadow: inset 2px 2px 2px 0px black;
+  overflow: auto;
+  color: #b38f59;
+  font-family: "Roboto", Sans-Serif;
+  height: 80vh;
+  border: 1px solid #b64d3e; }
+  div.grid-entry pre {
+    font-family: "Roboto", Sans-Serif; }
+    div.grid-entry pre div {
+      color: #b38f59;
+      margin: 1% auto;
+      border-radius: 10px; }
+
+.softred-fr {
+  padding: 1%;
+  background-color: #b64d3e;
+  box-shadow: inset 4px 2px 8px 1px rgba(0, 0, 0, 0.8); }
+
+.softbrown-fr {
+  padding: 1%;
+  background-color: #2c2d32;
+  box-shadow: inset 4px 2px 8px 1px rgba(0, 0, 0, 0.8); }
+
+.softsand-fr {
+  padding: 1%;
+  background-color: #b38f59;
+  box-shadow: inset 4px 2px 8px 1px rgba(0, 0, 0, 0.8); }
+
+.softblue-fr {
+  padding: 1%;
+  background-color: #436475;
+  box-shadow: inset 4px 2px 8px 1px rgba(0, 0, 0, 0.8); }
+
+.softwhite-fr {
+  padding: 1%;
+  background-color: #cdcdcd;
+  box-shadow: inset 4px 2px 8px 1px rgba(0, 0, 0, 0.8); }
+
+.rad {
+  border-radius: 20px; }
+
+/* ===================CSS GRID for EXAMPLES ========================== */
+.grid-exA {
+  display: grid;
+  grid-template-columns: 20vw 20vw 15vw;
+  grid-template-rows: 20vh 15vh;
+  grid-auto-rows: 10vh;
+  grid-gap: 1vh;
+  border: 1px solid orange; }
+
+.grid-exA div {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 0.2em;
+  margin: 1%;
+  border: 1px solid rgba(50, 179, 132, 0.78); }
 
 /*# sourceMappingURL=master.css.map */

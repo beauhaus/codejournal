@@ -19,6 +19,35 @@
   color: map-get($colors, y);
 }
 
+.softsand-bg {
+background-color: map-get($colors, softsand);
+}
+.softsand {
+color: map-get($colors, softsand);
+}
+.softbrown-bg {
+background-color: map-get($colors, softbrown);
+}
+.softbrown {
+color: map-get($colors, softbrown);
+}
+.softred-bg {
+background-color: map-get($colors, softred);
+}
+.softred {
+color: map-get($colors, softred);
+}
+.softBlue-bg {
+background-color: map-get($colors, softBlue);
+}
+.softBlue {
+color: map-get($colors, softBlue);
+}
+.softwhite {
+  color: map-get($colors, softwite);
+}
+
+
 .pastpink {
   color: map-get($colors, pastpink);
 }
