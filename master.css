@@ -1075,13 +1075,13 @@ a::before {
   grid-template-columns: 20vw 20vw 15vw;
   grid-template-rows: 20vh 15vh;
   grid-auto-rows: 10vh;
-  grid-gap: 1vh;
-  border: 1px solid orange; }
+  grid-gap: 1vh; }
   .grid-exA div {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: #575757;
     padding: 0.2em;
+    color: #cdcdcd;
     margin: 1%;
-    border: 1px solid rgba(50, 179, 132, 0.78); }
+    border: 1px solid #b0493a; }
 
 .grid-exB {
   display: grid;

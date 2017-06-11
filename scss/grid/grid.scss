@@ -61,13 +61,12 @@ a::before {
  grid-template-rows: 20vh 15vh;
  grid-auto-rows: 10vh;
  grid-gap: 1vh;
- border: 1px solid orange;
    div{
-     background-color: map-get($colors, shadow);
+     background-color: map-get($colors, dkgrey);
      padding: 0.2em;
-
+     color: map-get($colors, softwhite);
      margin: 1%;
-     border: 1px solid map-get($colors, transGreen);
+     border: 1px solid map-get($colors, softred);
    }
 }
 .grid-exB {
