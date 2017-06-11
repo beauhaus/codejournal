@@ -175,9 +175,10 @@ pre.prettyprint {
 }
 
 .ctrtxt {
-  // text-align: center;
-  margin: auto;
+  text-align: center;
 }
+// FIXME: look for ctrtxt elements because I know one or two is screwed up
+// I removed "margin: auto from them" and those should be classed .ctr
 
 .bg {
   font-size: 2em;
@@ -604,7 +605,7 @@ pre {
 .chtitle {
   margin: 0 auto;
   text-align: center;
-  font-family: map-get($fonts, Cabin);
+  // font-family: map-get($fonts, Comfort);
   color: map-get($colors, dkorange);
 }
 .ctr {
@@ -657,9 +658,11 @@ img.neighbors-item {
   background-color: map-get($colors, ltbg3);
 }
 .brdr-w {
+  padding: 1%;
   border: 1px solid ivory;
 }
 .brdr-b{
+  padding: 1%;
   border: 1px solid black;
 }
 
@@ -678,12 +681,9 @@ img.neighbors-item {
   height: 100%;
   background: transparent;
 }
-.thin {
-  font-family: map-get($fonts, Thin);
-}
 .debossed-dk-frame {
   padding: 1%;
-  background: linear-gradient(to right, rgba(0,0,0,0.5) 20%,rgba(125,185,232,0) 80%);
+  background: linear-gradient(to right, rgba(0,0,0,0.7) 0%,rgba(125,185,232,0) 100%);
   border: 1px solid map-get($colors, dkghost);
   border-right: 0px solid transparent;
   border-bottom: 0px solid transparent;
@@ -691,4 +691,21 @@ img.neighbors-item {
 }
 .bold {
   font-weight: bold;
+}
+// fonts classes
+
+.clean {
+  font-family: map-get($fonts, Clean);
+}
+.comfort {
+  font-family: map-get($fonts, Comfort);
+}
+.cabin {
+  font-family: map-get($fonts, Cabin);
+}
+.codePr {
+  font-family: map-get($fonts, CodePro);
+}
+.thin {
+  font-family: map-get($fonts, Thin);
 }

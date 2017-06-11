@@ -1,14 +1,19 @@
+<!-- NOTE: Use CodePro, Thin & Thin .bold for this view -->
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
 <div class="grid-container rad">
   <aside><span class="rot90">{{state}}</span></aside>
   <div class="grid-entry entry">
-<pre><h1>CSS GRID: A walkthrough</h1>
 <!--entire page pre-->
+<h1>CSS GRID: A walkthrough</h1>
 
-<div class="ctr softbrown-fr rad">
-  <h3 class="softsand bold">A simple grid c/o <a target="_blank" href="https://youtu.be/Dz9BzY21Zks">Rachel Andrews</a></h3>
-<div class="col-2"><pre class="prettyprint frame-w w30">
+  <div class="ctr softbrown-fr rad">
+  <h3 class="softsand bold">A simple grid </h3>
+
+
+<div class="col-2">
+  <pre class="prettyprint frame-w w30">
 <<span>div class="<b class="paleY">grid</b>"></span>
+
     <<span>div></span>1<<span>/</span>div>
 
     <<span>div></span>2<<span>/</span>div>
@@ -27,6 +32,7 @@
 
 <<span>/div></span>
 </pre>
+
 <pre class="prettyprint w40 linenums">
 .grid {
 
@@ -43,60 +49,140 @@
  grid-row-gap: 1vh; // row-gap
 
 }
-//Lines 10 & 12 above have a shorthand taking one value
 
-"grid-gap: 1vh;"
+
+// Lines 10 & 12 above have a shorthand taking one value
+// "grid-gap: 1vh;"
 </pre>
-</pre>
-<div class="w60 ctr">
-  <div class="grid-exA">
-    <div class="">1</div>
-    <div class="">2</div>
-    <div class="">3</div>
-    <div class="">4</div>
-    <div class="">5</div>
-    <div class="">6</div>
-    <div class="">7 implicit</div>
-    <div class="">8 rows</div>
+</div>
+<br /><br />
+    <!-- grid-exA displayed========================= -->
+
+    <div class="grid-exA w60 ctr">
+      <div class="">1</div>
+      <div class="">2</div>
+      <div class="">3</div>
+      <div class="">4</div>
+      <div class="">5</div>
+      <div class="">6</div>
+      <div class="">7 implicit</div>
+      <div class="">8 rows</div>
+    </div>
+    <a class="fRight" target="_blank" href="https://youtu.be/Dz9BzY21Zks"> c/o Rachel Andrews</a>
+    <br>
+    <br>
+</div>
+    <br>
+    <br>
+    <div class="softred-fr clean">
+      <h1 class="chtitle softsand codePro">A new useful <em>relative</em> unit!</h1>
+      <a class="fRight" target="_blank" href="https://youtu.be/N731aTpo8TI?list=PLQkVA6z3dFvbnBJetfYDAF3-cG_ubgdZR"> c/o Rachel Andrews</a>
+      <div class="ctr">
+        <pre class="left w30 prettyprint bold"> grid-template-columns: 2fr 1fr 500px;</pre>
+        <br><br>
+        <div class="grid-exB w60 ctr">
+          <div class="">1: 2fr</div>
+          <div class="">2: 1fr</div>
+          <div class="">3: Absolute Width 500px</div>
+          <div class="">4: 2fr</div>
+          <div class="">5: 1fr</div>
+          <div class="">6: Absolute Width 500px</div>
+          <div class="">7: 2fr</div>
+          <div class="">8: 1fr</div>
+        </div>
+        <dt class="med">fr = "fraction".</dt>
+        <dd class="ctr w80">It accounts for fixed and relative gaps. "fr" respects the absolute value of px widths. These will never change! Only the fr columns will respond to viewport adjustment--which is extremely cool and one of the many reasons why so many lovely front-end
+          nerds go on about it! 😀</dd>
+        <pre>
+<div class="brdr-w w60"><h1 class="chtitle codepro bold softbrown">Let's dry out some code!</h1>
+<h3 class="wh">Imagine that we have four columns:</h3>
+<pre class="left w30 prettyprint bold"> grid-template-columns: 2fr 2fr 2fr 2fr;</pre>
+        <h4 class="wh">Lets clean this repeated pattern up by using:<code class="med">Grid's repeat(); method!</code></h4>
+        <pre class="left w30 prettyprint bold"> grid-template-columns: repeat(4, 2fr);</pre>
+        <h4 class="wh">This results in four even columns.</h4></div>
+
+      <h2 class="wh">Take look at this powerful style-rule...</h2>
+      <pre class="left w30 prettyprint bold">grid-template-columns: repeat(2, 2fr 3fr);</pre>
+      </pre>
+      <h4 class="wh">That's right. We'll get 2 pairs. First column equalling 2fr the second, 3fr--and then another pair!</h4>
+      <div class="grid-exC w60 ctr">
+        <div class="">1: </div>
+        <div class="">2: </div>
+        <div class="">3: </div>
+        <div class="">4: </div>
+        <div class="">5: </div>
+        <div class="">6: </div>
+        <div class="">7: </div>
+        <div class="">8: </div>
+      </div>
+      <br />
+      <br>
+      <h3 class="wh bold">--Wait! that's not all!<br /> We can further configure it with an absolute value for a column or two.</h3>
+      <br><pre class="prettyprint w30">grid-template-columns: 50px repeat(3, 3fr);
+grid-template-rows: 50px repeat(2, 8vh);</pre>
+      <br>
+      <div class="grid-exD w60 ctr">
+        <div class="">1: </div>
+        <div class="">2: </div>
+        <div class="">3: </div>
+        <div class="">4: </div>
+        <div class="">5: </div>
+        <div class="">6: </div>
+        <div class="">7: </div>
+        <div class="">8: </div>
+        <div class="">9: </div>
+        <div class="">10: </div>
+        <div class="">11: </div>
+        <div class="">12: </div>
+      </div>
+      <br>
+      <h2 class="softsand">Rest assured, that no matter what happens to the viewport, the height of the top row will remain it's absolute value of 50px.<br />
+And whatever happens, the first row will remain the same width of 50px.</h2>
+      <br>
+      <h2>Pure genius...</h2>
+
+
+
+</div>
+
+
+
   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- </div> -->
-</div>
-
-</div>
-<pre>
-<div class=" softred-fr">
-  <br>
-
-
+<!-- <div class="softsand-fr">
 
 
   placeholder
 
 
 
-
-</div>
-<div class="softsand-fr">
-
-
-  placeholder
-
-
-
-</div>
-<div class="softblue-fr">
+</div> -->
+<!-- <div class="softblue-fr">
 
 
 placeholder
 
 
-</div>
+</div> -->
 
 
 
-</pre>
-<!--entire page pre-->
-</div>
+
+      <!--entire page pre-->
+    </div>
 
 
-</div>
+  </div>

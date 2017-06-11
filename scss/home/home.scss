@@ -1,6 +1,6 @@
 .home-container, .home-entry {
   font-family: map-get($fonts, Thin);
-}
-a::before {
-  content: none;
+  a::before {
+    content: none;
+  }
 }
