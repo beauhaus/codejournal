@@ -704,6 +704,18 @@ div.ctr-example1 {
   .home-container a::before, .home-entry a::before {
     content: none; }
 
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 5vh;
+  width: 100%;
+  text-align: center;
+  padding: 1% auto 5% auto; }
+  footer ul li {
+    display: inline-block;
+    margin: 0 2vw; }
+
 div.angular-entry {
   color: #f28b02;
   overflow: auto;
@@ -1111,6 +1123,18 @@ a::before {
   border: 1px solid black; }
 
 div.grid-exD div {
+  background-color: #436475;
+  padding: 0.2em;
+  border: 1px solid rgba(50, 179, 132, 0.78); }
+
+.grid-exF {
+  display: grid;
+  grid-template-columns: 50px repeat(3, 3fr);
+  grid-template-rows: 50px repeat(2, 8vh);
+  grid-gap: 1vh;
+  border: 1px solid black; }
+
+div.grid-exF div {
   background-color: #436475;
   padding: 0.2em;
   border: 1px solid rgba(50, 179, 132, 0.78); }

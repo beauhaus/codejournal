@@ -1,12 +1,60 @@
-<!-- NOTE: Use CodePro, Thin & Thin .bold for this view -->
+<!-- NOTE: Use .codePro, Thin & Thin .bold for this view -->
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
 <div class="grid-container rad">
   <aside><span class="rot90">{{state}}</span></aside>
   <div class="grid-entry entry">
 <!--entire page pre-->
 <h1>CSS GRID: A walkthrough</h1>
+<div class="ctr softblue-fr">
+<h2 class="chtitle bold">Grid's powerful <code>minmax()</code> logic</h2>
+<div class="col-2">
+<pre class="prettyprint frame-w w30">
+<<span>div class="<b class="paleY">grid</b>"></span>
+  <<span>div></span>1<<span>/</span>div>
+  <<span>div></span>2<<span>/</span>div>
+  <<span>div></span>3<<span>/</span>div>
+  <<span>div></span>4<<span>/</span>div>
+  <<span>div></span>5<<span>/</span>div>
+  <<span>div></span>6<<span>/</span>div>
+  <<span>div></span>7<<span>/</span>div>
+  <<span>div></span>8<<span>/</span>div>
+<<span>/div></span>
+</pre>
 
-  <div class="ctr softbrown-fr rad">
+<pre class="prettyprint w40 linenums">
+.grid {
+ display: grid;
+
+ grid-template-columns: repeat(3, 1fr);
+
+ grid-template-rows: minmax(100px, auto);
+
+ grid-gap: 10px;
+
+ }
+</pre>
+</div>
+<h2 class="bold">.grid's css rules express that default height will always be <code>100px</code><br />
+However, content trumps this and the <code>"auto"</code> will enable a stretch to accomodate content.</h2>
+<div class="chtitle"><img class="w40" src="./img/gridf.png" alt="grid with minmax values"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<br>
+<div class="ctr softbrown-fr rad">
   <h3 class="softsand bold">A simple grid </h3>
 
 

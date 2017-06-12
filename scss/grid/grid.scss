@@ -104,3 +104,15 @@ div.grid-exD div {
   padding: 0.2em;
   border: 1px solid map-get($colors, transGreen);
 }
+.grid-exF {
+ display: grid;
+ grid-template-columns: 50px repeat(3, 3fr);
+ grid-template-rows: 50px repeat(2, 8vh);
+ grid-gap: 1vh;
+ border: 1px solid black;
+}
+div.grid-exF div {
+  background-color: map-get($colors, softblue);
+  padding: 0.2em;
+  border: 1px solid map-get($colors, transGreen);
+}

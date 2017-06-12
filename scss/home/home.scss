@@ -4,3 +4,16 @@
     content: none;
   }
 }
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 5vh;
+  width: 100%;
+  text-align: center;
+  ul li {
+    display: inline-block;
+    margin: 0 2vw;
+  }
+  padding: 1% auto 5% auto;
+}
