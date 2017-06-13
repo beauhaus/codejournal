@@ -7,15 +7,23 @@
   position: relative;
   font: {
     family: map-get($fonts, Comfort);
-    size: 2vw;
+    size: 1.4vw;
   }
-
+  p {
+    font-family: map-get($fonts, Clean);
+  }
+  .framed6 {
+    font-size: 1em;
+    background-color: map-get($colors, pastBlue);
+  }
   .prettyprint {
     font-size: 1.2vw;
     background-color: #445e5e;
     padding: 2vh 2vw;
   }
-
+  .plain-frame3 {
+    font-size: .9em;
+  }
   div {
     margin: {
       bottom: $baseline/2;
@@ -26,6 +34,11 @@
       size: 2vw;
     }
   }
+  .simple-frame {
+    font-size: 1em;
+    padding: $baseline * 3 ($baseline * 5);
+  }
+
 }
 
 .code-question {

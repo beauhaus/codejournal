@@ -2,21 +2,20 @@ div.ecma-entry {
   // border: 1px solid map-get($colors, trim);
   // border: 4px dashed red;
   height: 80vh;
-  background-color: map-get($colors, ltgrey);
+  background-color: map-get($colors, softsand);
   border: 1px solid map-get($colors, dkorange);
-  border-radius: 2%;
+  border-radius: 10px;
   box-shadow: -10px 10px 10px 0 rgba(0, 0, 0, 0.7) inset;
-  font: {
-    family: map-get($fonts, CodePro);
-    size: 2vw;
-  }
-a {
-  background-color: map-get($colors, sand);
-}
-  .prettyprint {
+
+  pre.prettyprint {
     background-color: #445e5e;
     padding: 2vh 2vw;
     border: 1px solid burlywood;
+    font-size: .6em;
+  }
+
+  a {
+    background-color: map-get($colors, sand);
   }
   overflow: auto;
   position: relative;

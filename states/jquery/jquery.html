@@ -2,8 +2,9 @@
 <div class="jq-container">
   <aside><span class="rot90">{{state}}</span></aside>
 
-<div class="jq-entry entry">
-<pre>
+  <div class="jq-entry entry">
+    <pre>
+  <!-- pre for all -->
 <!--
 <pre class="prettyprint w40">
   function fun(foo, bar) {
@@ -13,106 +14,105 @@
     //example snippet
   }
 </pre> -->
-<div class="simple-frame">
-  <h4 class="chtitle">Jquery Intermediate Quiz</h4>
-  $('img, div') selects both elements. What is another way?
-  <h5 class="right ans lg dkorange">$('img').add('div')</h5>
+    <div class="simple-frame">
+      <h2 class="dkred">Jquery Intermediate Quiz:</h2><span class="pastBlue"><em>selection and events</em></span>
 
-  If h3 containing "hint" is displayed, stop displaying it. If it isn't displayed, display it.
-  <h5 class="right ans lg dkorange">$("h3:contains('hint')").toggle();</h5>
+      <ol>
+        <li>$('img, div') selects both elements. What is another way?
+          <h5 class="right ans lg dkorange">$('img').add('div')</h5></li>
 
-  Assign to a variable a user's entry in a form field.
-<pre class="prettyprint w60 ans">
-<b><</b>input id="txt_name" type="text" name="input"<b>></b>
+        <li>If h3 containing "hint" is displayed, stop displaying it. If it isn't displayed, display it.
+          <h5 class="right ans lg dkorange">$("h3:contains('hint')").toggle();</h5></li>
+
+        Assign to a variable a user's entry in a form field.
+        <li><pre class="prettyprint w40 ans"><code class="sm"><b><</b>input id="txt_name" type="text" name="input"<b>></b></code>
 
 var btn2 = $('.btn2');
 btn2.on('click', function() {
   var text = $("#txt_name").val();
   console.log(text);
 });
-</pre>
+  </pre></li>
 
-  How would I remove all < p> tags entirely from the DOM?
-  <h5 class="right ans lg dkorange">$("p").remove(); </h5>
+        <li>How would I remove all
+          < p> tags entirely from the DOM?
+            <h5 class="right ans lg dkorange">$("p").remove(); </h5></li>
 
-  How to remove all < h4> tag contents but keep the elements in the DOM?
-  <h5 class="right ans lg dkorange">$("h4").empty(); </h5>
+        <li>How to remove all
+          < h4> tag contents but keep the elements in the DOM?
+            <h5 class="right ans lg dkorange">$("h4").empty(); </h5></li>
 
-  But on var x all the < p> tags that contain the word "freedom".
-  <h5 class="right ans lg dkorange">var x = $("p:contains('freedom')"); </h5>
+        <li>But on var x all the
+          < p> tags that contain the word "freedom".
+            <h5 class="right ans lg dkorange">var x = $("p:contains('freedom')"); </h5></li>
 
-  Assign the class "vanishing" to images if they don't have it & remove it if they do.
-  <h5 class="right ans lg dkorange">$('p').toggleClass("vanishing");  </h5>
+        <li>Assign the class "vanishing" to images if they don't have it & remove it if they do.
+          <h5 class="right ans lg dkorange">$('p').toggleClass("vanishing");  </h5></li>
 
-  If any paragraphs contain "sad" replace their class with "happy".
-  <h5 class="right ans lg dkorange">$("p:contains('sad')").attr("class", "happy");  </h5>
+        <li>If any paragraphs contain "sad" replace their class with "happy".
+          <h5 class="right ans lg dkorange">$("p:contains('sad')").attr("class", "happy");  </h5></li>
 
-  How to remove and replace an element with completely different HTML.
-  <h5 class="right ans lg dkorange">$("h3:contains('sad')").replaceWith('< h2>We are all Happy!< /h2>');</h5>
-</pre>
-<div class="simple-frame">
-
-  <section class="neighbors-container">
-    <h4 class="chtitle">This code grabs siblings with a certain word...Then, completely replaces the elements.</h4>
-    <img class="neighbors-item w20" src="./img/sadHappy.png" alt="sad happy jquery">
-    <img class="neighbors-item w20" src="./img/happy.png" alt="happy">
-  </section>
-<pre class="prettyprint w80">
+        <li> How to remove and replace an element with completely different HTML.
+          <h5 class="right ans lg dkorange">$("h3:contains('sad')").replaceWith('< h2>We are all Happy!< /h2>');</h5></li>
+      </ol>
+    </div>
+    <div class="simple-frame2">
+      <h4>Selection</h4>
+      <h4 class="ctr med">This code grabs siblings with a certain word...Then, completely replaces the elements.</h4>
+      <section class="col-2  w50 ctr"><pre class="w20"><img class="neighbors-item w20" src="./img/sadHappy.png" alt="sad happy jquery"></pre>
+        <pre class="w20"><img class="neighbors-item w20" src="./img/happy.png" alt="happy"></pre></section>
+      <pre class="prettyprint w50 ctr">
 var btn = $('button');
 btn.on('click', function() {
   var btnNeighbors =  $(this).siblings().text();
   $("h3:contains('sad')").replaceWith('< h2>We are all Happy!< /h2>');
 });</pre>
 
-</div>
-<hr>
-<pre class="dkred">
+    </div>
+    <hr>
 
-<h4><a href="https://youtu.be/x_Rh6qCmN5s?list=PLHJPCYLtEMaKdvFGcFk3ud-FEJv5j5dwR">tuts+ video link</a></h4>
-<i class="dkred">THIS </i>in two different contexts:<br>
 
-<i class="dkblue">'this'</i> can refer--here--to the element that <em>fired</em> this
-...or the object created by the triggering of that element.
+    <div class="framed6">
+      <h4><a href="https://youtu.be/x_Rh6qCmN5s?list=PLHJPCYLtEMaKdvFGcFk3ud-FEJv5j5dwR">tuts+ video link</a></h4>
+      <h4 class="chtitle ctr"><span class="dkred">THIS </span>in two different contexts:</h4>
+      <h1 class="ltgreen">I.</h1>
 
-HOWEVER: What if I want to call the 'doIt()' method on that object
-& refer to that element <em> <b class="dkblue">as 'this'</b></em>??
+      <i class="dkblue">'this'</i> can refer--here--to the element that <em>fired</em> this ...or the object created by the triggering of that element. HOWEVER: What if I want to call the <code>'doIt()'</code> method on that object & refer to that element
+      <em> <b class="dkblue">as 'this'</b></em>??
 
-Simple: We use javascript's .call(); method.
+      <h4 class="ctr paleY">Javascript's .call(); method will give us this power.</h4>
 
-<pre class="prettyprint w80">
-  btn = $('button');
-  var obj = {
-    doIt: function(e) {
-      console.log(this); // obj.
-  }
+      <pre class="prettyprint w30 ctr">
+btn = $('button');
+var obj = {
+  doIt: function(e) {
+    console.log(this); // obj.
+}
 
 btn.on('click', function(e) {
   obj.doIt().call(obj);
-  //we call this b/c within this click function
-  //we know that 'this' refers to the btn that was clicked.
 })
 </pre>
-<hr>
-<img class="w80" src="img/this3.png" alt="this3">
-I can use the call method & send another arg to the doIt function;
-<hr>
-<pre class="prettyprint">
-  btn = $('button');
-  var obj = {
-    doIt: function(e) {
-      e.hide();
-    }
+      <div class="framed8 ctr w50">
+        <h5 class="ivr">--We call "this" b/c within  the click function because we know that 'this' refers to the btn that was clicked.</h5>
+        <img class="w40" src="img/this3.png" alt="this3"> I can use the call method & send another arg to the <code class="paleY">doIt</code> function;
+      </div>
+      <hr>
+      <h1 class="ltgreen">II.</h1>
+      <p class="pastpink">This will hide all things <em>but</em> the button</p>
+      <pre class="prettyprint ctr w40">
+btn = $('button');
+var obj = {
+  doIt: function(e) {
+    e.hide();
   }
-  btn.on('click', function(e) {
-    obj.doIt.call(this, btn.siblings());
-  })</pre>
-  <p>This will cause all things but the button to hide</p>
-  <hr>
+}
+btn.on('click', function(e) {
+  obj.doIt.call(this, btn.siblings());
+})</pre>
 
-  How to execute code/animation after completion of one animation?
-  SIMPLE!
-  <pre class="dkbg">
-
+      <p class="ivr">How to execute code/animation after completion of one animation? --SIMPLE!</p>
+      <pre class="dkbg w30 ctr sm">
   var obj = {
     doIt: function(e) {
       e.slideUp(1500,<span class="orange"> function() {
@@ -124,15 +124,18 @@ I can use the call method & send another arg to the doIt function;
     obj.doIt.call(this, btn.siblings());
   })
   </pre>
-  Here's another example *see the "completed" log to console.
-  <img class="w40" src="img/completed.png" alt="">
-  <span class="dkred">You can also do a <b>.delay(1200)</b></span>
-<hr>
-  <a href="https://youtu.be/BOx8FzOTFfc?list=PLHJPCYLtEMaKdvFGcFk3ud-FEJv5j5dwR&t=115">Tuts+ Video</a>
+      <p> Here's another example *see the "completed" log to console.</p>
+      <img class="w40" src="img/completed.png" alt="completed">
+      <span class="dkred">You can also do a <b>.delay(1200)</b></span>
+    </div>
+    <hr>
 
-<div class="code-question-compact">
-  <div class="w40 ctr">
-<pre class="prettyprint w40">
+    <div class="plain-frame3">
+      <h2 class="dkred">jQuery Trivia:</h2><span class="pastBlue"><em>more on selection</em></span>
+
+      <a href="https://youtu.be/BOx8FzOTFfc?list=PLHJPCYLtEMaKdvFGcFk3ud-FEJv5j5dwR&t=115">Tuts+ Video</a>
+      <div class="w40 ctr">
+        <pre class="sm w20 ctr dkghost">
     <b><</b>ol>
       <b><</b>li>bears<b><</b>/li>
       <b><</b>li>pigs<b><</b>/li>
@@ -143,46 +146,41 @@ I can use the call method & send another arg to the doIt function;
       <b><</b>li>monkeys<b><</b>/li>
     <b><</b>/ol>
   </pre>
+      </div>
+      <ul>
+        <li>
+          <h4 class="ltgreen ">Select miss piggy and arnold the pig using .find()</h4><br>
+          <code class="ans">$('ul').find('li').css('color', 'red');</code>
+          <h4 class="ltgreen ">What will the following code do?</h4><br>
+          <code>$('ol').children('li').first().css('color', 'pink')</code>
+          <h3 class="ans">turn bears pink only</h3></li>
+        <li><code class="reddrk">$('ol').children('li').eq(1).css('color', 'pink')</code> is going to select what?
+          <img class="w20 ans" src="./img/pigs.png" alt="pigs"></li>
+        <li><code>$('ol li:nth-child(1)').css('color', 'pink');</code> Whould give us what?
+          <img class="w20" src="./img/child.png" alt="child"></li>
+        <li><i class="purp">Remember:</i> .eq(0) is javascript so it is zero-based.
+          <code>li:nth-child(2);</code> is also available to us from CSS.
+          Beneath an < ol>,  each child that is a first child.
+          <br>The above would be the same as:
+            <code class="dkgrey">$('li:first-child').css('color', 'pink');</code> You can also use .next() or .prev() in any situation.
+        </li>
+        <div class="shadn w80 dkbg2"><h5 class="transGreen ctr w40">So what is the difference between <i>.parent()</i> & <i>.parents()</i> & <i>.closest()</i> ?</h5>
+<p class="sm ivr">.parent() will look for the direct parent of an element. <br>.parents() will look among all parents
+<pre class="ctr w50 dkbg sm"><code class="paleY"> $(.container).parents() </code>This will move up the DOM tree to find a parent element with a class of .container.</p></pre>
+<p class="sm ivr"><code class="ltred">.closest();</code> The closest() method returns the first ancestor of the selected element.
+<span class="sm ltpink">(a parent, grandparent, great-grandparent, etc.)</span></p>
+</div>
+          <h6 class="ctr right">link to jquery API <a href="http://api.jquery.com/">API.jquery</a></h6>
+      </ul>
+    </div>
+
+
+    </pre>
+    <!-- end of pre for all -->
+
+
   </div>
-  <h4 class="ltgreen ">Select miss piggy and arnold the pig using .find()</h4><br>
-  <code class="ans">$('ul').find('li').css('color', 'red');</code>
-  <h4 class="ltgreen ">What will the following code do?</h4><br>
-  <code>$('ol').children('li').first().css('color', 'pink')</code>
-  <h3 class="ans">turn bears pink only</h3>
 
-  <code class="reddrk">$('ol').children('li').eq(1).css('color', 'pink')</code>
-  is going to select what?
-  <img class="w20 ans" src="./img/pigs.png" alt="pigs">
-  <i class="purp">Remember:</i> .eq(0) is javascript so it is zero-based.
-  <code>li:nth-child(2);</code> is also available to us from CSS.
-  <hr>
-  <code>$('ol li:nth-child(1)').css('color', 'pink');</code>
-  Whould give us what?
-  <img class="w20" src="./img/child.png" alt="child">
-  Beneath an < ol>... each child that is a first child.
-
-  The above would be the same as:
-  <code class="dkgrey">$('li:first-child').css('color', 'pink');</code>
-
-  You can also use .next() or .prev() in any situation.
-
+  <!-- jq entry end -->
 </div>
-<div class="htmlbox">
-  so what is the difference between <i>.parent()</i> & <i>.parents()</i> & <i>.closest()</i> ?
-  <div class="shadw reddrk code-questions3">
-    .parent() will look for the direct parent of an element.
-    .parents() will look among all parents <br>
-    $(.container).parents()
-    This will move up the DOM tree to find a parent element with a class of .container.
-
-  </div>
-  link to jquery API <a href="http://api.jquery.com/">API.jquery</a>
-
-</div>
-
-</pre>
-</div>
-
-
-</div>
-<!-- <b>></b><b><</b> -->
+<!-- jq container end -->

@@ -104,7 +104,7 @@ div.entry {
   padding: 3vw; }
   div.entry p {
     font-size: 2.5vh;
-    font-family: Trebuchet, Sans-Serif; }
+    font-family: "Raleway", Sans-Serif; }
   div.entry .caption {
     color: #d0b588; }
   div.entry hr {
@@ -340,6 +340,7 @@ a[ui-sref]:hover {
   font-size: 1.4vw; }
 
 .simple-wine-frame {
+  padding: 1% 2%;
   border: 1px solid grey;
   background-color: rgba(47, 9, 15, 0.45); }
 
@@ -503,6 +504,8 @@ pre {
 
 /* Images side-by-side */
 .neighbors-container {
+  color: #d0b588;
+  background-color: transparent;
   text-align: center; }
 
 .neighbors-item {
@@ -578,33 +581,42 @@ img.neighbors-item {
   overflow: auto;
   position: relative;
   font-family: "Comfortaa", cursive;
-  font-size: 2vw; }
+  font-size: 1.4vw; }
+  .jq-entry p {
+    font-family: "Raleway", Sans-Serif; }
+  .jq-entry .framed6 {
+    font-size: 1em;
+    background-color: #58708a; }
   .jq-entry .prettyprint {
     font-size: 1.2vw;
     background-color: #445e5e;
     padding: 2vh 2vw; }
+  .jq-entry .plain-frame3 {
+    font-size: .9em; }
   .jq-entry div {
     margin-bottom: 0.5vw;
     margin-top: 0;
     font-family: "Comfortaa", cursive;
     font-size: 2vw; }
+  .jq-entry .simple-frame {
+    font-size: 1em;
+    padding: 3vw 5vw; }
 
 div.ecma-entry {
   height: 80vh;
-  background-color: #bdbdbd;
+  background-color: #b3976e;
   border: 1px solid #945706;
-  border-radius: 2%;
+  border-radius: 10px;
   box-shadow: -10px 10px 10px 0 rgba(0, 0, 0, 0.7) inset;
-  font-family: "Code Source Pro", monospace;
-  font-size: 2vw;
   overflow: auto;
   position: relative; }
-  div.ecma-entry a {
-    background-color: #d0b588; }
-  div.ecma-entry .prettyprint {
+  div.ecma-entry pre.prettyprint {
     background-color: #445e5e;
     padding: 2vh 2vw;
-    border: 1px solid burlywood; }
+    border: 1px solid burlywood;
+    font-size: .6em; }
+  div.ecma-entry a {
+    background-color: #d0b588; }
 
 div.ltbg {
   padding: baseline; }
@@ -716,6 +728,9 @@ footer {
     display: inline-block;
     margin: 0 2vw; }
 
+.grade-bg {
+  background: linear-gradient(transparent, rgba(63, 106, 150, 0.2)); }
+
 div.angular-entry {
   color: #f28b02;
   overflow: auto;
@@ -733,6 +748,8 @@ div.angular-entry {
     margin: 2vh auto; }
   div.angular-entry .col-2 {
     column-rule: none; }
+  div.angular-entry h1 {
+    font-family: "Raleway", Sans-Serif; }
 
 div.node-entry {
   background-color: #2b503b;
@@ -978,20 +995,17 @@ div.gsap-entry {
 .col-2 {
   column-rule: none; }
 
-.fuck {
-  background-color: white; }
-
 div.journal-entry {
   box-shadow: inset 2px 2px 20px 5px rgba(0, 0, 0, 0.8);
   margin: 1vw;
-  padding: 3vw;
+  padding: 3vw 6vw;
   background: url("img/blank_page.jpg") no-repeat center center fixed;
   background-size: cover;
-  line-height: 1.4em;
+  line-height: 1.6em;
   background-color: rgba(128, 128, 128, 0.35);
   border: 1px solid #f5facf;
   font-family: "Special Elite", serif;
-  font-size: 1.4vw;
+  font-size: 1vw;
   height: 80vh;
   overflow: auto;
   text-shadow: 0 2px 3px #f1e8ce; }
@@ -1029,10 +1043,6 @@ div.journal-entry {
 .journal-container a:hover {
   color: #79e286; }
 
-pre.prettyprint {
-  border: 1px solid #575757;
-  font-size: 1.2em; }
-
 div.grid-entry {
   background: linear-gradient(180deg, #1d1e20 0%, #17161f 100%);
   box-shadow: inset 2px 2px 2px 0px black;
@@ -1041,6 +1051,9 @@ div.grid-entry {
   font-family: "Roboto", Sans-Serif;
   height: 80vh;
   border: 1px solid #b0493a; }
+  div.grid-entry pre.prettyprint {
+    border: 1px solid #575757;
+    font-size: 1em; }
   div.grid-entry pre {
     font-family: "Roboto", Sans-Serif; }
     div.grid-entry pre div {

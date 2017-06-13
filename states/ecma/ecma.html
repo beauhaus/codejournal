@@ -28,7 +28,7 @@
 
 </div>
 
-<div class="framed8"><h5 class="chtitle mango">IFEE sending an argument to itself</h5>
+<div class="framed8"><h3 class="chtitle mango">IFEE sending an argument to itself</h3>
 <pre class="prettyprint w40 ctr">const firstName = "Leroy";
 (function(input) {
   console.log(`Hello, I'm ${input}`);
@@ -55,7 +55,6 @@
     console.log(`Run in ${lang} ${counter} times.`);
   }
 }
-
 var spanGreet = makeGreeting("es");
 var engGreet = makeGreeting("en");
 spanGreet("Susan", "Jenkins");
@@ -68,12 +67,16 @@ engGreet("John", "Wilson");</pre>
   This example sets up a function factory of sorts.
   Pay attention to separate execution contexts.
 <hr>
+
+
 //  Hola, Susan Jenkins
 //  Run in Spanish 1 times.
 //  Hello, John Wilson
 //  Run in English 1 times.
 //  Hello, John Wilson
-//  Run in English 2 times.</pre>
+//  Run in English 2 times.
+
+</pre>
     </div>
     <div class="framed5">
       <h3 class="chtitle ivr">Nice Closure creating Arrays, Objects & strings with args</h3>
@@ -124,8 +127,8 @@ engGreet("John", "Wilson");</pre>
 // Object {1: 4, 2: "what's up?", 3: 0}
 // (4) [false, Object, 38, null]
 // (5) [false, Object, 38, null, "hello"]
-// Oh, How I Love oranges.
-  </div>
+// Oh, How I Love oranges.</div>
+
   makeObj(4);
   makeArr(false);
   makeArr({"key": "value"})
@@ -139,9 +142,8 @@ engGreet("John", "Wilson");</pre>
   makeStr("oranges")
 </pre>
     </div>
-    <hr>
     <h3 class="chtitle dkred">Here's a nice little closure/callback combo with a timer</h3>
-    <pre class="prettyprint w60">
+    <pre class="prettyprint w60 ctr">
   <div class="fRight dkbg framed1 sm">
     // okay wait a sec...
     // Live reload enabled.
@@ -165,7 +167,7 @@ engGreet("John", "Wilson");</pre>
 </pre></div>
   <div class="simple-frame2 col-2">
     <h4>quick quiz</h4>
-    <pre class="prettyprint w40">
+<pre class="prettyprint w40 ctr linenums">
 scream();
 function scream() {
   console.log("Ahhhhhhh!!");
@@ -175,12 +177,17 @@ quiet();
 var quiet = function() {
   console.log("Shhhhhhhh!")
 }
+
+
+
+
 </pre>
     <br /><br> Difference between line 2 and line 7?
     <i class="ans med dkred">scream is a <b class="wh">FUNCTION STATEMENT</b></i><br>
-    <i class="ans med dkred">quiet is a <b class="wh">FUNCTION EXPRESSION</b></i> What is the return of this and why?
+    <i class="ans med dkred">quiet is a <b class="wh">FUNCTION EXPRESSION</b></i> <br>
+What is the return of this and why?
     <i class="ans med dkred"><img class="w20" src="./img/error1.png" alt="error1"><br />
-  <b class="wh">Function expressions are NOT hoisted!</b></i>
+  <span class="wh sm">Function expressions are NOT hoisted!</span></i>
 
   </div>
 
@@ -198,12 +205,11 @@ var quiet = function() {
   console.log(greet);
   // function greet() { console.log("Hi"); } ❗️This code is merely a property on the object!
 </pre>
-    <hr>
-    <h4 class="chtitle dkred">Functional Programming</h4>
+<h4 class="chtitle dkred">Functional Programming</h4>
 <div class="col-2">
-I am going to pass an entire function as a parameter to another function.
+<div class="brdr-w">I am going to pass an entire function as a parameter to another function.
 --In the Fn to which I pass the parameter, I am going to invoke that puppy!
-
+</div>
 <pre class="prettyprint w40">
 function ohFunkThis(funk) {
   funk();
@@ -211,7 +217,7 @@ function ohFunkThis(funk) {
 ohFunkThis(function() {console.log("I'm a parameter!")});
 // I'm a parameter!
 </pre>
-    </div>
+</div>
     <h4 class="chtitle ltred">This is the essence of "Functional Programming"!</h4></div>
   <div class="framed6">
     <h2 class="chtitle wh">Objects</h2>
@@ -290,12 +296,12 @@ jim.opinion.call(liz);
 jim.opinion.call(liz, "vanilla", "Sherbert" );
 </pre>
     <h5 class="ivr">There are a few things going on here</h5>
-    <span class="med">1. lines 04-05 establish conditional defaults. <br />  If no args are fed in, choose the defaults after "||".
-2. Of course, 'name' and 'verb' props exist. <br />  However, the <em class="y">${this.name}</em> allows for them to be 'hijacked' with call();
-3. line 16 'hijacks' the jim object's 'opinion' method.<br />
+  <span class="med">1. lines 04-05 establish conditional defaults. <br />  If no args are fed in, choose the defaults after "||".
+ 2. Of course, 'name' and 'verb' props exist. <br />  However, the <em class="y">${this.name}</em> allows for them to be 'hijacked' with call();
+ 3. line 16 'hijacks' the jim object's 'opinion' method.<br />
   <span class="ltgreen">liz.opinion();</span> renders // <span class="ans med ltgreen">Hi, I'm Elizabeth. I adore oh--anything a la mode.</span><br />
-    <span class="ltgreen">jim.opinion.call(liz<sup class="ltred">*</sup>);</span> will give us the same. 4. <span class="ltgreen">jim.opinion();</span> renders // <span class="ans med ltgreen">Hi, I'm Jim. I hate oh--anything a la mode.</span><br /> 5.
-    <span class="ltgreen">jim.opinion("chocolate", "cake");</span> renders // <span class="ans med ltgreen">Hi, I'm Jim. I hate chocolate cake.</span><br /> 6. <span class="ltgreen">jim.opinion.call(liz<sup class="ltred">*</sup>, "vanilla", "ice cream.");</span>    renders // <span class="ans med ltgreen">Hi, I'm Jim. I hate chocolate cake.</span><br />
+  <span class="ltgreen">jim.opinion.call(liz<sup class="ltred">*</sup>);</span> will give us the same. 4. <span class="ltgreen">jim.opinion();</span> renders // <span class="ans med ltgreen">Hi, I'm Jim. I hate oh--anything a la mode.</span><br /> 5.
+  <span class="ltgreen">jim.opinion("chocolate", "cake");</span> renders // <span class="ans med ltgreen">Hi, I'm Jim. I hate chocolate cake.</span><br /> 6. <span class="ltgreen">jim.opinion.call(liz<sup class="ltred">*</sup>, "vanilla", "ice cream.");</span>    renders // <span class="ans med ltgreen">Hi, I'm Jim. I hate chocolate cake.</span><br />
 
     <sup class="orange">This context is established by first arg of .call();</sup>
     <hr> var args = ["peach", "cobbler"];
@@ -306,7 +312,7 @@ jim.opinion.call(liz, "vanilla", "Sherbert" );
   <div class="framed5">
     <h3 class="chtitle wh">Nice way to delete a prop from an object</h3>
 
-    <pre>
+    <pre class="w40 dkghost ctr">
 function groomer(inputObj) { //takes object and removes 'nat' prop
   let usables = Object.assign({}, inputObj);
   delete usables.nat;
@@ -322,10 +328,12 @@ function groomer(inputObj) { //takes object and removes 'nat' prop
 var array= [2,3,4,5,6,7];
 
 var result = array.reduce(function(prev, next){
-  return prev + next; // arr[0]=prev, arr[1]=next the return val is fed into first arg "prev" (then, iterate)
+  return prev + next;
+// arr[0]=prev, arr[1]=next the return val is fed into first arg "prev" (then, iterate)
 });
 console.log(result); // 27
-</pre> However! reduce() has even more up it's sleeve! arr.reduce() has not <span class="y">one</span>, but <span class="orange">two</span> arguments!
+</pre> However! reduce() has even more up it's sleeve! <br>
+This has not <span class="y">one</span>, but <span class="orange">two</span> arguments!
 
     <h4 class="chtitle med dkbg ivr w40">arr.reduce(<span class="y">function(a,b){ return a+b }</span>, <span class="orange">{}</span>);</h4> This second arg defines the value of "prev" at initial iteration.
 
@@ -433,7 +441,7 @@ if (val > 1) {
   <div class="framed1">
     <h3>Simple Callback</h3>
 
-    <pre class="prettyprint linenums w60">
+    <pre class="prettyprint linenums w80">
 // First the bear bones
 function addBoolean(listBool, boing) {
   listBool.push(true);
@@ -472,7 +480,8 @@ function inOrder(list) {
 inOrder([]) // sending empty array literal
 
 <a href="http://www.pythontutor.com/visualize.html#mode=edit" target="_blank">Try Running it here!</a>
-</pre> //Return the first in the array.
+</pre>
+<br><h4 class="ltred">Return the first in the array.</h4>
     <pre class="prettyprint">
 var wines = ['Shiraz', 'Rose', 'Pinot', 'Cabernet', 'Grigio',  'Claret'];
 
@@ -486,8 +495,8 @@ function first(arr, cb) {
 }
 
 console.log(sentence);
-// The first wine of wines is Shiraz.
-</pre> Callback used to sift through an array of objects
+<br><h4 class="ltred">The first wine of wines is Shiraz.</h4>
+</pre> <br><h4 class="ltred">Callback used to sift through an array of objects</h4>
     <pre class="prettyprint w40">
 const flags = [{
     country: "Canada",
@@ -517,22 +526,19 @@ getFlagColorsByCountry(flags, 'China', function(nation) {
 });  // "Red & white"
 
 // -- inline callback</pre>
-    <hr>
     <h4 class="chtitle y med">callback within a forEach();</h4>
     <h4 class="mango">function "arrayDisplay()" contains a .forEach(); & calls a cb on each item</h4>
-    <pre class="ltbg dkred">
+    <pre class="ltbg dkred w50 ctr med">
+var names = ["Louie", "George", "Chris", "Richard", "Seinfeld"];
+function arrayDisplay(names, cb) {
+    names.forEach(function(item, index) {
+        cb(item, index);
+    });
+}
 
-      var names = ["Louie", "George", "Chris", "Richard", "Seinfeld"];
-      function arrayDisplay(names, cb) {
-          names.forEach(function(item, index) {
-              cb(item, index);
-          });
-      }
-
-      arrayDisplay(names, function(item, indice) {
-          console.log('Item at index ' + indice + ' is ' + item)
-      });
-
+arrayDisplay(names, function(item, indice) {
+    console.log('Item at index ' + indice + ' is ' + item)
+});
 </pre>
     <h4 class="chtitle dkblue med">❗️By the way this is solved easily in ES6❗️</h4>
     <pre class="prettyprint w40">for (prop of names) {
@@ -540,7 +546,7 @@ getFlagColorsByCountry(flags, 'China', function(nation) {
   console.log('Item at index', indices , " is ", prop);
 }
 </pre>
-    <pre class="prettyprint w60">
+    <pre class="prettyprint w80">
 const meals = { "Asian": "Pork", "Italian": "Pasta", "American": "Chicken" };
 const pans = { "Pork": "Wok", "Pasta": "Frying Pan", "Chicken": "Deep Fryer" };
 const oils = { "Wok": "Sesame", "Frying Pan": "Olive", "Deep Fryer": "Corn" };
@@ -594,7 +600,7 @@ var names = people.map(function(foo.name){
   return foo.name;
 })
 </pre>
-    <span class="orange">"ES6 anyone?"</span>
+    <span class="orange">What does ES6 say about this?</span>
     <pre class="prettyprint w40">
 var names = people.map((foo) => console.log(foo.name));
 //or simply...
@@ -614,7 +620,8 @@ var names = people.map((foo) => foo.name);
       "online": false
     }
   ]
-}</pre><pre class="prettyprint">var parsedJson = JSON.parse(myObject);
+}</pre>
+<pre class="w50 prettyprint">var parsedJson = JSON.parse(myObject);
   console.log(json); </pre> This code gives us an object we can work with in javascript. <img class="w20" src="./img/parsed.png" alt="">
   </div>
   <div class="framed2 dkbg">JSON.stringify();
@@ -633,29 +640,32 @@ var names = people.map((foo) => foo.name);
         var stringedObj = JSON.stringify(obj);
         console.log(stringedObj);
 </pre>
-    <img class="w40" src="./img/stringified.png" alt="stringified"> This renders an object that has no white-space & it can be stored in the backend as VALID JSON.
+    <img class="w40" src="./img/stringified.png" alt="stringified">
+  <h4 class="pastpink">This renders an object that has no white-space & it can be stored in the backend as VALID JSON.</h4>
   </div>
 
 
-  <div class="framed3">Think of filter() as coffee. It filters OUT the grains.
-    <pre class="prettyprint">
+  <div class="framed3"><h3 class="ivr">Think of filter() as coffee. It filters OUT the grains.</h3>
+    <pre class="prettyprint w40 ctr">
     coffee.filter(coffee) {
       return result === liquid;
     } // it's only going to spit out what we want</pre>
-    <img class="w40 shadn" src="./img/nodeFilter.png" alt="nodeFIlter"> Here we only get anything if it equals what was queried.
+    <img class="w40 shadn ctr" src="./img/nodeFilter.png" alt="nodeFIlter">
+    <h3 class="ivr">Here we only get anything if it equals what was queried.</h3>
 
   </div>
   <div class="simple-frame2">
     <h5>Audio Player (with some"> bugs)</h5>
-    <h6><i class="underline">getAttribute</i> is useful. <br><i class="underline">setAttribute</i> is also available!
+    <h4><i class="underline">getAttribute</i> is useful. <br><i class="underline">setAttribute</i> is also available!
 <br>.paused & .ended are properties available to the a/v object in HTML5.
 <br><a target="_blank" href="https://www.w3schools.com/tags/ref_av_dom.asp">Breakdown of methods/properties on HTML5 audio/video object</a>
-</h6>
+</h4>
 
-    <pre class="prettyprint w80">
+<pre class="prettyprint w60 ctr">
 var jukebox = document.querySelector('ul.player');
 
-jukebox.addEventListener('click', function(e) { //create dyname song src with data- attribute
+jukebox.addEventListener('click', function(e) {
+  //create dyname song src with data- attribute
   var tgt = e.target;
   var song = tgt.getAttribute('data-src');
   var songPlaying = document.querySelector('#player');
@@ -673,11 +683,13 @@ jukebox.addEventListener('click', function(e) { //create dyname song src with da
     audioPlayer.id = 'player'; // create id for new elem
     tgt.id = 'playing';
     audioPlayer.src = song;
-    document.body.appendChild(audioPlayer); // now we need to execute the play method
+    document.body.appendChild(audioPlayer);
+// now we need to execute the play method
     audioPlayer.play();
 
-    // IF DONE...remove playing id & audio tag in DOM
-    audioPlayer.addEventListener('ended', function() { //'ended' is a property on a/v objects in raw js. (html5)
+// IF DONE...remove playing id & audio tag in DOM
+    audioPlayer.addEventListener('ended', function() {
+//'ended' is a property on a/v objects in raw js. (html5)
     audioPlayer.parentNode.removeChild(audioPlayer);
     tgt.id = ''
 
@@ -687,7 +699,7 @@ jukebox.addEventListener('click', function(e) { //create dyname song src with da
 </pre>
     <p class="dkblue"><em class="mango">BUG:</em> clicking on a playing song pauses, but clicking on another song continues the playing of original song--rather than the new song.
       <br /><b class="ltgreen">HINT: </b>The fix lies within the logic of the if-statement.</p>
-    <pre class="dkbg code-sample">
+    <pre class="dkbg code-sample w60 ctr">
     var jukebox = document.querySelector('ul.player');
     jukebox.addEventListener('click', function(e) {
       var tgt = e.target;
@@ -735,7 +747,7 @@ jukebox.addEventListener('click', function(e) { //create dyname song src with da
 
   <div class="simple-frame">
     <h5>Starting HTML</h5><img class="w40" src="./img/spinnerStart.png" alt="spinner starting html">
-    <div class="shadn"><pre class="w40 framed3 prettyprint sm">
+<pre class="w40 framed3 prettyprint ctr">
 body {
   background: url(./img/sand.jpg), repeat;
   box-sizing: border-box;
@@ -819,13 +831,13 @@ body {
       <p>The genius of this is the substr() method leveraging the smaller img file name<br />
         <i class="dkorange">NOTE:</i> Fast machines render the .spinner image unable to view.</p>
 
-    </div>
   </div>
 
 
 
 
 
+<div class="framed4">
   <h4 class="w20 ctr">events (Lynda)</h4>
   <h5>Adding event listeners</h5>
   <h6>Bascially they are no different in appearance from jQuery's events ('...on.('click', function(){}'...etc)</h6>
@@ -896,6 +908,8 @@ This is called capturing the event in <em class="dkorange underline">the Bubblin
   <h4 class="w60 ctrtxt"><span class="dkred">REMEMBER: </span>'true' = capture phase.   'false' = Bubble Phase</h4>
 
 
+</div>
+
   <h5 class="ctrtxt w80">Event Issues (lynda Vid 5)</h5>
   <div class="framed2">
     <img class="w40" src="img/event2.png" alt="">
@@ -962,19 +976,19 @@ function handler(e) {
   }, false);
 };</pre>
   <div class="ltbg">
-    <p>While this seems to work well, it creates more mouseout events and throws errors. Therefore, we need to remove events. <br>This line of code can begin with 'this' or e.target. It will remove the mouseout with the named function mOutHandler</p>
-    <pre class="prettyprint ctrtxt w60">  this.removeEventListener('mouseout', mOutHandler, false);</pre>
-  </div>
-  mOutHandler function looks like this (with the new line of code)
-  <pre class="simple-frame">  e.target.addEventListener('mouseout', function mOutHandler(f) {
+    <p class="dkred">While this seems to work well, it creates more mouseout events and throws errors. Therefore, we need to remove events. <br>This line of code can begin with 'this' or e.target. It will remove the mouseout with the named function mOutHandler</p>
+    <pre class="prettyprint dkred w60">  this.removeEventListener('mouseout', mOutHandler, false);</pre>
+  <h3 class="dkred">mOutHandler function looks like this (with the new line of code)</h3>
+  <pre class="simple-frame w60 ctr">  e.target.addEventListener('mouseout', function mOutHandler(f) {
     var myNode = f.target.parentNode.querySelector('div.spawned'); //thing I want to delete or remove.
     nuElem.parentNode.removeChild(myNode);
     <span class="dkorange">this.removeEventListener('mouseout', mOutHandler, false);</span>
   }, false);</pre>
 
+</div>
 
   <hr>
-  <h2 class="ltblue">setTimeout & setInterval : using Kirupa & Dan Wellman's tutes</h2>
+<div class="simple-wine-frame">  <h2 class="ltblue">setTimeout & setInterval : using Kirupa & Dan Wellman's tutes</h2>
 
   <pre class="prettyprint w80">
         setTimeout('console.log("bad!")', 4000); // 'bad' (after 4 secs)</pre>
@@ -1024,7 +1038,7 @@ setTimeout(log, 4000);
   <h4 class="ltbg w60">setTimeout(<span class="dkorange">anyFunction</span>, <em>timedelay</em>)</h4>
   <h4 class="ltbg w60">clearTimeout(<span class="dkorange">timeID</span>)</h4>
   <h6 class="">start it and cancel it.</h6> requestAnimationFrame() --requests a repaint and runs code as part of that repaint.
-  <pre class="prettyprint w40">
+  <pre class="prettyprint w40 ctr">
 let timeID = setTimeout(runCode, 4000);
 clearTimeout(timeID);</pre> Here's an example;
   <pre class="prettyprint w60">
@@ -1039,9 +1053,10 @@ btn.on('click', function() {
 btn.after('< h4>You cancelled it.< /h4>')
   clearTimeout(timeID);
 })</pre>
-  <div class="ltbg w60">
-    <h4 class="ctrtxt">var timeID =requestAnimationFrame(<em class="navy">anyFunction</em>)</h4>
-    <h4 class="ctrtxt">requestAnimationFrame(<em class="navy">timeID</em>)</h4></div>
+<div class="brdr-w w50 ctr">
+  var timeID =requestAnimationFrame(<em class="navy">anyFunction</em>)
+  requestAnimationFrame(<em class="navy">timeID</em>)
+</div>
   <h6>This is not part of some javascript browser's timer, but part of the browser's paint pipeline. It is more efficient and performant.</h6>
   <pre class="prettyprint w40">
 function drawText() {
@@ -1056,7 +1071,7 @@ btn.on('click', function() {
 })
 </pre>
   <h5>This uses gpu & cpu information to optimize performance.</h5>
-  <pre class="prettyprint">
+  <pre class="prettyprint w50">
   var currentPos = 0;
   var thing = document.querySelector("#thing")
   var requestAnimationFrame = window.requestAnimationFrame;
@@ -1074,7 +1089,10 @@ btn.on('click', function() {
 </pre>
   <em>cf.</em> <a href="https://youtu.be/rNsC1VI9388">Kirupa: requestAnimationFrame() for animation video</a>
   <img class="w40" src="./img/warning.png" alt="Don't use setTimeout in animations">
-  <hr>
+
+
+</div>  <hr>
+<div class="framed2">
   <h2 class="ltblue">Nice version of isPalindrome() using regex</h2>
   <h4><a target="_blank" href="https://medium.freecodecamp.com/two-ways-to-check-for-palindromes-in-javascript-64fea8191fd7">FCC Link</a></h4>
   <pre class="prettyprint w80">
@@ -1149,7 +1167,10 @@ btn.on('click', function() {
 
 </pre>
 
+</div>
+
   </pre>
+
 </div>
 <!--entry end-->
 

@@ -218,38 +218,40 @@ $http.get(function('/api/people')
 <pre class="prettyprint w40">
 $http.get(function('/api/people')
 .then(data => res.data)</pre>
-</div>
 Don't use arrow functions as method on an object! 'this' breaks everything!
 <a href="https://vimeo.com/216583233" target="_blank">dm link about arrow functions and this</a>
+</div>
   <hr>
-<h3 class="w60">The "let" keyword.
-var has 2 kinds of scope. Global and Lexical (or functional) scope.</h3>
-<span class="ivr">This code doesn't throw an error in es5.</span>
-<pre class="prettyprint w40">
-var gimmeSum = function(sum) {
-  if(sum) {
-    var total = sum + 3;
+<div class="plain-frame3">
+  <h3 class="w60">The "let" keyword.
+  var has 2 kinds of scope. Global and Lexical (or functional) scope.</h3>
+  <span class="ivr">This code doesn't throw an error in es5.</span>
+  <pre class="ctr prettyprint w40">
+  var gimmeSum = function(sum) {
+    if(sum) {
+      var total = sum + 3;
+    }
+    return total;
   }
-  return total;
-}
-gimmeSum(7)
-// 10</pre>
-<h3 class="caption">However, let variables are not implicity hoisted</h3>
-<pre class="prettyprint w20">var gimmeSum = function(sum) {
-  if(sum) {
-    let total= sum + 3;
+  gimmeSum(7)
+  // 10</pre>
+  <h3 class="caption">However, let variables are not implicity hoisted</h3>
+  <pre class="ctr prettyprint w40">var gimmeSum = function(sum) {
+    if(sum) {
+      let total= sum + 3;
+    }
+    return total;
   }
-  return total;
-}
-gimmeSum(7) // undefined b/c 'total' is block-scope
-</pre>
-<h3 class="caption">This can be solved by:</h3>
-<pre class="prettyprint w20">if(sum) {
-  let total = sum + total;
-  return total;
-}</pre>
-<h3><em class="wh">let</em>'s entire purpose is for block-scoping</h3>
+  gimmeSum(7) // undefined b/c 'total' is block-scope
+  </pre>
+  <h3 class="caption">This can be solved by:</h3>
+  <pre class="ctr prettyprint w20">if(sum) {
+    let total = sum + total;
+    return total;
+  }</pre>
+  <h3><em class="wh">let</em>'s entire purpose is: block-scoping</h3>
 
+</div>
 
 </div>
 <!-- ES6 entry div end -->

@@ -1,8 +1,8 @@
-pre.prettyprint {
-  border:1px solid map-get($colors, dkgrey);
-  font-size: 1.2em;
-}
 div.grid-entry {
+  pre.prettyprint {
+    border:1px solid map-get($colors, dkgrey);
+    font-size: 1em;
+  }
 background: linear-gradient(180deg, rgba(29, 30, 32, 1) 0%,rgba(23, 22, 31, 1) 100%);
   box-shadow: inset 2px 2px 2px 0px rgba(#000, 4);
   overflow: auto;

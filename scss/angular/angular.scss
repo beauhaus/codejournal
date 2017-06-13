@@ -21,4 +21,7 @@ div.angular-entry {
   .col-2 {
     column-rule: none;
   }
+  h1{
+    font-family: map-get($fonts, Clean);
+  }
 }

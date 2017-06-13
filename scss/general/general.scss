@@ -125,7 +125,7 @@ div.entry {
   p {
     font: {
       size: 2.5vh;
-      family: Trebuchet, Sans-Serif;
+      family: map-get($fonts, Clean);
     }
   }
 
@@ -430,6 +430,7 @@ a[ui-sref]:hover {
   }
 }
 .simple-wine-frame {
+  padding: 1% 2%;
   border: 1px solid grey;
   background-color: map-get($colors, dkbg2);
 }
@@ -632,7 +633,10 @@ pre {
 /* Images side-by-side */
 
 .neighbors-container {
+  color: map-get($colors, sand);
+  background-color: transparent;
   text-align: center;
+
 }
 
 .neighbors-item {

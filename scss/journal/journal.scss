@@ -2,17 +2,17 @@
 div.journal-entry {
   box-shadow: inset 2px 2px 20px 5px map-get($colors, shadow);
   margin: $baseline;
-  padding: $baseline * 3;
+  padding: $baseline * 3 ($baseline * 6);
   background: url("img/blank_page.jpg") no-repeat center center fixed;
   background-size: cover;
-  line-height: 1.4em;
+  line-height: 1.6em;
   background: {
     color: map-get($colors, trans30);
   }
   border: 1px solid map-get($colors, trim);
   font: {
     family: map-get($fonts, TypeWriter);
-    size: 1.4vw;
+    size: 1vw;
   }
   height: 80vh;
   overflow: auto;
