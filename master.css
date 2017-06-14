@@ -1089,7 +1089,9 @@ div.grid-entry {
   border-radius: 8px;
   padding: 1%;
   background-color: #cdcdcd;
-  box-shadow: inset 4px 2px 8px 1px rgba(0, 0, 0, 0.8); }
+  box-shadow: inset 4px 2px 8px 1px rgba(0, 0, 0, 0.8);
+  color: black;
+  font-family: "Roboto", Sans-Serif; }
 
 a::before {
   content: "📌"; }

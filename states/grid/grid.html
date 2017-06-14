@@ -5,6 +5,94 @@
   <div class="grid-entry entry">
 <!--entire page pre-->
 <h1>CSS GRID: A walkthrough</h1>
+<div class="ctr softwhite-fr">
+
+<h1 class="chtitle softred ">Line-based layout in GRID</h1>
+<hr class="w20 softred">
+<h2 class="softbrown bold">Line based layouts describe elements according to the lines that delineate them. --not with "width" and "height"</h2><br>
+<h3 class="softred bold">So, <code>grid-column: 1/3;</code> => "starts at line #1, ends at line #3"<br />
+
+<code>-1</code> = last line<br />
+<code>-1</code> is frequently used to tell the element to just "start where you are and go to the end!"</h3>
+<br>
+<pre class="prettyprint col-2 w60 ctr linenums">
+// .html has 6 divs ready to fill a grid-track
+
+// this grid-track will be defined in the .css
+// the cols are even (fr) but the row heights not
+
+
+
+
+
+<span><</span>div class="grid">
+
+  <span><</span>div id="green">G<span><</span>/div>
+
+  <span><</span>div id="navy">N<span><</span>/div>
+
+  <span><</span>div id="coral">C<span><</span>/div>
+
+  <span><</span>div id="pink">P<span><</span>/div>
+
+  <span><</span>div id="blue">B<span><</span>/div>
+
+  <span><</span>div id="maroon">R<span><</span>/div>
+
+<span><</span>/div>
+
+
+
+
+
+
+#grid {
+  display: grid;
+  grid-template-columns: repeat(6,1fr);
+  grid-template-rows: 140px 150px 120px;
+}
+#green {
+  grid-column: 1/-1;
+  grid-row: 1;
+}
+#navy {
+  grid-column: 1/3;
+  grid-row: 2;
+}
+#coral {
+  grid-column: 3;
+  grid-row: 2;
+}
+#pink {
+  grid-column: 5/-1;
+  grid-row: 2;
+}
+#blue {
+  grid-column: 1/span 3;
+  grid-row: 3;
+}
+#maroon {
+  grid-column: 4/span 3;
+  grid-row: 3;
+}
+</pre>
+<br><br>
+<div class="brdr-b ctr w60">
+  <br><h2 class="bold">Drying out Grid</h2>
+  <h3>If your element only spans one track, the slash + num is superfluous.</h3>
+  <h3><code>"45. grid-column: 3;"</code></h3>
+  <h3>Notice that <span class="coral bold">the "coral" div</span> has a "hole" beside it. That is because I only told it to span one track!</h3>
+  <br><h2 class="bold">The "span" keyword:</h2>
+  <h3>Notice that if you want the element to span a number of tracks, just put span + number</h3>
+  <h3><code>"53. grid-column: 1/span 3;"</code></h3>
+</div>
+<br><br />
+<h4 class="chtitle dkred">NOTE: <code>grid-row:</code> and <code>grid-column:</code> are, in fact, short-hand for <code>"grid-column-start:", "grid-column-end:"</code> etc.</h4>
+<br>
+<h4 class="chtitle bold black">But why bother with these? --You already know the cool stuff!</h4>
+<br>
+</div>
+<br />
 <div class="ctr softblue-fr">
 <h2 class="chtitle bold">Grid's powerful <code>minmax()</code> logic</h2>
 <div class="col-2">

@@ -23,7 +23,7 @@ background: linear-gradient(180deg, rgba(29, 30, 32, 1) 0%,rgba(23, 22, 31, 1) 1
   border-radius: 8px;
   padding: 1%;
   background-color: map-get($colors, softred);
-box-shadow: inset 4px 2px 8px 1px map-get($colors, shadow);
+  box-shadow: inset 4px 2px 8px 1px map-get($colors, shadow);
   color: map-get($colors, softwhite);
 }
 .softbrown-fr {
@@ -49,6 +49,8 @@ box-shadow: inset 4px 2px 8px 1px map-get($colors, shadow);
   padding: 1%;
   background-color: map-get($colors, softwhite);
   box-shadow: inset 4px 2px 8px 1px map-get($colors, shadow);
+  color: black;
+  font-family: map-get($fonts, Thin);
 }
 a::before {
   content: "📌";
