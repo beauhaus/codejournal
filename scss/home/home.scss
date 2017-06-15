@@ -1,12 +1,13 @@
 .home-container,
 .home-entry {
   font-family: map-get($fonts, Thin);
-
+  line-height: $baseline * 1.5;
   a::before {
     content: none;
   }
 
   .debossed-dk-frame {
+    color: rgb(70, 107, 77);
     margin-right: 0;
     margin-bottom: 1vh;
   }
@@ -24,6 +25,7 @@ footer {
   height: 7vh;
   width: 100%;
   text-align: center;
+  color: map-get($colors, ltghost);
 
   ul li {
     display: inline-block;

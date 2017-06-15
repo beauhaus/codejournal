@@ -556,7 +556,7 @@ img.neighbors-item {
   padding: 1%;
   background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(125, 185, 232, 0) 100%);
   border: 1px solid rgba(52, 54, 53, 0.6);
-  width: 52vw;
+  width: 57vw;
   border-right: 0px solid transparent;
   border-bottom: 0px solid transparent;
   box-shadow: inset 10px 7px 6px -2px black; }
@@ -716,12 +716,14 @@ div.ctr-example1 {
 .home-container,
 .home-entry {
   font-family: "Roboto", Sans-Serif;
+  line-height: 1.5vw;
   position: relative; }
   .home-container a::before,
   .home-entry a::before {
     content: none; }
   .home-container .debossed-dk-frame,
   .home-entry .debossed-dk-frame {
+    color: #466b4d;
     margin-right: 0;
     margin-bottom: 1vh; }
   .home-container div:hover,
@@ -735,6 +737,7 @@ footer {
   height: 7vh;
   width: 100%;
   text-align: center;
+  color: rgba(161, 172, 166, 0.5);
   padding: 1% auto;
   background: linear-gradient(transparent, rgba(63, 106, 150, 0.2)); }
   footer ul li {
