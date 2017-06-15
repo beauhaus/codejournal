@@ -573,7 +573,7 @@ This function, then fires at:
   <h4>A word about scope and modeling (scope inheritance)</h4>
 <h1 class="purp">I.</h1> This example shows modeling as property on an Obj. This is best practice and exploits the advantages of ang's scope inheritance.
 TL;DR --> input in any field, entire scope gets updated.
-<pre class="framed4 w50">
+<pre class="slate-skyblue-fr w50">
   < div > <span class="transGreen">//root scope</span>
     < input type="text" ng-model="<span class="ltblue">data<b class="ltred">.</b>msg</span>" >
     < h3>Msg: {{<span class="ltblue">data<b class="ltred">.</b>msg</span>}}< /h3 >
@@ -591,7 +591,7 @@ TL;DR --> input in any field, entire scope gets updated.
 
 <h1 class="purp">II.</h1> This example "breaks" the scope. The model in {{<em class="y">message</em>}} is essentially being overwritten.
 TL;DR type in any box, only the model scoped to that input field is updated.
-  <pre class="framed4 w50">
+  <pre class="slate-skyblue-fr w50">
     < div > <span class="transGreen">//root scope</span>
       < input type="text" ng-model="<em class="y">message</em>" >
       < h3>Msg: {{<em class="y">message</em>}}< /h3 >
@@ -614,7 +614,7 @@ One more thing about the example I. above:
 
 <h3 class="dkred">The solution: </h3> create a service (as a factory) that returns smth that references that prop on the object inside "{ {} }"
 Then, feed that service to each controller
-<img class="w50 shadn" src="./img/sharingScope1.png" alt="shared scope">
+<img class="w50 shadn" src="./img/sharingscope1.png" alt="shared scope">
 
 </div>
 <pre class="prettyprint w60">

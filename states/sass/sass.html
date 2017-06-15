@@ -1,7 +1,45 @@
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
 <aside><span class="rot90">{{state}}</span></aside>
 <div class="sass-entry entry">
-<div class="framed1"><h3 class="chtitle ltgreen">Using calc() with css variables</h3>
+
+<div class="slate-skyblue-fr"><h2>SASS set-up <em class="sm">(post install)</em></h2>
+  <pre class="plain-frame3 ctr w40">
+📂 Root
+    📂 css  📄 master.css
+    📂  sass  📄 master.scss
+    📄 index.html
+  </pre>
+<h3>In root directory...</h3>
+  <pre class="dkbg3 ctr w40"><code>sass --watch sass/master.scss:css/master.css</code></pre>
+Boom! You're done. Sass will compile and watch for changes.
+</div>
+<br>
+
+<div class="plain-frame2 clean"><h3 class="chtitle">Comments in Sass</h3>
+  <h4>Cool stuff I didn't know about Sass comments</h4>
+<pre class="prettyprint w50 ctr">
+  /* These Comments will compile to your css file */
+
+  // This kind of comment will NOT compile to your css file.
+<hr><h3>Multiline comments in SASS:</h3>
+
+/* This kind of multiline comment
+   with indentation will compile to
+   your css file and does not need
+   to be "closed" with a "*/".
+
+HOWEVER, if you don't wish that to be compiled to .css (but only visible in your sass file)
+
+// simply replace the second "*" with a "/"
+   You can indent all day long and so long
+   as the comments begin with a double-slash you will
+   never see anything in your css file.
+</pre>
+</div>
+<br>
+
+
+<div class="forest-red-fr"><h3 class="chtitle ltgreen">Using calc() with css variables</h3>
 
 You can employ calc and var() as a time time a delay with the variable declared on :root
 
@@ -25,7 +63,7 @@ Here, it is used as a multiplicand on animation-delay
 </pre>
 It's extremely effective and efficient. I haven't used it in sass, but I see no reason that it wouldn't work.</div>
   <hr>
-  <div class="centering-entry">
+  <div class="burgundy-grey-fr">
 <h2 class="chtitle">CSS Centering: 3 ways</h2>
   <pre class="cssnote">
   .ctr-container-ex1 {
@@ -122,7 +160,7 @@ Then, margin-left: <em>NEGATIVE HALF the width of the box</em></div>
 
 
 
-<div class="framed4">
+<div class="slate-skyblue-fr">
 <h2>A list of css filters</h2>
 <h4><a class="entry-link" target="_blank" href="https://css-tricks.com/almanac/properties/f/filter/">CSS Tricks link</a></h4>
 <pre class="prettyprint w40">

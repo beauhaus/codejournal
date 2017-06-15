@@ -25,20 +25,20 @@ body {
     }
   }
 
-  div.bg-image:before {
-    content: "";
-    position: fixed;
-    left: 0;
-    top: 0;
-    right: 0;
-    z-index: -1;
-    display: block;
-    background-image: url('img/steelbg.jpg');
-    width: 100%;
-    height: 100%;
-    filter: contrast(175%) brightness(23%);
-  }
 }
+div.bg-image:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  display: block;
+  background-image: url('img/steelbg.jpg');
+  width: 100vw;
+  height: 100vh;
+  filter: contrast(175%) brightness(23%);
+}
+
 /* links */
 a:active,
 a:focus,
@@ -434,7 +434,7 @@ a[ui-sref]:hover {
   border: 1px solid grey;
   background-color: map-get($colors, dkbg2);
 }
-.framed1 {
+.forest-red-fr {
   padding: 2%;
   font: {
     size: 1.4vw;
@@ -474,7 +474,7 @@ pre {
   background-color: map-get($colors, transGreen);
   padding: 2vh 2vw;
 }
-.framed4 {
+.slate-skyblue-fr {
   font-family: map-get($fonts, Comfortaa);
     padding: 2%;
     margin: 1%;

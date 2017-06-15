@@ -99,7 +99,7 @@
 
 
 
-<pre class="framed4 w40">
+<pre class="slate-skyblue-fr w40">
 create table humans (
   personID INT,
   name varchar(50),
@@ -440,7 +440,7 @@ app.use(bodyParser.json());</pre>
                 {...}
            ]
 }</pre>
-<div class="ctr framed4 w60"><p>It's important to know why this convention exists.</p>
+<div class="ctr slate-skyblue-fr w60"><p>It's important to know why this convention exists.</p>
 <div class="txtLeft">returning a simple array will prevent inserting info along with the response.
   <pre class="ltbg2 w20">res.send(humans);</pre></p>
 Whereas, with an object <pre class="ltbg2 w20">res.send({humans:humans});</pre>
@@ -499,7 +499,7 @@ Endpoint receiving a query from url conditionally returning the response ('res')
 });</pre>
 This URL <span class="sm orange">http://localhost:3000/petsbytag?tag=calm</span>
 hits the db.pets_by_tag.sql file
-<pre class="framed4 w20">select * from pets
+<pre class="slate-skyblue-fr w20">select * from pets
 where tag = $1;</pre>
 Then, renders:
 <pre class="plain-frame0">

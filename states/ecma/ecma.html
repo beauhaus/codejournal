@@ -10,7 +10,7 @@
 
 -->
 
-<div class="framed4"><h3 class="chtitle">Recursion</h3>
+<div class="slate-skyblue-fr"><h3 class="chtitle">Recursion</h3>
   II. Factorial
   <pre class="prettyprint w40">function factorial(n) {
     if(n< 2) {
@@ -144,7 +144,7 @@ engGreet("John", "Wilson");</pre>
     </div>
     <h3 class="chtitle dkred">Here's a nice little closure/callback combo with a timer</h3>
     <pre class="prettyprint w60 ctr">
-  <div class="fRight dkbg framed1 sm">
+  <div class="fRight dkbg forest-red-fr sm">
     // okay wait a sec...
     // Live reload enabled.
     // Okay, I'm done
@@ -256,7 +256,7 @@ cara.greet(); // Hello, you. I'm Cara & I feel great because I'm a dog
     <h4 class="chtitle dkblue">Line 19 nicely allows for overriding of the prototype by feeding in args to the <code class="dkred underline"><i class="y">new</i> <span class="ltgreen">Person</span> cara</code></h4>
     <div class="simple-frame">
       <h4 class="dkmango">This will blow your mind</h4> the methods 'placed on', or 'fed to' the <i class="ltgreen">new</i> Person are placed ON TOP OF the prototype. They STILL exist on the prototoype!
-      <div class="framed4 w60"> Within the "var personConstruction" object... exist the defaults. These defaults ARE STILL ACCESSIBLE via the "__proto__" property!
+      <div class="slate-skyblue-fr w60"> Within the "var personConstruction" object... exist the defaults. These defaults ARE STILL ACCESSIBLE via the "__proto__" property!
       </div>
       <pre class="prettyprint w40">
 cara.__proto__.name;
@@ -321,7 +321,7 @@ function groomer(inputObj) { //takes object and removes 'nat' prop
   </pre>
 
   </div>
-  <div class="framed1">
+  <div class="forest-red-fr">
     <h3 class="chtitle">reduce()</h3>
     <h4 class="ltgreen">This method reduces entire array to a single value</h4>
     <pre class="prettyprint">
@@ -399,7 +399,7 @@ var result = jogRec2016.reduce(function(prev, next, index) {
     prev[index]= next + " miles";
   }
   return prev; //must return the Object
-},{}) <img src="./img/jobObject1.png" class="w10" alt="jogObject">
+},{}) <img src="./img/jobobject1.png" class="w10" alt="jogObject">
 </pre> Return an object with repeated words:
     <pre class="prettyprint w60">var sentence = "He's a good person doing a good thing for a good person.";
 var sentArr = sentence.split(' ');</pre> Let's first make an object.
@@ -412,7 +412,7 @@ var result = sentArr.reduce(function(prev, next, index) {
 
 },{})
 
-console.log(result); <img src="./img/goodobj1.png" class="w10 right" alt="goodObj"></pre> Now, simply test for <span class="pastY">val > 1</span>!!
+console.log(result); <img src="./img/good.png" class="w10 right" alt="good"></pre> Now, simply test for <span class="pastY">val > 1</span>!!
 
     <pre class="prettyprint w60">var sentence = "He's a good person doing a good thing for a good person.";
 var sentArr = sentence.split(' ');
@@ -438,7 +438,7 @@ if (val > 1) {
 </pre> Here is <a target="_blank" href="https://medium.freecodecamp.com/reduce-f47a7da511a9">MUCH More on reduce();</a> at FCC.
   </div>
 
-  <div class="framed1">
+  <div class="forest-red-fr">
     <h3>Simple Callback</h3>
 
     <pre class="prettyprint linenums w80">
@@ -837,7 +837,7 @@ body {
 
 
 
-<div class="framed4">
+<div class="slate-skyblue-fr">
   <h4 class="w20 ctr">events (Lynda)</h4>
   <h5>Adding event listeners</h5>
   <h6>Bascially they are no different in appearance from jQuery's events ('...on.('click', function(){}'...etc)</h6>
@@ -874,7 +874,7 @@ This is called capturing the event in <em class="dkorange underline">the Bubblin
 //having set both to false, the event will bubble up and return "journal" FIRST! and then "clicked container!"</pre>
   <p><sup class="wh">*</sup>this is part of the 'e' object which gives the id value</p>
 
-  <div class="framed1"><pre>
+  <div class="forest-red-fr"><pre>
   When you add an event handler to the event target itself, bubble vs capture is not applicable.
   At that level, you're not capturing or bubbling--you're on the target itself.
   The event handlers fire in the order in which they were registered.
@@ -929,7 +929,7 @@ This is called capturing the event in <em class="dkorange underline">the Bubblin
 </pre>
   </div>
 
-  <div class="framed1">
+  <div class="forest-red-fr">
     <h4 class="ctrtxt w80 underline">Creating elements with events</h4>
     <h5 class="dkblue">This is always a 3 step process</h5>
     <pre>
