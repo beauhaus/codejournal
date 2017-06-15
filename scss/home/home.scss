@@ -1,22 +1,37 @@
-.home-container, .home-entry {
+.home-container,
+.home-entry {
   font-family: map-get($fonts, Thin);
+
   a::before {
     content: none;
   }
+
+  .debossed-dk-frame {
+    margin-right: 0;
+    margin-bottom: 1vh;
+  }
+
+  & div:hover {
+    color: map-get($colors, softwhite);
+  }
+  position: relative;
 }
+
 footer {
   position: fixed;
   bottom: 0;
   left: 0;
-  height: 5vh;
+  height: 7vh;
   width: 100%;
   text-align: center;
+
   ul li {
     display: inline-block;
     margin: 0 2vw;
   }
-  padding: 1% auto 5% auto;
-}
-.grade-bg {
+  padding: 1% auto;
+  // background: red;
   background: linear-gradient(transparent, rgba(63, 106, 150, 0.2));
 }
+
+.grade-bg {}

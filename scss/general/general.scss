@@ -28,7 +28,7 @@ body {
 }
 div.bg-image:before {
   content: "";
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   z-index: -1;
@@ -695,6 +695,7 @@ img.neighbors-item {
   padding: 1%;
   background: linear-gradient(to right, rgba(0,0,0,0.7) 0%,rgba(125,185,232,0) 100%);
   border: 1px solid map-get($colors, dkghost);
+  width: 52vw;
   border-right: 0px solid transparent;
   border-bottom: 0px solid transparent;
   box-shadow: inset 10px 7px 6px -2px map-get($colors, black);

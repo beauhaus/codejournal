@@ -27,7 +27,7 @@ body {
 
 div.bg-image:before {
   content: "";
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   z-index: -1;
@@ -556,6 +556,7 @@ img.neighbors-item {
   padding: 1%;
   background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(125, 185, 232, 0) 100%);
   border: 1px solid rgba(52, 54, 53, 0.6);
+  width: 52vw;
   border-right: 0px solid transparent;
   border-bottom: 0px solid transparent;
   box-shadow: inset 10px 7px 6px -2px black; }
@@ -712,25 +713,33 @@ div.ctr-example1 {
   top: 50%;
   transform: translate(-50%, -50%); }
 
-.home-container, .home-entry {
-  font-family: "Roboto", Sans-Serif; }
-  .home-container a::before, .home-entry a::before {
+.home-container,
+.home-entry {
+  font-family: "Roboto", Sans-Serif;
+  position: relative; }
+  .home-container a::before,
+  .home-entry a::before {
     content: none; }
+  .home-container .debossed-dk-frame,
+  .home-entry .debossed-dk-frame {
+    margin-right: 0;
+    margin-bottom: 1vh; }
+  .home-container div:hover,
+  .home-entry div:hover {
+    color: #cdcdcd; }
 
 footer {
   position: fixed;
   bottom: 0;
   left: 0;
-  height: 5vh;
+  height: 7vh;
   width: 100%;
   text-align: center;
-  padding: 1% auto 5% auto; }
+  padding: 1% auto;
+  background: linear-gradient(transparent, rgba(63, 106, 150, 0.2)); }
   footer ul li {
     display: inline-block;
     margin: 0 2vw; }
-
-.grade-bg {
-  background: linear-gradient(transparent, rgba(63, 106, 150, 0.2)); }
 
 div.angular-entry {
   color: #f28b02;
