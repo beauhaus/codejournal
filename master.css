@@ -353,6 +353,12 @@ a[ui-sref]:hover {
   box-shadow: inset 2px 2px 10px 2px black;
   color: #bdbdbd; }
 
+.burgundy-grey-fr {
+  background: #371a1a;
+  padding: 1%;
+  border: 1px solid #575757;
+  color: #cdcdcd; }
+
 .framed2 {
   padding: 2%;
   font-size: 1.4vw;
@@ -372,7 +378,6 @@ pre {
 
 .slate-skyblue-fr {
   padding: 2%;
-  margin: 1%;
   background-color: #37474e;
   color: #ed996f;
   padding: auto, 10%;
@@ -706,10 +711,6 @@ div.ctr-example1 {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%); }
-
-.burgundy-grey-fr {
-  background: #371a1a;
-  border: 1px solid #575757; }
 
 .home-container, .home-entry {
   font-family: "Roboto", Sans-Serif; }

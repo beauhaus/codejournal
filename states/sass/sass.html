@@ -2,6 +2,66 @@
 <aside><span class="rot90">{{state}}</span></aside>
 <div class="sass-entry entry">
 
+<div class="burgundy-grey-fr clean"><h2 class="chtitle pastY">Nesting in Sass</h2>
+  The ampersand adds nice versatility...
+<pre class="prettyprint w30 linenums">
+a {
+  font {
+    family: 'Roboto', sans-serif;
+    size: 1.2em;
+  }
+  &:hover {
+    color: skyblue;
+  }
+  &.red {
+    color: red;
+  }
+}
+</pre>
+  <h3>The "&" acts as an alias of <em>(or..."replaces")</em> the parent selector</h3>
+
+The even cooler part of the "&" is that it can replace part of a name of a class or id!!
+<br /><br />
+<div class="slate-skyblue-fr w50 chtitle">Quiz Time... I give you the sass, you figure out the css... --Ready?
+
+<br><br />
+<pre class="dkbg txt-left w30"><code>#content {
+  <span class="med ltred">&</span>-formal {
+    color: red;
+  }
+}
+  <h4 class="ans med fRight paleY">// #content-formal</h4>
+</code></pre>
+<br><br />
+<pre class="dkbg txt-left w30"><code>#content {
+  <span class="med ltred">&</span>formal {
+    color: red;
+  }
+}
+  <h4 class="ans med fRight paleY">// #contentformal</h4>
+</code></pre>
+<br><br />
+<pre class="dkbg txt-left w30"><code>#content {
+  <span class="med ltred">&</span>.formal {
+    color: red;
+  }
+}
+  <h4 class="ans med fRight paleY">// #content.formal</h4>
+</code></pre>
+<br><br />
+<pre class="dkbg txt-left w30"><code>#content {
+  <span class="med ltred">&</span> .formal {
+    color: red;
+  }
+}
+  <h4 class="ans med fRight paleY">// #content .formal</h4>
+</code></pre>
+</div>
+
+  <span class="right ltred">(this is just a taste of SASS nesting awesomeness...)</span>
+
+</div>
+<hr>
 <div class="slate-skyblue-fr"><h2>SASS set-up <em class="sm">(post install)</em></h2>
   <pre class="plain-frame3 ctr w40">
 📂 Root
