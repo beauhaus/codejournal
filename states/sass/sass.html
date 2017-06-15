@@ -1,7 +1,15 @@
+<!-- TODO: // ATTRIBUTION to be added: Adi Purdila @adipurdila 14 days to learn sass tutorial
+Goto:  https://youtu.be/HoHf_aTlfG0?list=PLCVM0tBM5nrSHdeXFJE5eXdURhL97FiyJ&t=227
+This is vid on "global flags" in SASS & variable scope.
+
+Also https://youtu.be/SeJRDDva1s4?list=PLCVM0tBM5nrSHdeXFJE5eXdURhL97FiyJ
+interpolation!
+ -->
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
 <aside><span class="rot90">{{state}}</span></aside>
 <div class="sass-entry entry">
-
+<pre>
+<!-- pre for all -->
 <div class="burgundy-grey-fr clean"><h2 class="chtitle pastY">Nesting in Sass</h2>
   The ampersand adds nice versatility...
 <pre class="prettyprint w30 linenums">
@@ -59,6 +67,19 @@ The even cooler part of the "&" is that it can replace part of a name of a class
 </div>
 
   <span class="right ltred">(this is just a taste of SASS nesting awesomeness...)</span>
+
+<h3 class="paleY">The "&" doesn't even need to go at the beginning of a nested style-rule</h4>
+<pre class="prettyprint w30">
+.boxed-layout {
+  font {
+    size: 1em;
+  }
+  $.floating & {
+    font {
+      size: .5em;
+    }
+  }
+}</pre>
 
 </div>
 <hr>
