@@ -72,7 +72,7 @@ can be used to define special graphical SVG elements such as gradients, filters 
    Since SVG has its own XML definition, it doesn’t understand AngularJS expressions. That means that if you will try to use SVG attributes with data binding expressions (curly brackets), you will get an error.<br><span class="med ivr"> The work around is to prefix all the dynamic attributes with ng-attr - and then set the binding expression.</span>
 <a href="https://docs.angularjs.org/guide/interpolation" target="_blank">angular explanation for ngAttr</a> (normalized as ng-attr=" ")
 </div>
-<div class="framed2 mutedBlue"><h3 class="chtitle">< viewBox="x, y, w, h"></h3>
+<div class="framed2 mutedBlue"><h3 class="chtitle dkred">< viewBox="x, y, w, h"></h3>
 viewBox w & h realign x/y coordinates.
 If higher, they "force" more 'pixels' inside the box defined by the style-rules width & height.
 Higher viewBox W and H numbers render in a quasi-higher res. --and give the effect of "zooming out".
@@ -81,7 +81,7 @@ Higher viewBox W and H numbers render in a quasi-higher res. --and give the effe
     < circle cx="300" cy="100" r="25" />< /circle>
   < /svg> </pre>
 
-  <h3 class="chtitle">preserveAspectRatio</h3>
+  <h3 class="chtitle dkred">preserveAspectRatio</h3>
   When the height values of styling and viewBox aren't proportional, we can use preserveAspectRatio
   First, <i class="dkblue">preserveAspectRatio="none"</i> allows the SVG to be squeezed and stretched--Fat or squat.
   Shrink the styled width, SVG is squeezed.
