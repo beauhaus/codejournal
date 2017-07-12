@@ -10,6 +10,39 @@
 
 -->
 
+<div class="framed8"><h3 class="chtitle mango">querySelector & querySelectorAll()</h3>
+These two are more versatile selectors because they accept classnames, id names, tag names, EVEN HTML Attribute!.
+
+<div class="w40 dkbg ivr w50 ctr shadn">
+  The differences between the two are very simple.
+I.  <code class="paleY">querySelectorAll()</code> is a collection (array).
+II.  <code class="paleY">querySelector()</code> is the first in the DOM.
+
+  That is, <code class="paleY">querySelectorAll()</code> = <code class="paleY">querySelector()[0]</code>
+
+
+</div>
+
+Select elements by attribute with querySelectorAll();
+<div class="wh">Simply use brackets with the attr plus the "=" sign</div>
+<pre class="prettyprint w50 ctr">
+< li data-color="purple">grapes< /li >
+< li data-color="purple">eggplant< /li >
+< li data-color="purple">lolipops< /li >
+
+const purps = document.querySelectorAll('[data-color=purple]')
+for (var i = 0; i < purps.length; i++) {
+  purps[i].style.backgroundColor = "purple";
+}
+
+</pre>
+
+Selecting odds/evens is also possible with the CSS pseudoClass nth-child(odd/evens)
+<code class="paleY">const odds = document.querySelectorAll('li:nth-child(odd)');</code>
+
+</div>
+
+
 <div class="slate-skyblue-fr"><h3 class="chtitle">Recursion</h3>
   II. Factorial
   <pre class="prettyprint w40">function factorial(n) {
@@ -36,6 +69,7 @@
 
 // Hello, I'm Leroy</pre>
   </div>
+  <hr>
   <div class="simple-frame3">
     <h3 class="chtitle dkblue">Super-simple Closure</h3>
     <div class="col-2"><pre class="prettyprint w40">function makeGreeting(language) {
