@@ -188,6 +188,40 @@ Array destructuring:
 <hr>
 <div class="slate-skyblue-fr">
 <h3 class="wh ctrtxt">Arrow Functions ("fat-arrow")</h3>
+
+<div class="brdr-w dkbg ctr ctrtxt">
+  Let's remind ourselves of the brevity that arrow funcs allow for:
+
+  <pre class="prettyprint w40 txt-left ctr">const emote = (icon) => console.log(`${icon}`);
+  emote("🤓");
+  // or... const emote = (icon) => console.log(icon);
+  // 🤓</pre>
+
+  Let's say I set up a func that takes two args:
+
+  <pre class="prettyprint w40 txt-left ctr">function serve(iceCream, flavor) {
+    iceCream(flavor);
+  }</pre>
+
+  I see in the body of the function that <code>serve()</code> is a function and it will subsequently take arg 2 (in the function signature).
+
+  I have to call this "serve()" with two args.
+
+  The clumsy way is thus:
+
+  <code>serve(<span class="paleY underline">function defineFlavor(fruit) {console.log(fruit)}</span><sup class="wh">1</sup>, <span class="lightgreen">"🍋"</span><sup class="wh">2</sup>);</code>
+
+  All of the extra text in arg <sup class="wh">1</sup> simply becomes "iceCream" in the function serve() above it.
+
+  So it's MUCH, much simpler to remove all of that and use an anonymous function instead of all of that mess.
+
+  Let's clean it up:
+
+  <pre class="prettyprint w40">serve((fruit) => console.log(fruit), "🍋"); // 🍋</pre>
+  <pre class="prettyprint w40">serve((fruit) => console.log(fruit), "🍓"); // 🍓</pre>
+
+</div><hr>
+
 The following works in ES5:
 <pre class="prettyprint w40">
 var people = [
@@ -202,7 +236,7 @@ var ageArr = people.map(function(person){
     // [23,13,21]
 </pre>
 But in ES6, it's much cleaner code.
-<span class="y">IF you only have ONE argument</span>, don't use parentheses<br />
+<span class="y">IF you only have ONE argument</span>, don't use braces<br />
 ALSO. <span class="y">If you are only returning one thing</span> and not doing other things in the Fn.
 <h3 class="ltred">GET RID OF the return statement and the "{}"</h3>
 <pre class="prettyprint w40">var ageArr = people.map(person => person.age;)</pre>

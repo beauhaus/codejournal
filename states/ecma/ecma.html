@@ -130,7 +130,10 @@ Selecting odds/evens is also possible with the CSS pseudoClass nth-child(odd/eve
   <hr>
   <div class="simple-frame3">
     <h3 class="chtitle dkblue">Super-simple Closure</h3>
-    <div class="col-2"><pre class="prettyprint w40">function makeGreeting(language) {
+    <div class="col-2">
+
+<pre class="prettyprint w40">
+function makeGreeting(language) {
 
   var counter = 0;
   return function(firstName, lastName) {
@@ -147,11 +150,14 @@ Selecting odds/evens is also possible with the CSS pseudoClass nth-child(odd/eve
     console.log(`Run in ${lang} ${counter} times.`);
   }
 }
+
 var spanGreet = makeGreeting("es");
 var engGreet = makeGreeting("en");
 spanGreet("Susan", "Jenkins");
 engGreet("John", "Wilson");
-engGreet("John", "Wilson");</pre>
+engGreet("John", "Wilson");
+
+</pre>
 <br><pre class="w40 dkbg ivr">
 
   Fn returning a Fn. A counter that increments on each sucessive execution.
@@ -159,7 +165,6 @@ engGreet("John", "Wilson");</pre>
   This example sets up a function factory of sorts.
   Pay attention to separate execution contexts.
 <hr>
-
 
 //  Hola, Susan Jenkins
 //  Run in Spanish 1 times.
@@ -1079,6 +1084,33 @@ function handler(e) {
 </div>
 
   <hr>
+
+  <div class="brdr-w dkbg ctr ctrtxt med">
+<pre class="prettyprint w40 txt-left ctr">function lunch(menu, item) {
+  menu(item);
+}</pre>
+
+    I see in the body of the function that lunch is a function and it will subsequently take arg 2 (in the function signature).
+
+    I have to call this "lunch()" with two args.
+
+    We use an anonymous func as the 1st arg
+
+<pre class="prettyprint w50 ctr txt-left">lunch((food) => console.log(food), "🍔");
+// 🍔</pre>
+<pre class="prettyprint w50 ctr txt-left">lunch((food) => console.log(food), "🍕");
+// 🍕</pre>
+
+<h3 class="chtitle pastY">Let's put a setTimeout on this which is a method of the window object</h3>
+<pre class="w50 ctr med txt-left">window.setTimeout((food) => console.log(food), 6000, "🍔");
+window.setTimeout((food) => console.log(food), 9000, "🌮");</pre>
+
+1) Arg1 is the anon func
+2) Arg2 is the time delay
+3) Arg3 is the argument sent to the timeOut func
+
+  </div>
+
 <div class="simple-wine-frame">  <h2 class="ltblue">setTimeout & setInterval : using Kirupa & Dan Wellman's tutes</h2>
 
   <pre class="prettyprint w80">
