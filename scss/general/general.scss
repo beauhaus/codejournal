@@ -720,3 +720,6 @@ img.neighbors-item {
 .thin {
   font-family: map-get($fonts, Thin);
 }
+a img.img-link {
+  vertical-align: bottom;
+}

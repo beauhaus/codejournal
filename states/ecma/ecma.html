@@ -9,8 +9,66 @@
 <!--
 
 -->
+<div class="simple-frame2">
+A simple program to add to the DOM with:
+<div class="compact">
+.createElement();
+.appendChild();
+</div>
+<div class="col-2">
 
-<div class="framed8"><h3 class="chtitle mango">querySelector & querySelectorAll()</h3>
+<pre class="ltbg lt-frame prettyprint">
+// html
+< ul class="mylist">
+  < li class="orangeThings">Tangerines< / li>
+  < li class="orangeThings">Orange< / li>
+  < li class="orangeThings">Trump< / li>
+< /ul>
+
+< input class="addInput" type="text" placeholder="addtxt" value="">
+< button class="addBtn" type="button" name="button">Add< / button>
+
+
+</pre>
+
+<pre class="ltbg lt-frame prettyprint">//myscript.js
+const listUL = document.querySelector("ul.mylist");
+const addBtn = document.querySelector(".addBtn");
+const addInput = document.querySelector("input.addInput");
+
+addBtn.addEventListener('click', () => {
+  let newLi = document.createElement('li');
+  newLi.textContent = addInput.value;
+  listUL.appendChild(newLi);
+  addInput.value = "";
+})
+</pre>
+</div>
+
+</div>
+<hr>
+<div class="simple-frame3">
+  <h3 class="chtitle dkblue">2 ways to set text in raw js</h3>
+  .textContent & innerHTML
+<pre class="dkbg2 prettyprint w40">
+  const myTxtInput = document.getElementById('myTxtInput');
+  const myTxt = document.getElementsByClassName('myText');
+
+  myTxtButton.addEventListener('click', () => {
+    myTxt[0].textContent = myTxtInput.value;
+  })
+</pre>
+Pretty straightforward. --But not nearly as versatile as <em>innerHTML</em> ...
+
+In the txt field in the browser, you can enter any html tag in addition to the text.
+It enables you to define the html (tags, ids, classes, etc) in addition to the text.
+<pre class="dkbg2 prettyprint w40">
+  myTxtButton.addEventListener('click', () => {
+    myTxt[0].innerHTML = myTxtInput.value;
+  })
+</pre>
+</div>
+<div class="framed8"><h3 class="chtitle coral">querySelector & querySelectorAll()</h3>
 These two are more versatile selectors because they accept classnames, id names, tag names, EVEN HTML Attribute!.
 
 <div class="w40 dkbg ivr w50 ctr shadn">

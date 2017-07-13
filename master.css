@@ -579,6 +579,9 @@ img.neighbors-item {
 .thin {
   font-family: "Roboto", Sans-Serif; }
 
+a img.img-link {
+  vertical-align: bottom; }
+
 /* jquery styles */
 .jq-entry {
   background-color: #a6b696;
