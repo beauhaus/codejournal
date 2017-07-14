@@ -9,6 +9,86 @@
 <!--
 
 -->
+<div class="forest-red-fr">
+  <h3 class="chtitle">removeChild()</h3>
+  <h4 class="ltgreen">Simply reference the parent of child to remove and then plce event on an ancestor</h4>
+<div class="w80 col-2"><pre class="prettyprint w30 ctr">
+// index.html
+< div class="list-container">
+  < h3>Animal List< / h3>
+  < ul class="animal-list">
+    < li>Ant-eater< / li>
+    < li>Bear< / li>
+    < li>Cheetah< / li>
+    < li>Deer< / li>
+    < li>Elephant< / li>
+  < / ul>
+< / div>
+</pre>
+<pre class="prettyprint w30">
+// script.js
+const listContainer = document.querySelector('.list-container');
+
+listContainer.addEventListener('click', (event) => {
+  let li = event.target;
+  let ul = li.parentNode;
+  ul.removeChild(li);
+})
+
+</pre>
+</div>
+Placing the eventListener on the ul would disable removale of the h3, of course. The H3 is not a child of the ul.
+<hr>
+<h3>A note on DOM traversal and previousSibling vs. previousElementSibling</h3>
+previous sibling often can select <em>"#text"</em>, or a string that is used to format space between elements.
+
+Therefore, using previousElementSibling is the one to use in DOM traversal
+
+<a class="w20" href="https://codepen.io/beau_dev/full/PjLGQN/" target="_blank">Here<h4>is a pen illustrating the powers of insertBefore, previous/nextSibling, etc.</h4></a>
+
+</div>
+<hr>
+<div class="framed5"><h3 class="chtitle">Another look at events and the .target property</h3>
+  <a class="w20" href="https://codepen.io/beau_dev/full/NgJNEO/" target="_blank">Here<h4>is a pen illustrating the powers of the event.target property</h4></a>
+  <pre class="prettyprint w40 ctr">
+// index.html
+< div class="list-container">
+  < h3>Animal List< / h3>
+  < ul class="animal-list">
+    < li>Ant-eater< / li>
+    < li>Bear< / li>
+    < li>Cheetah< / li>
+    < li>Deer< / li>
+    < li>Elephant< / li>
+  < / ul>
+< / div>
+</pre>
+Instead of putting a listener on each and every list item (burdoning the DOM), we...
+1) Assign the listener to an ancestor.
+2) Send an Event Object into the function.
+3) use the event.target property to identify the precise node which fires the event.
+(This event <em>in effect</em> "Bubbles-up" to the surface until it hits the container to which is attached a listener).
+<pre class="prettyprint w40 ctr linenums">
+// script.js
+const listItems = document.getElementsByTagName('li');
+const listContainer = document.querySelector('.list-container');
+const displayText = document.querySelector('.display-text');
+
+listContainer.addEventListener('click', (event) => {
+  elemShow.textContent = event.target.tagName;
+  textShow.textContent = event.target.textContent;
+})
+  </pre>
+
+Using tagName we can create a condition...
+
+if (event.target.tagName === "LI") {
+  event.target.textContent = "ouch!"
+}
+
+<h5>A huge benefit to this is it is dynamic. New LI's will also have this behavior if created on the fly. #robustCode</h5>
+</div>
+<hr>
 <div class="simple-frame2">
 A simple program to add to the DOM with:
 <div class="compact">
