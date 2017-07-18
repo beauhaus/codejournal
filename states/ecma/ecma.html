@@ -11,7 +11,7 @@
 -->
 <div class="forest-red-fr">
   <h3 class="chtitle">removeChild()</h3>
-  <h4 class="ltgreen">Simply reference the parent of child to remove and then plce event on an ancestor</h4>
+  <h4 class="ltgreen">Simply reference the parent of child to remove and then place event on an ancestor</h4>
 <div class="w80 col-2"><pre class="prettyprint w30 ctr">
 // index.html
 < div class="list-container">
@@ -86,7 +86,33 @@ if (event.target.tagName === "LI") {
   event.target.textContent = "ouch!"
 }
 
-<h5>A huge benefit to this is it is dynamic. New LI's will also have this behavior if created on the fly. #robustCode</h5>
+<h5>A huge benefit to this is it is dynamic. New LI's will also have this behavior if created on the fly--increasing portability/modularity of the code.</h5>
+
+<hr>
+
+In this final example of events, a number of basic raw .js methods are used.
+
+<a href="https://codepen.io/beau_dev/full/JJqJqN/">link </a> to basic events pen.
+
+<div class="w60 framed6">insertBefore() is used for both the "up" buttons and the "down" buttons.
+
+insertBefore() requires 3 elements.
+<span class="paleY">1) the elements on which method is called (parent element).</span>
+<span class="purp">2) the element to be inserted</span>
+<span class="softred">3) the element before which insertion is to take place.</span>
+
+<span class="paleY">RICECRISPIES</span>.insertBefore(<span class="purp">crackle</span>, <span class="softred">pop</span>);
+</div>
+<div class="forest-red-fr"> <div class="w60 ctr lt-frame"><code>if ( (name === "down") && (li.nextElementSibling !== null) ) {
+    li.parentNode.insertBefore(li.nextElementSibling, li);
+  }</code></div>
+  li.parentNode is the ul element (parent).
+
+  Here, insertBefore--in fact--is inserting the 'li' <em>AFTER</em> the next element!
+  This is both common and very useful.
+
+</div>
+as with next/previousElementSibling... lastElementChild/previousElementChild is also much preferred.
 </div>
 <hr>
 <div class="simple-frame2">
@@ -1291,7 +1317,7 @@ btn.on('click', function() {
   moveThing();
 </pre>
   <em>cf.</em> <a href="https://youtu.be/rNsC1VI9388">Kirupa: requestAnimationFrame() for animation video</a>
-  <img class="w40" src="./img/warning.png" alt="Don't use setTimeout in animations">
+  <h2>"Don't use SetTimeout or setInterval for animations --Just don't!" --Kirupa</h2>
 
 
 </div>  <hr>
