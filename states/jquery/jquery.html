@@ -5,15 +5,61 @@
   <div class="jq-entry entry">
     <pre>
   <!-- pre for all -->
-<!--
-<pre class="prettyprint w40">
-  function fun(foo, bar) {
-    var num = 3;
-    var str = "how are you?"
-    return "yes" + num + str;
-    //example snippet
+
+<div class="plain-frame3"><h3 class="chtitle">click to shift and insert before (or after) a sibling.</h3>
+
+<pre class="shadn w40 ctr dkbg2">
+<span class="transGreen ctr">ul</span>
+  < li >rock  <button>up</button>  <button>down</button>< / li >
+  < li >scissors  <button>up</button>  <button>down</button>< / li >
+  < li >paper  <button>up</button>  <button>down</button>< / li >
+<span class="transGreen ctr">ul</span>
+</pre>
+<div class="col-2">
+<pre class="prettyprint w40">  ul.on('click', (e) => {
+  let name = e.target.textContent;
+  if ((name === "up") && (e.target.parentNode.previousElementSibling !== null)) {
+    let targParent = e.target.parentNode;
+    let prev = targParent.previousElementSibling;
+    targParent.before(targParent, prev);
   }
-</pre> -->
+  if ((name === "down") && (e.target.parentNode.nextElementSibling !== null)) {
+    let targParent = e.target.parentNode;
+    let next = targParent.nextElementSibling;
+    console.log("next: ", next);
+    targParent.after(next , targParent);
+  }
+})
+
+
+ </pre>
+<pre class="softblue-bg sm w40 shadn">
+
+1) Place event on container.
+
+2) The 2nd part of both conditions is to account for reaching the top or bottom of the ul.
+<em class="fRight">(i.e. "if no li exists, don't fire the method...")</em><br>
+
+3) NOTE: The li is the parent of each button & this will be the element to move all contents up & down the ul.
+
+
+4) jQuery's <span class="orange">.after()</span> & <span class="orange">.before()</span> require 3 things:
+
+  i. reference to target container
+  ii. element to be moved.
+  iii. reference to adjacent element
+
+(In this way, javascript's insertBefore does not differ. However, Javascript does not have an insertAfter method).
+
+
+
+<sup class="ltred">*</sup> Be careful to use next/previous<i class="paleY">Element</i>Sibling
+<a href="https://codepen.io/beau_dev/full/ZyNNxR/" target="_blank">jQuery code</a> in action
+</pre></div>
+
+
+ </div>
+
     <div class="simple-frame">
       <h2 class="dkred">Jquery Intermediate Quiz:</h2><span class="pastBlue"><em>selection and events</em></span>
 
