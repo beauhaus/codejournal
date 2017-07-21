@@ -1,6 +1,4 @@
 div.ecma-entry {
-  // border: 1px solid map-get($colors, trim);
-  // border: 4px dashed red;
   height: 80vh;
   background-color: map-get($colors, softsand);
   border: 1px solid map-get($colors, dkorange);
@@ -22,6 +20,9 @@ div.ecma-entry {
 
   pre {
     background-color: map-get($colors, deep);
+  }
+  div {
+    font-family: map-get($fonts, Thin);
   }
 }
 

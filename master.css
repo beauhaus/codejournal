@@ -626,6 +626,8 @@ div.ecma-entry {
     font-size: .6em; }
   div.ecma-entry a {
     background-color: #d0b588; }
+  div.ecma-entry div {
+    font-family: "Roboto", Sans-Serif; }
 
 div.ltbg {
   padding: baseline; }

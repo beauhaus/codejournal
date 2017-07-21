@@ -9,6 +9,133 @@
 <!--
 
 -->
+
+<div class="framed8"><h3 class="chtitle coral">Very simple example of the prototype-chain</h3>
+  <pre class="prettyprint w30 ctr">
+
+var taxi = {
+  kind: "taxi",
+  color: "yellow",
+  features: "legroom",
+  hornType: "loud"
+};
+
+taxi.wheels = 4;
+
+Object.prototype.speed = function() {
+  console.log("~ZZZZoooooom!");
+};
+
+var limo = Object.create(taxi);
+limo.kind = "limo";
+
+// Question: What happens if I call a method not placed directly on 'limo'?
+
+limo.speed();
+
+// <span class="ans med">"~!ZZZZoooooom!"</span>
+</pre>
+
+Explanation:
+<div class="ans brdr-w med">
+1) JS doesn't find .speed() on "limo".
+2) It then looks at "taxi"
+3) Finally, javascript finds it on the root prototype: "Object.prototype"...
+</div>
+Let's use <em>this</em> in the speed method to see what happens.
+<pre class="prettyprint w30 ctr">
+Object.prototype.speed = function() {
+  console.log("The " + this.kind + " goes '~ZZZZoooooom!'");
+};
+
+// Now calling...
+limo.speed();
+taxi.speed();
+
+// <span class="ans med">"The limo goes '~!ZZZZoooooom!'"</span>
+</pre>
+
+
+<div class="w40 dkbg ivr w50 ctr shadn">Let's test these.
+
+I. We can reason that<code class="paleY">taxi</code>is built on Object.prototype
+II. We know further that <code class="paleY">limo</code>is built on the prototype of<code class="paleY">taxi</code>
+
+We can test them with<code class="paleY">Object.getPrototypeOf(<em class="ltred">variable</em>)</code>
+
+<pre class="prettyprint w30 ctr">
+var taxiProto = Object.getPrototypeOf(taxi);
+var limoProto = Object.getPrototypeOf(limo);
+
+console.log(limoProto === taxi);  // true!
+console.log(taxiProto === Object.prototype); // true!
+</pre>
+QED!🎉
+
+Here we have proof of the above assertions about the prototype chain.
+<h2 class="chtitle softwite">Object.prototype 🔗 taxi 🔗 limo</h2>
+
+
+</div>
+
+Select elements by attribute with querySelectorAll();
+<div class="wh">Simply use brackets with the attr plus the "=" sign</div>
+
+Selecting odds/evens is also possible with the CSS pseudoClass nth-child(odd/evens)
+<code class="paleY">const odds = document.querySelectorAll('li:nth-child(odd)');</code>
+
+</div>
+
+
+
+<div class="framed2 dkbg wh"><h3 class="chtitle">Object.create();</h3>
+We have a fish object & a bird object.
+<pre class="prettyprint w30 ctr">
+  var bird = {
+    eyes: 2,
+    wings: 2,
+    beak: 1,
+    talons: 2,
+    call: "Ca-caw! Ca-caw!"
+  };
+
+  var fish = {
+    eyes: 2,
+    fins: 2,
+    skin: "scales",
+    color: "orange"
+  };
+</pre>
+
+We can, of course, use <code class="ltblue">var something <span class="transGreen">= new Object();</span></code>, but there is another way.
+
+I can create a new object using <code class="ltblue">Object<span class="transGreen">.create(<i class="orange">null</i>)</span></code> in the following way:
+
+<pre class="prettyprint w30 ctr">
+var nuCreature = Object.create(null);
+
+nuCreature.eyes = 12;
+
+// Note: I pass 'null' because .create(); requires it.
+</pre>
+Logging <code class="ltgrey">nuCreature.eyes</code> will, of course, give us <span class="orange">// 12</span>
+
+<div class="w50 ctr brdr-w ltgrey">All objects in JS have a default <code class="ltblue">Object.prototype</code> at the root.</div>
+
+We have the power to manipulate or modify that default. We can customize our "nuCreature" and give it the properties that, 'fish' has.
+Let's do that!
+
+<pre class="prettyprint w30 ctr">
+var nuCreature = Object.create(fish);
+nuCreature.name = "Heidi the Hybrid Fish";
+nuCreature.wings = 4;
+
+console.log(nuCreature);
+// This gives us <div class="ans med"> <img class="w20" src="./img/hybrid1.jpg" alt="hybrid-fish"></div>
+</pre>
+</div>
+
+<hr>
 <div class="simple-frame3">
   <h3 class="chtitle dkblue">Object Trivia quiz</h3>
   I have the following two objects whose values are identical.
