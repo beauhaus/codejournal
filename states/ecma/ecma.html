@@ -9,6 +9,35 @@
 <!--
 
 -->
+<div class="simple-frame3">
+  <h3 class="chtitle dkblue">Object Trivia quiz</h3>
+  I have the following two objects whose values are identical.
+<pre class="dkbg2 prettyprint w40">
+var me = {
+  name: "John",
+  age: 28,
+};
+
+var miniMe = new Object();
+miniMe.name = "John";
+miniMe.age = 28;
+</pre>
+Question.
+What would I expect from <code class="dkred3">console.log(me === miniMe)</code> ?
+
+<pre class=" ans dkbg2 prettyprint w20 ctr">
+false
+</pre>
+
+--Why?
+<div class="brdr-b ans med w50">Because <i class="dkred3">Objects are reference types.</i>
+
+That is, both vars create 2 different pointers.
+There is an address in memory created for each of them.
+This is a good thing!
+We can be assured that modifying miniMe will NOT modify me!</div>
+</div>
+<hr>
 <div class="forest-red-fr">
   <h3 class="chtitle">removeChild()</h3>
   <h4 class="ltgreen">Simply reference the parent of child to remove and then place event on an ancestor</h4>
