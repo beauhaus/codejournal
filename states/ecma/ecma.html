@@ -9,6 +9,98 @@
 <!--
 
 -->
+<div class="simple-frame2"><h3 class="chtitle orange">Value vs Reference in Javascript</h3>
+  <h4>quick quiz what are the primitives? </h4>
+<div class="ans med wh right w50">1)null 2)boolean 3)String 4)undefined 5)number</div>
+
+These are value types (where arrays and objects are reference types).
+
+For this example, let's use Strings.
+<pre class="prettyprint ctr w60">
+var flower1 = "🌻"; // this is stored in memory.
+
+var flower2 = flower1; // here, the value 🌻 is copied and 'flower2' holds that copied value.
+
+console.log(flower2); // 🌻   (flower2 renders it's value.)
+
+//Now, I change flower1's value
+
+flower1 = "🌹";
+</pre>
+What would we expect if I were to log both to console?
+<pre class="prettyprint ctr w60">
+console.log(flower1); // 🌹
+console.log(flower2); // 🌻
+
+// flower2 still holds the copied value because it is <em>NOT</em> passed by reference
+
+// flower2's value is a copy of flower1 (when first created) and it keeps that copy.
+</pre>
+<hr><h3 class="chtitle orange">Let's take a look at reference types:</h3>
+variables for Objects <em>POINT</em> to values in memory. They <em>"reference"</em> rather than "hold" values as primitives do.
+
+<pre class="prettyprint ctr w60">
+var myFruitArr = ["🍎", "🍐", "🍉"]; //this Array is, of course, an Object.
+var yourFruitArr = myFruitArr;
+
+// What is significant here is one simple fact. This line above copies the pointer to a value
+// --No value is copied in memory.
+
+// Let's edit that value that the pointers point to.
+
+myFruitArr.push("🍌");
+console.log(myFruitArr); // > (4) ["🍎", "🍐", "🍉", "🍌"]
+console.log(yourFruitArr); // > (4) ["🍎", "🍐", "🍉", "🍌"]
+</pre>
+
+We get this because... <span class="med ans paleY">  the object referenced by both pointers has been edited.</span>
+
+Now, careful... How about this?
+<pre class="prettyprint ctr w60">
+myFruitArr = ["🍭", "🍦", "🍰"];
+
+console.log(myFruitArr);   // >   (3)  ["🍭", "🍦", "🍰"];
+console.log(yourFruitArr);   // >   (4) ["🍎", "🍐", "🍉", "🍌"]
+</pre>
+--WHY? Because...<br /> <span class="ans med paleY"><code>myFruitArr =  ["🍭", "🍦", "🍰"];</code> is creating a new value to which array's pointer references.</span>
+<hr>
+<h3 class="chtitle orange">Stick with me. Let's try one more with an Object.</h3>
+<pre class="prettyprint ctr w40">
+  var meal1 = {entree: "🍕"};
+</pre>
+The object is created in memory.<code>meal1</code> has a pointer which references the value <code>{entree: "🍕"}</code>
+
+I create another var,
+<pre class="prettyprint ctr w40">
+  var meal2 = meal1;
+</pre>
+But, I'm not copying...but I'm creating a new pointer that points references that value.<br />
+<pre class="prettyprint ctr w40">
+  var meal1 = {entree: "🍕"};
+  var meal2 = meal1;
+  console.log("m2", meal2);
+  // m2 > Object {entree: "🍕"}  (as expected)
+</pre>
+This is increases efficiency, since objects are complex and multiple copies of them would not be performant.
+
+Here's the punchline:
+<pre class="prettyprint ctr w40">
+meal1 = {entree: "🍟"}
+
+console.log("m1", meal1);
+console.log("m2", meal2);
+</pre>
+What would these log out to?
+<pre class="simple-wine-frame ans med thin ctr w40">
+// m1 > Object {entree: "🍟"};
+// m2 > Object {entree: "🍕"};
+
+// I have created a new pointer to a new value in meal1
+</pre>
+
+</div>
+
+<hr>
 
 <div class="framed8"><h3 class="chtitle coral">Very simple example of the prototype-chain</h3>
   <pre class="prettyprint w30 ctr">
