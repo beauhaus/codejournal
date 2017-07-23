@@ -130,11 +130,15 @@ limo.speed();
 
 Explanation:
 <div class="ans brdr-w med">
-1) JS doesn't find .speed() on "limo".
-2) It then looks at "taxi"
-3) Finally, javascript finds it on the root prototype: "Object.prototype"...
+1) JS doesn't find .speed() on "limo" --doesn't find it.
+2) It then looks at "taxi" --doesn't find it.
+3) Finally, javascript finds it on the root prototype: "Object.prototype"... finds it!
 </div>
+
+In this way, limo inherits the .speed() method from the root prototype <code>Object.prototype</code>
+
 Let's use <em>this</em> in the speed method to see what happens.
+
 <pre class="prettyprint w30 ctr">
 Object.prototype.speed = function() {
   console.log("The " + this.kind + " goes '~ZZZZoooooom!'");
@@ -145,6 +149,7 @@ limo.speed();
 taxi.speed();
 
 // <span class="ans med">"The limo goes '~!ZZZZoooooom!'"</span>
+// <span class="ans med">"The taxi goes '~!ZZZZoooooom!'"</span>
 </pre>
 
 
@@ -170,11 +175,6 @@ Here we have proof of the above assertions about the prototype chain.
 
 </div>
 
-Select elements by attribute with querySelectorAll();
-<div class="wh">Simply use brackets with the attr plus the "=" sign</div>
-
-Selecting odds/evens is also possible with the CSS pseudoClass nth-child(odd/evens)
-<code class="paleY">const odds = document.querySelectorAll('li:nth-child(odd)');</code>
 
 </div>
 
