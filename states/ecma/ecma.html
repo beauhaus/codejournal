@@ -7,35 +7,92 @@
       <!--entire page pre-->
 
 <!--
-var animalSound = {
-  animal : "default animal",
-  voice : "default 'SOUND'",
-  speak: function(animal, voice) {
-    console.log(`The ${this.animal} says "${this.voice}"!`);
-    console.log(`And 'this' is: the ${this.animal.toUpperCase()} object`);
+-->
+<div class="framed8"><h3 class="chtitle coral">Neat, clean replacement for an if statement using "||"</h3>
+  Let's create a function that identifies what animals eat.
+
+  <pre class="ltbg shadn dkred w40 ctr">
+    var feed = function() {
+      console.log(`The ${this.animal} dines on ${this.food}`);
+      console.log(`'this': the ${this.animal} object`);
+    }
+</pre>
+We add an object with a property that calls it.
+
+<pre class="ltbg shadn dkred w40 ctr">
+  var animalAction = {
+    eat: feed
   }
+</pre>
+To this we provide an animal with properties, then bind (and execute "()") the function.
+
+<pre class="ltbg shadn dkred w40 ctr">
+  var cat = {
+    animal: "cat",
+    food: "frisky buffet",
+  }
+  animalAction.eat.bind(cat)();
+<code class="ltgreen">
+// The cat dines on frisky buffet
+// 'this': the CAT object</code>
+</pre>
+We know the cat likes it's usual meal and are certain that <code>this.food</code> will be "fed" to that function ;).
+
+However, we can alter the function signature to take an argument and leverage the versatility of bind which can take several arguments.
+
+<pre class="ltbg shadn dkred w40 ctr">
+  var feed = function(<span class="paleY">food</span>) {
+    console.log(`The ${this.animal} dines on ${this.food}`);
+    console.log(`'this': the ${this.animal} object`);
+  }
+
+  var animalAction = {
+    eat: feed
+  }
+
+  var cat = {
+    animal: "cat",
+    food: "frisky buffet",
+  }
+  animalAction.eat.bind(cat<span class="paleY">, "hamburgers"</span>)();
+</pre>
+<div class="brdr-w w60 ctr"><code>Problem:</code> The cat will <em>still</em> only be eating it's frisky buffet because it is bound to <code>this.food</code>
+--We might be tempted to place an <code>if (food) {...</code> statement here, but there is a cleaner way.
+
+<code>Solution:</code> Inside the template literal, we can place a 'switch' using  the double-pipe operator: "||" <em>BEFORE</em> this.food:
+</div>
+
+<pre class="framed2 dkred wh w60 ctr">var feed = function(<span class="paleY">food</span>) {
+  console.log(`The ${this.animal} dines on ${<span class="paleY">food ||</span> this.food}`);
+  console.log(`'this': the ${this.animal} object`);
+}
+
+var animalAction = {
+  eat: feed
 }
 
 var cat = {
   animal: "cat",
-  voice: "meow"
+  voice: "meow",
+  food: "frisky buffet",
 }
+animalAction.eat.bind(cat, <span class="paleY">"hamburger"</span>)();
+</pre>
+<h2 class="chtitle ctr">An elegant solution to the problem. We can now take orders on the fly according to the cat's appetite</h2>
+<div class="simple-wine-frame ctr w20">The cat dines on hamburger
+'this': the cat object</div>
+.bind() binds this func to cat but requires "()";
+this code above works perfectly well with .call() that calls the function instantly and <em>does not</em> require "()"
 
-var owl = {
-  animal: "owl",
-  voice: "hoot"
-}
+.bind() is, therefore, commonly used to be called later...elsewhere in the code.
 
-var mouse = {
-  animal: "mouse",
-  voice: "squeak",
-}
+(As mentioned elsewhere) .bind() and call() take a comma separated list of arguments, but the first argument always is going to define for us what 'this' is.
 
-animalSound.speak();
-animalSound.speak.bind(mouse)();
-animalSound.speak.bind(owl)();
-animalSound.speak.bind(cat)();
--->
+in addition
+
+.apply() is distinct from .call() in that it takes two arguments. The first establishing "this"... the second being an array of arguments to feed to the target function.
+</div>
+<hr>
 <div class="simple-frame3">
   <h3 class="chtitle dkblue">Controlling <em>this</em> with .bind()</h3>
 Here we have an object with some default properties and a method leveraging those defaults:
@@ -125,7 +182,8 @@ Here's the enire code:
   // And 'this' is: the CAT object
 
 </pre>
-
+<h3 class="chtitle softbrown clean">One crucial thing to note: These bind() methods also require <span class="wh">()</span> to be appended in order to be called.</h3>
+<h3 class="chtitle softbrown clean">.bind() is often used to "set" a binding to be used later. However, .call() does NOT require parens. .call() calls the function immediately.</h3>
 </div>
 <hr>
 <div class="simple-frame2">
