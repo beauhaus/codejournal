@@ -7,13 +7,177 @@
       <!--entire page pre-->
 
 <!--
+var animalSound = {
+  animal : "default animal",
+  voice : "default 'SOUND'",
+  speak: function(animal, voice) {
+    console.log(`The ${this.animal} says "${this.voice}"!`);
+    console.log(`And 'this' is: the ${this.animal.toUpperCase()} object`);
+  }
+}
 
+var cat = {
+  animal: "cat",
+  voice: "meow"
+}
+
+var owl = {
+  animal: "owl",
+  voice: "hoot"
+}
+
+var mouse = {
+  animal: "mouse",
+  voice: "squeak",
+}
+
+animalSound.speak();
+animalSound.speak.bind(mouse)();
+animalSound.speak.bind(owl)();
+animalSound.speak.bind(cat)();
 -->
+<div class="simple-frame3">
+  <h3 class="chtitle dkblue">Controlling <em>this</em> with .bind()</h3>
+Here we have an object with some default properties and a method leveraging those defaults:
+
+<pre class="dkbg2 prettyprint w50 ctr">
+  var animalSound = {
+    animal : "default animal",
+    voice : "default 'SOUND'",
+    speak: function(animal, voice) {
+      console.log(`The ${this.animal} says "${this.voice}"!`);
+      console.log(`And 'this' is: the ${this.animal.toUpperCase()} object`);
+    }
+  }
+
+  animalSound.speak();
+</pre>
+<div class="w30 shadn dkbg ctr">// The default animal says "default 'SOUND'"!
+// And 'this' is: the DEFAULT ANIMAL object
+</div>
+
+We can build on this by populating it with objects to configure it to bespoke objects and exploit the power of <em class="dkred3 med">this</em>
+
+<pre class="dkbg2 prettyprint w50 ctr">
+var cat = {
+  animal: "cat",
+  voice: "meow"
+}
+
+var owl = {
+  animal: "owl",
+  voice: "hoot"
+}
+
+var mouse = {
+  animal: "mouse",
+  voice: "squeak",
+}
+</pre>
+
+The original call to <code>speak</code> on <code>animalSound</code> identifies <em>this</em> as that object.
+Using <code>bind();</code> however, we can force the call from another object.
+<pre class="dkbg2 prettyprint w50 ctr">
+  animalSound.speak.bind(mouse)();
+  animalSound.speak.bind(owl)();
+  animalSound.speak.bind(cat)();</pre>
+
+In this way, <code>this</code> now references the object to which speak is bound!
+
+Here's the enire code:
+<pre class="prettyprint w60 ctr">
+  var animalSound = {
+    animal : "default animal",
+    voice : "default 'SOUND'",
+    speak: function(animal, voice) {
+      console.log(`The ${this.animal} says "${this.voice}"!`);
+      console.log(`And 'this' is: the ${this.animal.toUpperCase()} object`);
+    }
+  }
+
+  var cat = {
+    animal: "cat",
+    voice: "meow"
+  }
+
+  var owl = {
+    animal: "owl",
+    voice: "hoot"
+  }
+
+  var mouse = {
+    animal: "mouse",
+    voice: "squeak",
+  }
+
+
+  animalSound.speak();
+  // The default animal says "default 'SOUND'"!
+  // And 'this' is: the DEFAULT ANIMAL object
+  animalSound.speak.bind(mouse)();
+  // myApp.js:8 The mouse says "squeak"!
+  // And 'this' is: the MOUSE object
+  animalSound.speak.bind(owl)();
+  // myApp.js:8 The owl says "hoot"!
+  // And 'this' is: the OWL object
+  animalSound.speak.bind(cat)();
+  // myApp.js:8 The cat says "meow"!
+  // And 'this' is: the CAT object
+
+</pre>
+
+</div>
+<hr>
+<div class="simple-frame2">
+  <h3 class="chtitle orange">"And Now <em>'this'</em>..."</h3>
+
+
+<b class="ltgreen">Example 1: </b>A little program to get a cat to speak</p>
+  <pre class="dkbg brdr-w w60 ctr">
+  <pre class="dkbg w40 ctr">function meow() {
+    let call = "Meow!!";
+    console.log(call);
+    console.log("this: ", this);
+  }
+    <span class="orange">meow<b class="ltgreen">()</b></span>
+</pre>
+
+  <img src="./img/meowGlobal.jpg" class="w30 fRight" alt="meow1.jpg">
+  <h5 class="ltgreen sm thin">This program executes the function call at the highest possible level. --The global scope.</h5>
+The return identifies 'this' as the global window object.
+<hr>
+<h5 class="ltgreen sm">I place the function call onto the Object petAnimal as a property referencing the function. I then call the Fn <em>from the property on that object</em></h5>
+
+<pre class="dkbg ctr w50">function meow() {
+   let call = "Meow!!";
+   console.log(call);
+   console.log("this: ", this);
+ }
+
+ <img src="./img/meow1.jpg" class="w20 fRight" alt="meow1.jpg">
+ var petAnimal = {
+       <span class="orange">cat: meow</span>
+ }
+
+ <span class="orange">petAnimal.cat<b class="ltgreen">()</b>;</span>
+</pre>
+</pre>
+<h3 class="chtitle wh"><em>'this'</em> refers to what is left of the dot that executes something that contains <em>'this'</em></h3>
+The question to ask ourselves is: <em></em> what is to the left of the dot in each case?
+
+In the first case. There is no "dot" per se, but it is in the highest level in our sourcecode. It's scope is global.
+
+In the second case, I create an object <em>on which I place a property</em> that has a reference to that function.
+<h3 class="chtitle wh">What is to the left of the "." of property "cat" in <code class="orange">petAnimal.cat;</code>? --YES! <code>petAnimal!</code></h3>
+Therefore, the function containing <em>'this'</em>, when executed <span class="paleY">by a property on that object</span> defines that method's 'host' Object as 'this'!
+</div>
+
+<hr>
 <div class="simple-frame2"><h3 class="chtitle orange">Value vs Reference in Javascript</h3>
-  <h4>quick quiz what are the primitives? </h4>
+  <h4><span class="paleY lg">quick quiz:</span> What are the primitives in Javascript? </h4>
 <div class="ans med wh right w50">1)null 2)boolean 3)String 4)undefined 5)number</div>
 
-These are value types (where arrays and objects are reference types).
+These are 'value types' (where arrays and objects are reference types).
 
 For this example, let's use Strings.
 <pre class="prettyprint ctr w60">
@@ -74,14 +238,14 @@ I create another var,
 <pre class="prettyprint ctr w40">
   var meal2 = meal1;
 </pre>
-But, I'm not copying...but I'm creating a new pointer that points references that value.<br />
+I am not copying. I am creating a new pointer & a new Object that points to, or "references" that new value.<br />
 <pre class="prettyprint ctr w40">
   var meal1 = {entree: "🍕"};
   var meal2 = meal1;
   console.log("m2", meal2);
   // m2 > Object {entree: "🍕"}  (as expected)
 </pre>
-This is increases efficiency, since objects are complex and multiple copies of them would not be performant.
+This increases efficiency, since objects are complex and multiple copies of them would not be performant.
 
 Here's the punchline:
 <pre class="prettyprint ctr w40">
@@ -711,7 +875,7 @@ var pbj = {
   }
 }
 
-// console.log(pbj instanceof Object); // true
+console.log(pbj instanceof Object); // true
 pbj.summary();
 </pre>
 <h3><span class="wh lg">I</span> & <span class="wh lg">II</span> are both instances of the root Object.</h3>
@@ -719,13 +883,14 @@ pbj.summary();
 <h2 class="wh">III.</h2>
 <pre class="prettyprint">
 <pre class="fRight dkbg forest-red-fr sm">/*
-  //.create(), as mentioned, needs a param
-  // NB: This way to create an object is stand-alone.
-  // There's no Obj.prototype to fallback on. --No properties to inherit. //error
-  // Therefore...
-  // console.log(ruben.toString()); // returns  error
-  // console.log(ruben instanceof Object); // returns  false
-*/</pre>
+  .create(), as mentioned, needs a param
+  NB: This way to create an object is stand-alone.
+  There's no Obj.prototype to fallback on. --No properties to inherit. //error
+  Therefore... */
+
+  console.log(ruben.toString()); // returns  error
+  console.log(ruben instanceof Object); // returns  false
+</pre>
 var ruben = Object.create(null);
 ruben.kind = "ruben"
 ruben.meat = "corned beef"
@@ -747,10 +912,11 @@ console.log(ruben instanceof Object); // false
 <pre class="prettyprint">
   <pre class="fRight dkbg forest-red-fr w40 sm">
 /*
-// This has numerous advantages:
-// 1) It can be used to create multiple objects exploiting the "blueprint" defined inside the Fn.
+This has numerous advantages:
 
-// 2) This also has both Object.prototype AND Sandwich.prototype that you can modify as a fallback for default properties.
+1) It can be used to create multiple objects exploiting the "blueprint" defined inside the Fn.
+
+2) This also has both Object.prototype AND Sandwich.prototype that you can modify as a fallback for default properties.
 */
 </pre>
   function Sandwich(kind, meat, veg, bread) {
