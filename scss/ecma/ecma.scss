@@ -39,4 +39,10 @@ pre.code-sample {
   font: {
     family: map-get($fonts, CodePro), Sans-Serif !important;
   }
+  #condensed-list{
+    li {
+      margin: .5vh auto;
+      list-style-type: lower-latin;
+    }
+  }
 }

@@ -6,10 +6,16 @@
 }
 // This comment wont show on css
 /* this comment will show in css*/
+
+
 li {
   list: {
     style: none;
   }
+}
+
+ul.condensed-list li{
+  list-style: lower-latin;
 }
 
 body {

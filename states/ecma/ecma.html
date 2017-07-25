@@ -8,8 +8,64 @@
 
 <!--
 -->
+<div class="framed2 dkbg"><h2 class="chtitle ltgrey">Object.defineProperty(<em class="orange">object</em>)</h2>
+  <h4 class="wh">We have a simple object returning a useful string to place onto an element.</h4>
+  <pre class="prettyprint ctr w60">
+var colorHSL = {
+  hue: 180,
+  saturation: 50,
+  lightness: 50,
+  output: function() {
+    var colorString =  "color: hsl(" + this.hue + ", " + this.saturation + "%, " +this.lightness + "%);";
+    console.log(colorString);
+  }
+}
+
+colorHSL.output();
+
+// background-color: hsl(180, 50%, 50%);
+</pre>
+<span class="med wh">I can create further properties on this object using <em>Object.defineProperty()</em> passing in 3 arguments.</span>
+  <ol class="w40 condensed-list ">
+    <li class="mango">the modified object.</li>
+    <li class="mango">the name of the new property.</li>
+    <li class="mango">a javascript object which I can configure. NOTE: <span class="paleY">value:</span> is one (among several) built-in keys to used with .defineProperty();</li>
+  </ol>
+  <pre class="prettyprint ctr w40">
+    Object.defineProperty(colorHSL, "modSat", {
+      value: function(amount) {
+        this.saturation += amount;
+        this.output();
+      }
+    })
+
+    colorHSL.modSat(30);
+    // background-color: hsl(180, 80%, 50%);
+
+    Object.defineProperty(colorHSL, "modHue", {
+      value: function(amount) {
+        this.hue += amount;
+        this.output();
+      }
+    })
+
+    colorHSL.modHue(50);
+    // background-color: hsl(230, 80%, 50%);
+    Object.defineProperty(colorHSL, "modLight", {
+      value: function(amount) {
+        this.lightness += amount;
+        this.output();
+      }
+    })
+
+    colorHSL.modLight(-20);
+    // background-color: hsl(230, 80%, 30%);
+  </pre>
+
+</div>
+
 <div class="framed8"><h3 class="chtitle coral">Neat, clean replacement for an if statement using "||"</h3>
-  Let's create a function that identifies what animals eat.
+  Let's create a function that identifies what animals eat & gives us the object that 'this' refers to.
 
   <pre class="ltbg shadn dkred w40 ctr">
     var feed = function() {
@@ -36,9 +92,9 @@ To this we provide an animal with properties, then bind (and execute "()") the f
 // The cat dines on frisky buffet
 // 'this': the CAT object</code>
 </pre>
-We know the cat likes it's usual meal and are certain that <code>this.food</code> will be "fed" to that function ;).
+We know the cat likes it's usual meal and are certain that<code>this.food</code>will be "fed" to that function ;).
 
-However, we can alter the function signature to take an argument and leverage the versatility of bind which can take several arguments.
+However, we can alter the function signature to take an argument and leverage the versatility of bind and give it "hamburgers".
 
 <pre class="ltbg shadn dkred w40 ctr">
   var feed = function(<span class="paleY">food</span>) {
@@ -56,10 +112,12 @@ However, we can alter the function signature to take an argument and leverage th
   }
   animalAction.eat.bind(cat<span class="paleY">, "hamburgers"</span>)();
 </pre>
-<div class="brdr-w w60 ctr"><code>Problem:</code> The cat will <em>still</em> only be eating it's frisky buffet because it is bound to <code>this.food</code>
---We might be tempted to place an <code>if (food) {...</code> statement here, but there is a cleaner way.
+<div class="brdr-w w60 ctr"><code>Problem:</code>
+The cat will <em>still</em> only be eating it's frisky buffet because it is bound to<code>this.food</code>
+<br><h4 class="chtitle wh">We might be tempted to place an<code>if (food) {...</code>statement in the<code>feed</code>function,<br>but there is a cleaner way.</h4>
 
-<code>Solution:</code> Inside the template literal, we can place a 'switch' using  the double-pipe operator: "||" <em>BEFORE</em> this.food:
+<code>Solution:</code>
+Inside the template literal, we can place a 'switch' using the double-pipe operator<code>||</code><em>before</em><code>this.food</code>
 </div>
 
 <pre class="framed2 dkred wh w60 ctr">var feed = function(<span class="paleY">food</span>) {
@@ -78,6 +136,7 @@ var cat = {
 }
 animalAction.eat.bind(cat, <span class="paleY">"hamburger"</span>)();
 </pre>
+<code>food ||</code><em>receives</em> the argument if it exists and overrides the default<code>this.food</code>.
 <h2 class="chtitle ctr">An elegant solution to the problem. We can now take orders on the fly according to the cat's appetite</h2>
 <div class="simple-wine-frame ctr w20">The cat dines on hamburger
 'this': the cat object</div>
