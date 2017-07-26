@@ -148,6 +148,77 @@ But, I set a "filter" of sorts --only accepting a new input that meets a conditi
 <span class="ltgreen">// color: hsl(200, 0%, 0%);</span>
 </span>
 </pre>
+<h3 class="ltgreen med">Proof of concept available: <a href="https://codepen.io/beau_dev/full/brNZXB/"> here</a></h3>
+<p>Completed .js code here</p>
+<pre class="prettyprint linenums w50">
+'use strict';
+
+var centerDiv = document.querySelector(".hsl-div");
+var enterBtn = document.querySelector(".enter-btn");
+var outputTxt =document.querySelector(".output-code");
+var inputHue =document.querySelector(".input-hue");
+var inputSat =document.querySelector(".input-sat");
+var inputLight =document.querySelector(".input-light");
+
+
+
+// HSL obj containing defaults
+var colorHSL = {
+  _hue: 50,
+  _saturation: 50,
+  _lightness: 50,
+  output: function() {
+    var colorString=  `hsl(${this._hue}, ${this._saturation}%, ${this._lightness}%)`;
+    return colorString;
+  }
+}
+
+Object.defineProperty(colorHSL, "hue", {
+  get: function() {
+    console.log(this._hue);
+    return this._hue;
+  },
+  set: function(input) {
+    if (input>=0 && input <= 360) {
+      this._hue = input;
+    }
+  }
+})
+
+ Object.defineProperty(colorHSL, "saturation", {
+   get: function() {
+     console.log(this._saturation);
+     return this._saturation;
+   },
+   set: function(input) {
+     if(input>=0 && input <= 100) {
+       this._saturation = input;
+     }
+   }
+ })
+
+ Object.defineProperty(colorHSL, "lightness", {
+   get: function() {
+     return this._lightness;
+   },
+   set: function(input) {
+     if(input>=0 && input <= 100) {
+       this._lightness = input;
+     }
+   }
+ })
+
+
+/*----------------click event ------------------*/
+enterBtn.addEventListener('click', () => {
+  colorHSL.hue = inputHue.value;
+  colorHSL.lightness = inputLight.value;
+  colorHSL.saturation = inputSat.value;
+  let result = colorHSL.output();
+
+  centerDiv.style.backgroundColor = result;
+  outputTxt.textContent = result;
+})</pre>
 </div>
 <hr>
 <div class="framed8"><h3 class="chtitle coral">Neat, clean replacement for an if statement using "||"</h3>
