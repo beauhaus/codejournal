@@ -4,9 +4,10 @@
   <div class="node-entry entry">
 <pre>
 
-  <div class="slate-skyblue-fr ctr"><h2 class="chtitle lt thin">Back to Front:<i class="med"> Connecting node files to your html</i></h2>
-    <h3>Endpoints are done... 5 steps to connect</h3>
-    <p>index.js needs a reference to an <span class="wh">"assets"</span> folder</p>
+  <div class="slate-skyblue-fr ctr"><h2 class="chtitle lg thin">Back to Front:<i class="med"> Connecting node files to your html</i></h2>
+    <h2 class="thin">Now that all endpoints are done... there are 3 remaining steps to connect</h2>
+
+<p><span class="lg paleY">I. </span>index.js needs a reference to an <span class="wh">"assets"</span> folder</p>
 <pre class="prettyprint w40 ctr">...
 
 app.use(express.static('assets'));
@@ -14,7 +15,8 @@ app.use(bodyParser.json());
 
 // must be placed before the app.use(bodyParser.json());
 ...</pre>
-<p>In the root directory, create the following:</p>
+
+<p><span class="lg paleY">II. </span>In the root directory, create the following:</p>
 <pre class="shadn w40 ctr">
   New folder<code class="med navy"><span>📂</span>assets</code>
         New file<code class="med navy"><span>📄</span>index.html</code>
@@ -23,14 +25,15 @@ app.use(bodyParser.json());
         New folder<code class="med navy"><span>📂</span>js</code>
               New file<code class="med navy"><span>📄</span>myScript.js</code>
 </pre>
-<h3 class="chtitle sm">Restart nodemon in terminal and check devtools network panel for "all"</h3>
+
+<p><span class="lg paleY">III. </span>Restart nodemon<br />      Look for<code>http://localhost:5000/index.html</code><br />      Check devtools network panel for "all"</p>
 <div class="ctr w40"><img class="w40 ctr" src="./img/network1.jpg" alt="network panel in devtools showing html, css & js assets">
 </div>
 </div>
   <div class="framed8"><h3 class="chtitle">A nice bit of middleware to log queries</h3>
 <pre class="dkbg ltgrey">...
 var PORT = 5000;
-<div class="fRight w40 thin ltgreen"> This is simply a bit of code to help in debugging and logging certain queries on certain endpoints<br />
+<div class="fRight w40 thin ltgreen">This is a simple bit of code to help in debugging and logging certain queries on certain endpoints<br />
 It isn't necessary on each.<br />
 Note: that .next() is run under the hood in express, but it's necessary to place at the end of logQuery<br />
 Otherwise, it wont run the 3rd arg in the function signature of the endpoint.</div>
