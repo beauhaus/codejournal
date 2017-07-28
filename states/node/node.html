@@ -3,6 +3,30 @@
   <aside><span class="rot90">{{state}}</span></aside>
   <div class="node-entry entry">
 <pre>
+
+  <div class="slate-skyblue-fr ctr"><h2 class="chtitle lt thin">Back to Front:<i class="med"> Connecting node files to your html</i></h2>
+    <h3>Endpoints are done... 5 steps to connect</h3>
+    <p>index.js needs a reference to an <span class="wh">"assets"</span> folder</p>
+<pre class="prettyprint w40 ctr">...
+
+app.use(express.static('assets'));
+app.use(bodyParser.json());
+
+// must be placed before the app.use(bodyParser.json());
+...</pre>
+<p>In the root directory, create the following:</p>
+<pre class="shadn w40 ctr">
+  New folder<code class="med navy"><span>📂</span>assets</code>
+        New file<code class="med navy"><span>📄</span>index.html</code>
+        New folder<code class="med navy"><span>📂</span>css</code>
+              New file<code class="med navy"><span>📄</span>master.css</code>
+        New folder<code class="med navy"><span>📂</span>js</code>
+              New file<code class="med navy"><span>📄</span>myScript.js</code>
+</pre>
+<h3 class="chtitle sm">Restart nodemon in terminal and check devtools network panel for "all"</h3>
+<div class="ctr w40"><img class="w40 ctr" src="./img/network1.jpg" alt="network panel in devtools showing html, css & js assets">
+</div>
+</div>
   <div class="framed8"><h3 class="chtitle">A nice bit of middleware to log queries</h3>
 <pre class="dkbg ltgrey">...
 var PORT = 5000;
@@ -31,9 +55,10 @@ app.delete('/meals/:id', mealsCtrl.destroy);
 </pre>
 
   </div>
+  <hr>
   <div class="framed6">
-    <h3 class="chtitle">Refactoring our <em>server.js</em> file for modularity</h3>
-    We have a problem. Our server.js file's endpoints are heavy. There's no modularity. Let's fix this.
+    <h3 class="chtitle">Refactoring our <em>index.js</em> file for modularity</h3>
+    We have a problem. Our index.js file's endpoints are heavy. There's no modularity. Let's fix this.
 
     Create a new folder<code class="med navy"><span>📂</span>controllers</code>and a new file<code class="med navy"><span>📄</span>meal_ctrl.js</code>
 
@@ -96,7 +121,7 @@ module.exports = {
 }
 </pre>
 
-We, then require it in server.js
+We, then require it in index.js
 <pre class="prettyprint w40">var mealsCtrl = require("./controllers/meal_ctrl");</pre>(".js" not necessary in Node.js paths)
 
 Finally, we need to clean up the endpoints to reference the imported object
@@ -135,7 +160,7 @@ Create a new folder<code class="med navy"><span>📂</span>models</code>and a ne
 
   </div>
   <hr>
-<div class="simple-frame4"><h3 class="chtitle">Example of a <em>server.js</em> file with one simple endpoint</h3>
+<div class="simple-frame4"><h3 class="chtitle">Example of a <em>index.js</em> file with one simple endpoint</h3>
 <div class="fRight w40">
 <span class="sm wh">01.</span> We've introduced two bits of middle-ware here. We call express on app for each endpoint.
 
@@ -217,7 +242,7 @@ A modified<code class="ltgreen">GET</code>can provide for that index in the arra
 // .splice() returns an array of one. Appending [0] gives us that index.</pre>
 
 <hr>
-<p class="med dkmango">Let's recognize that <br />1)<code class="dkred">localhost:5000/meals/<span class="ltred">3</span></code> is "path"...<br />
+<p class="med dkmango">Let's recognize that <br />1)<code class="dkred">localhost:5000/meals</code>is "path"...<br />
 2) The question mark<code class="navy med">?</code> (and what follows) is "query"...</p>
 
 <br />Example url:
@@ -257,7 +282,7 @@ would give render a sad, lonely, empty array <code class="ltgreen">// []</code>
 <h3 class="paleY"><code>localhost:5000/meals</code></h3>
 again <code class="ltgreen">// []</code>
 
-<br><br>How, then, do we configure this endpoint to handle <em>no</em> queries?<br />
+<br><br>How, then, do we configure the above endpoint to handle <em>no</em> queries?<br />
 <pre class="dkbg3 sm w40 ctr">app.get('/meals', function(req, res, next) {
   <span class="orange">if (req.query.cuisine) {</span>
       var queriedMeals = meals.filter(function(meals) {
