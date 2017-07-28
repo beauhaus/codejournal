@@ -18,6 +18,9 @@ sass --watch master.scss:master.css
 li {
   list-style: none; }
 
+ul.condensed-list li {
+  list-style: lower-latin; }
+
 body {
   padding: 1vw;
   font-family: "Code Source Pro", monospace;
@@ -339,6 +342,18 @@ a[ui-sref]:hover {
   font-family: Trebuchet, Sans-Serif;
   font-size: 1.4vw; }
 
+.simple-frame4 {
+  border: 1px solid #acaecd;
+  box-shadow: 1px 1px 4px 1px rgba(45, 44, 44, 0.7);
+  background-color: #857664;
+  color: #f5facf;
+  font-family: Trebuchet, sans-serif;
+  font-weight: 400;
+  padding: 1vh 2vw;
+  font-weight: 400;
+  font-family: Trebuchet, Sans-Serif;
+  font-size: 1.4vw; }
+
 .simple-wine-frame {
   padding: 1% 2%;
   border: 1px solid grey;
@@ -639,6 +654,9 @@ code, pre {
 
 pre.code-sample {
   font-family: "Code Source Pro", monospace, Sans-Serif !important; }
+  pre.code-sample #condensed-list li {
+    margin: .5vh auto;
+    list-style-type: lower-latin; }
 
 pre.prettyprint {
   border: 1px solid #f5facf; }

@@ -435,6 +435,20 @@ a[ui-sref]:hover {
     size: 1.4vw;
   }
 }
+.simple-frame4 {
+  border: 1px solid #acaecd;
+  box-shadow: 1px 1px 4px 1px map-get($colors, dkbg);
+  background-color: map-get($colors, tan);
+  color: map-get($colors, trim);
+  font-family: Trebuchet, sans-serif;
+  font-weight: 400;
+  padding: 1vh 2vw;
+  font: {
+    weight: 400;
+    family: Trebuchet, Sans-Serif;
+    size: 1.4vw;
+  }
+}
 .simple-wine-frame {
   padding: 1% 2%;
   border: 1px solid grey;

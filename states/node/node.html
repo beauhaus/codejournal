@@ -3,6 +3,239 @@
   <aside><span class="rot90">{{state}}</span></aside>
   <div class="node-entry entry">
 <pre>
+  <div class="framed6">
+    <h3 class="chtitle">Refactoring our <em>server.js</em> file for modularity</h3>
+    We have a problem. Our server.js file's endpoints are heavy. There's no modularity. Let's fix this.
+
+    Create a new folder<code class="med navy"><span>📂</span>controllers</code>and a new file<code class="med navy"><span>📄</span>meal_ctrl.js</code>
+
+
+
+in mealsCtrl.js I create an object with similar RESTful method names (to avoid namespace clashes) for each endpoint
+<div class="brdr-w w30 ltgrey ctr ctrtxt CodePro">GET  -> index
+GET(/:id) -> show
+POST -> create
+PUT -> update
+DELETE -> destroy</div>
+
+We need to take the "meat" (the function) out of each endpoint and place each onto those new keys in that object.
+<pre class="w40 ctr dkbg3 CodePro">app.get('/meals', <span class="dkbg mango">function(req, res, next) {
+  if(req.query.cuisine) {
+    var queriedMeals = meals.filter(function(meals) {
+      return meals.cuisine === req.query.cuisine;
+    })
+    res.status(200).json(queriedMeals);
+    }
+  return res.status(200).json(meals);
+}</span>)</pre>
+
+Put this object on an export command...<code class="ltgreen">meal_ctrl.js</code>
+<pre class="prettyprint dkbg2 w40 ctr">
+module.exports = {
+
+  index: function(req, res, next) {
+    if(req.query.cuisine) {
+      var queriedMeals = meals.filter(function(meals) {
+      return meals.cuisine === req.query.cuisine;
+      })
+      res.status(200).json(queriedMeals);
+      }
+    return res.status(200).json(meals);
+  },
+
+  show: function(req, res, next) {
+    var mealID = parseInt(req.params.id);
+    res.status(200).json(meals[mealID]);
+  },
+
+  create: function(req, res, next) {
+    meals.push(req.body);
+    res.status(200).json(meals);
+  },
+
+  destroy: function(req, res, next) {
+    var mealID = parseInt(req.params.id);
+    var deletedMeal = meals.splice(mealID, 1)[0];
+    res.status(200).json(deletedMeal);
+  }
+
+}
+</pre>
+
+We, then require it in server.js
+<pre class="prettyprint w40">var mealsCtrl = require("./controllers/meal_ctrl");</pre>(".js" not necessary in Node.js paths)
+
+Finally, we need to clean up the endpoints to reference the imported object
+<pre class="dkbg">app.get('/meals', mealsCtrl.index)
+app.get('/meals/:id', mealsCtrl.show)
+app.post('/meals', mealsCtrl.create)
+app.delete('/meals/:id', mealsCtrl.destroy)</pre>
+<span class="ltgreen">We've dried up lots of code, but we're not done yet.</span>
+
+We can increase the modularity by extracting the Array that we query into a new file.
+
+Create a new folder<code class="med navy"><span>📂</span>models</code>and a new file<code class="med navy"><span>📄</span>meals.js</code>
+
+<pre class="w30 dkblue ltbg ctr">module.exports = [{
+    "entree": "Burgers",
+    "dessert": "Ice Cream",
+    "cuisine": "American"
+  },
+  {
+    "entree": "Sushi",
+    "dessert": "Asian Pears",
+    "cuisine": "Japanese"
+  },
+  {
+    "entree": "Linguini",
+    "dessert": "Tiramisu",
+    "cuisine": "Italian"
+  }
+];</pre>
+
+<h4 class="chtitle dkblue"><span class="softred">IMPORTANT:</span> We next require this Object FROM WITHIN THE<code class="dkred">meal_ctrl.js</code>file!</h4>
+<h4>Therefore, we need: <br> <code class="dkblue med">var meals = require("../models/meals");</code> </h4>
+  <h4 class="chtitle softred clean">DO NOT FAIL TO NOTICE: the "../" that takes us back to the root of the directory to find the models folder</h4>
+
+
+  </div>
+  <hr>
+<div class="simple-frame4"><h3 class="chtitle">Example of a <em>server.js</em> file with one simple endpoint</h3>
+<div class="fRight w40">
+<span class="sm wh">01.</span> We've introduced two bits of middle-ware here. We call express on app for each endpoint.
+
+Express provides functions for REST routes, header handling & methods for parsing POST requests.
+
+<span class="sm wh">04.</span>establishes the port that listens on an infinite loop (on local server)
+
+<span class="sm wh">08.</span> (obect to query is in this file for now, but belongs elsewhere for modularity).
+
+<span class="sm wh">25.</span> bodyParser is called on each request with this line and adds it to the req.
+
+<span class="sm wh">30.</span> "res" simply is an empty object that you build to create a response
+
+<span class="sm wh">34.</span>runs on the "nodemon" command in terminal to confirm that server is ready for a request.
+</div>
+<pre class="prettyprint w40 linenums pRel">
+var express = require('express');
+var bodyParser = require('body-parser');
+
+var PORT = 5000;
+
+var app = express();
+
+var meals = [{
+    "entree": "Burgers",
+    "dessert": "Ice Cream",
+    "cuisine": "American"
+  },
+  {
+    "entree": "Sushi",
+    "dessert": "Asian Pears",
+    "cuisine": "Japanese"
+  },
+  {
+    "entree": "Linguini",
+    "dessert": "Tiramisu",
+    "cuisine": "Italian"
+  }
+];
+
+app.use(bodyParser.json());
+
+/*GET endpoint ----------------- */
+app.get('/meals', function(req, res, next) {
+  res.status(200).json(meals);
+})
+
+
+app.listen(PORT, function() {
+  console.log("Listening on", PORT);
+});
+</pre>
+<h3>Given the first arg of app.get(/meals, ...) All will be available at <code class="paleY">localhost:5000/meals</code></h3>
+<hr>
+<p class="med">From here, handling a variable id is very straightforward. Our object is an Array of Objects
+
+Let's imagine our path looks like this: <code class="dkred">localhost:5000/meals/<span class="ltred">1</span></code>
+
+A modified<code class="ltgreen">GET</code>can provide for that index in the array in the following way:</p>
+<pre class="prettyprint w50 ctr">app.get('/meals/:id', function(req, res, next) {
+  var mealID = parseInt(req.params.id);
+  res.status(200).json(meals[mealID]);
+})
+</pre>
+<h3 class="w60 ctr">The var<code>mealID</code>will equal any num in that url path &<code>req.params</code>performs this magic.</h3>
+
+<h3>A<code class="ltgreen">POST</code>(appends nicely with javascript's<code>.push()</code>method:</h3>
+<pre class="prettyprint w50 ctr">app.post('/meals', function(req, res, next) {
+  meals.push(req.body);
+  res.status(200).json(meals);
+})</pre>
+
+<h3>A<code class="ltgreen">DELETE</code>,too, will need<code>req.params.id</code>to zero-in on an index:</h3>
+<pre class="prettyprint w50 ctr">app.delete('/meals/:id', function(req, res, next) {
+  var mealID = parseInt(req.params.id);
+  var deletedMeal = meals.splice(mealID, 1)[0];
+  res.status(200).json(deletedMeal);
+})
+// .splice() returns an array of one. Appending [0] gives us that index.</pre>
+
+<hr>
+<p class="med dkmango">Let's recognize that <br />1)<code class="dkred">localhost:5000/meals/<span class="ltred">3</span></code> is "path"...<br />
+2) The question mark<code class="navy med">?</code> (and what follows) is "query"...</p>
+
+<br />Example url:
+<h3 class="chtitle"><code class="dkred lg">localhost:5000/meals<span class="softred"><span class="navy med">?</span>cuisine=Italian</span></code></h3>
+<div class="w40 brdr-w ctr">Our<code class="navy lg">?</code>creates an object with key:value pairs</div>
+<pre class="prettyprint w50 ctr">app.get('/meals', function(req, res, next) {
+  console.log("req.query: ", req.query);
+  res.status(200).json(meals);
+})
+// req.query: { cuisine: 'Italian' }</pre>
+<hr>This URL:<br />
+<h3 class="chtitle"><code class="dkred">localhost:5000/meals?cuisine=Italian</code></h3>
+<br />
+<br />Into this endpoint:
+<span class="fRight w20 ltgreen sm">.filter() method will return whatever matches the boolean comparison</span>
+<pre class="w40 ctr prettyprint">app.get('/meals', function(req, res, next) {
+  var queriedMeals = meals.filter(function(meals) {
+    return meals.cuisine === req.query.cuisine;
+  })
+  res.status(200).json(queriedMeals);
+})</pre>
+
+<br />Renders this result:
+<pre class="w40 ctr dkbg3">[
+    {
+        "entree": "Linguini",
+        "dessert": "Tiramisu",
+        "cuisine": "Italian"
+    }
+]</pre>
+
+<br />Remember: urls and endpoints are case-sensitive strings.
+<h3 class="paleY"><code>localhost:5000/meals?cuisine=italian</code></h3>
+would give render a sad, lonely, empty array <code class="ltgreen">// []</code>
+<br />
+<br />The same is true for no query!
+<h3 class="paleY"><code>localhost:5000/meals</code></h3>
+again <code class="ltgreen">// []</code>
+
+<br><br>How, then, do we configure this endpoint to handle <em>no</em> queries?<br />
+<pre class="dkbg3 sm w40 ctr">app.get('/meals', function(req, res, next) {
+  <span class="orange">if (req.query.cuisine) {</span>
+      var queriedMeals = meals.filter(function(meals) {
+      return meals.cuisine === req.query.cuisine;
+    })
+    res.status(200).json(queriedMeals);
+  <span class="orange">}</span>
+  return res.status(200).json(meals);
+})</pre>
+
+
+</div>
+<hr>
   <div class="forest-red-fr">
 A session is something on the back end that is stored as an ID--associated to an object.
 A cookie is the mechanism by which we pass that ID back and forth.
@@ -13,28 +246,7 @@ A cookie is the mechanism by which we pass that ID back and forth.
 This is what gets tossed back and forth on each of our requests.
 
   </div>
-    <h3 class="w40">A sample GET request</h3>
 
-<pre class="prettyprint w60">
-var members = [
-  {name: "Bill", age: 34, phone: "Pixel"},
-  {name: "Sue", age: 12, phone: "Android"},
-  {name: "Lex", age: 44, phone: "iPhone"},
-  {name: "Amy", age: 52, phone: "Pixel"},
-  {name: "Don", age: 84, phone: "Landline"}
-];
-
-// localhost:3000/members?phone=Pixel
-app.get('/members', function(req, res, next) {
-  var filteredMembers = members.filter(function(members) {
-    return members.phone === req.query.phone;
-  })
-  res.status(200).json(filteredMembers);
-});
-</pre>
-
-    <hr>
-</pre>
 <!-- end of pre for all -->
   </div>
   <!-- end of entry -->
