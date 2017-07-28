@@ -25,6 +25,7 @@ app.use(bodyParser.json());
 app.get('/meals', <span class="mango">logQuery</span>, mealsCtrl.index);
 app.get('/meals/:id', mealsCtrl.show);
 app.post('/meals', <span class="mango">logQuery</span>, mealsCtrl.create);
+app.put('/meals/:id',<span class="mango">logQuery</span>, mealsCtrl.update);
 app.delete('/meals/:id', mealsCtrl.destroy);
 ...
 </pre>
@@ -80,6 +81,12 @@ module.exports = {
     res.status(200).json(meals);
   },
 
+  update: function(req, res, next) {
+    var mealID = parseInt(req.params.id);
+    meals[mealID] = req.body;
+    res.status(200).json(meals[mealID]);
+  },
+
   destroy: function(req, res, next) {
     var mealID = parseInt(req.params.id);
     var deletedMeal = meals.splice(mealID, 1)[0];
@@ -93,10 +100,11 @@ We, then require it in server.js
 <pre class="prettyprint w40">var mealsCtrl = require("./controllers/meal_ctrl");</pre>(".js" not necessary in Node.js paths)
 
 Finally, we need to clean up the endpoints to reference the imported object
-<pre class="dkbg">app.get('/meals', mealsCtrl.index)
-app.get('/meals/:id', mealsCtrl.show)
-app.post('/meals', mealsCtrl.create)
-app.delete('/meals/:id', mealsCtrl.destroy)</pre>
+<pre class="dkbg">app.get('/meals', mealsCtrl.index);
+app.get('/meals/:id', mealsCtrl.show);
+app.post('/meals', mealsCtrl.create);
+app.put('/meals/:id',logQuery, mealsCtrl.update);;
+app.delete('/meals/:id', mealsCtrl.destroy);</pre>
 <span class="ltgreen">We've dried up lots of code, but we're not done yet.</span>
 
 We can increase the modularity by extracting the Array that we query into a new file.
