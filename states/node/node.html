@@ -3,6 +3,72 @@
   <aside><span class="rot90">{{state}}</span></aside>
   <div class="node-entry entry">
 <pre>
+<div class="simple-frame3 thin softbrown-bg ltgrey">
+  <h2 class="chtitle softblue clean">The power & utility of express-session: Creating a Cart</h2>
+
+Express-session places a temporary identifier onto verbs (GET, POST, etc...) on every req & res...
+This same id is put into the header of the request.
+
+This is essentially a <em>"session object"</em> containing a reference to, for example, a favorited thing, a liked thing or an item to place in a cart.
+
+Session can contain information about the user like user_id, favorites, profile info, etc.
+
+<div class="w50 brdr-b ctr ctrtxt">This is in the header of the post request.
+<i class="sm softred">"set-cookie →connect.sid=s%3AjyEJOdIS5FGB6qw2-Gj.............; Path=/; HttpOnly"</i>
+(with sid meaning "session id")</div>
+
+With session installed and required <pre class="w30 prettyprint">var session = require("express-session");</pre>
+
+We place it in <code>app.use()</code> since it will be placed on every req. & res.
+We, then, call session code... which is, essentially, a config object.
+<pre class="w30 prettyprint">app.use(session({
+  secret: config.sessionSecret,
+  saveUninitialized: false,
+  resave: false
+}));</pre>
+
+(this secret can be stored in a "config.json" file in the root directory. Let's place the port there as well.)
+<span class="ltgreen">config.json</span>
+<div class="ctr dkbg3 med w40"><code class="sm">{
+    "sessionSecret" : "lkjsdflkjsdflkj",
+    "PORT": 4040
+  }</code></div>
+Then, of course, modify our listener
+<span class="ltgreen">index.js</span>
+<pre class="ctr prettyprint w40">app.listen(config.PORT, function() {
+    console.log("Listening on PORT:", config.PORT;
+  });</pre>
+
+I place endpoints for a cart:
+<pre class="prettyprint w50 ctr">
+app.get('/cart', cartCtrl.index);
+app.post('/cart', cartCtrl.create);</pre>
+
+Then, I require and create a controller file
+<pre class="prettyprint w40 ctr">var cartCtrl = require("./controllers/cart_ctrl");</pre>
+
+
+<span class="ltgreen">cart_ctrl.js</span>
+<div class="ctr dkbg3 med w40"><span class="mango sm">// var meals = require("../models/cart");
+NOTE: Cart info is stored on session! So, of course, we don't need a model...</span>
+
+<code class="sm">module.exports = {
+  index: function(req, res, next) {
+    res.status(200).json(req.session.cart);
+  },
+
+  create: function(req, res, next) {
+    if(!req.session.cart) {
+      req.session.cart = [];
+    }
+    req.session.cart.push(req.body);
+    res.status(200).json(req.session.cart);
+  }
+}</code></div>
+
+
+</div>
+<hr>
 
   <div class="slate-skyblue-fr ctr"><h2 class="chtitle lg thin">Back to Front:<i class="med"> Connecting node files to your html</i></h2>
     <h2 class="thin">Now that all endpoints are done... there are 3 remaining steps to connect</h2>
@@ -29,6 +95,14 @@ app.use(bodyParser.json());
 <p><span class="lg paleY">III. </span>Restart nodemon<br />      Look for<code>http://localhost:5000/index.html</code><br />      Check devtools network panel for "all"</p>
 <div class="ctr w40"><img class="w40 ctr" src="./img/network1.jpg" alt="network panel in devtools showing html, css & js assets">
 </div>
+<h4 class="chtitle mutedOrange"><span class="softred">IMPORTANT:</span> It's very important that we avoid any clashes of names, files, or paths between Front-End code and Back-end<br />
+Therefore, it is common to see endpoint paths looking like this:</h4>
+<pre class="ctr brdr-w w40">
+  app.get('<span class="softred">/api</span>/meals', mealsCtrl.index);
+  app.get('<span class="softred">/api</span>/meals/:id', logQuery, mealsCtrl.show);
+  app.post('<span class="softred">/api</span>/meals', logQuery, mealsCtrl.create);
+  app.put('<span class="softred">/api</span>/meals/:id', logQuery, mealsCtrl.update);
+  app.delete('<span class="softred">/api</span>/meals/:id', mealsCtrl.destroy);</pre>
 </div>
   <div class="framed8"><h3 class="chtitle">A nice bit of middleware to log queries</h3>
 <pre class="dkbg ltgrey">...
