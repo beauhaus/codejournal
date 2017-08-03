@@ -1542,16 +1542,16 @@ var ageArr = people.map(function(person){
   return person.age;
 });
         // [23,13,21]
-var names = people.map(function(foo.name){
+var names = people.map(function(foo){
   return foo.name;
 })
 </pre>
     <span class="orange">What does ES6 say about this?</span>
     <pre class="prettyprint w40">
-var names = people.map((foo) => console.log(foo.name));
+var names = people.map(foo => console.log(foo.name));
 //or simply...
-var names = people.map((foo) => foo.name);
-      // ["Sue", "Kim", "Joe"]
+var names = people.map(foo => foo.name);
+// ["Sue", "Kim", "Joe"]
 </pre>
 
   </div>
