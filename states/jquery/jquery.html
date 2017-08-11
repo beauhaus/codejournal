@@ -120,6 +120,7 @@ btn.on('click', function() {
 
     <div class="framed6">
       <h4><a href="https://youtu.be/x_Rh6qCmN5s?list=PLHJPCYLtEMaKdvFGcFk3ud-FEJv5j5dwR">tuts+ video link</a></h4>
+
       <h4 class="chtitle ctr"><span class="dkred">THIS </span>in two different contexts:</h4>
       <h1 class="ltgreen">I.</h1>
 
@@ -219,7 +220,20 @@ btn.on('click', function(e) {
           <h6 class="ctr right">link to jquery API <a href="http://api.jquery.com/">API.jquery</a></h6>
       </ul>
     </div>
+    <hr>
+<div class="simple-wine-frame brdr-w">
+  <h5 class="wh">Interesting point about this:</h5><span class="sm"><a href="http://stackoverflow.com/questions/7479282/this-vs-this"></a>from StackOverflow</span>
+  <p>In jQuery functions, this most often refers to the actual DOM element you're dealing with, whereas $(this) returns a jQuery object that wraps the element. In JavaScript, this always refers to the current scope. Many of jQuery's functions will set that scope to be the element you're working with.</p>
 
+  <span class="dkBlue med">For instance</span>
+  <pre class="prettyprint w60 ctr">
+  $("#someElement").click(function() {
+      this;    // the element itself
+      $(this); // a jQuery wrapper-object around the element
+  });
+</pre>
+
+</div>
 
     </pre>
     <!-- end of pre for all -->

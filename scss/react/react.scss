@@ -1,0 +1,19 @@
+pre.prettyprint {
+  border:1px solid map-get($colors, trim);
+}
+div.react-entry {
+  background-color: #008080;
+  overflow: auto;
+  height: 80vh;
+  border: 1px solid map-get($colors, ivr);
+  & .chtitle {
+    color: black;
+  }
+}
+.react-frame-light {
+  padding: 2%;
+  background-color: map-get($colors, softwhite);
+  border: 1px solid map-get($colors, dkblue);
+  color: map-get($colors, dkblue);
+  font-family: map-get($fonts, Clean);
+}

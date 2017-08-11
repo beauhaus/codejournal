@@ -18,10 +18,10 @@ angular.module("codeJournal", ['ui.router', 'ngAnimate'])
       controller: 'jqueryCtrl',
       url: '/jquery',
       templateUrl: './states/jquery/jquery.html'
-    }).state('misc', {
-      controller: 'miscCtrl',
-      url: '/misc',
-      templateUrl: './states/misc/misc.html'
+    }).state('react', {
+      controller: 'reactCtrl',
+      url: '/react',
+      templateUrl: './states/react/react.html'
     }).state('javascript', {
       controller: 'ecmaCtrl',
       url: '/ecma',

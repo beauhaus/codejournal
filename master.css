@@ -661,11 +661,20 @@ pre.code-sample {
 pre.prettyprint {
   border: 1px solid #f5facf; }
 
-div.misc-entry {
-  background-color: #945706;
+div.react-entry {
+  background-color: #008080;
   overflow: auto;
   height: 80vh;
   border: 1px solid #e6d8cc; }
+  div.react-entry .chtitle {
+    color: black; }
+
+.react-frame-light {
+  padding: 2%;
+  background-color: #cdcdcd;
+  border: 1px solid #18223b;
+  color: #18223b;
+  font-family: "Raleway", Sans-Serif; }
 
 div.sass-entry {
   background-color: #18223b;

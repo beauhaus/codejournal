@@ -8,9 +8,158 @@
 
 <!--
 -->
-<div class="framed2 dkbg2"><h2 class="chtitle ltgrey">Object.defineProperty(<em class="orange">object</em>)</h2>
-  <h4 class="wh">We have a simple object returning a useful string to place onto an element.</h4>
-  <pre class="prettyprint ctr w60">
+
+<div class="simple-frame">
+  <h3 class="chtitle wh">Pass by reference vs Pass by value</h3> All primitives pass by value.
+  <div class="col-2">Primitives establish an address. A place in memory. a = 5; let's say I copy that with... a = b; b's val doesn't <em>look</em> or <em>point to</em> that address. b; // 5 is, in fact a copy of a.
+    <span class="ltblue">a = 50;</span> The value at a's orig address has changed, <br />but... b; // still --5❗️
+    <pre class="prettyprint">a = 5;
+b = a;
+a = 50;
+console.log(a);
+// 50
+console.log(b);
+// 5
+</pre>
+  </div>
+  <hr> All objects <span class="wh">(including functions)</span> pass by reference.<br />
+  <div class="col-2 med dkblue"><pre class="med dkblue">I have two chicks: "chirpie" & "tweetie".
+    <pre class="dkbg w20 sm">var chirpie = {feathers: "yellow"};
+var tweetie = chirpie;</pre>(left-to-right) the "=" recognizes chirpie as an Object. It then, creates an 'alias' for tweetie <em>pointing to</em> chirpie. This is <strong><b class="underline">pass by reference</b></strong>
+If I <em>mutate</em> chirpie with<pre class="dkbg w20 sm">chirpie.feathers = "purple";</pre>
+..tweetie will also mutate.</pre>
+    <pre class="prettyprint w30">
+var chirpie = {feathers: "yellow"};
+var tweetie = chirpie;
+console.log(chirpie);
+tweetie.feathers = "purple";
+console.log(tweetie);
+
+
+
+
+
+
+// Object {feathers: "purple"}
+</pre>
+  </div>
+  <hr>
+  <h3><span class="ltred">Important:</span> the "=" operator creates a place in memory.</h3> The equals operator will see the left side of this statement as unfamiliar and create a new space for it.
+
+  <pre class="w40 prettyprint">...
+<pre class="ltbg w20 sm">  tweetie = {feathers: "black"};</pre> console.log("chirpie", chirpie); console.log("tweetie", tweetie); // chirpie Object {feathers: "purple"} // tweetie Object {feathers: "black"}</pre>
+  <hr> Once more...
+  <pre class="prettyprint w80 linenums">  var chirpie = {feathers: "yellow"};
+var tweetie = chirpie;
+console.log('chirpie.feathers: ', chirpie.feathers);
+console.log('tweetie.feathers: ', tweetie.feathers);
+// chirpie.feathers:  yellow
+// tweetie.feathers:  yellow
+
+tweetie.feathers = "purple"; 🔶
+console.log('chirpie.feathers: ', chirpie.feathers);
+console.log('tweetie.feathers: ', tweetie.feathers);
+// chirpie.feathers:  purple
+// tweetie.feathers:  purple
+
+tweetie = {feathers: "green"}; ⚠️
+console.log('chirpie.feathers: ', chirpie.feathers);
+console.log('tweetie.feathers: ', tweetie.feathers);
+// chirpie.feathers:  purple
+// tweetie.feathers:  green</pre> 🔶 --Notice: I didn't change the original! Changing either--bird changes the val at the address in memory. Both return "purple" becase they are both links or "references" the same place in memory! ⚠️ --This is special.
+  Equals operator creates a totally new place in memory. both birds are referencing a different places!
+</div>
+
+<div class="framed6">
+  <h3 class="chtitle dkred">🐜The "'this'/ self" bug in Javascript🐜</h3>
+<pre class="dkbg w40">var pet = "dog";  // global variable
+
+<span class="ltgreen sm">I can also use 'this' to put a var on the Global Scope</span>
+this.pet = "dog";  // also global</pre>
+<pre class="prettyprint w60">
+var myDog = {
+name: "Skipper",
+log: function() {
+var nuName = "Skippy";
+this.name = nuName;
+console.log(this.name);
+}
+}
+
+myDog.log(); // Skippy
+
+// Straightforward and expected.
+// The second property updates the object by calling 'this' within that property.</pre> However, what if I refer to 'this' inside that property with a function?
+<pre class="prettyprint w60">
+var myDog = {
+name: "Skipper",
+log: function() {
+var nuName = "Skippy";
+this.name = nuName;
+console.log("1st update", this.name);
+
+var secondUpDate = function(input) {
+  this.name = input;
+}
+secondUpDate("Scooter");
+console.log("after secondUpDate: ", this.name);
+}
+}
+
+myDog.log();
+
+// 1st update Skippy
+// after secondUpDate:  Skippy ⁉️
+</pre>
+<div class="col-2 simple-frame2">The problem (or BUG) is: that second 'this' (inside secondUpdate) puts input's value on the global Object! Try it!
+  <pre class="prettyprint w20">console.log(name);
+// Scooter ‼️</pre>
+  <span class="navy">The execution context that is created by secondUpdate funk
+makes 'this' point to the Global Object!
+
+<img src="./img/thisglobal.jpg" class="w10" alt="this global">
+Now, there is uncertainty about which object 'this' is pointing to.
+</span>
+</div>
+<pre class="dkbg dkmango"><h3 class="chtitle ltblue">The solution for this bug is the following: We store 'this' on to a variable "self" or "that".</h3>
+var myDog = {
+name: "Skipper",
+log: function() {
+<span class="dkbg ltgreen">var self = this;</span>
+var nuName = "Skippy";
+<span class="dkbg ltgreen">self.</span>name = nuName;
+console.log("1st update", <span class="dkbg ltgreen">self.</span>name);
+
+var secondUpDate = function(input) {
+  <span class="dkbg ltgreen">self.</span>name = input;
+}
+secondUpDate("Scooter");
+console.log("after secondUpDate: ", <span class="dkbg ltgreen">self.</span>name);
+}
+}
+
+myDog.log();
+
+<pre class="prettyprint w40">//1st update Skippy
+//after secondUpDate:  Scooter</pre>
+</pre>
+</div>
+
+<div class="simple-frame"><h3 class="chtitle dkblue">How to set up defaults in a function using "||" operator</h3>
+<pre class="prettyprint">
+function moodGreet(name, greet, mood) {
+mood = mood || "fine";
+greet = greet || "How's it going?";
+console.log(greet + " I'm " + name + ". I'm feeling " + mood);
+}
+moodGreet("Ben", "Hi.")
+// Hi. I'm Ben. I'm feeling fine
+</pre>
+  </div>
+  <div class="framed2 dkbg2">
+    <h2 class="chtitle ltgrey">Object.defineProperty(<em class="orange">object</em>)</h2>
+    <h4 class="wh">We have a simple object returning a useful string to place onto an element.</h4>
+    <pre class="prettyprint ctr w60">
 var colorHSL = {
   hue: 180,
   saturation: 50,
@@ -25,13 +174,13 @@ colorHSL.output();
 
 // color: hsl(180, 50%, 50%);
 </pre>
-<span class="med wh">I can create further properties on this object using <em>Object.defineProperty()</em> passing in 3 arguments.</span>
-  <ol class="w40 condensed-list ">
-    <li class="mango">the modified object.</li>
-    <li class="mango">the name of the new property.</li>
-    <li class="mango">a javascript object which I can configure.<br /> NOTE: <span class="paleY">value:</span> is one (among several) built-in keys to used with .defineProperty();</li>
-  </ol>
-  <pre class="prettyprint ctr w40">
+    <span class="med wh">I can create further properties on this object using <em>Object.defineProperty()</em> passing in 3 arguments.</span>
+    <ol class="w40 condensed-list ">
+      <li class="mango">the modified object.</li>
+      <li class="mango">the name of the new property.</li>
+      <li class="mango">a javascript object which I can configure.<br /> NOTE: <span class="paleY">value:</span> is one (among several) built-in keys to used with .defineProperty();</li>
+    </ol>
+    <pre class="prettyprint ctr w40">
     Object.defineProperty(colorHSL, "modSat", {
       value: function(amount) {
         this.saturation += amount;
@@ -61,10 +210,8 @@ colorHSL.output();
     colorHSL.modLight(-20);
     // color: hsl(230, 80%, 30%);
   </pre>
-<p class="ltgrey">Very nice. I can add properties/methods to the object to modify it using the "value:" keyword...
-
-Now let's try this with a property...giving colorHSL's hue a default of 90;</p>
-<pre class="framed6 w50">Object.defineProperty(colorHSL, "modHue", {
+    <p class="ltgrey">Very nice. I can add properties/methods to the object to modify it using the "value:" keyword... Now let's try this with a property...giving colorHSL's hue a default of 90;</p>
+    <pre class="framed6 w50">Object.defineProperty(colorHSL, "modHue", {
   value: 90
 })
 
@@ -73,8 +220,8 @@ colorHSL.modHue(-50);
 console.log(colorHSL.output());
 </pre>
 
-<h3 class="ltgrey">Let's add another property to our colorHSL object. We will make this a default</h3>
-<h3 class="ltgrey">._hue (by convention, an "_" may be prepended)</h3><pre class="framed6 w60">
+    <h3 class="ltgrey">Let's add another property to our colorHSL object. We will make this a default</h3>
+    <h3 class="ltgrey">._hue (by convention, an "_" may be prepended)</h3><pre class="framed6 w60">
 Object.defineProperty(colorHSL, "_hue", {
   value: 90
 })
@@ -97,16 +244,16 @@ Object.defineProperty(colorHSL, "_hue", {
 colorHSL._hue = 200;
 console.log(colorHSL._hue);<span class="ltgreen thin">  // 200</span>
 </pre>
-<p class="ltgrey">(enumerable: true --is also a possible boolean flag)</p>
-<hr>
-<h2 class="chtitle ltgrey thin">The power of getters & setters using .defineProperty()</h2>
+    <p class="ltgrey">(enumerable: true --is also a possible boolean flag)</p>
+    <hr>
+    <h2 class="chtitle ltgrey thin">The power of getters & setters using .defineProperty()</h2>
 
-<h4 class="wh">HSL colors in CSS have a range of values within which the rule applies.
+    <h4 class="wh">HSL colors in CSS have a range of values within which the rule applies.
 hue: 0 - 360 & the others 0-100%.
 
 Let's start from scratch setting each property at "0"</h4>
 
-<pre class="prettyprint ctr w60">var colorHSL = {
+    <pre class="prettyprint ctr w60">var colorHSL = {
   _hue: 0,
   _saturation: 0,
   _lightness: 0,
@@ -118,10 +265,10 @@ Let's start from scratch setting each property at "0"</h4>
 colorHSL.output();
 </pre>
 
-<h4 class="ctr ltgreen"><span class="mango">This returns: </span>color: hsl(0, 0%, 0%);</h4>
+    <h4 class="ctr ltgreen"><span class="mango">This returns: </span>color: hsl(0, 0%, 0%);</h4>
 
-<p class="softsand">Now instead of <em class="ltgrey">"value:"</em> I use <span class="paleY">get:</span> & <span class="paleY">set:</span> to modify the property.</p>
-<pre class="framed6 ctr w50">Object.defineProperty(colorHSL, "hue", {
+    <p class="softsand">Now instead of <em class="ltgrey">"value:"</em> I use <span class="paleY">get:</span> & <span class="paleY">set:</span> to modify the property.</p>
+    <pre class="framed6 ctr w50">Object.defineProperty(colorHSL, "hue", {
    get: function() {
      console.log(this._hue);
      return this._hue;
@@ -148,9 +295,9 @@ But, I set a "filter" of sorts --only accepting a new input that meets a conditi
 <span class="ltgreen">// color: hsl(200, 0%, 0%);</span>
 </span>
 </pre>
-<h3 class="ltgreen med">Proof of concept available: <a href="https://codepen.io/beau_dev/full/brNZXB/"> here</a></h3>
-<p>Completed .js code here</p>
-<pre class="prettyprint linenums w50">
+    <h3 class="ltgreen med">Proof of concept available: <a href="https://codepen.io/beau_dev/full/brNZXB/"> here</a></h3>
+    <p>Completed .js code here</p>
+    <pre class="prettyprint linenums w50">
 'use strict';
 
 var centerDiv = document.querySelector(".hsl-div");
@@ -219,27 +366,25 @@ enterBtn.addEventListener('click', () => {
   centerDiv.style.backgroundColor = result;
   outputTxt.textContent = result;
 })</pre>
-</div>
-<hr>
-<div class="framed8"><h3 class="chtitle coral">Neat, clean replacement for an if statement using "||"</h3>
-  Let's create a function that identifies what animals eat & gives us the object that 'this' refers to.
+  </div>
+  <hr>
+  <div class="framed8">
+    <h3 class="chtitle coral">Neat, clean replacement for an if statement using "||"</h3> Let's create a function that identifies what animals eat & gives us the object that 'this' refers to.
 
-  <pre class="ltbg shadn dkred w40 ctr">
+    <pre class="ltbg shadn dkred w40 ctr">
     var feed = function() {
       console.log(`The ${this.animal} dines on ${this.food}`);
       console.log(`'this': the ${this.animal} object`);
     }
-</pre>
-We add an object with a property that calls it.
+</pre> We add an object with a property that calls it.
 
-<pre class="ltbg shadn dkred w40 ctr">
+    <pre class="ltbg shadn dkred w40 ctr">
   var animalAction = {
     eat: feed
   }
-</pre>
-To this we provide an animal with properties, then bind (and execute "()") the function.
+</pre> To this we provide an animal with properties, then bind (and execute "()") the function.
 
-<pre class="ltbg shadn dkred w40 ctr">
+    <pre class="ltbg shadn dkred w40 ctr">
   var cat = {
     animal: "cat",
     food: "frisky buffet",
@@ -248,12 +393,9 @@ To this we provide an animal with properties, then bind (and execute "()") the f
 <code class="ltgreen">
 // The cat dines on frisky buffet
 // 'this': the CAT object</code>
-</pre>
-We know the cat likes it's usual meal and are certain that<code>this.food</code>will be "fed" to that function ;).
+</pre> We know the cat likes it's usual meal and are certain that<code>this.food</code>will be "fed" to that function ;). However, we can alter the function signature to take an argument and leverage the versatility of bind and give it "hamburgers".
 
-However, we can alter the function signature to take an argument and leverage the versatility of bind and give it "hamburgers".
-
-<pre class="ltbg shadn dkred w40 ctr">
+    <pre class="ltbg shadn dkred w40 ctr">
   var feed = function(<span class="paleY">food</span>) {
     console.log(`The ${this.animal} dines on ${this.food}`);
     console.log(`'this': the ${this.animal} object`);
@@ -269,15 +411,14 @@ However, we can alter the function signature to take an argument and leverage th
   }
   animalAction.eat.bind(cat<span class="paleY">, "hamburgers"</span>)();
 </pre>
-<div class="brdr-w w60 ctr"><code>Problem:</code>
-The cat will <em>still</em> only be eating it's frisky buffet because it is bound to<code>this.food</code>
-<br><h4 class="chtitle wh">We might be tempted to place an<code>if (food) {...</code>statement in the<code>feed</code>function,<br>but there is a cleaner way.</h4>
+    <div class="brdr-w w60 ctr"><code>Problem:</code> The cat will <em>still</em> only be eating it's frisky buffet because it is bound to<code>this.food</code>
+      <br>
+      <h4 class="chtitle wh">We might be tempted to place an<code>if (food) {...</code>statement in the<code>feed</code>function,<br>but there is a cleaner way.</h4>
 
-<code>Solution:</code>
-Inside the template literal, we can place a 'switch' using the double-pipe operator<code>||</code><em>before</em><code>this.food</code>
-</div>
+      <code>Solution:</code> Inside the template literal, we can place a 'switch' using the double-pipe operator<code>||</code><em>before</em><code>this.food</code>
+    </div>
 
-<pre class="framed2 dkred wh w60 ctr">var feed = function(<span class="paleY">food</span>) {
+    <pre class="framed2 dkred wh w60 ctr">var feed = function(<span class="paleY">food</span>) {
   console.log(`The ${this.animal} dines on ${<span class="paleY">food ||</span> this.food}`);
   console.log(`'this': the ${this.animal} object`);
 }
@@ -293,27 +434,18 @@ var cat = {
 }
 animalAction.eat.bind(cat, <span class="paleY">"hamburger"</span>)();
 </pre>
-<code>food ||</code><em>receives</em> the argument if it exists and overrides the default<code>this.food</code>.
-<h2 class="chtitle ctr">An elegant solution to the problem. We can now take orders on the fly according to the cat's appetite</h2>
-<div class="simple-wine-frame ctr w20">The cat dines on hamburger
-'this': the cat object</div>
-.bind() binds this func to cat but requires "()";
-this code above works perfectly well with .call() that calls the function instantly and <em>does not</em> require "()"
+    <code>food ||</code><em>receives</em> the argument if it exists and overrides the default<code>this.food</code>.
+    <h2 class="chtitle ctr">An elegant solution to the problem. We can now take orders on the fly according to the cat's appetite</h2>
+    <div class="simple-wine-frame ctr w20">The cat dines on hamburger 'this': the cat object</div>
+    .bind() binds this func to cat but requires "()"; this code above works perfectly well with .call() that calls the function instantly and <em>does not</em> require "()" .bind() is, therefore, commonly used to be called later...elsewhere in the code.
+    (As mentioned elsewhere) .bind() and call() take a comma separated list of arguments, but the first argument always is going to define for us what 'this' is. in addition .apply() is distinct from .call() in that it takes two arguments. The first establishing
+    "this"... the second being an array of arguments to feed to the target function.
+  </div>
+  <hr>
+  <div class="simple-frame3">
+    <h3 class="chtitle dkblue">Controlling <em>this</em> with .bind()</h3> Here we have an object with some default properties and a method leveraging those defaults:
 
-.bind() is, therefore, commonly used to be called later...elsewhere in the code.
-
-(As mentioned elsewhere) .bind() and call() take a comma separated list of arguments, but the first argument always is going to define for us what 'this' is.
-
-in addition
-
-.apply() is distinct from .call() in that it takes two arguments. The first establishing "this"... the second being an array of arguments to feed to the target function.
-</div>
-<hr>
-<div class="simple-frame3">
-  <h3 class="chtitle dkblue">Controlling <em>this</em> with .bind()</h3>
-Here we have an object with some default properties and a method leveraging those defaults:
-
-<pre class="dkbg2 prettyprint w50 ctr">
+    <pre class="dkbg2 prettyprint w50 ctr">
   var animalSound = {
     animal : "default animal",
     voice : "default 'SOUND'",
@@ -325,13 +457,12 @@ Here we have an object with some default properties and a method leveraging thos
 
   animalSound.speak();
 </pre>
-<div class="w30 shadn dkbg ctr">// The default animal says "default 'SOUND'"!
-// And 'this' is: the DEFAULT ANIMAL object
-</div>
+    <div class="w30 shadn dkbg ctr">// The default animal says "default 'SOUND'"! // And 'this' is: the DEFAULT ANIMAL object
+    </div>
 
-We can build on this by populating it with objects to configure it to bespoke objects and exploit the power of <em class="dkred3 med">this</em>
+    We can build on this by populating it with objects to configure it to bespoke objects and exploit the power of <em class="dkred3 med">this</em>
 
-<pre class="dkbg2 prettyprint w50 ctr">
+    <pre class="dkbg2 prettyprint w50 ctr">
 var cat = {
   animal: "cat",
   voice: "meow"
@@ -346,19 +477,12 @@ var mouse = {
   animal: "mouse",
   voice: "squeak",
 }
-</pre>
-
-The original call to <code>speak</code> on <code>animalSound</code> identifies <em>this</em> as that object.
-Using <code>bind();</code> however, we can force the call from another object.
-<pre class="dkbg2 prettyprint w50 ctr">
+</pre> The original call to <code>speak</code> on <code>animalSound</code> identifies <em>this</em> as that object. Using <code>bind();</code> however, we can force the call from another object.
+    <pre class="dkbg2 prettyprint w50 ctr">
   animalSound.speak.bind(mouse)();
   animalSound.speak.bind(owl)();
-  animalSound.speak.bind(cat)();</pre>
-
-In this way, <code>this</code> now references the object to which speak is bound!
-
-Here's the enire code:
-<pre class="prettyprint w60 ctr">
+  animalSound.speak.bind(cat)();</pre> In this way, <code>this</code> now references the object to which speak is bound! Here's the enire code:
+    <pre class="prettyprint w60 ctr">
   var animalSound = {
     animal : "default animal",
     voice : "default 'SOUND'",
@@ -398,16 +522,16 @@ Here's the enire code:
   // And 'this' is: the CAT object
 
 </pre>
-<h3 class="chtitle softbrown clean">One crucial thing to note: These bind() methods also require <span class="wh">()</span> to be appended in order to be called.</h3>
-<h3 class="chtitle softbrown clean">.bind() is often used to "set" a binding to be used later. However, .call() does NOT require parens. .call() calls the function immediately.</h3>
-</div>
-<hr>
-<div class="simple-frame2">
-  <h3 class="chtitle orange">"And Now <em>'this'</em>..."</h3>
+    <h3 class="chtitle softbrown clean">One crucial thing to note: These bind() methods also require <span class="wh">()</span> to be appended in order to be called.</h3>
+    <h3 class="chtitle softbrown clean">.bind() is often used to "set" a binding to be used later. However, .call() does NOT require parens. .call() calls the function immediately.</h3>
+  </div>
+  <hr>
+  <div class="simple-frame2">
+    <h3 class="chtitle orange">"And Now <em>'this'</em>..."</h3>
 
 
-<b class="ltgreen">Example 1: </b>A little program to get a cat to speak</p>
-  <pre class="dkbg brdr-w w60 ctr">
+    <b class="ltgreen">Example 1: </b>A little program to get a cat to speak</p>
+    <pre class="dkbg brdr-w w60 ctr">
   <pre class="dkbg w40 ctr">function meow() {
     let call = "Meow!!";
     console.log(call);
@@ -416,13 +540,12 @@ Here's the enire code:
     <span class="orange">meow<b class="ltgreen">()</b></span>
 </pre>
 
-  <img src="./img/meowGlobal.jpg" class="w30 fRight" alt="meow1.jpg">
-  <h5 class="ltgreen sm thin">This program executes the function call at the highest possible level. --The global scope.</h5>
-The return identifies 'this' as the global window object.
-<hr>
-<h5 class="ltgreen sm">I place the function call onto the Object petAnimal as a property referencing the function. I then call the Fn <em>from the property on that object</em></h5>
+    <img src="./img/meowGlobal.jpg" class="w30 fRight" alt="meow1.jpg">
+    <h5 class="ltgreen sm thin">This program executes the function call at the highest possible level. --The global scope.</h5> The return identifies 'this' as the global window object.
+    <hr>
+    <h5 class="ltgreen sm">I place the function call onto the Object petAnimal as a property referencing the function. I then call the Fn <em>from the property on that object</em></h5>
 
-<pre class="dkbg ctr w50">function meow() {
+    <pre class="dkbg ctr w50">function meow() {
    let call = "Meow!!";
    console.log(call);
    console.log("this: ", this);
@@ -435,26 +558,20 @@ The return identifies 'this' as the global window object.
 
  <span class="orange">petAnimal.cat<b class="ltgreen">()</b>;</span>
 </pre>
-</pre>
-<h3 class="chtitle wh"><em>'this'</em> refers to what is left of the dot that executes something that contains <em>'this'</em></h3>
-The question to ask ourselves is: <em></em> what is to the left of the dot in each case?
+    </pre>
+    <h3 class="chtitle wh"><em>'this'</em> refers to what is left of the dot that executes something that contains <em>'this'</em></h3> The question to ask ourselves is: <em></em> what is to the left of the dot in each case? In the first case. There is no "dot" per se, but it is in the highest level in our sourcecode. It's scope is global. In the second case, I create an object <em>on which I place a property</em>    that has a reference to that function.
+    <h3 class="chtitle wh">What is to the left of the "." of property "cat" in <code class="orange">petAnimal.cat;</code>? --YES! <code>petAnimal!</code></h3> Therefore, the function containing <em>'this'</em>, when executed <span class="paleY">by a property on that object</span> defines that method's 'host' Object as 'this'!
 
-In the first case. There is no "dot" per se, but it is in the highest level in our sourcecode. It's scope is global.
+  </div>
 
-In the second case, I create an object <em>on which I place a property</em> that has a reference to that function.
-<h3 class="chtitle wh">What is to the left of the "." of property "cat" in <code class="orange">petAnimal.cat;</code>? --YES! <code>petAnimal!</code></h3>
-Therefore, the function containing <em>'this'</em>, when executed <span class="paleY">by a property on that object</span> defines that method's 'host' Object as 'this'!
-</div>
+  <hr>
+  <div class="simple-frame2">
+    <h3 class="chtitle orange">Value vs Reference in Javascript</h3>
+    <h4><span class="paleY lg">quick quiz:</span> What are the primitives in Javascript? </h4>
+    <div class="ans med wh right w50">1)null 2)boolean 3)String 4)undefined 5)number</div>
 
-<hr>
-<div class="simple-frame2"><h3 class="chtitle orange">Value vs Reference in Javascript</h3>
-  <h4><span class="paleY lg">quick quiz:</span> What are the primitives in Javascript? </h4>
-<div class="ans med wh right w50">1)null 2)boolean 3)String 4)undefined 5)number</div>
-
-These are 'value types' (where arrays and objects are reference types).
-
-For this example, let's use Strings.
-<pre class="prettyprint ctr w60">
+    These are 'value types' (where arrays and objects are reference types). For this example, let's use Strings.
+    <pre class="prettyprint ctr w60">
 var flower1 = "🌻"; // this is stored in memory.
 
 var flower2 = flower1; // here, the value 🌻 is copied and 'flower2' holds that copied value.
@@ -464,9 +581,8 @@ console.log(flower2); // 🌻   (flower2 renders it's value.)
 //Now, I change flower1's value
 
 flower1 = "🌹";
-</pre>
-What would we expect if I were to log both to console?
-<pre class="prettyprint ctr w60">
+</pre> What would we expect if I were to log both to console?
+    <pre class="prettyprint ctr w60">
 console.log(flower1); // 🌹
 console.log(flower2); // 🌻
 
@@ -474,10 +590,10 @@ console.log(flower2); // 🌻
 
 // flower2's value is a copy of flower1 (when first created) and it keeps that copy.
 </pre>
-<hr><h3 class="chtitle orange">Let's take a look at reference types:</h3>
-variables for Objects <em>POINT</em> to values in memory. They <em>"reference"</em> rather than "hold" values as primitives do.
+    <hr>
+    <h3 class="chtitle orange">Let's take a look at reference types:</h3> variables for Objects <em>POINT</em> to values in memory. They <em>"reference"</em> rather than "hold" values as primitives do.
 
-<pre class="prettyprint ctr w60">
+    <pre class="prettyprint ctr w60">
 var myFruitArr = ["🍎", "🍐", "🍉"]; //this Array is, of course, an Object.
 var yourFruitArr = myFruitArr;
 
@@ -489,59 +605,47 @@ var yourFruitArr = myFruitArr;
 myFruitArr.push("🍌");
 console.log(myFruitArr); // > (4) ["🍎", "🍐", "🍉", "🍌"]
 console.log(yourFruitArr); // > (4) ["🍎", "🍐", "🍉", "🍌"]
-</pre>
-
-We get this because... <span class="med ans paleY">  the object referenced by both pointers has been edited.</span>
-
-Now, careful... How about this?
-<pre class="prettyprint ctr w60">
+</pre> We get this because... <span class="med ans paleY">  the object referenced by both pointers has been edited.</span> Now, careful... How about this?
+    <pre class="prettyprint ctr w60">
 myFruitArr = ["🍭", "🍦", "🍰"];
 
 console.log(myFruitArr);   // >   (3)  ["🍭", "🍦", "🍰"];
 console.log(yourFruitArr);   // >   (4) ["🍎", "🍐", "🍉", "🍌"]
-</pre>
---WHY? Because...<br /> <span class="ans med paleY"><code>myFruitArr =  ["🍭", "🍦", "🍰"];</code> is creating a new value to which array's pointer references.</span>
-<hr>
-<h3 class="chtitle orange">Stick with me. Let's try one more with an Object.</h3>
-<pre class="prettyprint ctr w40">
+</pre> --WHY? Because...<br /> <span class="ans med paleY"><code>myFruitArr =  ["🍭", "🍦", "🍰"];</code> is creating a new value to which array's pointer references.</span>
+    <hr>
+    <h3 class="chtitle orange">Stick with me. Let's try one more with an Object.</h3>
+    <pre class="prettyprint ctr w40">
   var meal1 = {entree: "🍕"};
-</pre>
-The object is created in memory.<code>meal1</code> has a pointer which references the value <code>{entree: "🍕"}</code>
-
-I create another var,
-<pre class="prettyprint ctr w40">
+</pre> The object is created in memory.<code>meal1</code> has a pointer which references the value <code>{entree: "🍕"}</code> I create another var,
+    <pre class="prettyprint ctr w40">
   var meal2 = meal1;
-</pre>
-I am not copying. I am creating a new pointer & a new Object that points to, or "references" that new value.<br />
-<pre class="prettyprint ctr w40">
+</pre> I am not copying. I am creating a new pointer & a new Object that points to, or "references" that new value.<br />
+    <pre class="prettyprint ctr w40">
   var meal1 = {entree: "🍕"};
   var meal2 = meal1;
   console.log("m2", meal2);
   // m2 > Object {entree: "🍕"}  (as expected)
-</pre>
-This increases efficiency, since objects are complex and multiple copies of them would not be performant.
-
-Here's the punchline:
-<pre class="prettyprint ctr w40">
+</pre> This increases efficiency, since objects are complex and multiple copies of them would not be performant. Here's the punchline:
+    <pre class="prettyprint ctr w40">
 meal1 = {entree: "🍟"}
 
 console.log("m1", meal1);
 console.log("m2", meal2);
-</pre>
-What would these log out to?
-<pre class="simple-wine-frame ans med thin ctr w40">
+</pre> What would these log out to?
+    <pre class="simple-wine-frame ans med thin ctr w40">
 // m1 > Object {entree: "🍟"};
 // m2 > Object {entree: "🍕"};
 
 // I have created a new pointer to a new value in meal1
 </pre>
 
-</div>
+  </div>
 
-<hr>
+  <hr>
 
-<div class="framed8"><h3 class="chtitle coral">Very simple example of the prototype-chain</h3>
-  <pre class="prettyprint w30 ctr">
+  <div class="framed8">
+    <h3 class="chtitle coral">Very simple example of the prototype-chain</h3>
+    <pre class="prettyprint w30 ctr">
 
 var taxi = {
   kind: "taxi",
@@ -564,20 +668,14 @@ limo.kind = "limo";
 limo.speed();
 
 // <span class="ans med">"~!ZZZZoooooom!"</span>
-</pre>
+</pre> Explanation:
+    <div class="ans brdr-w med">
+      1) JS doesn't find .speed() on "limo" --doesn't find it. 2) It then looks at "taxi" --doesn't find it. 3) Finally, javascript finds it on the root prototype: "Object.prototype"... finds it!
+    </div>
 
-Explanation:
-<div class="ans brdr-w med">
-1) JS doesn't find .speed() on "limo" --doesn't find it.
-2) It then looks at "taxi" --doesn't find it.
-3) Finally, javascript finds it on the root prototype: "Object.prototype"... finds it!
-</div>
+    In this way, limo inherits the .speed() method from the root prototype <code>Object.prototype</code> Let's use <em>this</em> in the speed method to see what happens.
 
-In this way, limo inherits the .speed() method from the root prototype <code>Object.prototype</code>
-
-Let's use <em>this</em> in the speed method to see what happens.
-
-<pre class="prettyprint w30 ctr">
+    <pre class="prettyprint w30 ctr">
 Object.prototype.speed = function() {
   console.log("The " + this.kind + " goes '~ZZZZoooooom!'");
 };
@@ -591,36 +689,28 @@ taxi.speed();
 </pre>
 
 
-<div class="w40 dkbg ivr w50 ctr shadn">Let's test these.
+    <div class="w40 dkbg ivr w50 ctr shadn">Let's test these. I. We can reason that<code class="paleY">taxi</code>is built on Object.prototype II. We know further that <code class="paleY">limo</code>is built on the prototype of<code class="paleY">taxi</code> We can test them with<code class="paleY">Object.getPrototypeOf(<em class="ltred">variable</em>)</code>
 
-I. We can reason that<code class="paleY">taxi</code>is built on Object.prototype
-II. We know further that <code class="paleY">limo</code>is built on the prototype of<code class="paleY">taxi</code>
-
-We can test them with<code class="paleY">Object.getPrototypeOf(<em class="ltred">variable</em>)</code>
-
-<pre class="prettyprint w30 ctr">
+      <pre class="prettyprint w30 ctr">
 var taxiProto = Object.getPrototypeOf(taxi);
 var limoProto = Object.getPrototypeOf(limo);
 
 console.log(limoProto === taxi);  // true!
 console.log(taxiProto === Object.prototype); // true!
-</pre>
-QED!🎉
-
-Here we have proof of the above assertions about the prototype chain.
-<h2 class="chtitle softwite">Object.prototype 🔗 taxi 🔗 limo</h2>
+</pre> QED!🎉 Here we have proof of the above assertions about the prototype chain.
+      <h2 class="chtitle softwite">Object.prototype 🔗 taxi 🔗 limo</h2>
 
 
-</div>
+    </div>
 
 
-</div>
+  </div>
 
 
 
-<div class="framed2 dkbg wh"><h3 class="chtitle">Object.create();</h3>
-We have a fish object & a bird object.
-<pre class="prettyprint w30 ctr">
+  <div class="framed2 dkbg wh">
+    <h3 class="chtitle">Object.create();</h3> We have a fish object & a bird object.
+    <pre class="prettyprint w30 ctr">
   var bird = {
     eyes: 2,
     wings: 2,
@@ -635,27 +725,21 @@ We have a fish object & a bird object.
     skin: "scales",
     color: "orange"
   };
-</pre>
+</pre> We can, of course, use <code class="ltblue">var something <span class="transGreen">= new Object();</span></code>, but there is another way. I can create a new object using <code class="ltblue">Object<span class="transGreen">.create(<i class="orange">null</i>)</span></code>    in the following way:
 
-We can, of course, use <code class="ltblue">var something <span class="transGreen">= new Object();</span></code>, but there is another way.
-
-I can create a new object using <code class="ltblue">Object<span class="transGreen">.create(<i class="orange">null</i>)</span></code> in the following way:
-
-<pre class="prettyprint w30 ctr">
+    <pre class="prettyprint w30 ctr">
 var nuCreature = Object.create(null);
 
 nuCreature.eyes = 12;
 
 // Note: I pass 'null' because .create(); requires it.
-</pre>
-Logging <code class="ltgrey">nuCreature.eyes</code> will, of course, give us <span class="orange">// 12</span>
+</pre> Logging <code class="ltgrey">nuCreature.eyes</code> will, of course, give us <span class="orange">// 12</span>
 
-<div class="w50 ctr brdr-w ltgrey">All objects in JS have a default <code class="ltblue">Object.prototype</code> at the root.</div>
+    <div class="w50 ctr brdr-w ltgrey">All objects in JS have a default <code class="ltblue">Object.prototype</code> at the root.</div>
 
-We have the power to manipulate or modify that default. We can customize our "nuCreature" and give it the properties that, 'fish' has.
-Let's do that!
+    We have the power to manipulate or modify that default. We can customize our "nuCreature" and give it the properties that, 'fish' has. Let's do that!
 
-<pre class="prettyprint w30 ctr">
+    <pre class="prettyprint w30 ctr">
 var nuCreature = Object.create(fish);
 nuCreature.name = "Heidi the Hybrid Fish";
 nuCreature.wings = 4;
@@ -663,13 +747,12 @@ nuCreature.wings = 4;
 console.log(nuCreature);
 // This gives us <div class="ans med"> <img class="w20" src="./img/hybrid1.jpg" alt="hybrid-fish"></div>
 </pre>
-</div>
+  </div>
 
-<hr>
-<div class="simple-frame3">
-  <h3 class="chtitle dkblue">Object Trivia quiz</h3>
-  I have the following two objects whose values are identical.
-<pre class="dkbg2 prettyprint w40">
+  <hr>
+  <div class="simple-frame3">
+    <h3 class="chtitle dkblue">Object Trivia quiz</h3> I have the following two objects whose values are identical.
+    <pre class="dkbg2 prettyprint w40">
 var me = {
   name: "John",
   age: 28,
@@ -678,27 +761,18 @@ var me = {
 var miniMe = new Object();
 miniMe.name = "John";
 miniMe.age = 28;
-</pre>
-Question.
-What would I expect from <code class="dkred3">console.log(me === miniMe)</code> ?
+</pre> Question. What would I expect from <code class="dkred3">console.log(me === miniMe)</code> ?
 
-<pre class=" ans dkbg2 prettyprint w20 ctr">
+    <pre class=" ans dkbg2 prettyprint w20 ctr">
 false
-</pre>
-
---Why?
-<div class="brdr-b ans med w50">Because <i class="dkred3">Objects are reference types.</i>
-
-That is, both vars create 2 different pointers.
-There is an address in memory created for each of them.
-This is a good thing!
-We can be assured that modifying miniMe will NOT modify me!</div>
-</div>
-<hr>
-<div class="forest-red-fr">
-  <h3 class="chtitle">removeChild()</h3>
-  <h4 class="ltgreen">Simply reference the parent of child to remove and then place event on an ancestor</h4>
-<div class="w80 col-2"><pre class="prettyprint w30 ctr">
+</pre> --Why?
+    <div class="brdr-b ans med w50">Because <i class="dkred3">Objects are reference types.</i> That is, both vars create 2 different pointers. There is an address in memory created for each of them. This is a good thing! We can be assured that modifying miniMe will NOT modify me!</div>
+  </div>
+  <hr>
+  <div class="forest-red-fr">
+    <h3 class="chtitle">removeChild()</h3>
+    <h4 class="ltgreen">Simply reference the parent of child to remove and then place event on an ancestor</h4>
+    <div class="w80 col-2"><pre class="prettyprint w30 ctr">
 // index.html
 < div class="list-container">
   < h3>Animal List< / h3>
@@ -711,7 +785,7 @@ We can be assured that modifying miniMe will NOT modify me!</div>
   < / ul>
 < / div>
 </pre>
-<pre class="prettyprint w30">
+      <pre class="prettyprint w30">
 // script.js
 const listContainer = document.querySelector('.list-container');
 
@@ -722,21 +796,19 @@ listContainer.addEventListener('click', (event) => {
 })
 
 </pre>
-</div>
-Placing the eventListener on the ul would disable removale of the h3, of course. The H3 is not a child of the ul.
-<hr>
-<h3>A note on DOM traversal and previousSibling vs. previousElementSibling</h3>
-previous sibling often can select <em>"#text"</em>, or a string that is used to format space between elements.
+    </div>
+    Placing the eventListener on the ul would disable removale of the h3, of course. The H3 is not a child of the ul.
+    <hr>
+    <h3>A note on DOM traversal and previousSibling vs. previousElementSibling</h3> previous sibling often can select <em>"#text"</em>, or a string that is used to format space between elements. Therefore, using previousElementSibling is the one to use in DOM traversal
 
-Therefore, using previousElementSibling is the one to use in DOM traversal
+    <a class="w20" href="https://codepen.io/beau_dev/full/PjLGQN/" target="_blank">Here<h4>is a pen illustrating the powers of insertBefore, previous/nextSibling, etc.</h4></a>
 
-<a class="w20" href="https://codepen.io/beau_dev/full/PjLGQN/" target="_blank">Here<h4>is a pen illustrating the powers of insertBefore, previous/nextSibling, etc.</h4></a>
-
-</div>
-<hr>
-<div class="framed5"><h3 class="chtitle">Another look at events and the .target property</h3>
-  <a class="w20" href="https://codepen.io/beau_dev/full/NgJNEO/" target="_blank">Here<h4>is a pen illustrating the powers of the event.target property</h4></a>
-  <pre class="prettyprint w40 ctr">
+  </div>
+  <hr>
+  <div class="framed5">
+    <h3 class="chtitle">Another look at events and the .target property</h3>
+    <a class="w20" href="https://codepen.io/beau_dev/full/NgJNEO/" target="_blank">Here<h4>is a pen illustrating the powers of the event.target property</h4></a>
+    <pre class="prettyprint w40 ctr">
 // index.html
 < div class="list-container">
   < h3>Animal List< / h3>
@@ -748,13 +820,9 @@ Therefore, using previousElementSibling is the one to use in DOM traversal
     < li>Elephant< / li>
   < / ul>
 < / div>
-</pre>
-Instead of putting a listener on each and every list item (burdoning the DOM), we...
-1) Assign the listener to an ancestor.
-2) Send an Event Object into the function.
-3) use the event.target property to identify the precise node which fires the event.
-(This event <em>in effect</em> "Bubbles-up" to the surface until it hits the container to which is attached a listener).
-<pre class="prettyprint w40 ctr linenums">
+</pre> Instead of putting a listener on each and every list item (burdoning the DOM), we... 1) Assign the listener to an ancestor. 2) Send an Event Object into the function. 3) use the event.target property to identify the precise node which fires
+    the event. (This event <em>in effect</em> "Bubbles-up" to the surface until it hits the container to which is attached a listener).
+    <pre class="prettyprint w40 ctr linenums">
 // script.js
 const listItems = document.getElementsByTagName('li');
 const listContainer = document.querySelector('.list-container');
@@ -764,52 +832,39 @@ listContainer.addEventListener('click', (event) => {
   elemShow.textContent = event.target.tagName;
   textShow.textContent = event.target.textContent;
 })
-  </pre>
+  </pre> Using tagName we can create a condition... if (event.target.tagName === "LI") { event.target.textContent = "ouch!" }
 
-Using tagName we can create a condition...
+    <h5>A huge benefit to this is it is dynamic. New LI's will also have this behavior if created on the fly--increasing portability/modularity of the code.</h5>
 
-if (event.target.tagName === "LI") {
-  event.target.textContent = "ouch!"
-}
+    <hr> In this final example of events, a number of basic raw .js methods are used.
 
-<h5>A huge benefit to this is it is dynamic. New LI's will also have this behavior if created on the fly--increasing portability/modularity of the code.</h5>
+    <a href="https://codepen.io/beau_dev/full/JJqJqN/">link </a> to basic events pen.
 
-<hr>
+    <div class="w60 framed6">insertBefore() is used for both the "up" buttons and the "down" buttons. insertBefore() requires 3 elements.
+      <span class="paleY">1) the elements on which method is called (parent element).</span>
+      <span class="purp">2) the element to be inserted</span>
+      <span class="softred">3) the element before which insertion is to take place.</span>
 
-In this final example of events, a number of basic raw .js methods are used.
-
-<a href="https://codepen.io/beau_dev/full/JJqJqN/">link </a> to basic events pen.
-
-<div class="w60 framed6">insertBefore() is used for both the "up" buttons and the "down" buttons.
-
-insertBefore() requires 3 elements.
-<span class="paleY">1) the elements on which method is called (parent element).</span>
-<span class="purp">2) the element to be inserted</span>
-<span class="softred">3) the element before which insertion is to take place.</span>
-
-<span class="paleY">RICECRISPIES</span>.insertBefore(<span class="purp">crackle</span>, <span class="softred">pop</span>);
-</div>
-<div class="forest-red-fr"> <div class="w60 ctr lt-frame"><code>if ( (name === "down") && (li.nextElementSibling !== null) ) {
+      <span class="paleY">RICECRISPIES</span>.insertBefore(<span class="purp">crackle</span>, <span class="softred">pop</span>);
+    </div>
+    <div class="forest-red-fr">
+      <div class="w60 ctr lt-frame"><code>if ( (name === "down") && (li.nextElementSibling !== null) ) {
     li.parentNode.insertBefore(li.nextElementSibling, li);
   }</code></div>
-  li.parentNode is the ul element (parent).
+      li.parentNode is the ul element (parent). Here, insertBefore--in fact--is inserting the 'li' <em>AFTER</em> the next element! This is both common and very useful.
 
-  Here, insertBefore--in fact--is inserting the 'li' <em>AFTER</em> the next element!
-  This is both common and very useful.
+    </div>
+    as with next/previousElementSibling... lastElementChild/previousElementChild is also much preferred.
+  </div>
+  <hr>
+  <div class="simple-frame2">
+    A simple program to add to the DOM with:
+    <div class="compact">
+      .createElement(); .appendChild();
+    </div>
+    <div class="col-2">
 
-</div>
-as with next/previousElementSibling... lastElementChild/previousElementChild is also much preferred.
-</div>
-<hr>
-<div class="simple-frame2">
-A simple program to add to the DOM with:
-<div class="compact">
-.createElement();
-.appendChild();
-</div>
-<div class="col-2">
-
-<pre class="ltbg lt-frame prettyprint">
+      <pre class="ltbg lt-frame prettyprint">
 // html
 < ul class="mylist">
   < li class="orangeThings">Tangerines< / li>
@@ -823,7 +878,7 @@ A simple program to add to the DOM with:
 
 </pre>
 
-<pre class="ltbg lt-frame prettyprint">//myscript.js
+      <pre class="ltbg lt-frame prettyprint">//myscript.js
 const listUL = document.querySelector("ul.mylist");
 const addBtn = document.querySelector(".addBtn");
 const addInput = document.querySelector("input.addInput");
@@ -835,47 +890,39 @@ addBtn.addEventListener('click', () => {
   addInput.value = "";
 })
 </pre>
-</div>
+    </div>
 
-</div>
-<hr>
-<div class="simple-frame3">
-  <h3 class="chtitle dkblue">2 ways to set text in raw js</h3>
-  .textContent & innerHTML
-<pre class="dkbg2 prettyprint w40">
+  </div>
+  <hr>
+  <div class="simple-frame3">
+    <h3 class="chtitle dkblue">2 ways to set text in raw js</h3> .textContent & innerHTML
+    <pre class="dkbg2 prettyprint w40">
   const myTxtInput = document.getElementById('myTxtInput');
   const myTxt = document.getElementsByClassName('myText');
 
   myTxtButton.addEventListener('click', () => {
     myTxt[0].textContent = myTxtInput.value;
   })
-</pre>
-Pretty straightforward. --But not nearly as versatile as <em>innerHTML</em> ...
-
-In the txt field in the browser, you can enter any html tag in addition to the text.
-It enables you to define the html (tags, ids, classes, etc) in addition to the text.
-<pre class="dkbg2 prettyprint w40">
+</pre> Pretty straightforward. --But not nearly as versatile as <em>innerHTML</em> ... In the txt field in the browser, you can enter any html tag in addition to the text. It enables you to define the html (tags, ids, classes, etc) in addition to
+    the text.
+    <pre class="dkbg2 prettyprint w40">
   myTxtButton.addEventListener('click', () => {
     myTxt[0].innerHTML = myTxtInput.value;
   })
 </pre>
-</div>
-<div class="framed8"><h3 class="chtitle coral">querySelector & querySelectorAll()</h3>
-These two are more versatile selectors because they accept classnames, id names, tag names, EVEN HTML Attribute!.
+  </div>
+  <div class="framed8">
+    <h3 class="chtitle coral">querySelector & querySelectorAll()</h3> These two are more versatile selectors because they accept classnames, id names, tag names, EVEN HTML Attribute!.
 
-<div class="w40 dkbg ivr w50 ctr shadn">
-  The differences between the two are very simple.
-I.  <code class="paleY">querySelectorAll()</code> is a collection (array).
-II.  <code class="paleY">querySelector()</code> is the first in the DOM.
-
-  That is, <code class="paleY">querySelectorAll()</code> = <code class="paleY">querySelector()[0]</code>
+    <div class="w40 dkbg ivr w50 ctr shadn">
+      The differences between the two are very simple. I. <code class="paleY">querySelectorAll()</code> is a collection (array). II. <code class="paleY">querySelector()</code> is the first in the DOM. That is, <code class="paleY">querySelectorAll()</code>      = <code class="paleY">querySelector()[0]</code>
 
 
-</div>
+    </div>
 
-Select elements by attribute with querySelectorAll();
-<div class="wh">Simply use brackets with the attr plus the "=" sign</div>
-<pre class="prettyprint w50 ctr">
+    Select elements by attribute with querySelectorAll();
+    <div class="wh">Simply use brackets with the attr plus the "=" sign</div>
+    <pre class="prettyprint w50 ctr">
 < li data-color="purple">grapes< /li >
 < li data-color="purple">eggplant< /li >
 < li data-color="purple">lolipops< /li >
@@ -885,17 +932,15 @@ for (var i = 0; i < purps.length; i++) {
   purps[i].style.backgroundColor = "purple";
 }
 
-</pre>
+</pre> Selecting odds/evens is also possible with the CSS pseudoClass nth-child(odd/evens)
+    <code class="paleY">const odds = document.querySelectorAll('li:nth-child(odd)');</code>
 
-Selecting odds/evens is also possible with the CSS pseudoClass nth-child(odd/evens)
-<code class="paleY">const odds = document.querySelectorAll('li:nth-child(odd)');</code>
-
-</div>
+  </div>
 
 
-<div class="slate-skyblue-fr"><h3 class="chtitle">Recursion</h3>
-  II. Factorial
-  <pre class="prettyprint w40">function factorial(n) {
+  <div class="slate-skyblue-fr">
+    <h3 class="chtitle">Recursion</h3> II. Factorial
+    <pre class="prettyprint w40">function factorial(n) {
     if(n< 2) {
       return 1;
     } else {
@@ -909,10 +954,11 @@ Selecting odds/evens is also possible with the CSS pseudoClass nth-child(odd/eve
   console.log(result2); // 6
 </pre>
 
-</div>
+  </div>
 
-<div class="framed8"><h3 class="chtitle mango">IFEE sending an argument to itself</h3>
-<pre class="prettyprint w40 ctr">const firstName = "Leroy";
+  <div class="framed8">
+    <h3 class="chtitle mango">IFEE sending an argument to itself</h3>
+    <pre class="prettyprint w40 ctr">const firstName = "Leroy";
 (function(input) {
   console.log(`Hello, I'm ${input}`);
 }(firstName));
@@ -924,7 +970,7 @@ Selecting odds/evens is also possible with the CSS pseudoClass nth-child(odd/eve
     <h3 class="chtitle dkblue">Super-simple Closure</h3>
     <div class="col-2">
 
-<pre class="prettyprint w40">
+      <pre class="prettyprint w40">
 function makeGreeting(language) {
 
   var counter = 0;
@@ -950,7 +996,7 @@ engGreet("John", "Wilson");
 engGreet("John", "Wilson");
 
 </pre>
-<br><pre class="w40 dkbg ivr">
+      <br><pre class="w40 dkbg ivr">
 
   Fn returning a Fn. A counter that increments on each sucessive execution.
 
@@ -1056,7 +1102,7 @@ engGreet("John", "Wilson");
 </pre></div>
   <div class="simple-frame2 col-2">
     <h4>quick quiz</h4>
-<pre class="prettyprint w40 ctr linenums">
+    <pre class="prettyprint w40 ctr linenums">
 scream();
 function scream() {
   console.log("Ahhhhhhh!!");
@@ -1073,8 +1119,7 @@ var quiet = function() {
 </pre>
     <br /><br> Difference between line 2 and line 7?
     <i class="ans med dkred">scream is a <b class="wh">FUNCTION STATEMENT</b></i><br>
-    <i class="ans med dkred">quiet is a <b class="wh">FUNCTION EXPRESSION</b></i> <br>
-What is the return of this and why?
+    <i class="ans med dkred">quiet is a <b class="wh">FUNCTION EXPRESSION</b></i> <br> What is the return of this and why?
     <i class="ans med dkred"><img class="w20" src="./img/error1.png" alt="error1"><br />
   <span class="wh sm">Function expressions are NOT hoisted!</span></i>
 
@@ -1094,31 +1139,30 @@ What is the return of this and why?
   console.log(greet);
   // function greet() { console.log("Hi"); } ❗️This code is merely a property on the object!
 </pre>
-<h4 class="chtitle dkred">Functional Programming</h4>
-<div class="col-2">
-<div class="brdr-w">I am going to pass an entire function as a parameter to another function.
---In the Fn to which I pass the parameter, I am going to invoke that puppy!
-</div>
-<pre class="prettyprint w40">
+    <h4 class="chtitle dkred">Functional Programming</h4>
+    <div class="col-2">
+      <div class="brdr-w">I am going to pass an entire function as a parameter to another function. --In the Fn to which I pass the parameter, I am going to invoke that puppy!
+      </div>
+      <pre class="prettyprint w40">
 function ohFunkThis(funk) {
   funk();
 }
 ohFunkThis(function() {console.log("I'm a parameter!")});
 // I'm a parameter!
 </pre>
-</div>
+    </div>
     <h4 class="chtitle ltred">This is the essence of "Functional Programming"!</h4>
   </div>
   <hr>
 
-<div class="framed6">
+  <div class="framed6">
     <h2 class="chtitle wh">Objects (& operators/methods commonly used with them)</h2>
 
     <h3>4 ways to create an object</h3>
 
-<h2 class="wh">I.</h2>
+    <h2 class="wh">I.</h2>
 
-<pre class="prettyprint w60 ctr">
+    <pre class="prettyprint w60 ctr">
 <div class="fRight dkbg forest-red-fr sm">/*
 rarely used (verbose) default constructor Fn for objects.
 This verbose strategy for creating objects is verifiable with<code>instanceof</code>
@@ -1136,9 +1180,8 @@ This verbose strategy for creating objects is verifiable with<code>instanceof</c
 
   console.log(tunaMelt instanceof Object); // true
   </pre>
-<h2 class="wh">II.</h2>
-The simpler basic way to create objects is implicitly an instance of Object.
-<pre class="prettyprint linenums">
+    <h2 class="wh">II.</h2> The simpler basic way to create objects is implicitly an instance of Object.
+    <pre class="prettyprint linenums">
 var pbj = {
   kind: "pbj",
   meat: "peanut",
@@ -1152,10 +1195,10 @@ var pbj = {
 console.log(pbj instanceof Object); // true
 pbj.summary();
 </pre>
-<h3><span class="wh lg">I</span> & <span class="wh lg">II</span> are both instances of the root Object.</h3>
+    <h3><span class="wh lg">I</span> & <span class="wh lg">II</span> are both instances of the root Object.</h3>
 
-<h2 class="wh">III.</h2>
-<pre class="prettyprint">
+    <h2 class="wh">III.</h2>
+    <pre class="prettyprint">
 <pre class="fRight dkbg forest-red-fr sm">/*
   .create(), as mentioned, needs a param
   NB: This way to create an object is stand-alone.
@@ -1164,26 +1207,14 @@ pbj.summary();
 
   console.log(ruben.toString()); // returns  error
   console.log(ruben instanceof Object); // returns  false
-</pre>
-var ruben = Object.create(null);
-ruben.kind = "ruben"
-ruben.meat = "corned beef"
-ruben.veg = "sauerkraut"
-ruben.bread = "rye"
-ruben.summary = function () {
-  console.log(`A ${this.kind} has ${this.meat}, ${this.veg} & ${this.bread}`);
-}
+</pre> var ruben = Object.create(null); ruben.kind = "ruben" ruben.meat = "corned beef" ruben.veg = "sauerkraut" ruben.bread = "rye" ruben.summary = function () { console.log(`A ${this.kind} has ${this.meat}, ${this.veg} & ${this.bread}`); } ruben.summary();
+    console.log(ruben.toString()); // error console.log(ruben instanceof Object); // false
 
-ruben.summary();
+    </pre>
 
-console.log(ruben.toString()); // error
-console.log(ruben instanceof Object); // false
-
-</pre>
-
-<h2 class="wh">IV.</h2>
-<h4 class="dkmango">Finally, the constructor Function</h4>
-<pre class="prettyprint">
+    <h2 class="wh">IV.</h2>
+    <h4 class="dkmango">Finally, the constructor Function</h4>
+    <pre class="prettyprint">
   <pre class="fRight dkbg forest-red-fr w40 sm">
 /*
 This has numerous advantages:
@@ -1192,27 +1223,13 @@ This has numerous advantages:
 
 2) This also has both Object.prototype AND Sandwich.prototype that you can modify as a fallback for default properties.
 */
-</pre>
-  function Sandwich(kind, meat, veg, bread) {
-    this.kind = kind;
-    this.meat = meat;
-    this.veg = veg;
-    this.bread = bread;
-    console.log(`${this.kind}: ${meat}, ${veg} & ${bread}`);
-  }
+</pre> function Sandwich(kind, meat, veg, bread) { this.kind = kind; this.meat = meat; this.veg = veg; this.bread = bread; console.log(`${this.kind}: ${meat}, ${veg} & ${bread}`); } var turkeyClub = new Sandwich("turkeyClub", "turkey", "romaine",
+    "roll"); // turkeyClub: turkey, romaine & roll var blt = new Sandwich("blt", "bacon", "lettuce", "white") // blt: bacon, lettuce & white
 
+    </pre>
 
-
-  var turkeyClub = new Sandwich("turkeyClub", "turkey", "romaine", "roll");
-  // turkeyClub: turkey, romaine & roll
-
-  var blt = new Sandwich("blt", "bacon", "lettuce", "white")
-  // blt: bacon, lettuce & white
-
-</pre>
-
-</div>
-<hr>
+  </div>
+  <hr>
 
   <div class="framed5">
     <h3 class="pastred">call(); Apply();</h3>
@@ -1242,12 +1259,12 @@ jim.opinion.call(liz);
 jim.opinion.call(liz, "vanilla", "Sherbert" );
 </pre>
     <h5 class="ivr">There are a few things going on here</h5>
-  <span class="med">1. lines 04-05 establish conditional defaults. <br />  If no args are fed in, choose the defaults after "||".
+    <span class="med">1. lines 04-05 establish conditional defaults. <br />  If no args are fed in, choose the defaults after "||".
  2. Of course, 'name' and 'verb' props exist. <br />  However, the <em class="y">${this.name}</em> allows for them to be 'hijacked' with call();
  3. line 16 'hijacks' the jim object's 'opinion' method.<br />
   <span class="ltgreen">liz.opinion();</span> renders // <span class="ans med ltgreen">Hi, I'm Elizabeth. I adore oh--anything a la mode.</span><br />
-  <span class="ltgreen">jim.opinion.call(liz<sup class="ltred">*</sup>);</span> will give us the same. 4. <span class="ltgreen">jim.opinion();</span> renders // <span class="ans med ltgreen">Hi, I'm Jim. I hate oh--anything a la mode.</span><br /> 5.
-  <span class="ltgreen">jim.opinion("chocolate", "cake");</span> renders // <span class="ans med ltgreen">Hi, I'm Jim. I hate chocolate cake.</span><br /> 6. <span class="ltgreen">jim.opinion.call(liz<sup class="ltred">*</sup>, "vanilla", "ice cream.");</span>    renders // <span class="ans med ltgreen">Hi, I'm Jim. I hate chocolate cake.</span><br />
+    <span class="ltgreen">jim.opinion.call(liz<sup class="ltred">*</sup>);</span> will give us the same. 4. <span class="ltgreen">jim.opinion();</span> renders // <span class="ans med ltgreen">Hi, I'm Jim. I hate oh--anything a la mode.</span><br /> 5.
+    <span class="ltgreen">jim.opinion("chocolate", "cake");</span> renders // <span class="ans med ltgreen">Hi, I'm Jim. I hate chocolate cake.</span><br /> 6. <span class="ltgreen">jim.opinion.call(liz<sup class="ltred">*</sup>, "vanilla", "ice cream.");</span>    renders // <span class="ans med ltgreen">Hi, I'm Jim. I hate chocolate cake.</span><br />
 
     <sup class="orange">This context is established by first arg of .call();</sup>
     <hr> var args = ["peach", "cobbler"];
@@ -1278,8 +1295,7 @@ var result = array.reduce(function(prev, next){
 // arr[0]=prev, arr[1]=next the return val is fed into first arg "prev" (then, iterate)
 });
 console.log(result); // 27
-</pre> However! reduce() has even more up it's sleeve! <br>
-This has not <span class="y">one</span>, but <span class="orange">two</span> arguments!
+</pre> However! reduce() has even more up it's sleeve! <br> This has not <span class="y">one</span>, but <span class="orange">two</span> arguments!
 
     <h4 class="chtitle med dkbg ivr w40">arr.reduce(<span class="y">function(a,b){ return a+b }</span>, <span class="orange">{}</span>);</h4> This second arg defines the value of "prev" at initial iteration.
 
@@ -1427,7 +1443,8 @@ inOrder([]) // sending empty array literal
 
 <a href="http://www.pythontutor.com/visualize.html#mode=edit" target="_blank">Try Running it here!</a>
 </pre>
-<br><h4 class="ltred">Return the first in the array.</h4>
+    <br>
+    <h4 class="ltred">Return the first in the array.</h4>
     <pre class="prettyprint">
 var wines = ['Shiraz', 'Rose', 'Pinot', 'Cabernet', 'Grigio',  'Claret'];
 
@@ -1442,7 +1459,8 @@ function first(arr, cb) {
 
 console.log(sentence);
 <br><h4 class="ltred">The first wine of wines is Shiraz.</h4>
-</pre> <br><h4 class="ltred">Callback used to sift through an array of objects</h4>
+</pre> <br>
+    <h4 class="ltred">Callback used to sift through an array of objects</h4>
     <pre class="prettyprint w40">
 const flags = [{
     country: "Canada",
@@ -1567,7 +1585,7 @@ var names = people.map(foo => foo.name);
     }
   ]
 }</pre>
-<pre class="w50 prettyprint">var parsedJson = JSON.parse(myObject);
+    <pre class="w50 prettyprint">var parsedJson = JSON.parse(myObject);
   console.log(json); </pre> This code gives us an object we can work with in javascript. <img class="w20" src="./img/parsed.png" alt="">
   </div>
   <div class="framed2 dkbg">JSON.stringify();
@@ -1587,11 +1605,12 @@ var names = people.map(foo => foo.name);
         console.log(stringedObj);
 </pre>
     <img class="w40" src="./img/stringified.png" alt="stringified">
-  <h4 class="pastpink">This renders an object that has no white-space & it can be stored in the backend as VALID JSON.</h4>
+    <h4 class="pastpink">This renders an object that has no white-space & it can be stored in the backend as VALID JSON.</h4>
   </div>
 
 
-  <div class="framed3"><h3 class="ivr">Think of filter() as coffee. It filters OUT the grains.</h3>
+  <div class="framed3">
+    <h3 class="ivr">Think of filter() as coffee. It filters OUT the grains.</h3>
     <pre class="prettyprint w40 ctr">
     coffee.filter(coffee) {
       return result === liquid;
@@ -1607,7 +1626,7 @@ var names = people.map(foo => foo.name);
 <br><a target="_blank" href="https://www.w3schools.com/tags/ref_av_dom.asp">Breakdown of methods/properties on HTML5 audio/video object</a>
 </h4>
 
-<pre class="prettyprint w60 ctr">
+    <pre class="prettyprint w60 ctr">
 var jukebox = document.querySelector('ul.player');
 
 jukebox.addEventListener('click', function(e) {
@@ -1693,7 +1712,7 @@ jukebox.addEventListener('click', function(e) {
 
   <div class="simple-frame">
     <h5>Starting HTML</h5><img class="w40" src="./img/spinnerStart.png" alt="spinner starting html">
-<pre class="w40 framed3 prettyprint ctr">
+    <pre class="w40 framed3 prettyprint ctr">
 body {
   background: url(./img/sand.jpg), repeat;
   box-sizing: border-box;
@@ -1745,7 +1764,7 @@ body {
 }
 </pre>
 
-      <pre class="prettyprint w80">
+    <pre class="prettyprint w80">
     document.querySelector('img.preview').addEventListener('click', function(e) {
       var myOverlay = document.querySelector('.overlay');
       myOverlay.style.display = ('block');
@@ -1774,8 +1793,8 @@ body {
     }, false);
 
       </pre>
-      <p>The genius of this is the substr() method leveraging the smaller img file name<br />
-        <i class="dkorange">NOTE:</i> Fast machines render the .spinner image unable to view.</p>
+    <p>The genius of this is the substr() method leveraging the smaller img file name<br />
+      <i class="dkorange">NOTE:</i> Fast machines render the .spinner image unable to view.</p>
 
   </div>
 
@@ -1783,15 +1802,15 @@ body {
 
 
 
-<div class="slate-skyblue-fr">
-  <h4 class="w20 ctr">events (Lynda)</h4>
-  <h5>Adding event listeners</h5>
-  <h6>Bascially they are no different in appearance from jQuery's events ('...on.('click', function(){}'...etc)</h6>
-  <pre class="prettyprint">document.getElementById('thing').addEventListener('click', function() {
+  <div class="slate-skyblue-fr">
+    <h4 class="w20 ctr">events (Lynda)</h4>
+    <h5>Adding event listeners</h5>
+    <h6>Bascially they are no different in appearance from jQuery's events ('...on.('click', function(){}'...etc)</h6>
+    <pre class="prettyprint">document.getElementById('thing').addEventListener('click', function() {
     alert("clicked the thing!")
 },<span class="y underline">false</span>)</pre>
-  <h6>for some tags we can use preventDefault()  * see below *</h6>
-  <pre class="prettyprint">document.getElementById('container').addEventListener('click', function(e) {
+    <h6>for some tags we can use preventDefault()  * see below *</h6>
+    <pre class="prettyprint">document.getElementById('container').addEventListener('click', function(e) {
     console.log("clicked the container!")
 },false)
 
@@ -1800,13 +1819,13 @@ document.getElementById('link').addEventListener('click', function(e) {
     console.log("clicked the link!")
     <span class="underline y">e.stopPropagation();</span> // only 'clicked the link!' fires.
 },false)</pre>
-  <h5 class="dkred w40 ctrtxt">Capturing vs Bubbling</h5>
-  <p>Propagation is about how events are registered and 'caught' vis-a-vis other elements. Here, <span class="dkorange">e.stopPropagation()</span> is called to prevent any events on parent elements. Therefore, we don't log to console</p>
+    <h5 class="dkred w40 ctrtxt">Capturing vs Bubbling</h5>
+    <p>Propagation is about how events are registered and 'caught' vis-a-vis other elements. Here, <span class="dkorange">e.stopPropagation()</span> is called to prevent any events on parent elements. Therefore, we don't log to console</p>
 
-  <h5>2 ways to register an event.<br>You can 'catch' the event in the <em class="dkorange underline">Capturing Phase</em> so that a 'higher' DOM element listens down to its children for an event. div->ul->li->a <br><br>
+    <h5>2 ways to register an event.<br>You can 'catch' the event in the <em class="dkorange underline">Capturing Phase</em> so that a 'higher' DOM element listens down to its children for an event. div->ul->li->a <br><br>
 Otherwise, an evt can be registered on the lowest element until it <em>bubbles</em> up to the div <br>
 This is called capturing the event in <em class="dkorange underline">the Bubbling Phase</em></h5>
-  <pre class="prettyprint">
+    <pre class="prettyprint">
   document.getElementById('container').addEventListener('click', function(e) {
         console.log("clicked the container!")
   },<span class="underline">false</span>)
@@ -1818,23 +1837,24 @@ This is called capturing the event in <em class="dkorange underline">the Bubblin
   },<span class="underline">false</span>)
 
 //having set both to false, the event will bubble up and return "journal" FIRST! and then "clicked container!"</pre>
-  <p><sup class="wh">*</sup>this is part of the 'e' object which gives the id value</p>
+    <p><sup class="wh">*</sup>this is part of the 'e' object which gives the id value</p>
 
-  <div class="forest-red-fr"><pre>
+    <div class="forest-red-fr"><pre>
   When you add an event handler to the event target itself, bubble vs capture is not applicable.
   At that level, you're not capturing or bubbling--you're on the target itself.
   The event handlers fire in the order in which they were registered.
 </pre></div>
-  <h4 class="w60 dkblue">One more example:</h4>
-  <div class="caption-box">
-    <img class="fRight w10" src="./img/link1.png" alt="link1">
-    <br>
-    < div <span class="dkorange">id="myDiv"></span>
-      < div>
-        < a <span class="dkorange">id="coralLink"</span> href="https://www.google.com">LINK< /a>
-      < /div>
-    < /div>
-  </div><br><pre class="prettyprint">
+    <h4 class="w60 dkblue">One more example:</h4>
+    <div class="caption-box">
+      <img class="fRight w10" src="./img/link1.png" alt="link1">
+      <br>
+      < div <span class="dkorange">id="myDiv"></span>
+        < div>
+          < a <span class="dkorange">id="coralLink"</span> href="https://www.google.com">LINK
+            < /a>
+              < /div>
+                < /div>
+    </div><br><pre class="prettyprint">
     var myDiv = document.getElementById('myDiv');
     var coralLink = document.getElementById('coralLink');
     coralLink.addEventListener('click', function(e) {
@@ -1846,14 +1866,14 @@ This is called capturing the event in <em class="dkorange underline">the Bubblin
       console.log("clicked container");
     }, true)
   </pre>
-  <div class="framed2 w40">
-    <h5 class="fLeft">What will log first if I click on link?</h5>
-    <img class="ans w20" src="./img/log1.png" alt="">
+    <div class="framed2 w40">
+      <h5 class="fLeft">What will log first if I click on link?</h5>
+      <img class="ans w20" src="./img/log1.png" alt="">
+    </div>
+    <h4 class="w60 ctrtxt"><span class="dkred">REMEMBER: </span>'true' = capture phase.   'false' = Bubble Phase</h4>
+
+
   </div>
-  <h4 class="w60 ctrtxt"><span class="dkred">REMEMBER: </span>'true' = capture phase.   'false' = Bubble Phase</h4>
-
-
-</div>
 
   <h5 class="ctrtxt w80">Event Issues (lynda Vid 5)</h5>
   <div class="framed2">
@@ -1923,59 +1943,50 @@ function handler(e) {
   <div class="ltbg">
     <p class="dkred">While this seems to work well, it creates more mouseout events and throws errors. Therefore, we need to remove events. <br>This line of code can begin with 'this' or e.target. It will remove the mouseout with the named function mOutHandler</p>
     <pre class="prettyprint dkred w60">  this.removeEventListener('mouseout', mOutHandler, false);</pre>
-  <h3 class="dkred">mOutHandler function looks like this (with the new line of code)</h3>
-  <pre class="simple-frame w60 ctr">  e.target.addEventListener('mouseout', function mOutHandler(f) {
+    <h3 class="dkred">mOutHandler function looks like this (with the new line of code)</h3>
+    <pre class="simple-frame w60 ctr">  e.target.addEventListener('mouseout', function mOutHandler(f) {
     var myNode = f.target.parentNode.querySelector('div.spawned'); //thing I want to delete or remove.
     nuElem.parentNode.removeChild(myNode);
     <span class="dkorange">this.removeEventListener('mouseout', mOutHandler, false);</span>
   }, false);</pre>
 
-</div>
+  </div>
 
   <hr>
 
   <div class="brdr-w dkbg ctr ctrtxt med">
-<pre class="prettyprint w40 txt-left ctr">function lunch(menu, item) {
+    <pre class="prettyprint w40 txt-left ctr">function lunch(menu, item) {
   menu(item);
-}</pre>
+}</pre> I see in the body of the function that lunch is a function and it will subsequently take arg 2 (in the function signature). I have to call this "lunch()" with two args. We use an anonymous func as the 1st arg
 
-    I see in the body of the function that lunch is a function and it will subsequently take arg 2 (in the function signature).
-
-    I have to call this "lunch()" with two args.
-
-    We use an anonymous func as the 1st arg
-
-<pre class="prettyprint w50 ctr txt-left">lunch((food) => console.log(food), "🍔");
+    <pre class="prettyprint w50 ctr txt-left">lunch((food) => console.log(food), "🍔");
 // 🍔</pre>
-<pre class="prettyprint w50 ctr txt-left">lunch((food) => console.log(food), "🍕");
+    <pre class="prettyprint w50 ctr txt-left">lunch((food) => console.log(food), "🍕");
 // 🍕</pre>
 
-<h3 class="chtitle pastY">Let's put a setTimeout on this which is a method of the window object</h3>
-<pre class="w50 ctr med txt-left">window.setTimeout((food) => console.log(food), 6000, "🍔");
-window.setTimeout((food) => console.log(food), 9000, "🌮");</pre>
-
-1) Arg1 is the anon func
-2) Arg2 is the time delay
-3) Arg3 is the argument sent to the timeOut func
+    <h3 class="chtitle pastY">Let's put a setTimeout on this which is a method of the window object</h3>
+    <pre class="w50 ctr med txt-left">window.setTimeout((food) => console.log(food), 6000, "🍔");
+window.setTimeout((food) => console.log(food), 9000, "🌮");</pre> 1) Arg1 is the anon func 2) Arg2 is the time delay 3) Arg3 is the argument sent to the timeOut func
 
   </div>
 
-<div class="simple-wine-frame">  <h2 class="ltblue">setTimeout & setInterval : using Kirupa & Dan Wellman's tutes</h2>
+  <div class="simple-wine-frame">
+    <h2 class="ltblue">setTimeout & setInterval : using Kirupa & Dan Wellman's tutes</h2>
 
-  <pre class="prettyprint w80">
+    <pre class="prettyprint w80">
         setTimeout('console.log("bad!")', 4000); // 'bad' (after 4 secs)</pre>
-  <p class="dkred"><sup class="ltred">*</sup>setTimeout is one of many methods that take a string and evaluate it as if it were code. But this is dangerous and insecure.
-    <span class="ltred">NEVER pass a str as a first argument.</span></p>
-  <pre class="prettyprint w40">
+    <p class="dkred"><sup class="ltred">*</sup>setTimeout is one of many methods that take a string and evaluate it as if it were code. But this is dangerous and insecure.
+      <span class="ltred">NEVER pass a str as a first argument.</span></p>
+    <pre class="prettyprint w40">
 function log() {
   console.log("Hi there!");
 }
 setTimeout(log, 4000);
 //(after 4sec) Hi there!
 </pre>
-  <h5><sup class="dkred">Here we call the named Fn instead of an interpolated string.</h5>
+    <h5><sup class="dkred">Here we call the named Fn instead of an interpolated string.</h5>
 
-  <pre class="prettyprint w60">
+    <pre class="prettyprint w60">
   setTimeout(function log(msg) {
       console.log('Hi (using entire Fn as an arg)');
   }, 4000);
@@ -1984,18 +1995,18 @@ setTimeout(log, 4000);
       console.log('Hi (using variable)');
   }
   setTimeout(logger, 4000);</div></pre>
-  <h5 class="dkbg wh w60">2nd example uses setTimeout calling a Fn expression</h5>
-  <h5 class="ctrtxt"><span class="underline navy">SetInterval</span> is a setTimeout that simply repeats itself.</h5>
-  <pre class="prettyprint w60">
+    <h5 class="dkbg wh w60">2nd example uses setTimeout calling a Fn expression</h5>
+    <h5 class="ctrtxt"><span class="underline navy">SetInterval</span> is a setTimeout that simply repeats itself.</h5>
+    <pre class="prettyprint w60">
   function bounce(msg) {
     console.log("boing, boing");
   }
   setInterval(bounce, 3000);
   // boing, boing (every 3secs ad infinitum)
 </pre>
-  <h5>Now, we must define the interval in order to end it.
+    <h5>Now, we must define the interval in order to end it.
   We use <span class="dkorange">clearTimeout()</span> & <span class="dkorange">clearInterval()</span> methods.</h5>
-  <pre class="prettyprint w60">
+    <pre class="prettyprint w60">
   let counter = 0;
   function bounce() {
     console.log("boing");
@@ -2006,14 +2017,14 @@ setTimeout(log, 4000);
     }
   }
   var interval = setInterval(bounce, 3000);</pre>
-  <h4><a target="_blank" href="https://youtu.be/zucCjXApXOU">Kirupa Tutorial</a></h4>
-  <h4 class="ltbg w60">setTimeout(<span class="dkorange">anyFunction</span>, <em>timedelay</em>)</h4>
-  <h4 class="ltbg w60">clearTimeout(<span class="dkorange">timeID</span>)</h4>
-  <h6 class="">start it and cancel it.</h6> requestAnimationFrame() --requests a repaint and runs code as part of that repaint.
-  <pre class="prettyprint w40 ctr">
+    <h4><a target="_blank" href="https://youtu.be/zucCjXApXOU">Kirupa Tutorial</a></h4>
+    <h4 class="ltbg w60">setTimeout(<span class="dkorange">anyFunction</span>, <em>timedelay</em>)</h4>
+    <h4 class="ltbg w60">clearTimeout(<span class="dkorange">timeID</span>)</h4>
+    <h6 class="">start it and cancel it.</h6> requestAnimationFrame() --requests a repaint and runs code as part of that repaint.
+    <pre class="prettyprint w40 ctr">
 let timeID = setTimeout(runCode, 4000);
 clearTimeout(timeID);</pre> Here's an example;
-  <pre class="prettyprint w60">
+    <pre class="prettyprint w60">
 var btn = $('button');
 
 function drawText() {
@@ -2025,12 +2036,12 @@ btn.on('click', function() {
 btn.after('< h4>You cancelled it.< /h4>')
   clearTimeout(timeID);
 })</pre>
-<div class="brdr-w w50 ctr">
-  var timeID =requestAnimationFrame(<em class="navy">anyFunction</em>)
-  requestAnimationFrame(<em class="navy">timeID</em>)
-</div>
-  <h6>This is not part of some javascript browser's timer, but part of the browser's paint pipeline. It is more efficient and performant.</h6>
-  <pre class="prettyprint w40">
+    <div class="brdr-w w50 ctr">
+      var timeID =requestAnimationFrame(<em class="navy">anyFunction</em>) requestAnimationFrame(
+      <em class="navy">timeID</em>)
+    </div>
+    <h6>This is not part of some javascript browser's timer, but part of the browser's paint pipeline. It is more efficient and performant.</h6>
+    <pre class="prettyprint w40">
 function drawText() {
   btn.after('< hr /> < h1>Boom!< /h1>')
 }
@@ -2042,8 +2053,8 @@ btn.on('click', function() {
   animationLoop();
 })
 </pre>
-  <h5>This uses gpu & cpu information to optimize performance.</h5>
-  <pre class="prettyprint w50">
+    <h5>This uses gpu & cpu information to optimize performance.</h5>
+    <pre class="prettyprint w50">
   var currentPos = 0;
   var thing = document.querySelector("#thing")
   var requestAnimationFrame = window.requestAnimationFrame;
@@ -2059,15 +2070,16 @@ btn.on('click', function() {
 
   moveThing();
 </pre>
-  <em>cf.</em> <a href="https://youtu.be/rNsC1VI9388">Kirupa: requestAnimationFrame() for animation video</a>
-  <h2>"Don't use SetTimeout or setInterval for animations --Just don't!" --Kirupa</h2>
+    <em>cf.</em> <a href="https://youtu.be/rNsC1VI9388">Kirupa: requestAnimationFrame() for animation video</a>
+    <h2>"Don't use SetTimeout or setInterval for animations --Just don't!" --Kirupa</h2>
 
 
-</div>  <hr>
-<div class="framed2">
-  <h2 class="ltblue">Nice version of isPalindrome() using regex</h2>
-  <h4><a target="_blank" href="https://medium.freecodecamp.com/two-ways-to-check-for-palindromes-in-javascript-64fea8191fd7">FCC Link</a></h4>
-  <pre class="prettyprint w80">
+  </div>
+  <hr>
+  <div class="framed2">
+    <h2 class="ltblue">Nice version of isPalindrome() using regex</h2>
+    <h4><a target="_blank" href="https://medium.freecodecamp.com/two-ways-to-check-for-palindromes-in-javascript-64fea8191fd7">FCC Link</a></h4>
+    <pre class="prettyprint w80">
 
   function isPalindrome(str) {
     var re = /[\W_]/g;
@@ -2080,10 +2092,10 @@ btn.on('click', function() {
   isPalindrome("Beau")
 
 </pre>
-  <h2 class="ltblue">Nice example of <span class="dkred">.replace()</span> String method</h2>
-  <h4><a target="_blank" href="https://www.tutorialspoint.com/java/java_string_replace.htm">link</a></h4>
+    <h2 class="ltblue">Nice example of <span class="dkred">.replace()</span> String method</h2>
+    <h4><a target="_blank" href="https://www.tutorialspoint.com/java/java_string_replace.htm">link</a></h4>
 
-  <pre class="prettyprint w80">
+    <pre class="prettyprint w80">
 
   var happyThought = "This is really great!";
   var sadThought = "tragic!";
@@ -2094,11 +2106,11 @@ btn.on('click', function() {
   console.log(newThought);
 
 </pre>
-  <hr>
-  <h2 class="ltblue">Nice example of <span class="dkred">recursion</span> with factorials</h2>
-  <h4><a target="_blank" href="https://frontendmasters.com/courses/computer-science/exercise-1-solution">solution explained here</a></h4>
+    <hr>
+    <h2 class="ltblue">Nice example of <span class="dkred">recursion</span> with factorials</h2>
+    <h4><a target="_blank" href="https://frontendmasters.com/courses/computer-science/exercise-1-solution">solution explained here</a></h4>
 
-  <pre class="prettyprint w80">
+    <pre class="prettyprint w80">
 
   function factorialize(num) {
       if (num < 2) {
@@ -2111,16 +2123,16 @@ btn.on('click', function() {
     factorialize(3);
     factorialize(20);
   </pre>
-  <span class="ltred bg">Open another browser to run it to avoid mishaps with infinite loops</span>
+    <span class="ltred bg">Open another browser to run it to avoid mishaps with infinite loops</span>
 
 
 
-  <hr>
+    <hr>
 
-  <h2 class="ltblue">Nice example of String Method: <span class="dkred">.replace();</span></h2>
-  <h4><a target="_blank" href="https://www.freecodecamp.com/challenges/search-and-replace">search-and-replace</a></h4>
+    <h2 class="ltblue">Nice example of String Method: <span class="dkred">.replace();</span></h2>
+    <h4><a target="_blank" href="https://www.freecodecamp.com/challenges/search-and-replace">search-and-replace</a></h4>
 
-  <pre class="prettyprint w80">
+    <pre class="prettyprint w80">
 
   function myReplace(str, before, after) {
 
@@ -2139,7 +2151,7 @@ btn.on('click', function() {
 
 </pre>
 
-</div>
+  </div>
 
   </pre>
 
