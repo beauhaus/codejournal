@@ -6,6 +6,7 @@
     <!--entire page pre-->
 
 <div class="react-frame-light"><h1 class="chtitle dkmango">REACT STATE:</h1>
+  <h2 class="ctrtxt">From static component with <em>"untracted input"</em> to Stateful component in a few easy steps</h2>
 <div class="brdr-b w40 ctr ctrtxt">
 <p>A component can only modify it's own state
 and cannot modify another component's state.
@@ -180,11 +181,11 @@ There is <em>yet</em> a more concise bit of wizardry used by Brian Holt in his c
 Finally, we can delete a good bit of code to make this class more concise.
 Delete: <code class="ltred">this.handleSearchTermChange = this.handleSearchTermChange.bind(this);</code>
 Transform <code>handleSearchTermChange</code> into an arrow function...
-<pre class="slate-skyblue-fr">  handleSearchTermChange = event => {
+<pre class="slate-skyblue-fr w60">  handleSearchTermChange = event => {
     this.setState({ searchTerm: event.target.value });
   }</pre>
 Replace the entire constructor function with the object:
-<pre class="slate-skyblue-fr"> state = {
+<pre class="slate-skyblue-fr w30"> state = {
     searchTerm: ''
   };</pre>
 <h2 class="ctrtxt clean">Entire working code is much cleaner</h2>

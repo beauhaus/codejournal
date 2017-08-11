@@ -14,251 +14,6 @@ tooling notes
 REACT VOCAB & NOTES:
 
 
-// STATE: *Video 30
-// A component can only modify it's own state.
-// It cannot modify another component's state.
-
-// components like this, thus far, don't have state. The input, for example, has an "untracked input"
--------
-// import React from 'react';
-// import ShowCard from './ShowCard';
-// import preload from '../data.json';
-//
-// const Search = () => (
-//   <div className="search">
-//     <div>
-//       <h1>SVideo</h1>
-//       <input type="text" placeholder="search" />
-//       {preload.shows.map(show => <ShowCard key={show.imdbID} {...show} />)})
-//     </div>
-//   </div>
-// );
-//
-// export default Search;
-// -------
-// This needs to be transformed into an ES6 class component.
-//
-// _______________
-// import React, { Component } from 'react';
-// import ShowCard from './ShowCard';
-// import preload from '../data.json';
-//
-// class Search extends Component {
-//   render() {
-//     return (
-//       <div className="search">
-//         <div>
-//           <h1><SVideo</h1>
-//           <input type="text" placeholder="search" />
-//           {preload.shows.map(show => <ShowCard key={show.imdbID} {...show} />)})
-//         </div>
-//       </div>
-//     );
-//   }
-// }
-//
-// export default Search;
-// _______________
-//
-// What one thing MUST react component class have?
-//
-// --A render method. and the render method MUST return markup
-// -------
-// class Search extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       searchTerm: 'this is a debug statement',
-//     };
-//   }
-//   // searchTerm will soon be set as an empty str ''
-//   render() {
-//     return (
-//       <div className="search">
-//         <div>
-//           <h1><span role="img" aria-label="react emoji">⚛️</span>SVideo</h1>
-//           <input value={this.state.searchTerm} type="text" placeholder="search" />
-//           {preload.shows.map(show => <ShowCard key={show.imdbID} {...show} />)})
-//         </div>
-//       </div>
-//     );
-//   }
-// }
-// --------
-// At this state the initial value of input is tied to whatever the init value of state.
-// I type into input, it fires an event the event flows into the Component but value is always the state which is the string "This is (etc etc.)"
-
-// ENTER THE 'onChangehandler' 🎉👍🏼 woohoo!
-// -----
-// class Search extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       searchTerm: 'this is a debug statement',
-//     };
-//   }
-//   handleSearchTermChange(event) {
-//     this.setState({ searchTerm: event.target.value });
-//   }
-//   // searchTerm will soon be set as an empty str ''
-//   render() {
-//     return (
-//       <div className="search">
-//         <div>
-//           <h1><span role="img" aria-label="react emoji">⚛️</span>SVideo</h1>
-//           <input onChange={this.handleSearchTermChange} value={this.state.searchTerm} type="text" placeholder="search" />
-//           {preload.shows.map(show => <ShowCard key={show.imdbID} {...show} />)})
-//         </div>
-//       </div>
-//     );
-//   }
-// }
-// ------------
-// We're still not there...
-// We need to call the event on the Search class.
-//
-// We need to bind it to the context of Search...
-//
-// There are may ways to bind the context to Search.
-// WARNING: There is one bad/lazy way.
-//
-// onChange={this.handleSearchTermChange.bind(this)}
-
-// PROBLEM:
-// why is this bad?
-// render gets called alot! --everytime I call .bind() it creates a new func every time render gets called.
-// .bind() is an expensive call. This is bad do not do it.
-// 22:23  error  JSX props should not use .bind()
-// SOLUTION:
-// in the constructor put:
-// this.handleSearchTermChange = this.handleSearchTermChange.bind(this);
-//
-// it's super awkward, but it will solve all the problems.
-//
-// -----
-// import React, { Component } from 'react';
-// import ShowCard from './ShowCard';
-// import preload from '../data.json';
-//
-// class Search extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       searchTerm: 'this is a debug statement',
-//     };
-//     this.handleSearchTermChange = this.handleSearchTermChange.bind(this);
-//   }
-//
-//   handleSearchTermChange(event) {
-//     this.setState({ searchTerm: event.target.value });
-//   }
-//
-//   render() {
-//     return (
-//       <div className="search">
-//         <div>
-//           <h1>reactApp</h1>
-//           <input onChange={this.handleSearchTermChange} value={this.state.searchTerm} type="text" placeholder="search" />
-//           {preload.shows.map(show => <ShowCard key={show.imdbID} {...show} />)})
-//         </div>
-//       </div>
-//     );
-//   }
-// }
-//
-// export default Search;
-//
-// -----
-
-// 
-// BUT! We can do one better using a stage 2 ES6 proposal
-//
-// //babelrc
-// "plugins": ["babel-plugin-transform-class-properties"]
-// ...
-// this enables us to add class properties on to our ES6 classes.
-//
-// Then go to eslin.json
-// add
-//
-//
-//
-//
-//
-//
-//
-// then, delete this line:     this.handleSearchTermChange = this.handleSearchTermChange.bind(this);
-//
-// then turn the handleSearchTermChange to an arrow funk
-//
-//
-// --------
-// class Search extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       searchTerm: 'this is a debug statement',
-//     };
-//     // this.handleSearchTermChange = this.handleSearchTermChange.bind(this);
-//   }
-//
-//   handleSearchTermChange = event => {
-//     this.setState({ searchTerm: event.target.value });
-//   }
-//   -------
-//
-//   YOU CAN ALSO GET RID OF the CONSTRUCTOR altogether and add state = {searchTerm: ''}
-//
-// ----------ENTIRE CODE--------------------
-//
-// import React, { Component } from 'react';
-// import ShowCard from './ShowCard';
-// import preload from '../data.json';
-//
-// class Search extends Component {
-//   state = {
-//     searchTerm: '',
-//   };
-//
-//   handleSearchTermChange = event => {
-//     this.setState({ searchTerm: event.target.value });
-//   };
-//
-//   render() {
-//     return (
-//       <div className="search">
-//         <div>
-//           <h1><span role="img" aria-label="react emoji">⚛️</span>SVideo</h1>
-//           <input onChange={this.handleSearchTermChange} value={this.state.searchTerm} type="text" placeholder="search" />
-//           {preload.shows.map(show => <ShowCard key={show.imdbID} {...show} />)})
-//         </div>
-//       </div>
-//     );
-//   }
-// }
-//
-// export default Search;
-----------
-*Video 30
-
-
-
-
-
-
-
-
-
-
-
-"Untracked input"
-
-An input that does not do anything. It doesn't connect anywhere.
-It is not stateful.
-
-
-
-
 
 
 
@@ -496,6 +251,29 @@ attr key is a special property that is not passed in props and cant be used with
 
 
 StyledComponents vs cssComponents:
+
+
+One simple way (aside from the traditional way of linking in the HTML's head tag) is:
+
+Just do this and forget about it.
+----------
+//index.js
+import React from 'react';
+import { render} from 'react-dom'
+
+****import './css/style.css';
+
+import StorePicker from './components/StorePicker'
+
+render(<StorePicker/>, document.querySelector('#main'));
+----------
+
+
+
+
+
+
+
 
 "&" also works in styled components
 $media also works!!
@@ -752,8 +530,9 @@ ShowCard.defaultProps = {
 // jsx comments:  {/* comment */}
 
 /*
-AND you must put them inside the element u r returning (in JSX)
 
+AND you must put them inside the element u r returning (in JSX)
+You cannot put them as the first line of return at the top of your JSX code
 
 -- before the return //any normal js comments are permissable
 
