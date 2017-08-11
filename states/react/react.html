@@ -5,19 +5,224 @@
     <pre>
     <!--entire page pre-->
 
-<div class="react-frame-light"><h3 class="chtitle">reactTEst</h3>
-
-<p>Hello how areyou? today</p>
-<code>This is some code</code>
+<div class="react-frame-light"><h1 class="chtitle dkmango">REACT STATE:</h1>
+<div class="brdr-b w40 ctr ctrtxt">
+<p>A component can only modify it's own state
+and cannot modify another component's state.
+</p>
 </div>
+<p>Components like this, thus far, don't have state. The input, for example, is an <em>"untracked input"</em></p>
+<pre class="prettyprint w60">import React from 'react';
+import ShowCard from './ShowCard';
+import preload from '../data.json';
+
+const Search = () => (
+  < div className="search">
+    < div>
+      < h1>reactApp< /h1>
+      < input type="text" placeholder="search" />
+      {preload.shows.map(show => < ShowCard key={show.imdbID} {...show} />)})
+    < /div>
+  < /div>
+);
+
+export default Search;
+</pre>
+<p>This needs to be transformed into an ES6 class component.</p>
+<span class="lg ltred">Q</span> What one thing MUST a class Component have?  <span class="ans ltred med">a render method</span>
+<span class="lg ltred">Q</span> And it must return..?  <span class="ans ltred med">markup</span>
+<pre class="dkbg w60">
+<span class="orange"><code>class Search extends Component {
+    render() {
+    return (</span></code>
+      < div className="search">
+        < div>
+          < h1>reactApp< /h1>
+          < input type="text" placeholder="search" />
+          {preload.shows.map(show => < ShowCard key={show.imdbID} {...show} />)})
+        < /div>
+      < /div>
+    <span class="orange">);
+  }
+}</span>
+</pre>
+<p>Further... This class Component must be given a constructor with props and a way to define initial state.
+Here, the inital value is 'tied' to whatever I type into the input.</p>
+<pre class="dkbg w60">class Search extends Component {
+  <span class="orange"><code>constructor(props) {
+    super(props);
+    this.state = {
+      searchTerm: 'This is a test String',
+    };
+  }</span></code>
+  render() {
+    return (
+      < div className="search">
+        < div>
+          < h1>reactApp< /h1>
+          < input value={this.state.searchTerm} type="text" placeholder="search" />
+          {preload.shows.map(show => < ShowCard key={show.imdbID} {...show} />)})
+        < /div>
+      < /div>
+    <span class="orange"><code>);
+  }
+}</span></code>
+</pre>
+
+<p>So with this... I type into input and ABSOLUTELY nothing happens.--Yes, an event fires, yet react will always check what the state is and place it back into the browser as the value of input!</p>
+
+<h2 class="ctrtxt clean">Enter...the <code><em>onChange</em> handler!</code> <span class="med">🎉👍🏼</span> Woohoo!</h2>
+We use this.setState() to update components local state:
+<pre class="dkbg w80">class Search extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchTerm: 'this is a test String',
+    };
+  }
+<span class="orange"><code>  handleSearchTermChange(event) {
+    this.setState({ searchTerm: event.target.value });
+  }</span></code>
+
+  render() {
+    return (
+      < div className="search">
+        < div>
+          < h1>reactApp< /h1>
+          < input<span class="orange"><code>onChange={this.handleSearchTermChange}</span></code>value={this.state.searchTerm} type="text" placeholder="search" />
+          {preload.shows.map(show => < ShowCard key={show.imdbID} {...show} />)})
+        < /div>
+      < /div>
+    );
+  }
+}</pre>
+This is fine, but we still haven't called the event on the Search class.
+
+In order to do so, we need to bind this event to the context of Search.
+
+There are many ways to do this... Let's take a look at a worst practice for binding.
+
+<code class="ctrtxt med ltred">onChange={this.handleSearchTermChange.bind(this)}</code>
+
+<pre class="dkbg ctr"><div className="search">
+  < div className="search">
+   < div>
+     < h1>reactApp< /h1>
+     < input onChange={this.handleSearchTermChange<span class="ltred">.bind(this)</span>} value={this.state.searchTerm} type="text" placeholder="search" />
+     {preload.shows.map(show => < ShowCard key={show.imdbID} {...show} />)})
+   < /div>
+ < /div>
+</pre>
+Why is this code crap?
+<p><strong class="lg dkblue">Problem:</strong> Render gets called a lot in react --Every time render gets called it will call .bind() and create a new function.
+.bind() is an expensive call in javascript.</p>
+React will, in fact, throw an error.
+<br>
+<p><strong class="lg dkblue">Solution:</strong> in the constructor, we place the following:
+<br><code class="brdr-w dkorange">this.handleSearchTermChange = this.handleSearchTermChange.bind(this);</code>
+</p>
+This may look awkward, but it will solve all of our problems.
+<pre class="prettyprint linenums">// Search.JSX
+import React, { Component } from 'react';
+import ShowCard from './ShowCard';
+import preload from '../data.json';
+
+class Search extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchTerm: 'this is a debug statement',
+    };
+    this.handleSearchTermChange = this.handleSearchTermChange.bind(this); // Boom --Solved!
+  }
+
+  handleSearchTermChange(event) {
+    this.setState({ searchTerm: event.target.value });
+  }
+
+  render() {
+    return (
+      < div className="search">
+        < div>
+          < h1>reactApp< /h1>
+          < input onChange={this.handleSearchTermChange} value={this.state.searchTerm} type="text" placeholder="search" />
+          {preload.shows.map(show => < ShowCard key={show.imdbID} {...show} />)})
+        < /div>
+      < /div>
+    );
+  }
+}
+
+export default Search;</pre>
+
+There is <em>yet</em> a more concise bit of wizardry used by Brian Holt in his class on FrontEnd Masters using a stage 2 javascript proposal.
+
+1) First, we need to update our babelrc file:
+<pre class="slate-skyblue-fr w40"><code class="sm">
+  ...
+  ...
+      "loose": true,
+      "modules": false
+      }
+    ]
+  ],
+<span class="pastY">"plugins": ["babel-plugin-transform-class-properties"]</span>
+}</code></pre>
+2) Next, we need to make sure that eslint.json has the proper parser:
+<pre class="slate-skyblue-fr w40"><code class="sm">
+  ...
+  ...
+  "plugins": ["prettier"],
+  <span class="pastY">"parser": "babel-eslint",</span>
+  "parserOptions": {
+  ...
+</code></pre>
+Finally, we can delete a good bit of code to make this class more concise.
+Delete: <code class="ltred">this.handleSearchTermChange = this.handleSearchTermChange.bind(this);</code>
+Transform <code>handleSearchTermChange</code> into an arrow function...
+<pre class="slate-skyblue-fr">  handleSearchTermChange = event => {
+    this.setState({ searchTerm: event.target.value });
+  }</pre>
+Replace the entire constructor function with the object:
+<pre class="slate-skyblue-fr"> state = {
+    searchTerm: ''
+  };</pre>
+<h2 class="ctrtxt clean">Entire working code is much cleaner</h2>
+<pre class="prettyprint">import React, { Component } from 'react';
+import ShowCard from './ShowCard';
+import preload from '../data.json';
+
+class Search extends Component {
+  state = {
+    searchTerm: '',
+  };
+
+  handleSearchTermChange = event => {
+    this.setState({ searchTerm: event.target.value });
+  };
+
+  render() {
+    return (
+      < div className="search">
+        < div>
+          < h1>reactApp< /h1>
+          < input onChange={this.handleSearchTermChange} value={this.state.searchTerm} type="text" placeholder="search" />
+          {preload.shows.map(show => < ShowCard key={show.imdbID} {...show} />)})
+        < /div>
+      < /div>
+    );
+  }
+}
+
+export default Search;</pre>
 
 
 
 
 
+</div>
+<hr>
 
-
-  <hr>
 
   </pre>
   <!--entire page pre-->

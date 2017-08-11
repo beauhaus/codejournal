@@ -1,5 +1,5 @@
 pre.prettyprint {
-  border:1px solid map-get($colors, trim);
+  border: 1px solid map-get($colors, trim);
 }
 div.react-entry {
   background-color: #008080;
@@ -7,7 +7,8 @@ div.react-entry {
   height: 80vh;
   border: 1px solid map-get($colors, ivr);
   & .chtitle {
-    color: black;
+    font-family: map-get($fonts, Thin);
+    color: map-get($colors, dkorange);
   }
 }
 .react-frame-light {

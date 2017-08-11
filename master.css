@@ -667,7 +667,8 @@ div.react-entry {
   height: 80vh;
   border: 1px solid #e6d8cc; }
   div.react-entry .chtitle {
-    color: black; }
+    font-family: "Roboto", Sans-Serif;
+    color: #945706; }
 
 .react-frame-light {
   padding: 2%;
