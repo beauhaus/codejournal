@@ -8,6 +8,69 @@
 
 <!--
 -->
+<div class="slate-skyblue-fr"> <h1 class="chtitle">Closures created in an Array</h1>
+  <p class="thin">The problem: Code separate vals for these calls:
+  <div class="w30 ctr"><code class="softsand">
+    funcArray[0](); //returns 0
+    funcArray[1](); //returns 1
+    funcArray[2](); //returns 2
+    funcArray[3](); //returns 3</code></div>
+(In other words...a function created at each item in Array returning a separate incrementing value.) </p>
+  <p>Attempt:
+  <pre class="brdr-w ctr prettyprint w40">var funcArray = [];
+for (var i = 0; i < 3; i++) {
+  // make 3 functions
+  funcArray[i] = function() {
+    // and store them at each index
+    console.log(`My value: ${i}`); // each should log its value.
+  };
+}
+
+for (var j = 0; j < 3; j++) {
+  funcArray[j](); // run run each one
+}
+// My value: 3
+// My value: 3
+// My value: 3
+</pre>
+
+
+  <!-- var myFunctions = [];
+for (var i = 0; i < 3; i++) {
+  // let's create 3 functions
+  myFunctions[i] = function() {
+    // and store them in myFunctions
+    console.log(`My value: ${i}`); // each should log its value.
+  };
+}
+
+for (var j = 0; j < 3; j++) {
+  myFunctions[j](); // and now let's run each one to see
+}
+
+// ===================
+
+var funcArray = [];
+
+function createMyFunction(i) {
+  console.log(`closure val is ${i}`);
+  return () => i;
+}
+
+for (var i = 0; i < 4; i++) {
+  funcArray[i] = createMyFunction(i);
+}
+
+funcArray[0](); //returns 0
+funcArray[1](); //returns 1
+funcArray[2](); //returns 2
+funcArray[3](); //returns 3
+console.log(funcArray);
+
+var funcArray = []; -->
+  <pre class="brdr-w ctr w50"></pre>
+
+</div>
 
 <div class="simple-frame">
   <h3 class="chtitle wh">Pass by reference vs Pass by value</h3> All primitives pass by value.

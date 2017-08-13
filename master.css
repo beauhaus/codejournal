@@ -639,6 +639,8 @@ div.ecma-entry {
     padding: 2vh 2vw;
     border: 1px solid burlywood;
     font-size: .6em; }
+  div.ecma-entry .thin {
+    font-family: "Roboto", Sans-Serif; }
   div.ecma-entry a {
     background-color: #d0b588; }
   div.ecma-entry div {
@@ -649,7 +651,8 @@ div.ltbg {
   div.ltbg p {
     margin: 1vw; }
 
-code, pre {
+code,
+pre {
   padding: 1vw; }
 
 pre.code-sample {

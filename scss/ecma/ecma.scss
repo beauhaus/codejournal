@@ -11,6 +11,9 @@ div.ecma-entry {
     border: 1px solid burlywood;
     font-size: .6em;
   }
+  & .thin {
+    font-family: map-get($fonts, Thin);
+  }
 
   a {
     background-color: map-get($colors, sand);
@@ -32,14 +35,15 @@ div.ltbg {
     margin: $baseline;
   }
 }
-code, pre {
+code,
+pre {
   padding: $baseline;
 }
 pre.code-sample {
   font: {
     family: map-get($fonts, CodePro), Sans-Serif !important;
   }
-  #condensed-list{
+  #condensed-list {
     li {
       margin: .5vh auto;
       list-style-type: lower-latin;
