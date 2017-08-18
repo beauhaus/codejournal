@@ -8,6 +8,38 @@
 
 <!--
 -->
+<div class="simple-frame"><h3 class="chtitle dkblue">Note on Object.keys()</h3>
+<h1 class="ltred thin">Q:</h1>What higher-order Fn do we use to turn an array to an Object?<br />
+<h3 class="ans dkblue">.reduce()</h3>
+
+Conversely, a great way to turn an Object to an array is with the vanilla js...Object.keys();
+
+<pre class="prettyprint w40 ctr">
+  const meals = {
+    Asian: 'Pork',
+    Italian: 'Pasta',
+    American: 'Hamburgers'
+  };
+  var mealsArr = Object.keys(meals);
+
+  console.log(mealsArr);
+// (3) ["Asian", "Italian", "American"]
+</pre>
+
+We can, then, begin to put it back together with .reduce();
+
+<pre class="prettyprint w40 ctr">
+var backToObject = mealsArr.reduce(function(a, b) {
+  a[b] = b;
+  return a;
+}, {});
+
+console.log(backToObject);
+// {Asian: "Asian", Italian: "Italian", American: "American"}
+</pre>
+
+</div>
+
 <div class="slate-skyblue-fr"> <h1 class="chtitle">Closures created in an Array</h1>
   <p class="thin">The problem: Code separate vals for these calls:
   <div class="w30 ctr"><code class="softsand">
@@ -1004,8 +1036,7 @@ for (var i = 0; i < purps.length; i++) {
   <div class="slate-skyblue-fr">
     <h3 class="chtitle">Recursion</h3>
 The BASE CASE is "when you want to stop recursing"
-The first line of any recursion OUGHT to be the base case because you want to avoid
-stack overflows.
+The first line of any recursion OUGHT to be the base case because you want to avoid stack overflows.
 
 Give Fn a maximum output & start it with a number...
 
@@ -1027,7 +1058,7 @@ basicRecursion(6, 1);
 
 
 I. Fibonacci: the sum of the two prior numbers past the 2nd index in the sequence
-
+(albeit, an extremely inefficient fibonacci)
 <pre class="prettyprint w40 linenums">
   function fib(num) {
   // First we establish the base case
