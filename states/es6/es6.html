@@ -4,10 +4,53 @@
 <!-- pre for entire page -->
 
 <!--
-paste temp
 -->
 <div class="es6-entry entry">
 <pre>
+  <div class="simple-frame2">
+    <h3>Block-scope, var & let: a simple illustration c/o Dan Wellman</h3>
+    <h4>Let's take a look at <em class="ivr">let</em></h4>
+    <pre class="prettyprint w40">
+      'use strict';
+      (function() {
+        console.log(block);
+
+        if (true) {
+          let block = 'block';
+        }
+      })();
+    </pre>
+    <h5>This, of course, returns: <span class="ans med ltred">Uncaught ReferenceError: block is not defined (or not declared!)</span>
+    Why? (hint: "var" wouldn't throw an error--simply "undefined") --because <span class="ans med ltred">log calls block but let prevents it from being hoisted.</span></h5>
+
+
+    <h6 class=" ctrtxt ivr">Even if the console.log(block) were <em>after</em> the if statement... it would still throw a ref error. </h6>
+
+    <div class="dkbg3 w50 ctr"><h5>Let has two features:<br />
+      1) 'let' is to create scope to its containing block.<br />
+      2) 'let' is not hoisted.<br />
+      </h5>
+  <h4>The temporal Dead-zone:</h4>
+  <pre>
+'use strict';
+(function() {
+
+  if (true) {
+    console.log(block);
+
+    let block = 'block';
+  }
+})();
+</pre>
+<h5>This, too, returns: <span class="med ltred">Uncaught ReferenceError: block is not defined (or not declared!)</span>
+Everything inside the block prior to the 'let' declaration is known as the <span class="orange">"Temporal Dead-zone"</span></h5>
+
+
+
+    </div>
+
+  </div>
+  <hr>
   <div class="framed6">
     <h3>.map() with ES6</h3>
     <h4>Note: <em class="ivr">implicit return</em></h4>
@@ -27,6 +70,7 @@ paste temp
 </pre>
 
   </div>
+  <hr>
   <div class="simple-frame2"><h3 class="chtitle">The spread operator: ES6</h3>
 All you need is <span class="y">...</span> then <i class="y">varName</i>
     <pre class="prettyprint w80 col-2">function addItems(a, b, c) {

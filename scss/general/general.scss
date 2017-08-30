@@ -6,16 +6,10 @@
 }
 // This comment wont show on css
 /* this comment will show in css*/
-
-
 li {
   list: {
     style: none;
   }
-}
-
-ul.condensed-list li{
-  list-style: lower-latin;
 }
 
 body {
@@ -30,11 +24,10 @@ body {
       family: map-get($fonts, CodePro);
     }
   }
-
 }
 div.bg-image:before {
   content: "";
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 0;
   z-index: -1;
@@ -236,11 +229,11 @@ pre.prettyprint {
 .squat {
   line-height: .5em;
 }
-.col-2{
+.col-2 {
   columns: 2 5vw;
   column-rule: 1px solid fuchsia;
 }
-.col-3{
+.col-3 {
   columns: 3 auto;
   column-rule: 1px solid map-get($colors, mustard);
 }
@@ -335,8 +328,6 @@ a[ui-sref]:hover {
   color: map-get($colors, mutedOrange);
   transition: color 1s;
 }
-
-
 
 .underline {
   text-decoration: underline;
@@ -435,26 +426,12 @@ a[ui-sref]:hover {
     size: 1.4vw;
   }
 }
-.simple-frame4 {
-  border: 1px solid #acaecd;
-  box-shadow: 1px 1px 4px 1px map-get($colors, dkbg);
-  background-color: map-get($colors, tan);
-  color: map-get($colors, trim);
-  font-family: Trebuchet, sans-serif;
-  font-weight: 400;
-  padding: 1vh 2vw;
-  font: {
-    weight: 400;
-    family: Trebuchet, Sans-Serif;
-    size: 1.4vw;
-  }
-}
 .simple-wine-frame {
   padding: 1% 2%;
   border: 1px solid grey;
   background-color: map-get($colors, dkbg2);
 }
-.forest-red-fr {
+.framed1 {
   padding: 2%;
   font: {
     size: 1.4vw;
@@ -468,14 +445,8 @@ a[ui-sref]:hover {
   color: map-get($colors, ltgrey);
 }
 
-.burgundy-grey-fr {
-  background: #371a1a;
-  padding: 1%;
-  border: 1px solid map-get($colors, dkgrey);
-  color: map-get($colors, softwhite);
-}
-
 .framed2 {
+  // position: relative;
   padding: 2%;
   font: {
     size: 1.4vw;
@@ -499,27 +470,27 @@ pre {
   background-color: map-get($colors, transGreen);
   padding: 2vh 2vw;
 }
-.slate-skyblue-fr {
+.framed4 {
   font-family: map-get($fonts, Comfortaa);
-    padding: 2%;
-    // margin: 1%;
-    background-color: rgb(55, 71, 78);
-    color: rgb(237, 153, 111);
-    padding: auto, 10%;
-    text-align: left;
-    border: 1px solid skyblue;
+  padding: 2%;
+  margin: 1%;
+  background-color: rgb(55, 71, 78);
+  color: rgb(237, 153, 111);
+  padding: auto, 10%;
+  text-align: left;
+  border: 1px solid skyblue;
 }
 .framed5 {
-    font-family: map-get($fonts, CodePro);
-    padding: 2%;
-    width: 100%;
-    margin: 1%;
-    box-shadow: inset 1px 1px 12px 2px black;
-    background-color: map-get($colors, mutedBlue);
-    color: map-get($colors, mango);
-    padding: auto, 10%;
-    text-align: left;
-    border: 1px solid map-get($colors, mutedOrange);
+  font-family: map-get($fonts, CodePro);
+  padding: 2%;
+  width: 100%;
+  margin: 1%;
+  box-shadow: inset 1px 1px 12px 2px black;
+  background-color: map-get($colors, mutedBlue);
+  color: map-get($colors, mango);
+  padding: auto, 10%;
+  text-align: left;
+  border: 1px solid map-get($colors, mutedOrange);
 }
 
 .framed6 {
@@ -551,15 +522,15 @@ pre {
 }
 
 .framed8 {
-    font-family: map-get($fonts, CodePro);
-    padding: 2%;
-    margin: 1%;
-    box-shadow: inset 1px 1px 12px 2px black;
-    background-color: map-get($colors, pastBlue);
-    color: map-get($colors, mango);
-    padding: auto, 10%;
-    text-align: left;
-    border: 1px solid map-get($colors, mutedOrange);
+  font-family: map-get($fonts, CodePro);
+  padding: 2%;
+  margin: 1%;
+  box-shadow: inset 1px 1px 12px 2px black;
+  background-color: map-get($colors, pastBlue);
+  color: map-get($colors, mango);
+  padding: auto, 10%;
+  text-align: left;
+  border: 1px solid map-get($colors, mutedOrange);
 }
 .dk-frame {
   padding: 1%;
@@ -661,7 +632,6 @@ pre {
   color: map-get($colors, sand);
   background-color: transparent;
   text-align: center;
-
 }
 
 .neighbors-item {
@@ -674,7 +644,9 @@ img.neighbors-item {
 // .linenums li {
 //     list-style-type: decimal-leading-zero;
 // }
-.prettyprint ol.linenums > li { list-style-type: decimal-leading-zero; }
+.prettyprint ol.linenums > li {
+  list-style-type: decimal-leading-zero;
+}
 
 .linenums {
   margin-left: 2vw;
@@ -690,7 +662,7 @@ img.neighbors-item {
   padding: 1%;
   border: 1px solid ivory;
 }
-.brdr-b{
+.brdr-b {
   padding: 1%;
   border: 1px solid black;
 }
@@ -712,9 +684,8 @@ img.neighbors-item {
 }
 .debossed-dk-frame {
   padding: 1%;
-  background: linear-gradient(to right, rgba(0,0,0,0.7) 0%,rgba(125,185,232,0) 100%);
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0%, rgba(125, 185, 232, 0) 100%);
   border: 1px solid map-get($colors, dkghost);
-  width: 57vw;
   border-right: 0px solid transparent;
   border-bottom: 0px solid transparent;
   box-shadow: inset 10px 7px 6px -2px map-get($colors, black);
@@ -738,7 +709,4 @@ img.neighbors-item {
 }
 .thin {
   font-family: map-get($fonts, Thin);
-}
-a img.img-link {
-  vertical-align: bottom;
 }
