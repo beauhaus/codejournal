@@ -8,30 +8,30 @@
 <div class="es6-entry entry">
 <pre>
   <div class="simple-frame2">
-    <h3>Block-scope, var & let: a simple illustration c/o Dan Wellman</h3>
+    <h3 class="chtitle thin">Block-scopes with <b class="lg wh">let</b> & <b class="lg wh">const</b>: a simple illustration   <br><a target="_blank" href="https://code.tutsplus.com/courses/javascript-es6-fundamentals" class="sm">(c/o Dan Wellman)</a></h3>
     <h4>Let's take a look at <em class="ivr">let</em></h4>
-    <pre class="prettyprint w40">
-      'use strict';
-      (function() {
-        console.log(block);
+    <pre class="prettyprint w30">
+'use strict';
+(function() {
+  console.log(block);
 
-        if (true) {
-          let block = 'block';
-        }
-      })();
+  if (true) {
+    let block = 'block';
+  }
+})();
     </pre>
-    <h5>This, of course, returns: <span class="ans med ltred">Uncaught ReferenceError: block is not defined (or not declared!)</span>
-    Why? (hint: "var" wouldn't throw an error--simply "undefined") --because <span class="ans med ltred">log calls block but let prevents it from being hoisted.</span></h5>
+  <h5>This, of course, returns: <span class="ans med ltred">Uncaught ReferenceError: block is not defined (or not declared!)</span>
+  Why? (hint: "var" wouldn't throw an error--simply "undefined") --because <span class="ans med ltred">log calls block but let prevents it from being hoisted.</span></h5>
 
 
-    <h6 class=" ctrtxt ivr">Even if the console.log(block) were <em>after</em> the if statement... it would still throw a ref error. </h6>
+  <h6 class=" ctrtxt ivr">Even if the console.log(block) were <em>after</em> the if statement... it would still throw a ref error. </h6>
 
-    <div class="dkbg3 w50 ctr"><h5>Let has two features:<br />
-      1) 'let' is to create scope to its containing block.<br />
-      2) 'let' is not hoisted.<br />
-      </h5>
+  <div class="dkbg3 w50 ctr brdr-w"><h5>Let has two features:<br />
+    1) 'let' is to create scope to its containing block.<br />
+    2) 'let' is not hoisted.<br />
+    </h5>
   <h4>The temporal Dead-zone:</h4>
-  <pre>
+  <pre class="prettyprint w30 ctr">
 'use strict';
 (function() {
 
@@ -42,13 +42,24 @@
   }
 })();
 </pre>
-<h5>This, too, returns: <span class="med ltred">Uncaught ReferenceError: block is not defined (or not declared!)</span>
-Everything inside the block prior to the 'let' declaration is known as the <span class="orange">"Temporal Dead-zone"</span></h5>
+<h5>This, too, returns: <span class="med ltred">Uncaught ReferenceError: block is not defined (or not declared!)</span><br />
+Everything inside the block prior to the 'let' declaration is known as the <span class="orange comfort">"Temporal Dead-zone"</span></h5>
+</div>
+<h4>Let's take a look at <em class="ivr">const</em></h4>
+It's read-only whose value can't be changed thru reassignment or redeclaration.
 
+Like let variables, they are not hoisted.
+<h4 class="chtitle">Though immutable, passing by reference to change an Object's value <em>DOES</em> work:</h4>
+<pre class="prettyprint w50 ctr">  let obj = {
+    testColor: 'Blue'
+  };
 
+  const refToObject_C = obj;
 
-    </div>
+  obj.testColor = 'Fuchsia';
 
+  console.log(refToObject_C); // {testColor: "Fuchsia"}</pre>
+<h5 class="orange">As discussed in the "ecma" view of this site... passing by reference is using an "alias" and so, changes a value indirectly using that alias.</h5>
   </div>
   <hr>
   <div class="framed6">
