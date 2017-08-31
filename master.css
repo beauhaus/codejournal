@@ -842,6 +842,10 @@ div.es6-entry {
 .prettyprint {
   border: 1px solid burlywood; }
 
+.clean,
+.comfort {
+  font-weight: 400; }
+
 div.svg-entry {
   background-color: #575757;
   color: #d0b588;

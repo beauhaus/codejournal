@@ -6,6 +6,44 @@
 
   <!--
 -->
+<div class="simple-frame2">
+  <h2 class="chtitle">Spread Operators</h2><br />
+  <h3 class="chtitle clean">Spread operators are used to expand an 'iterable object' when multiple items are expected.
+  <br />They can be used in Fn calls, Parameter Lists, Array literals, Obj destructuring</h3>
+
+<br /><pre class="prettyprint w60 ctr">  function names(fourtyOne, fourtyTwo, fourtyThree, fourtyFour) {
+    return `${fourtyOne} then ${fourtyTwo} then ${fourtyThree} then ${fourtyFour}`;
+  }
+  const presidents = ['Bush Sr.', 'Clinton', 'Bush Jr.', 'Obama'];
+
+  console.log(names(...presidents)); // Bush Sr. then Clinton then Bush Jr. then Obama
+</pre>
+
+<br /><br />
+<h3 class="ivr clean">These are also REALLY useful for Array Literals:</h3>
+<pre class="prettyprint ctr w60">  var girls = ['sue', 'tina', 'kim'];
+  var boys = ['jack', 'joe', 'Andy'];
+  var teachers = ['Mrs. Wilson', 'Mr. Whipple'];
+
+  var schoolPicnic = [...girls, ...boys, ...teachers];
+  console.log(schoolPicnic);
+  // ["sue", "tina", "kim", "jack", "joe", "Andy", "Mrs. Wilson", "Mr. Whipple"]
+</pre>
+<br />
+<hr>
+<h3 class="chtitle thin">The "Rest Parameter"</h3>
+The function below will join any limitless amount of parameters
+the spread allows us to take an arbitrary number of params!
+
+<pre class="prettyprint w50 ctr">  const joinUp = function(...words) {
+    return words.join(' ');
+  };
+  console.log(joinUp('I', 'really', 'am', 'digging', 'es6!'));
+
+  //I really am digging es6!
+</pre>
+</div>
+<hr>
 <div class="framed5"><h2 class="chtitle ivr thin">Default Parameters</h2>
 
 <h2 class="thin">Default Parameter in a function declaration</h2><br />
