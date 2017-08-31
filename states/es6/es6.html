@@ -1,12 +1,52 @@
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
 <div class="es6-container">
-<aside><span class="rot90">{{state}}</span></aside>
-<!-- pre for entire page -->
+  <aside><span class="rot90">{{state}}</span></aside>
+  <div class="es6-entry entry">
+  <!-- pre for entire page -->
 
-<!--
+  <!--
 -->
-<div class="es6-entry entry">
-<pre>
+<div class="framed5"><h2 class="chtitle ivr thin">Default Parameters</h2>
+
+<h2 class="thin">Default Parameter in a function declaration</h2><br />
+<h4 class="paleY">At invocation if a param isn't passed--Function runs the default in the function signature...</h4>
+  <pre class="prettyprint w50 linenums">
+    function entree(fish = 'salmon') {
+      console.log(`I think I'll have ${fish}`);
+    }
+
+    entree(); // I think I'll have the salmon
+
+    entree('lobster'); // I think I'll have the lobster
+  </pre>
+
+<br /><br><h3 class="ctrtxt dkbg3 thin">running grunt es6 to create an es5 example gives us this very cool ternary condition</h3>
+
+<h3 class="brdr-w">var fish = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'salmon';</h3>
+
+<span class="sm ivr">if (<em>"there are more than zero args AND the first arg is NOT 'undefined', then run that first arg--Otherwise run it as 'salmon'..."</em>)</span>
+
+<hr>
+<h2 class="thin">Default Parameter in a function expression -- With a bonus feature!</h2><br />
+<h3 class="chtitle paleY">We can exploit this feature to add multiple default params <br> default parameters are 'visible' to following or later parameters in the same parameter list</h3>
+  <pre class="prettyprint linenums">
+var seinfeld = function(food = 'pretzels', adjective = 'thirsty', catchphrase = `These ${food} are making me ${adjective}`) {
+  console.log(catchphrase);
+};
+
+console.log(seinfeld());
+//These pretzels are making me thirsty
+
+console.log(seinfeld('meatballs'));
+//These meatballs are making me thirsty
+
+console.log(seinfeld(undefined, 'sick'));
+//These pretzels are making me sick
+    </pre>
+
+</div>
+<hr>
+    <pre>
   <div class="simple-frame2">
     <h3 class="chtitle thin">Block-scopes with <b class="lg wh">let</b> & <b class="lg wh">const</b>: a simple illustration   <br><a target="_blank" href="https://code.tutsplus.com/courses/javascript-es6-fundamentals" class="sm">(c/o Dan Wellman)</a></h3>
     <h4>Let's take a look at <em class="ivr">let</em></h4>
@@ -20,18 +60,19 @@
   }
 })();
     </pre>
-  <h5>This, of course, returns: <span class="ans med ltred">Uncaught ReferenceError: block is not defined (or not declared!)</span>
+    <h5>This, of course, returns: <span class="ans med ltred">Uncaught ReferenceError: block is not defined (or not declared!)</span>
   Why? (hint: "var" wouldn't throw an error--simply "undefined") --because <span class="ans med ltred">log calls block but let prevents it from being hoisted.</span></h5>
 
 
-  <h6 class=" ctrtxt ivr">Even if the console.log(block) were <em>after</em> the if statement... it would still throw a ref error. </h6>
+    <h6 class=" ctrtxt ivr">Even if the console.log(block) were <em>after</em> the if statement... it would still throw a ref error. </h6>
 
-  <div class="dkbg3 w50 ctr brdr-w"><h5>Let has two features:<br />
+    <div class="dkbg3 w50 ctr brdr-w">
+      <h5>Let has two features:<br />
     1) 'let' is to create scope to its containing block.<br />
     2) 'let' is not hoisted.<br />
     </h5>
-  <h4>The temporal Dead-zone:</h4>
-  <pre class="prettyprint w30 ctr">
+      <h4>The temporal Dead-zone:</h4>
+      <pre class="prettyprint w30 ctr">
 'use strict';
 (function() {
 
@@ -42,15 +83,12 @@
   }
 })();
 </pre>
-<h5>This, too, returns: <span class="med ltred">Uncaught ReferenceError: block is not defined (or not declared!)</span><br />
+      <h5>This, too, returns: <span class="med ltred">Uncaught ReferenceError: block is not defined (or not declared!)</span><br />
 Everything inside the block prior to the 'let' declaration is known as the <span class="orange comfort">"Temporal Dead-zone"</span></h5>
-</div>
-<h4>Let's take a look at <em class="ivr">const</em></h4>
-It's read-only whose value can't be changed thru reassignment or redeclaration.
-
-Like let variables, they are not hoisted.
-<h4 class="chtitle">Though immutable, passing by reference to change an Object's value <em>DOES</em> work:</h4>
-<pre class="prettyprint w50 ctr">  let obj = {
+    </div>
+    <h4>Let's take a look at <em class="ivr">const</em></h4> It's read-only whose value can't be changed thru reassignment or redeclaration. Like let variables, they are not hoisted.
+    <h4 class="chtitle">Though immutable, passing by reference to change an Object's value <em>DOES</em> work:</h4>
+    <pre class="prettyprint w50 ctr">  let obj = {
     testColor: 'Blue'
   };
 
@@ -59,7 +97,7 @@ Like let variables, they are not hoisted.
   obj.testColor = 'Fuchsia';
 
   console.log(refToObject_C); // {testColor: "Fuchsia"}</pre>
-<h5 class="orange">As discussed in the "ecma" view of this site... passing by reference is using an "alias" and so, changes a value indirectly using that alias.</h5>
+    <h5 class="orange">As discussed in the "ecma" view of this site... passing by reference is using an "alias" and so, changes a value indirectly using that alias.</h5>
   </div>
   <hr>
   <div class="framed6">
@@ -82,8 +120,8 @@ Like let variables, they are not hoisted.
 
   </div>
   <hr>
-  <div class="simple-frame2"><h3 class="chtitle">The spread operator: ES6</h3>
-All you need is <span class="y">...</span> then <i class="y">varName</i>
+  <div class="simple-frame2">
+    <h3 class="chtitle">The spread operator: ES6</h3> All you need is <span class="y">...</span> then <i class="y">varName</i>
     <pre class="prettyprint w80 col-2">function addItems(a, b, c) {
 
   if (typeof a === 'string') {
@@ -115,8 +153,9 @@ console.log(pbNj);
 </pre>
 
   </div>
-<div class="framed5"><h3 class="chtitle ivr">The power of Object.assign()</h3>
-  <pre class="prettyprint">
+  <div class="framed5">
+    <h3 class="chtitle ivr">The power of Object.assign()</h3>
+    <pre class="prettyprint">
   var myStuff = { name: 'myStuff', a: 3, b: "puppies", c: 18, d: "babies", e: false, f: -1, g: "worms" };
 
 function typeGroomer(input, test) {
@@ -132,16 +171,16 @@ function typeGroomer(input, test) {
 // let onlyNums =typeGroomer(myStuff, "number");
 // let onlyBools = typeGroomer(myStuff, "boolean");
 let onlyStrings =typeGroomer(myStuff, "string");
-</pre>
-There is much more to Object.assign();
-<div class="dkbg pastOlive w40">
-<a class="sand" target="_blank" href="https://youtu.be/vM7Tif98Dlo">Here's a helpful link</a>
-<a class="sand" target="_blank" href="https://googlechrome.github.io/samples/object-assign-es6/">AND here</a>
+</pre> There is much more to Object.assign();
+    <div class="dkbg pastOlive w40">
+      <a class="sand" target="_blank" href="https://youtu.be/vM7Tif98Dlo">Here's a helpful link</a>
+      <a class="sand" target="_blank" href="https://googlechrome.github.io/samples/object-assign-es6/">AND here</a>
 
-</div>
-</div>
-<div class="slate-skyblue-fr"><h3 class="chtitle">Template Literals</h3>
-  <pre class="prettyprint w60">
+    </div>
+  </div>
+  <div class="slate-skyblue-fr">
+    <h3 class="chtitle">Template Literals</h3>
+    <pre class="prettyprint w60">
 const italian = {
   name: "Italians",
   meal: "pasta",
@@ -152,18 +191,19 @@ const italian = {
   }
 }
 american.info(); // Americans cook chicken in a frying pan with corn oil.
-</pre><hr>
-<h3 class="chtitle underline">ES6 string methods:</h3>
-<h4 class="pastY">startsWith() endsWith() includes()</h4>
-<pre class="prettyprint w40">  italian.info().includes('cook'); // true
+</pre>
+    <hr>
+    <h3 class="chtitle underline">ES6 string methods:</h3>
+    <h4 class="pastY">startsWith() endsWith() includes()</h4>
+    <pre class="prettyprint w40">  italian.info().includes('cook'); // true
   italian.info().startsWith('cook'); // false
   italian.info().endsWith('oil.'); // true
 </pre>
 
-</div>
-<div class="simple-frame2"><h2 class="ctrtxt">for of loops</h2>
-Plain es5 iteration:
-<pre class="prettyprint w40">
+  </div>
+  <div class="simple-frame2">
+    <h2 class="ctrtxt">for of loops</h2> Plain es5 iteration:
+    <pre class="prettyprint w40">
   var car = {
     color: "red",
     wheels: 4,
@@ -175,15 +215,13 @@ Plain es5 iteration:
     console.log(prop);
   } // color wheels transmission domestic
 </pre>
-<em>for in</em> is for objects --but if you <b>must</b> use 'for of', this will work.
-<pre class="prettyprint w40">
+    <em>for in</em> is for objects --but if you <b>must</b> use 'for of', this will work.
+    <pre class="prettyprint w40">
   for (var prop of Object.keys(car)) {
     console.log(prop);
   }
-</pre>
-
-for of is built for arrays
-<pre class="prettyprint w60">
+</pre> for of is built for arrays
+    <pre class="prettyprint w60">
   var carArr = [{color: "red"}, { wheels: 4}, {transmission: "manual"}, {domestic: false}];
 
   for (prop of carArr) {
@@ -192,11 +230,11 @@ for of is built for arrays
   <img class="w20" src="./img/forof.jpg" alt="for of loop">
 </pre>
 
-</div>
-<hr>
-<div class="framed3"><h2 class="pastY ctrtxt">Object destructuring & Array destructuring</h2>
-Object Destructuring:
-<pre class="prettyprint w40">
+  </div>
+  <hr>
+  <div class="framed3">
+    <h2 class="pastY ctrtxt">Object destructuring & Array destructuring</h2> Object Destructuring:
+    <pre class="prettyprint w40">
   var user = {
     name: "Alex",
     age: 34,
@@ -207,9 +245,8 @@ Object Destructuring:
   console.log(name);
   console.log(age);
   console.log(job);
-</pre>
-This is also useful with a function
-<pre class="prettyprint w40">
+</pre> This is also useful with a function
+    <pre class="prettyprint w40">
   function getTree() {
     return {
       residents: ['squirrel', 'robin family'],
@@ -227,10 +264,8 @@ console.log(getTree());
 //  branches: 14,
 //  age: 25
 // }
-</pre>
-
-Array destructuring:
-<pre class="prettyprint w40">
+</pre> Array destructuring:
+    <pre class="prettyprint w40">
   var arr = ["Alex", 34, "Farmer"];
 
   //old way...
@@ -243,46 +278,31 @@ Array destructuring:
   console.log(job);
 </pre>
 
-</div>
-<hr>
-<div class="slate-skyblue-fr">
-<h3 class="wh ctrtxt">Arrow Functions ("fat-arrow")</h3>
+  </div>
+  <hr>
+  <div class="slate-skyblue-fr">
+    <h3 class="wh ctrtxt">Arrow Functions ("fat-arrow")</h3>
 
-<div class="brdr-w dkbg ctr ctrtxt">
-  Let's remind ourselves of the brevity that arrow funcs allow for:
+    <div class="brdr-w dkbg ctr ctrtxt">
+      Let's remind ourselves of the brevity that arrow funcs allow for:
 
-  <pre class="prettyprint w40 txt-left ctr">const emote = (icon) => console.log(`${icon}`);
+      <pre class="prettyprint w40 txt-left ctr">const emote = (icon) => console.log(`${icon}`);
   emote("🤓");
   // or... const emote = (icon) => console.log(icon);
-  // 🤓</pre>
+  // 🤓</pre> Let's say I set up a func that takes two args:
 
-  Let's say I set up a func that takes two args:
-
-  <pre class="prettyprint w40 txt-left ctr">function serve(iceCream, flavor) {
+      <pre class="prettyprint w40 txt-left ctr">function serve(iceCream, flavor) {
     iceCream(flavor);
-  }</pre>
+  }</pre> I see in the body of the function that <code>serve()</code> is a function and it will subsequently take arg 2 (in the function signature). I have to call this "serve()" with two args. The clumsy way is thus:
 
-  I see in the body of the function that <code>serve()</code> is a function and it will subsequently take arg 2 (in the function signature).
+      <code>serve(<span class="paleY underline">function defineFlavor(fruit) {console.log(fruit)}</span><sup class="wh">1</sup>, <span class="lightgreen">"🍋"</span><sup class="wh">2</sup>);</code> All of the extra text in arg <sup class="wh">1</sup>      simply becomes "iceCream" in the function serve() above it. So it's MUCH, much simpler to remove all of that and use an anonymous function instead of all of that mess. Let's clean it up:
 
-  I have to call this "serve()" with two args.
+      <pre class="prettyprint w40">serve((fruit) => console.log(fruit), "🍋"); // 🍋</pre>
+      <pre class="prettyprint w40">serve((fruit) => console.log(fruit), "🍓"); // 🍓</pre>
 
-  The clumsy way is thus:
-
-  <code>serve(<span class="paleY underline">function defineFlavor(fruit) {console.log(fruit)}</span><sup class="wh">1</sup>, <span class="lightgreen">"🍋"</span><sup class="wh">2</sup>);</code>
-
-  All of the extra text in arg <sup class="wh">1</sup> simply becomes "iceCream" in the function serve() above it.
-
-  So it's MUCH, much simpler to remove all of that and use an anonymous function instead of all of that mess.
-
-  Let's clean it up:
-
-  <pre class="prettyprint w40">serve((fruit) => console.log(fruit), "🍋"); // 🍋</pre>
-  <pre class="prettyprint w40">serve((fruit) => console.log(fruit), "🍓"); // 🍓</pre>
-
-</div><hr>
-
-The following works in ES5:
-<pre class="prettyprint w40">
+    </div>
+    <hr> The following works in ES5:
+    <pre class="prettyprint w40">
 var people = [
   {name: "Sue",age: 23},
   {name: "Kim",age: 13},
@@ -293,33 +313,28 @@ var ageArr = people.map(function(person){
   return person.age;
 });
     // [23,13,21]
-</pre>
-But in ES6, it's much cleaner code.
-<span class="y">IF you only have ONE argument</span>, don't use braces<br />
-ALSO. <span class="y">If you are only returning one thing</span> and not doing other things in the Fn.
-<h3 class="ltred">GET RID OF the return statement and the "{}"</h3>
-<pre class="prettyprint w40">var ageArr = people.map(person => person.age;)</pre>
-
-Here is a promise callback using an Arrow Function.
-<span class="ivr"><em>Old way:</em></span>
-<pre class="prettyprint w40">
+</pre> But in ES6, it's much cleaner code.
+    <span class="y">IF you only have ONE argument</span>, don't use braces<br /> ALSO. <span class="y">If you are only returning one thing</span> and not doing other things in the Fn.
+    <h3 class="ltred">GET RID OF the return statement and the "{}"</h3>
+    <pre class="prettyprint w40">var ageArr = people.map(person => person.age;)</pre> Here is a promise callback using an Arrow Function.
+    <span class="ivr"><em>Old way:</em></span>
+    <pre class="prettyprint w40">
 $http.get(function('/api/people')
 .then(function(data) {
   return res.data;
 })</pre>
-<span class="mango"><em>New ES6 way:</em></span>
-<pre class="prettyprint w40">
+    <span class="mango"><em>New ES6 way:</em></span>
+    <pre class="prettyprint w40">
 $http.get(function('/api/people')
-.then(data => res.data)</pre>
-Don't use arrow functions as method on an object! 'this' breaks everything!
-<a href="https://vimeo.com/216583233" target="_blank">dm link about arrow functions and this</a>
-</div>
+.then(data => res.data)</pre> Don't use arrow functions as method on an object! 'this' breaks everything!
+    <a href="https://vimeo.com/216583233" target="_blank">dm link about arrow functions and this</a>
+  </div>
   <hr>
-<div class="plain-frame3">
-  <h3 class="w60">The "let" keyword.
+  <div class="plain-frame3">
+    <h3 class="w60">The "let" keyword.
   var has 2 kinds of scope. Global and Lexical (or functional) scope.</h3>
-  <span class="ivr">This code doesn't throw an error in es5.</span>
-  <pre class="ctr prettyprint w40">
+    <span class="ivr">This code doesn't throw an error in es5.</span>
+    <pre class="ctr prettyprint w40">
   var gimmeSum = function(sum) {
     if(sum) {
       var total = sum + 3;
@@ -328,8 +343,8 @@ Don't use arrow functions as method on an object! 'this' breaks everything!
   }
   gimmeSum(7)
   // 10</pre>
-  <h3 class="caption">However, let variables are not implicity hoisted</h3>
-  <pre class="ctr prettyprint w40">var gimmeSum = function(sum) {
+    <h3 class="caption">However, let variables are not implicity hoisted</h3>
+    <pre class="ctr prettyprint w40">var gimmeSum = function(sum) {
     if(sum) {
       let total= sum + 3;
     }
@@ -337,14 +352,14 @@ Don't use arrow functions as method on an object! 'this' breaks everything!
   }
   gimmeSum(7) // undefined b/c 'total' is block-scope
   </pre>
-  <h3 class="caption">This can be solved by:</h3>
-  <pre class="ctr prettyprint w20">if(sum) {
+    <h3 class="caption">This can be solved by:</h3>
+    <pre class="ctr prettyprint w20">if(sum) {
     let total = sum + total;
     return total;
   }</pre>
-  <h3><em class="wh">let</em>'s entire purpose is: block-scoping</h3>
+    <h3><em class="wh">let</em>'s entire purpose is: block-scoping</h3>
 
-</div>
+  </div>
 
 </div>
 <!-- ES6 entry div end -->
