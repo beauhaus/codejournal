@@ -8,6 +8,68 @@
 
 <!--
 -->
+<div class="brdr-w dkbg ctr med">
+<h4 class="chtitle wh">Promises at a glance...</h4>
+<div class="orange w30 brdr-w ctr"><span class="ltred med thin">Q: What 4 stages can a promise have?</span>
+  <span class="ans left med">fulfilled - <i>The action relating to the promise succeeded</i></span>
+  <span class="ans left med">rejected - <i>The action relating to the promise failed</i></span>
+  <span class="ans left med">pending - <i>Hasn't fulfilled or rejected yet</i></span>
+  <span class="ans left med">settled - <i>Has fulfilled or rejected</i></span>
+</div>
+<p>Here's how we create a promise. </p><a class="sm right" href="https://developers.google.com/web/fundamentals/getting-started/primers/promises" target="_blank">Jake Archibald</a>
+<pre class="prettyprint w40 ctr">
+  var promise = new Promise(function(resolve, reject) {
+    // do a thing, possibly async, then…
+
+    if (/* everything turned out fine */) {
+      resolve("Stuff worked!");
+    }
+    else {
+      reject(Error("It broke"));
+    }
+  });
+</pre>
+<p>And here's how we use that promise</p>
+<pre class="prettyprint w40 ctr">
+promise.then(function(result) {
+  console.log(result); // "Stuff worked!"
+}, function(err) {
+  console.log(err); // Error: "It broke"
+});
+</pre>
+
+<p>In the following pen, I use a promiseMaker function to get the whole thing started: <a href="https://codepen.io/beau_dev/full/dVMzBX/">Promise Pen</a></p>
+<span class="wh">sans error handling</span>
+<pre class="prettyprint w40 ctr">
+function promiseMaker(msg1) {
+  return new Promise(function(resolve) {
+      resolve("SUCCESS!");
+  });
+}
+</pre>
+<p>I set up 3 funks to call:</p>
+<pre class="prettyprint w40 ctr">function functionOne(msg) {
+    res1.text(msg);
+  return msg;
+}
+
+function functionTwo(msg) {
+    res2.text(msg)
+  return msg;
+}
+
+function functionThree(msg) {
+    res3.text(msg)
+}
+// return statements send msg "success" to subsequent <i>.then()</i> calls
+</pre>
+<p>And, finally, the promiseMaker call with chained then statements:</p>
+<pre class="prettyprint w60 ctr">promiseMaker("Pending").then(functionOne).then(functionTwo).then(functionThree);</pre>
+
+
+<a href="https://youtu.be/COKdtOgopWQ">video explaining await</a>
+</div>
+<hr />
 <div class="simple-frame"><h3 class="chtitle dkblue">Note on Object.keys()</h3>
 <h4 class="chtitle wh"><span class="ltred med thin">Q:</span>What higher-order Fn do we use to turn an array to an Object? <span class="ans dkorange med">.reduce()</span></h4>
 
