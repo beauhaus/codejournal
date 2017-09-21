@@ -613,8 +613,7 @@ div.ecma-entry {
   div.ecma-entry pre.prettyprint {
     background-color: #445e5e;
     padding: 2vh 2vw;
-    border: 1px solid burlywood;
-    font-size: .6em; }
+    border: 1px solid burlywood; }
   div.ecma-entry .thin {
     font-family: "Roboto", Sans-Serif; }
   div.ecma-entry a {
@@ -634,7 +633,7 @@ pre {
 pre.code-sample {
   font-family: "Code Source Pro", monospace, Sans-Serif !important; }
   pre.code-sample #condensed-list li {
-    margin: .5vh auto;
+    margin: 0.5vh auto;
     list-style-type: lower-latin; }
 
 pre.prettyprint {

@@ -8,6 +8,30 @@
 
 <!--
 -->
+
+<div class="framed8">
+  <h3 class="chtitle wh">Douglas Crockford<a target="_blank" href="http://www.crockford.com/javascript/private.html"> ,here,</a> has lots to say about Public, Private & Privileged Properties (or <em>"members"</em>) of Objects that are quite useful</h3>
+<p>Let's say I am a stalker... I'm obsessed with Taylor Swift.
+<br />I follower her around in a perfectly non-creepy way, constantly asking for selfies, autographs and her email address.<br />
+--OH! Here she is now!</p>
+<pre class="prettyprint w50 ctr">
+function CelebConstructor(nickName,phone,selfieResponse, email) {
+   this.phone = phone;
+   this.nickName = nickName;
+   this.selfieResponse = selfieResponse;
+   var email = email;
+   this.selfieReq = function(selfieResponse) {
+     console.log(this.email);
+     return this.selfieResponse;
+   }
+ }
+</pre>
+<p>Well, she isn't "here", yet... I have to create an instance of her.</p>
+<pre class="prettyprint w40 ctr">
+var taylorSwift = new CelebConstructor</pre>
+
+</div>
+<hr>
 <div class="brdr-w dkbg ctr med">
 <h4 class="chtitle wh">Promises at a glance...</h4>
 <div class="orange w30 brdr-w ctr"><span class="ltred med thin">Q: What 4 stages can a promise have?</span>
@@ -65,7 +89,30 @@ function functionThree(msg) {
 </pre>
 <p>And, finally, the promiseMaker call with chained then statements:</p>
 <pre class="prettyprint w60 ctr">promiseMaker("Pending").then(functionOne).then(functionTwo).then(functionThree);</pre>
+<div class="brdr-w w60 ctr"><h4>Simple Promise Example</h4>
+<pre class="prettyprint">
+var promise = new Promise(function(resolve, reject) {
+  var data = $.get("./data/birds.JSON")// do something async
 
+  if (data) {
+    resolve(data);
+  }
+  else {
+    reject(Error("It broke"));
+  }
+});
+
+promise.then(function(result) {
+  console.log(result); // "Stuff worked!"
+}, function(err) {
+  console.log(err); // Error: "It broke"
+});
+// {animal: "birds", cage-contents: Array(5)}</pre>
+HOWEVER, if url is wrong, I still get a useful error trace!
+<pre class="prettyprint">
+//{readyState: 4, ... responseText: "Cannot GET /.data/birds.JSON↵"....statusText: "Not Found"...
+</pre>
+</div>
 
 <a href="https://youtu.be/COKdtOgopWQ">video explaining await</a>
 </div>
@@ -1400,10 +1447,18 @@ pbj.summary();
 
   console.log(ruben.toString()); // returns  error
   console.log(ruben instanceof Object); // returns  false
-</pre> var ruben = Object.create(null); ruben.kind = "ruben" ruben.meat = "corned beef" ruben.veg = "sauerkraut" ruben.bread = "rye" ruben.summary = function () { console.log(`A ${this.kind} has ${this.meat}, ${this.veg} & ${this.bread}`); } ruben.summary();
-    console.log(ruben.toString()); // error console.log(ruben instanceof Object); // false
-
-    </pre>
+</pre>
+<pre class="prettyprint w50">var ruben = Object.create(null);
+  ruben.kind = "ruben"
+  ruben.meat = "corned beef"
+  ruben.veg = "sauerkraut"
+  ruben.bread = "rye"
+  ruben.summary = function () {
+   console.log(`A ${this.kind} has ${this.meat}, ${this.veg} & ${this.bread}`);
+  }
+  ruben.summary();
+  console.log(ruben.toString()); // error console.log(ruben instanceof Object); // false</pre>
+</pre>
 
     <h2 class="wh">IV.</h2>
     <h4 class="dkmango">Finally, the constructor Function</h4>
@@ -1416,8 +1471,15 @@ This has numerous advantages:
 
 2) This also has both Object.prototype AND Sandwich.prototype that you can modify as a fallback for default properties.
 */
-</pre> function Sandwich(kind, meat, veg, bread) { this.kind = kind; this.meat = meat; this.veg = veg; this.bread = bread; console.log(`${this.kind}: ${meat}, ${veg} & ${bread}`); } var turkeyClub = new Sandwich("turkeyClub", "turkey", "romaine",
-    "roll"); // turkeyClub: turkey, romaine & roll var blt = new Sandwich("blt", "bacon", "lettuce", "white") // blt: bacon, lettuce & white
+</pre> <pre class="prettyprint w50">function Sandwich(kind, meat, veg, bread) {
+   this.kind = kind;
+   this.meat = meat;
+   this.veg = veg;
+   this.bread = bread;
+    console.log(`${this.kind}: ${meat}, ${veg} & ${bread}`);
+   }
+   var turkeyClub = new Sandwich("turkeyClub", "turkey", "romaine","roll");
+    // turkeyClub: turkey, romaine & roll var blt = new Sandwich("blt", "bacon", "lettuce", "white") // blt: bacon, lettuce & white
 
     </pre>
 
