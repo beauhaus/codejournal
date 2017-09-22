@@ -17,11 +17,10 @@
 <pre class="prettyprint w50 ctr">
 function CelebConstructor(nickName,phone) {
   this.phone = phone;
+  var email = "taytay@gmail.com";
   this.nickName = nickName;
   this.selfieResponse = "Sure!";
-  var email =  "taytay@gmail.com";
-  this.selfieReq = function() {
-    console.log("email is: ", this.email);
+  this.selfieRequest = function() {
     return this.selfieResponse;
   }
 }
@@ -31,19 +30,15 @@ function CelebConstructor(nickName,phone) {
 <pre class="prettyprint w60 ctr">
 var taylorSwift = new CelebConstructor("Tay-tay", "iPhone X");
 console.log(taylorSwift instanceof CelebConstructor); // true  (...sanity check)
-
-console.log(taylorSwift.selfieReq()) // "sure!"
 </pre>
 <p>I ask for a selfie and she says "sure"!</p>
 <pre class="prettyprint w60 ctr">
-var taylorSwift = new CelebConstructor("Tay-tay", "iPhone X", "Sure!");
-console.log(taylorSwift instanceof CelebConstructor); // true  (...sanity check)
-
-console.log(taylorSwift.selfieReq()) // "Sure!"
+console.log(taylorSwift.selfieRequest()) // "Sure!"
 </pre>
 
 <p>Enquiring minds want to know what phone she uses.<br />She's shopping around for an endorsement deal with Samsung so she has her publicist announce the public property of the <code>taylorSwift</code> Object<br />
-This is done using a method built on the prototype.<br />A publicist is placed on the CelebConstructor prototype to receive an opinion parameter as a reason for her choice...and that of all future celebs.</p>
+This is done using a method built on the prototype.<br />A publicist is placed on the CelebConstructor prototype to receive an opinion parameter as a reason for <em>her</em> choice.<br />
+(This can be used on future celebs created this way...)</p>
 <pre class="prettyprint w60 ctr">
 CelebConstructor.prototype.whatPhone = function(opinion) {
    let statement = `${this.nickName} likes the ${this.phone} because ${opinion}`;
@@ -54,7 +49,37 @@ CelebConstructor.prototype.whatPhone = function(opinion) {
 taylorSwift.whatPhone("it's fancy!");
 </pre>
 
+<h2 class="chtitle wh">Let's discuss something <code>Private</code></h2>
+<p>There are "Private Methods" & "Private variables"<br />
+Private members are made by the constructor. Ordinary vars and parameters of the constructor become the private members.
+</p>
 
+<div class="framed1 w60 ctr">
+  function CelebConstructor(<span class="orange">prop</span>) {
+    this.phone = phone;
+    this.nickName = nickName;
+    this.selfieResponse = "Sure!";
+    <span class="orange">var email = "taytay@gmail.com";</span>
+    <span class="orange">this.property = prop;</span>
+    <span class="coral">var that = this;</span>
+  }
+</div>
+<h4>This constructor makes three private instance variables: prop, secret, and that. <br />They are attached to the object, but they are not accessible to the outside, nor are they accessible to the object's own public methods. <br />They are accessible to private methods. <span class="y">Private methods</span> are inner functions of the constructor.</h4>
+<p>Let's add a <span class="y">private method</span></p>
+<div class="framed1 w60 ctr">
+  function CelebConstructor(<span class="orange">prop</span>) {
+    this.phone = phone;
+    this.nickName = nickName;
+    this.selfieResponse = "Sure!";
+    <span class="orange">var email = "taytay@gmail.com";</span>
+    <span class="orange">this.property = prop;</span>
+    <span class="coral">var that = this;</span>
+    <span class="y">function access() {
+
+    }</span>
+  }
+</div>
+<h3 class="chtitle wh">test;lkajsdf;lkjsadf;lj<br />;lkajsdf;lkjasdf;lkjasdf<br />;lkajsdf;lkjasdf;lkjasf</h3>
 </div>
 <hr>
 <div class="brdr-w dkbg ctr med">
