@@ -11,8 +11,8 @@
 
 <div class="framed8">
   <h3 class="chtitle wh">Douglas Crockford<a target="_blank" href="http://www.crockford.com/javascript/private.html"> ,here,</a> has lots to say about Public, Private & Privileged Properties (or <em>"members"</em>) of Objects that are quite useful</h3>
-<p>Let's say I am a stalker... I'm obsessed with Taylor Swift.
-<br />I follower her around in a perfectly non-creepy way, constantly asking for selfies, autographs and her email address.<br />
+<p>Let's say you are a stalker and are obsessed with Taylor Swift.
+<br />You follower her all around in a perfectly non-creepy way, constantly asking for selfies, autographs and her email address.<br />
 --OH! Here she is now!</p>
 <pre class="prettyprint w50 ctr">
 function CelebConstructor(nickName,phone) {
@@ -26,7 +26,7 @@ function CelebConstructor(nickName,phone) {
 }
 </pre>
 
-<p>Well, she isn't "here", yet... I have to create an instance of her, then ask for a selfie.</p>
+<p>Well, she isn't "here", yet... We have to create an instance of her, then ask for a selfie.</p>
 <pre class="prettyprint w60 ctr">
 var taylorSwift = new CelebConstructor("Tay-tay", "iPhone X");
 console.log(taylorSwift instanceof CelebConstructor); // true  (...sanity check)
@@ -55,31 +55,100 @@ Private members are made by the constructor. Ordinary vars and parameters of the
 </p>
 
 <div class="framed1 w60 ctr">
-  function CelebConstructor(<span class="orange">prop</span>) {
+  function CelebConstructor(nickName, phone, <span class="orange">prop</span>) {
     this.phone = phone;
     this.nickName = nickName;
     this.selfieResponse = "Sure!";
     <span class="orange">var email = "taytay@gmail.com";</span>
-    <span class="orange">this.property = prop;</span>
-    <span class="coral">var that = this;</span>
+    <span class="orange">this.selfieLimit = 3;</span>
+    <span class="paleY">var that = this;</span>
+    this.selfieRequest = function() {
+      return this.selfieResponse;
+    };
   }
+var tay = new CelebConstructor('Tay-tay', 'iPhoneX', 3);
+tay.selfieRequest(); // Sure!
+tay.nickName; // Tay-tay
+tay.email; // undefined
 </div>
-<h4>This constructor makes three private instance variables: prop, secret, and that. <br />They are attached to the object, but they are not accessible to the outside, nor are they accessible to the object's own public methods. <br />They are accessible to private methods. <span class="y">Private methods</span> are inner functions of the constructor.</h4>
+<h4>This constructor makes three private instance variables: prop, selfieLimit, and that. <br />They are attached to the object, but they are not accessible to the outside, nor are they accessible to the object's own public methods. <br />They are accessible to private methods. <span class="y">Private methods</span> are inner functions of the constructor.</h4>
+<h3>Take a close look at <code>var that = this;</code> <br />By convention, we make a private that variable. This is used to make the object available to the private methods.</h3>
+<br />
 <p>Let's add a <span class="y">private method</span></p>
-<div class="framed1 w60 ctr">
-  function CelebConstructor(<span class="orange">prop</span>) {
-    this.phone = phone;
-    this.nickName = nickName;
-    this.selfieResponse = "Sure!";
-    <span class="orange">var email = "taytay@gmail.com";</span>
-    <span class="orange">this.property = prop;</span>
-    <span class="coral">var that = this;</span>
-    <span class="y">function access() {
 
-    }</span>
+  <pre class="prettyprint w50 ctr">
+function CelebConstructor(nickName, phone, <span class="orange">prop</span>) {
+  this.phone = phone;
+  this.nickName = nickName;
+  this.selfieResponse = prop;
+  var email = "taytay@gmail.com";
+  this.selfieLimit = 3;
+  var that = this;
+  this.selfieRequest = function() {
+    return this.selfieResponse;
+  };
+
+  <span class="y">function cameraShy() {
+    if (selfieLimit > 0) {
+        selfieLimit -= 1;
+        return true;
+    } else {
+        return false;
+    }
+  }</span>
+
+}
+
+var tay = new CelebConstructor('Tay-tay', 'iPhoneX', "Sure!");
+</pre>
+
+<h3 class="chtitle wh"><code>cameraShy</code> is a private method: An inner function of the constructor that can access <code>selfieLimit</code>
+<br />We know taylorSwift has limited patience, but we don't know <em>how</em> limited. Because it's on a private variable.<br />
+<code>cameraShy</code>examines selfieLimit and decrements it... <br />This will be called with a <span class="paleY">"Privileged Method"</span> and put to good use...3 times.</h3>
+<pre class="prettyprint w50 ctr">function CelebConstructor(nickName, phone, <span class="orange">prop</span>) {
+  this.phone = phone;
+    this.nickName = nickName;
+    this.selfieResponse = prop;
+    var email = 'taytay@gmail.com';
+    var selfieLimit = 3;
+    var that = this;
+
+    function cameraShy() {
+      if (selfieLimit > 0) {
+        selfieLimit -= 1;
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+  <span class="y">this.selfieRequest = function () {
+        return cameraShy() ? that.selfieResponse : "Get Lost";
+    };</span>
+}
+var tay = new CelebConstructor('Tay-tay', 'iPhoneX', 'Sure!');
+
+console.log(tay.selfieRequest()); // Sure!
+console.log(tay.selfieRequest()); // Sure!
+console.log(tay.selfieRequest()); // Sure!
+console.log(tay.selfieRequest()); // Get Lost!
+
+</pre>
+<h3 class="chtitle">The important bit, here, is that the privileged method<code>selfieRequest</code>places<code>selfieResponse</code>onto <em class="paleY">that</em>temporarily...<br>
+So long as Tay-tay's patience hasn't run out. (via the private method<code>cameraShy()</code>)</h3>
+<div class="ctr w40 simple-frame dkbg wh thin"><span class="orange">Private methods can, of course, be function statements</span>
+
+var cameraShy = function() {
+  if (selfieLimit > 0) {
+    selfieLimit -= 1;
+    return true;
+  } else {
+    return false;
   }
+};
+
 </div>
-<h3 class="chtitle wh">test;lkajsdf;lkjsadf;lj<br />;lkajsdf;lkjasdf;lkjasdf<br />;lkajsdf;lkjasdf;lkjasf</h3>
+
 </div>
 <hr>
 <div class="brdr-w dkbg ctr med">
