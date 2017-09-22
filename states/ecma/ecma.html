@@ -46,7 +46,7 @@ CelebConstructor.prototype.whatPhone = function(opinion) {
    return statement;
  }
 // She then invokes the method...
-taylorSwift.whatPhone("it's fancy!");
+taylorSwift.whatPhone("it's fancy!"); // Tay-tay likes the iPhone X because it's fancy!
 </pre>
 
 <h2 class="chtitle wh">Let's discuss something <code>Private</code></h2>
@@ -60,16 +60,17 @@ Private members are made by the constructor. Ordinary vars and parameters of the
     this.nickName = nickName;
     this.selfieResponse = "Sure!";
     <span class="orange">var email = "taytay@gmail.com";</span>
-    <span class="orange">this.selfieLimit = 3;</span>
+    <span class="orange">var selfieLimit = prop;</span>
     <span class="paleY">var that = this;</span>
     this.selfieRequest = function() {
       return this.selfieResponse;
     };
   }
+
 var tay = new CelebConstructor('Tay-tay', 'iPhoneX', 3);
-tay.selfieRequest(); // Sure!
-tay.nickName; // Tay-tay
-tay.email; // undefined
+tay.selfieRequest(); <i class="ltgreen">// Sure!</i>
+tay.nickName;<i class="ltgreen"> // Tay-tay</i>
+tay.email;<i class="ltgreen"> // undefined</i>
 </div>
 <h4>This constructor makes three private instance variables: prop, selfieLimit, and that. <br />They are attached to the object, but they are not accessible to the outside, nor are they accessible to the object's own public methods. <br />They are accessible to private methods. <span class="y">Private methods</span> are inner functions of the constructor.</h4>
 <h3>Take a close look at <code>var that = this;</code> <br />By convention, we make a private that variable. This is used to make the object available to the private methods.</h3>
@@ -88,7 +89,7 @@ function CelebConstructor(nickName, phone, <span class="orange">prop</span>) {
     return this.selfieResponse;
   };
 
-  <span class="y">function cameraShy() {
+  <span class="y">function cameraShy() {  <span class="ltgreen">// or.... var cameraShy = function() {</span>
     if (selfieLimit > 0) {
         selfieLimit -= 1;
         return true;
@@ -134,7 +135,7 @@ console.log(tay.selfieRequest()); // Sure!
 console.log(tay.selfieRequest()); // Get Lost!
 
 </pre>
-<h3 class="chtitle">The important bit, here, is that the privileged method<code>selfieRequest</code>places<code>selfieResponse</code>onto <em class="paleY">that</em>temporarily...<br>
+<h3 class="chtitle">The important point is that the privileged method<code>selfieRequest</code>puts<code>selfieResponse</code>onto <em class="paleY">that</em>temporarily...<br>
 So long as Tay-tay's patience hasn't run out. (via the private method<code>cameraShy()</code>)</h3>
 <div class="ctr w40 simple-frame dkbg wh thin"><span class="orange">Private methods can, of course, be function statements</span>
 

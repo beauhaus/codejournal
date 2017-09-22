@@ -11,23 +11,26 @@
   <h3 class="chtitle clean">Spread operators are used to expand an 'iterable object' when multiple items are expected.
   <br />They can be used in Fn calls, Parameter Lists, Array literals, Obj destructuring</h3>
 
-<br /><pre class="prettyprint w60 ctr">  function names(fourtyOne, fourtyTwo, fourtyThree, fourtyFour) {
-    return `${fourtyOne} then ${fourtyTwo} then ${fourtyThree} then ${fourtyFour}`;
-  }
-  const presidents = ['Bush Sr.', 'Clinton', 'Bush Jr.', 'Obama'];
+<br /><pre class="prettyprint w60 ctr"> let goodNewsArray = ["John", "Luke", "Mark", "Matthew"];
 
-  console.log(names(...presidents)); // Bush Sr. then Clinton then Bush Jr. then Obama
+let guys = function(john="john", paul="paul", george="george", ringo="ringo") {
+  return `${john}, ${paul}, ${george} & ${ringo}.`
+}
+
+console.log(guys(...goodNewsArray)) // John, Luke, Mark & Matthew.
 </pre>
 
 <br /><br />
 <h3 class="ivr clean">These are also REALLY useful for Array Literals:</h3>
-<pre class="prettyprint ctr w60">  var girls = ['sue', 'tina', 'kim'];
-  var boys = ['jack', 'joe', 'Andy'];
-  var teachers = ['Mrs. Wilson', 'Mr. Whipple'];
+<pre class="prettyprint ctr w60">
+let beatlesArray = ["john", "paul", "george", "ringo"];
 
-  var schoolPicnic = [...girls, ...boys, ...teachers];
-  console.log(schoolPicnic);
-  // ["sue", "tina", "kim", "jack", "joe", "Andy", "Mrs. Wilson", "Mr. Whipple"]
+let charliesAngels = ["Kelly","Chris", "Sabrina", "Jill"];
+
+let dateNight = [...beatlesArray, ...charliesAngels];
+
+console.log(dateNight);
+// (8) ["john", "paul", "george", "ringo", "Kelly", "Chris", "Sabrina", "Jill"]
 </pre>
 <br />
 <hr>
@@ -35,13 +38,23 @@
 The function below will join any limitless amount of parameters
 the spread allows us to take an arbitrary number of params!
 
-<pre class="prettyprint w50 ctr">  const joinUp = function(...words) {
+<pre class="prettyprint w50 ctr">  const joinUp = function(
     return words.join(' ');
   };
   console.log(joinUp('I', 'really', 'am', 'digging', 'es6!'));
 
   //I really am digging es6!
-</pre><br /><br />
+</pre><br />
+<h3>A neat way to avoid the need for .split('');</h3>
+<pre class="framed8 dkbg wh thin w50 ctr">function joiningFunk(<span class="orange">...words</span>) {     <span class="orange">// (rest parameter)</span>
+  return words.join(' ');
+}
+
+var joined = joiningFunk("I", "want", "to", "join", "these", "words");
+
+console.log(joined); <span class="ltgreen">// I want to join these words</span>
+</pre>
+<br />
 
 
 </div>
@@ -81,7 +94,7 @@ console.log(seinfeld('meatballs'));
 //These meatballs are making me thirsty
 
 console.log(seinfeld(undefined, 'sick'));
-//These pretzels are making me sick
+//These pretzels are making me sick  (If one param is undefined, it will run the default)
     </pre>
 
 </div>
