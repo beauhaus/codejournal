@@ -6,6 +6,35 @@
 
   <!--
 -->
+<div class="plain-frame1"><h3 class="chtitle softred">ES6 Object Enhancement & .repeat() method</h3>
+<p>From ES5...</p>
+<pre class="prettyprint w30 ctr">const captainKirk = {
+  orders: function(order) {
+    console.log(`${order}`)
+  }
+}
+
+
+captainKirk.orders("Make it so.")
+</pre>
+<p>...to ES6</p>
+<pre class="prettyprint w30 ctr">
+const captainKirk = {
+  orders(order) {  // Remove ": function"
+    console.log(`${order} `.repeat(5))
+  }
+}
+
+captainKirk.orders("Make it so.")
+</pre>
+<pre class="prettyprint w50 ctr">
+// "Make it so. Make it so. Make it so. Make it so. Make it so. "
+</pre>
+
+
+
+</div>
+<hr>
 <div class="simple-frame2">
   <h2 class="chtitle">Spread Operators</h2><br />
   <h3 class="chtitle clean">Spread operators are used to expand an 'iterable object' when multiple items are expected.
@@ -352,7 +381,29 @@ console.log(getTree());
 
       <pre class="prettyprint w40">serve((fruit) => console.log(fruit), "🍋"); // 🍋</pre>
       <pre class="prettyprint w40">serve((fruit) => console.log(fruit), "🍓"); // 🍓</pre>
+<hr>
 
+<div class="simple-wine-frame w60 ctr txt-left">
+<pre class="prettyprint w40 txt-left ctr">var order = "Phasers on stun.";
+var issueCommand = (order) => console.log(order);
+var test = issueCommand(order);
+// Phasers on stun.
+</pre>
+<pre class="prettyprint w40 txt-left ctr">
+var issueCommand = (order) => console.log(order);
+issueCommand("Warp factor 2!");
+// Warp factor 2!
+</pre>
+<pre class="prettyprint w40 txt-left ctr">
+var orders = "Make it so.";
+var issueCommand = orders => orders; //Bare essence of ES6 Fn
+var example = issueCommand(orders);
+console.log(example);
+// Make it so.
+</pre>
+<p>The final ES6 funk has no return statement <em>("Implicit return")</em><br />It has no "{}" or "()"</p>
+
+</div>
     </div>
     <hr> The following works in ES5:
     <pre class="prettyprint w40">
