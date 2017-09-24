@@ -15,3 +15,6 @@ div.es6-entry {
 .comfort {
   font-weight: 400;
 }
+p .softwhite {
+  color: map-get($colors, softwite) !important;
+}

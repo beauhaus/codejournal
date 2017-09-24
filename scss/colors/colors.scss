@@ -9,7 +9,7 @@
 .mutedBlue {
   color: map-get($colors, mutedBlue);
 }
-.mutedPurp{
+.mutedPurp {
   color: map-get($colors, mutedPurp);
 }
 .mutedOrange {
@@ -20,33 +20,32 @@
 }
 
 .softsand-bg {
-background-color: map-get($colors, softsand);
+  background-color: map-get($colors, softsand);
 }
 .softsand {
-color: map-get($colors, softsand);
+  color: map-get($colors, softsand);
 }
 .softbrown-bg {
-background-color: map-get($colors, softbrown);
+  background-color: map-get($colors, softbrown);
 }
 .softbrown {
-color: map-get($colors, softbrown);
+  color: map-get($colors, softbrown);
 }
 .softred-bg {
-background-color: map-get($colors, softred);
+  background-color: map-get($colors, softred);
 }
 .softred {
-color: map-get($colors, softred);
+  color: map-get($colors, softred);
 }
 .softblue-bg {
-background-color: map-get($colors, softblue);
+  background-color: map-get($colors, softblue);
 }
 .softblue {
-color: map-get($colors, softblue);
+  color: map-get($colors, softblue);
 }
 .softwhite {
   color: map-get($colors, softwite);
 }
-
 
 .pastpink {
   color: map-get($colors, pastpink);
@@ -78,7 +77,7 @@ color: map-get($colors, softblue);
 }
 
 .ltgrey {
-  color: map-get($colors, ltgrey );
+  color: map-get($colors, ltgrey);
 }
 
 .ivr {
@@ -87,6 +86,9 @@ color: map-get($colors, softblue);
 
 .wh {
   color: map-get($colors, wh);
+}
+.softwhite {
+  color: map-get($colors, softwhite);
 }
 
 .ltblue {
@@ -168,7 +170,6 @@ color: map-get($colors, softblue);
   background-color: map-get($colors, ltbg2);
   padding: 2%;
 }
-
 
 .trans {
   color: transparent;

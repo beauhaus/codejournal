@@ -845,6 +845,9 @@ div.es6-entry {
 .comfort {
   font-weight: 400; }
 
+p .softwhite {
+  color: !important; }
+
 div.svg-entry {
   background-color: #575757;
   color: #d0b588;
@@ -933,6 +936,9 @@ div.svg-entry {
 
 .wh {
   color: #fff; }
+
+.softwhite {
+  color: #cdcdcd; }
 
 .ltblue {
   color: #3f71f1; }
