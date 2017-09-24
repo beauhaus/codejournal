@@ -18,22 +18,25 @@ console.log(sentence);
 </pre>
 
 <br /><h3 class="softwhite">Tagged strings</h3>
+<h3>The component parts of this string are these strings and values concatenated:</h3>
+<div class="dkbg w80 ctr ctrtxt brdr-w">
+<code class="ltgreen"><span class="underline">Fewer things are more </span><span class="softsand">${bool}</span><span class="underline"> than that </span><span class="softsand">${num1}</span><span class="underline"> plus </span><span class="softsand">${num1}</span><span class="underline"> equals </span><span class="softsand">${num1 + num1}</span><span class="ltred">_</span></code>
+</div><br />
 
-<p class="chtitle softwhite">Tagging strings gives us the power to "pre-process" the string. <br />
-We create a function and 'call' that function with the template string as an argument that is <em>splayed</em> into it's component parts</p>
-<pre class="prettyprint w80 txt-left ctr">
+<div class="chtitle softwhite med">Tagging strings gives us the power to "pre-process" the string. <br />
+We create a function and 'call' that function with the template string as an argument that is <em>splayed</em> into it's component parts</div>
+<pre class="prettyprint w80 ctr">
 ...
 
 let tagged = function(strArr, ...vals) {
-  console.log('strArr:', strArr); // strArr: ["Fewer things are more ", " than that ", " plus ", " equals ", "", raw: Array(5)]
-  console.log('...vals: ', vals); // ...vals:  [true, 1, 1, 2]
+  console.log(strArr); // ["Fewer things are more ", " than that ", " plus ", " equals ", "",]
+  // Note the very last empty "" at the end of the array.
+  console.log( vals); // [true, 1, 1, 2]
 };
 
 tagged`Fewer things are more ${bool} than that ${num1} plus ${num1} equals ${num1 + num1}`;
 </pre>
 <hr>
-<code class="ltgreen"><span class="underline">Fewer things are more </span><span class="softsand">${bool}</span><span class="underline"> than that </span><span class="softsand">${num1}</span><span class="underline"> plus </span><span class="softsand">${num1}</span><span class="underline"> equals </span><span class="softsand">${num1 + num1}</span><span class="ltred">_</span></code>
-<br />*Note the very last empty <code>""</code> at the end of the array.
 
 
 
