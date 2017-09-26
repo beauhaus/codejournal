@@ -5,14 +5,63 @@ This is vid on "global flags" in SASS & variable scope.
 Also https://youtu.be/SeJRDDva1s4?list=PLCVM0tBM5nrSHdeXFJE5eXdURhL97FiyJ
 interpolation!
  -->
+
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
 <aside><span class="rot90">{{state}}</span></aside>
 <div class="sass-entry entry">
-<pre>
+  <pre>
 <!-- pre for all -->
-<div class="burgundy-grey-fr clean"><h2 class="chtitle pastY">Nesting in Sass</h2>
-  The ampersand adds nice versatility...
-<pre class="prettyprint w30 linenums">
+<div class="lt-frame"><h2 class="chtitle">@media queries and <i class="orange">SRCSET</i>TING images</h2>
+  <h3>3 working breakpoints: (placed at bottom of CSS <em>in this order</em>)</h3>
+  <pre class="prettyprint w40">/*________________________________DESK________ >960px */
+    @media screen and (min-width: 960px) {
+    picture {
+      border: 2px solid blue;
+    }
+  }</pre>
+  <pre class="prettyprint w40">/*________________________________IPAD_________ < 959px */
+@media screen and (max-width: 959px) {
+    picture {
+      border: 2px solid white;
+    }
+  }</pre>
+  <pre class="prettyprint w40">/* ________________________________PHONE_______ > 320px */
+  @media (max-width: 375px) {
+    picture {
+      border: 2px solid red;
+    }
+  }</pre>
+
+  <h3 class="softwhite">In addition, I've added a picture element into the html calling 3 separate images and a fallback default at the bottom.----<a href="https://webdesign.tutsplus.com/tutorials/quick-tip-how-to-use-html5-picture-for-responsive-images--cms-21015">Helpful Tutorial</a></h3>
+<pre class="dkbg w60 ctr">
+< div>
+< picture>
+  < source srcset="SMALL.jpg" media="(max-width: 320px)">
+  < source srcset="MEDIUM.jpg" media="(max-width: 959px) and (min-width: 321px)">
+  < source srcset="LARGE.jpg" media="(min-width: 960px)">
+  < img srcset="DEFAULTFALLBACK" alt="A tree in a forest">
+< / picture>
+< / div>
+</pre>
+.CSS<pre class="prettyprint w40">/* ________________________________PHONE_______ > 320px */
+// I define a grid on the enclosing picture element:
+picture {
+  display: grid;
+  grid-template-rows: 1;
+  grid-template-columns: 1;
+}
+// I, then, place the into the grid
+img, source {
+  grid-row: 1;
+  grid-column: 1;
+  width: 100%;
+  height: 100%;
+}
+}</pre>
+</div>
+<div class="burgundy-grey-fr clean">
+  <h2 class="chtitle pastY">Nesting in Sass</h2> The ampersand adds nice versatility...
+  <pre class="prettyprint w30 linenums">
 a {
   font {
     family: 'Roboto', sans-serif;
@@ -26,49 +75,47 @@ a {
   }
 }
 </pre>
-  <h3>The "&" acts as an alias of <em>(or..."replaces")</em> the parent selector</h3>
+  <h3>The "&" acts as an alias of <em>(or..."replaces")</em> the parent selector</h3> The even cooler part of the "&" is that it can replace part of a name of a class or id!!
+  <br /><br />
+  <div class="slate-skyblue-fr w50 chtitle">Quiz Time... I give you the sass, you figure out the css... --Ready?
 
-The even cooler part of the "&" is that it can replace part of a name of a class or id!!
-<br /><br />
-<div class="slate-skyblue-fr w50 chtitle">Quiz Time... I give you the sass, you figure out the css... --Ready?
-
-<br><br />
-<pre class="dkbg txt-left w30"><code>#content {
+    <br><br />
+    <pre class="dkbg txt-left w30"><code>#content {
   <span class="med ltred">&</span>-formal {
     color: red;
   }
 }
   <h4 class="ans med fRight paleY">// #content-formal</h4>
 </code></pre>
-<br><br />
-<pre class="dkbg txt-left w30"><code>#content {
+    <br><br />
+    <pre class="dkbg txt-left w30"><code>#content {
   <span class="med ltred">&</span>formal {
     color: red;
   }
 }
   <h4 class="ans med fRight paleY">// #contentformal</h4>
 </code></pre>
-<br><br />
-<pre class="dkbg txt-left w30"><code>#content {
+    <br><br />
+    <pre class="dkbg txt-left w30"><code>#content {
   <span class="med ltred">&</span>.formal {
     color: red;
   }
 }
   <h4 class="ans med fRight paleY">// #content.formal</h4>
 </code></pre>
-<br><br />
-<pre class="dkbg txt-left w30"><code>#content {
+    <br><br />
+    <pre class="dkbg txt-left w30"><code>#content {
   <span class="med ltred">&</span> .formal {
     color: red;
   }
 }
   <h4 class="ans med fRight paleY">// #content .formal</h4>
 </code></pre>
-</div>
+  </div>
 
   <span class="right ltred">(this is just a taste of SASS nesting awesomeness...)</span>
 
-<h3 class="paleY">The "&" doesn't even need to go at the beginning of a nested style-rule</h4>
+  <h3 class="paleY">The "&" doesn't even need to go at the beginning of a nested style-rule</h4>
 <pre class="prettyprint w30">
 .boxed-layout {
   font {
@@ -91,14 +138,14 @@ The even cooler part of the "&" is that it can replace part of a name of a class
     📄 index.html
   </pre>
 <h3>In root directory...</h3>
-  <pre class="dkbg3 ctr w40"><code>sass --watch sass/master.scss:css/master.css</code></pre>
-Boom! You're done. Sass will compile and watch for changes.
+  <pre class="dkbg3 ctr w40"><code>sass --watch sass/master.scss:css/master.css</code></pre> Boom! You're done. Sass will compile and watch for changes.
 </div>
 <br>
 
-<div class="plain-frame2 clean"><h3 class="chtitle">Comments in Sass</h3>
+<div class="plain-frame2 clean">
+  <h3 class="chtitle">Comments in Sass</h3>
   <h4>Cool stuff I didn't know about Sass comments</h4>
-<pre class="prettyprint w50 ctr">
+  <pre class="prettyprint w50 ctr">
   /* These Comments will compile to your css file */
 
   // This kind of comment will NOT compile to your css file.
@@ -120,13 +167,10 @@ HOWEVER, if you don't wish that to be compiled to .css (but only visible in your
 <br>
 
 
-<div class="forest-red-fr"><h3 class="chtitle ltgreen">Using calc() with css variables</h3>
+<div class="forest-red-fr">
+  <h3 class="chtitle ltgreen">Using calc() with css variables</h3> You can employ calc and var() as a time time a delay with the variable declared on :root Here, it is used as a multiplicand on animation-delay
 
-You can employ calc and var() as a time time a delay with the variable declared on :root
-
-Here, it is used as a multiplicand on animation-delay
-
-<pre class="prettyprint w40">
+  <pre class="prettyprint w40">
 :root {
   --tick: .2s;
 }
@@ -141,11 +185,10 @@ Here, it is used as a multiplicand on animation-delay
   animation-delay: calc(var(--tick)*6);
 }
 ...
-</pre>
-It's extremely effective and efficient. I haven't used it in sass, but I see no reason that it wouldn't work.</div>
-  <hr>
-  <div class="burgundy-grey-fr">
-<h2 class="chtitle">CSS Centering: 3 ways</h2>
+</pre> It's extremely effective and efficient. I haven't used it in sass, but I see no reason that it wouldn't work.</div>
+<hr>
+<div class="burgundy-grey-fr">
+  <h2 class="chtitle">CSS Centering: 3 ways</h2>
   <pre class="cssnote">
   .ctr-container-ex1 {
     height: 25vh;
@@ -158,17 +201,17 @@ It's extremely effective and efficient. I haven't used it in sass, but I see no 
   }</span></pre>
 
   <div class="ctr-container-ex1">
-    <div class="ctr-example1">probably better for < img></div>
-    <div class="ctr-example1">use outside of < pre></div>
+    <div class="ctr-example1">probably better for
+      < img></div>
+    <div class="ctr-example1">use outside of
+      < pre></div>
   </div>
 
 
-<br><br>
-  <div class="caption">Here, we position the elem itself: ABSOLUTE.<br>
-Then, we do LEFT: 50%.<br>
-Then, margin-left: <em>NEGATIVE HALF the width of the box</em></div>
-<br>
-<div class="ctr-container-ex2">
+  <br><br>
+  <div class="caption">Here, we position the elem itself: ABSOLUTE.<br> Then, we do LEFT: 50%.<br> Then, margin-left: <em>NEGATIVE HALF the width of the box</em></div>
+  <br>
+  <div class="ctr-container-ex2">
     <pre class="cssnote">
 <span class="mutedOrange">.ctr-container-ex2 {
   position: relative;
@@ -180,23 +223,23 @@ Then, margin-left: <em>NEGATIVE HALF the width of the box</em></div>
   left: 50%;
   margin-left: -20vw;
 }</span></pre>
-    <div class="ctr-example2 ivr">width: 40vw;<br> pos: absolute;<br> margin-right: 20vw;<hr> ALSO USE CONTAINER POS: relative;<br><br /><br />
-    One thing to note. If we don't know the width (if it is dynamic and grows and shrinks according to contents). This will screw up. 😳</div>
+    <div class="ctr-example2 ivr">width: 40vw;<br> pos: absolute;<br> margin-right: 20vw;
+      <hr> ALSO USE CONTAINER POS: relative;<br><br /><br /> One thing to note. If we don't know the width (if it is dynamic and grows and shrinks according to contents). This will screw up. 😳</div>
   </div>
-<br><br>
+  <br><br>
 
-<!-- ============ EXAMPLE #3=============== -->
-<h3 class="chtitle">Centering with Translate: </h3>
-<h4 class="chtitle pastY">This is really the best example.</h4>
-<br><br>
+  <!-- ============ EXAMPLE #3=============== -->
+  <h3 class="chtitle">Centering with Translate: </h3>
+  <h4 class="chtitle pastY">This is really the best example.</h4>
+  <br><br>
 
-<div class="ctr-container-ex3"><pre class="cssnote"><span class="ltred">.ctr-container-ex3 {
+  <div class="ctr-container-ex3"><pre class="cssnote"><span class="ltred">.ctr-container-ex3 {
   position: relative;
   height: 40vh;
   width: 100%;
 }</span></pre>
-  <div class="ctr-example3">
-    <pre class="cssnote">
+    <div class="ctr-example3">
+      <pre class="cssnote">
 <span class="mustard">.ctr-example3 {
   height: 200px;
   width: 200px;
@@ -206,47 +249,35 @@ Then, margin-left: <em>NEGATIVE HALF the width of the box</em></div>
   top: 50%;
   transform: translate(-50%, -50%);
 }</span></pre>
-</div>
+    </div>
 
-</div>
-<div class="ctrtxt">
+  </div>
+  <div class="ctrtxt">
 
 
-<h3 class="chtitle ivr">This is centered both horiz & vertically!</h3><br>
-<img class="w20 ctr" src="./img/ctrxy.png" alt="vert and horiz centering">
-<h3 class="chtitle sand">However, This code was perfect for an svg loader:</h3>
-<div class="dkbg w40 ctr txt-left">
-  .svg-container {
-    position: absolute;
-    height: 50vh;
-    left: 50vw;
-    top: 50vh;
-    margin-left: -25vw;
-    margin-top: -25vh;
-  }
+    <h3 class="chtitle ivr">This is centered both horiz & vertically!</h3><br>
+    <img class="w20 ctr" src="./img/ctrxy.png" alt="vert and horiz centering">
+    <h3 class="chtitle sand">However, This code was perfect for an svg loader:</h3>
+    <div class="dkbg w40 ctr txt-left">
+      .svg-container { position: absolute; height: 50vh; left: 50vw; top: 50vh; margin-left: -25vw; margin-top: -25vh; } svg { position: relative; width: 50vw; height: 50vh; }
+      <br>
+      <span class="thin ltgreen">// It is also more 'robust' given absence of pixel values</span></div>
 
-  svg {
-    position: relative;
-    width: 50vw;
-    height: 50vh;
-  }
+    <br>
+  </div>
   <br>
-<span class="thin ltgreen">// It is also more 'robust' given absence of pixel values</span></div>
-
-<br>
-</div>
-<br>
-</div><br><hr>
-    <!--entire page pre-->
+</div><br>
+<hr>
+<!--entire page pre-->
 
 
 
 
 
 <div class="slate-skyblue-fr">
-<h2>A list of css filters</h2>
-<h4><a class="entry-link" target="_blank" href="https://css-tricks.com/almanac/properties/f/filter/">CSS Tricks link</a></h4>
-<pre class="prettyprint w40">
+  <h2>A list of css filters</h2>
+  <h4><a class="entry-link" target="_blank" href="https://css-tricks.com/almanac/properties/f/filter/">CSS Tricks link</a></h4>
+  <pre class="prettyprint w40">
   // filter: blur(5px);
   // filter: brightness(0.4);
   filter: contrast(140%);
