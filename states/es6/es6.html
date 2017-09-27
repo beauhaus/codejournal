@@ -221,23 +221,44 @@ Everything inside the block prior to the 'let' declaration is known as the <span
   </div>
   <hr>
   <div class="framed6">
-    <h3>.map() with ES6</h3>
+    <h1 class="chtitle thin dkorange">.map() with ES6</h1>
     <h4>Note: <em class="ivr">implicit return</em></h4>
-    <pre class="prettyprint w40">
-    var riceCrispies = [
-      {character: "Snap!"},
-      {character: "Crackle!"},
-      {character: "Pop!"}
-    ];
+    <pre class="prettyprint w40 ctr">
+var riceCrispies = [
+  {character: "Snap!"},
+  {character: "Crackle!"},
+  {character: "Pop!"}
+];
 
-    var cereal = riceCrispies.map(key => key.character);
-          // ["snap!", "Crackle!", "Pop!"]
-    </pre>
-    <pre>
-      name4 = names.map(poop => `${poop.name}'s id is ${poop.id}`)
-  (4) ["astrid's id is 1", "beau's id is 2", "chuck's id is 3", "derrick's id is 4"]
+var cereal = riceCrispies.map(key => key.character);
+// ["snap!", "Crackle!", "Pop!"]
 </pre>
 
+<pre class="prettyprint w50 ctr">var array = [1,2,3,4,5,6];
+// es5
+let es5Arr = array.map(function(element) { return  element + 1});
+console.log("ES5", es5Arr); // [73, 72, 59, 34, 43]
+
+// es6
+var arr3 = [10, 20, 30, 40, 50];
+let es6Arr = arr3.map(element => element + 1);
+console.log("es6", es6Arr); // [73, 72, 59, 34, 43]</pre>
+
+<div class="simple-frame">
+<h3>.map() with array of objects is very straightforward:</h3>
+  <pre class="prettyprint w50">var people = [
+  {name: "Sue",age: 23},
+  {name: "Kim",age: 13},
+  {name: "Joe",age: 21}
+];
+
+var ageArr = people.map(function(person){
+  return person.age;
+});
+  // [23,13,21]</pre>
+<h3>And in es6</h3>
+  <pre class="prettyprint w40">var ageArr = people.map(person => person.age;)</pre>
+</div>
   </div>
   <hr>
   <div class="simple-frame2">
