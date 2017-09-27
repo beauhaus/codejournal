@@ -4,6 +4,69 @@
   <div class="react-entry entry">
     <pre>
     <!--entire page pre-->
+    <div class="simple-wine-frame thin softwhite"><h1 class="ctrtxt wh">Barest Bones of a React Component</h1>
+(This is without JSX)
+      <pre class="dkbg2 w60 ctr">
+<pre class="dkbg softwhite fRight brdr-w med thin">
+< div id="app">
+  < div data-reactroot>
+    < div class="first">
+        < h4 style="color: navy;">Homeland< / h4>
+    < /div>
+  < /div>
+< /div>
+</pre>
+const ce = React.createElement;
+
+const <span class="paleY">MyTitle</span> = function(<span class="ltgreen">props</span>) {
+  return ce(
+   'div',
+   null,
+   ce(
+    'h4',
+    { style: {
+        color: <span class="ltgreen">props</span>.color
+      }
+    },
+    <span class="ltgreen">props</span>.title
+   )
+  );
+};
+
+const <span class="ltred">MyFirstComponent</span> = function() {
+  return ce(
+    'div',
+    {
+      id: 'first'
+    },
+    ce(<span class="paleY">MyTitle</span>,{
+      title: 'Homeland',
+      color: 'navy'
+    })
+ );
+};
+
+ReactDOM.render(ce(<span class="ltred">MyFirstComponent</span>), document.getElementById('app'));
+</pre>
+<hr class="w50">
+<h3>Simple example with JSX</h3>
+<pre class="prettyprint w50 ctr">import React from 'react';
+import { render } from 'react-dom';
+
+// Implicit Return (as if the whole body below were one line) so, () not {}
+const App = () => (
+  < div className="app">
+    < div className="landing">
+      < h1>SVIDEO< /h1>
+      < input type="text" placeholder="SEARCH" />
+      < a>or Browse All< /a>
+    < /div>
+  < /div>
+);
+
+render(<App />, document.getElementById('app'));
+</pre>
+</div>
 
 <div class="react-frame-light"><h1 class="chtitle dkmango">REACT STATE:</h1>
   <h2 class="ctrtxt">From static component to Stateful component <em>in a few easy steps</em></h2>
@@ -156,38 +219,41 @@ class Search extends Component {
 
 export default Search;</pre>
 
-There is <em>yet</em> a more concise bit of wizardry used by Brian Holt in his class on FrontEnd Masters using a stage 2 javascript proposal.
+<div class="plain-frame1">
+  There is <em>yet</em> a more concise bit of wizardry used by Brian Holt in his class on FrontEnd Masters using a stage 2 javascript proposal.
 
-1) First, we need to update our babelrc file:
-<pre class="slate-skyblue-fr w40"><code class="sm">
-  ...
-  ...
-      "loose": true,
-      "modules": false
-      }
-    ]
-  ],
-<span class="pastY">"plugins": ["babel-plugin-transform-class-properties"]</span>
-}</code></pre>
-2) Next, we need to make sure that eslint.json has the proper parser:
-<pre class="slate-skyblue-fr w40"><code class="sm">
-  ...
-  ...
-  "plugins": ["prettier"],
-  <span class="pastY">"parser": "babel-eslint",</span>
-  "parserOptions": {
-  ...
-</code></pre>
-Finally, we can delete a good bit of code to make this class more concise.
-Delete: <code class="ltred">this.handleSearchTermChange = this.handleSearchTermChange.bind(this);</code>
-Transform <code>handleSearchTermChange</code> into an arrow function...
-<pre class="slate-skyblue-fr w60">  handleSearchTermChange = event => {
-    this.setState({ searchTerm: event.target.value });
-  }</pre>
-Replace the entire constructor function with the object:
-<pre class="slate-skyblue-fr w30"> state = {
-    searchTerm: ''
-  };</pre>
+  1) First, we need to update our babelrc file:
+  <pre class="prettyprint w40"><code class="sm">
+    ...
+    ...
+        "loose": true,
+        "modules": false
+        }
+      ]
+    ],
+  <span class="pastY">"plugins": ["babel-plugin-transform-class-properties"]</span>
+  }</code></pre>
+  2) Next, we need to make sure that eslint.json has the proper parser:
+  <pre class="prettyprint w40"><code class="sm">
+    ...
+    ...
+    "plugins": ["prettier"],
+    <span class="pastY">"parser": "babel-eslint",</span>
+    "parserOptions": {
+    ...
+  </code></pre>
+  Finally, we can delete a good bit of code to make this class more concise.
+  Delete: <code class="ltred">this.handleSearchTermChange = this.handleSearchTermChange.bind(this);</code>
+  Transform <code>handleSearchTermChange</code> into an arrow function...
+  <pre class="prettyprint w60">  handleSearchTermChange = event => {
+      this.setState({ searchTerm: event.target.value });
+    }</pre>
+  Replace the entire constructor function with the object:
+  <pre class="dkbg w30"> state = {
+      searchTerm: ''
+    };</pre>
+
+</div>
 <h2 class="ctrtxt clean">Entire working code is much cleaner</h2>
 <pre class="prettyprint">import React, { Component } from 'react';
 import ShowCard from './ShowCard';
