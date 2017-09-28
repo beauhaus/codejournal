@@ -8,6 +8,9 @@
 
 <!--
 -->
+<div class="simple-wine-frame">
+
+</div>
 
 <div class="framed8">
   <h3 class="chtitle wh">Douglas Crockford<a target="_blank" href="http://www.crockford.com/javascript/private.html"> ,here,</a> has lots to say about Public, Private & Privileged Properties (or <em>"members"</em>) of Objects that are quite useful</h3>
@@ -26,20 +29,19 @@ function CelebConstructor(nickName,phone) {
 }
 </pre>
 
-<p>Well, she isn't "here", yet... We have to create an instance of her, then ask for a selfie.</p>
-<pre class="prettyprint w60 ctr">
+    <p>Well, she isn't "here", yet... We have to create an instance of her, then ask for a selfie.</p>
+    <pre class="prettyprint w60 ctr">
 var taylorSwift = new CelebConstructor("Tay-tay", "iPhone X");
 console.log(taylorSwift instanceof CelebConstructor); // true  (...sanity check)
 </pre>
-<p>I ask for a selfie and she says "sure"!</p>
-<pre class="prettyprint w60 ctr">
+    <p>I ask for a selfie and she says "sure"!</p>
+    <pre class="prettyprint w60 ctr">
 console.log(taylorSwift.selfieRequest()) // "Sure!"
 </pre>
 
-<p>Enquiring minds want to know what phone she uses.<br />She's shopping around for an endorsement deal with Samsung so she has her publicist announce the public property of the <code>taylorSwift</code> Object<br />
-This is done using a method built on the prototype.<br />A publicist is placed on the CelebConstructor prototype to receive an opinion parameter as a reason for <em>her</em> choice.<br />
-(This can be used on future celebs created this way...)</p>
-<pre class="prettyprint w60 ctr">
+    <p>Enquiring minds want to know what phone she uses.<br />She's shopping around for an endorsement deal with Samsung so she has her publicist announce the public property of the <code>taylorSwift</code> Object<br /> This is done using a method built
+      on the prototype.<br />A publicist is placed on the CelebConstructor prototype to receive an opinion parameter as a reason for <em>her</em> choice.<br /> (This can be used on future celebs created this way...)</p>
+    <pre class="prettyprint w60 ctr">
 CelebConstructor.prototype.whatPhone = function(opinion) {
    let statement = `${this.nickName} likes the ${this.phone} because ${opinion}`;
    console.log(statement)
@@ -49,35 +51,24 @@ CelebConstructor.prototype.whatPhone = function(opinion) {
 taylorSwift.whatPhone("it's fancy!"); // Tay-tay likes the iPhone X because it's fancy!
 </pre>
 
-<h2 class="chtitle wh">Let's discuss something <code>Private</code></h2>
-<p>There are "Private Methods" & "Private variables"<br />
-Private members are made by the constructor. Ordinary vars and parameters of the constructor become the private members.
-</p>
+    <h2 class="chtitle wh">Let's discuss something <code>Private</code></h2>
+    <p>There are "Private Methods" & "Private variables"<br /> Private members are made by the constructor. Ordinary vars and parameters of the constructor become the private members.
+    </p>
 
-<div class="framed1 w60 ctr">
-  function CelebConstructor(nickName, phone, <span class="orange">prop</span>) {
-    this.phone = phone;
-    this.nickName = nickName;
-    this.selfieResponse = "Sure!";
-    <span class="orange">var email = "taytay@gmail.com";</span>
-    <span class="orange">var selfieLimit = prop;</span>
-    <span class="paleY">var that = this;</span>
-    this.selfieRequest = function() {
-      return this.selfieResponse;
-    };
-  }
+    <div class="framed1 w60 ctr">
+      function CelebConstructor(nickName, phone, <span class="orange">prop</span>) { this.phone = phone; this.nickName = nickName; this.selfieResponse = "Sure!";
+      <span class="orange">var email = "taytay@gmail.com";</span>
+      <span class="orange">var selfieLimit = prop;</span>
+      <span class="paleY">var that = this;</span> this.selfieRequest = function() { return this.selfieResponse; }; } var tay = new CelebConstructor('Tay-tay', 'iPhoneX', 3); tay.selfieRequest(); <i class="ltgreen">// Sure!</i> tay.nickName;
+      <i class="ltgreen"> // Tay-tay</i> tay.email;
+      <i class="ltgreen"> // undefined</i>
+    </div>
+    <h4>This constructor makes three private instance variables: prop, selfieLimit, and that. <br />They are attached to the object, but they are not accessible to the outside, nor are they accessible to the object's own public methods. <br />They are accessible to private methods. <span class="y">Private methods</span> are inner functions of the constructor.</h4>
+    <h3>Take a close look at <code>var that = this;</code> <br />By convention, we make a private that variable. This is used to make the object available to the private methods.</h3>
+    <br />
+    <p>Let's add a <span class="y">private method</span></p>
 
-var tay = new CelebConstructor('Tay-tay', 'iPhoneX', 3);
-tay.selfieRequest(); <i class="ltgreen">// Sure!</i>
-tay.nickName;<i class="ltgreen"> // Tay-tay</i>
-tay.email;<i class="ltgreen"> // undefined</i>
-</div>
-<h4>This constructor makes three private instance variables: prop, selfieLimit, and that. <br />They are attached to the object, but they are not accessible to the outside, nor are they accessible to the object's own public methods. <br />They are accessible to private methods. <span class="y">Private methods</span> are inner functions of the constructor.</h4>
-<h3>Take a close look at <code>var that = this;</code> <br />By convention, we make a private that variable. This is used to make the object available to the private methods.</h3>
-<br />
-<p>Let's add a <span class="y">private method</span></p>
-
-  <pre class="prettyprint w50 ctr">
+    <pre class="prettyprint w50 ctr">
 function CelebConstructor(nickName, phone, <span class="orange">prop</span>) {
   this.phone = phone;
   this.nickName = nickName;
@@ -103,10 +94,10 @@ function CelebConstructor(nickName, phone, <span class="orange">prop</span>) {
 var tay = new CelebConstructor('Tay-tay', 'iPhoneX', "Sure!");
 </pre>
 
-<h3 class="chtitle wh"><code>cameraShy</code> is a private method: An inner function of the constructor that can access <code>selfieLimit</code>
+    <h3 class="chtitle wh"><code>cameraShy</code> is a private method: An inner function of the constructor that can access <code>selfieLimit</code>
 <br />We know taylorSwift has limited patience, but we don't know <em>how</em> limited. Because it's on a private variable.<br />
 <code>cameraShy</code>examines selfieLimit and decrements it... <br />This will be called with a <span class="paleY">"Privileged Method"</span> and put to good use...3 times.</h3>
-<pre class="prettyprint w50 ctr">function CelebConstructor(nickName, phone, <span class="orange">prop</span>) {
+    <pre class="prettyprint w50 ctr">function CelebConstructor(nickName, phone, <span class="orange">prop</span>) {
   this.phone = phone;
     this.nickName = nickName;
     this.selfieResponse = prop;
@@ -135,33 +126,24 @@ console.log(tay.selfieRequest()); // Sure!
 console.log(tay.selfieRequest()); // Get Lost!
 
 </pre>
-<h3 class="chtitle">The important point is that the privileged method<code>selfieRequest</code>puts<code>selfieResponse</code>onto <em class="paleY">that</em>temporarily...<br>
+    <h3 class="chtitle">The important point is that the privileged method<code>selfieRequest</code>puts<code>selfieResponse</code>onto <em class="paleY">that</em>temporarily...<br>
 So long as Tay-tay's patience hasn't run out. (via the private method<code>cameraShy()</code>)</h3>
-<div class="ctr w40 simple-frame dkbg wh thin"><span class="orange">Private methods can, of course, be function statements</span>
+    <div class="ctr w40 simple-frame dkbg wh thin"><span class="orange">Private methods can, of course, be function statements</span> var cameraShy = function() { if (selfieLimit > 0) { selfieLimit -= 1; return true; } else { return false; } };
 
-var cameraShy = function() {
-  if (selfieLimit > 0) {
-    selfieLimit -= 1;
-    return true;
-  } else {
-    return false;
-  }
-};
+    </div>
 
-</div>
-
-</div>
-<hr>
-<div class="brdr-w dkbg ctr med">
-<h4 class="chtitle wh">Promises at a glance...</h4>
-<div class="orange w30 brdr-w ctr"><span class="ltred med thin">Q: What 4 stages can a promise have?</span>
-  <span class="ans left med">fulfilled - <i>The action relating to the promise succeeded</i></span>
-  <span class="ans left med">rejected - <i>The action relating to the promise failed</i></span>
-  <span class="ans left med">pending - <i>Hasn't fulfilled or rejected yet</i></span>
-  <span class="ans left med">settled - <i>Has fulfilled or rejected</i></span>
-</div>
-<p>Here's how we create a promise. </p><a class="sm right" href="https://developers.google.com/web/fundamentals/getting-started/primers/promises" target="_blank">Jake Archibald</a>
-<pre class="prettyprint w40 ctr">
+  </div>
+  <hr>
+  <div class="brdr-w dkbg ctr med">
+    <h4 class="chtitle wh">Promises at a glance...</h4>
+    <div class="orange w30 brdr-w ctr"><span class="ltred med thin">Q: What 4 stages can a promise have?</span>
+      <span class="ans left med">fulfilled - <i>The action relating to the promise succeeded</i></span>
+      <span class="ans left med">rejected - <i>The action relating to the promise failed</i></span>
+      <span class="ans left med">pending - <i>Hasn't fulfilled or rejected yet</i></span>
+      <span class="ans left med">settled - <i>Has fulfilled or rejected</i></span>
+    </div>
+    <p>Here's how we create a promise. </p><a class="sm right" href="https://developers.google.com/web/fundamentals/getting-started/primers/promises" target="_blank">Jake Archibald</a>
+    <pre class="prettyprint w40 ctr">
   var promise = new Promise(function(resolve, reject) {
     // do a thing, possibly async, then…
 
@@ -173,8 +155,8 @@ var cameraShy = function() {
     }
   });
 </pre>
-<p>And here's how we use that promise</p>
-<pre class="prettyprint w40 ctr">
+    <p>And here's how we use that promise</p>
+    <pre class="prettyprint w40 ctr">
 promise.then(function(result) {
   console.log(result); // "Stuff worked!"
 }, function(err) {
@@ -182,17 +164,17 @@ promise.then(function(result) {
 });
 </pre>
 
-<p>In the following pen, I use a promiseMaker function to get the whole thing started: <a href="https://codepen.io/beau_dev/full/dVMzBX/">Promise Pen</a></p>
-<span class="wh">sans error handling</span>
-<pre class="prettyprint w40 ctr">
+    <p>In the following pen, I use a promiseMaker function to get the whole thing started: <a href="https://codepen.io/beau_dev/full/dVMzBX/">Promise Pen</a></p>
+    <span class="wh">sans error handling</span>
+    <pre class="prettyprint w40 ctr">
 function promiseMaker(msg1) {
   return new Promise(function(resolve) {
       resolve("SUCCESS!");
   });
 }
 </pre>
-<p>I set up 3 funks to call:</p>
-<pre class="prettyprint w40 ctr">function functionOne(msg) {
+    <p>I set up 3 funks to call:</p>
+    <pre class="prettyprint w40 ctr">function functionOne(msg) {
     res1.text(msg);
   return msg;
 }
@@ -207,10 +189,11 @@ function functionThree(msg) {
 }
 // return statements send msg "success" to subsequent <i>.then()</i> calls
 </pre>
-<p>And, finally, the promiseMaker call with chained then statements:</p>
-<pre class="prettyprint w60 ctr">promiseMaker("Pending").then(functionOne).then(functionTwo).then(functionThree);</pre>
-<div class="brdr-w w60 ctr"><h4>Simple Promise Example</h4>
-<pre class="prettyprint">
+    <p>And, finally, the promiseMaker call with chained then statements:</p>
+    <pre class="prettyprint w60 ctr">promiseMaker("Pending").then(functionOne).then(functionTwo).then(functionThree);</pre>
+    <div class="brdr-w w60 ctr">
+      <h4>Simple Promise Example</h4>
+      <pre class="prettyprint">
 var promise = new Promise(function(resolve, reject) {
   var data = $.get("./data/birds.JSON")// do something async
 
@@ -227,22 +210,20 @@ promise.then(function(result) {
 }, function(err) {
   console.log(err); // Error: "It broke"
 });
-// {animal: "birds", cage-contents: Array(5)}</pre>
-HOWEVER, if url is wrong, I still get a useful error trace!
-<pre class="prettyprint">
+// {animal: "birds", cage-contents: Array(5)}</pre> HOWEVER, if url is wrong, I still get a useful error trace!
+      <pre class="prettyprint">
 //{readyState: 4, ... responseText: "Cannot GET /.data/birds.JSON↵"....statusText: "Not Found"...
 </pre>
-</div>
+    </div>
 
-<a href="https://youtu.be/COKdtOgopWQ">video explaining await</a>
-</div>
-<hr />
-<div class="simple-frame"><h3 class="chtitle dkblue">Note on Object.keys()</h3>
-<h4 class="chtitle wh"><span class="ltred med thin">Q:</span>What higher-order Fn do we use to turn an array to an Object? <span class="ans dkorange med">.reduce()</span></h4>
+    <a href="https://youtu.be/COKdtOgopWQ">video explaining await</a>
+  </div>
+  <hr />
+  <div class="simple-frame">
+    <h3 class="chtitle dkblue">Note on Object.keys()</h3>
+    <h4 class="chtitle wh"><span class="ltred med thin">Q:</span>What higher-order Fn do we use to turn an array to an Object? <span class="ans dkorange med">.reduce()</span></h4> Conversely, a great way to turn an Object to an array is with the vanilla js...Object.keys();
 
-Conversely, a great way to turn an Object to an array is with the vanilla js...Object.keys();
-
-<pre class="prettyprint w40 ctr">
+    <pre class="prettyprint w40 ctr">
   const meals = {
     Asian: 'Pork',
     Italian: 'Pasta',
@@ -252,11 +233,9 @@ Conversely, a great way to turn an Object to an array is with the vanilla js...O
 
   console.log(mealsArr);
 // (3) ["Asian", "Italian", "American"]
-</pre>
+</pre> We can, then, begin to put it back together with .reduce();
 
-We can, then, begin to put it back together with .reduce();
-
-<pre class="prettyprint w40 ctr">
+    <pre class="prettyprint w40 ctr">
 var backToObject = mealsArr.reduce(function(a, b) {
   a[b] = b;
   return a;
@@ -266,18 +245,19 @@ console.log(backToObject);
 // {Asian: "Asian", Italian: "Italian", American: "American"}
 </pre>
 
-</div>
+  </div>
 
-<div class="slate-skyblue-fr"> <h1 class="chtitle">Closures created in an Array</h1>
-  <p class="thin">The problem: Code separate vals for these calls:
-  <div class="w30 ctr"><code class="softsand">
+  <div class="slate-skyblue-fr">
+    <h1 class="chtitle">Closures created in an Array</h1>
+    <p class="thin">The problem: Code separate vals for these calls:
+      <div class="w30 ctr"><code class="softsand">
     funcArray[0](); //returns 0
     funcArray[1](); //returns 1
     funcArray[2](); //returns 2
     funcArray[3](); //returns 3</code></div>
-(In other words...a function created at each item in Array returning a separate incrementing value.) </p>
-  <p>Attempt:
-  <pre class="brdr-w ctr prettyprint w40">var funcArray = [];
+      (In other words...a function created at each item in Array returning a separate incrementing value.) </p>
+    <p>Attempt:
+      <pre class="brdr-w ctr prettyprint w40">var funcArray = [];
 for (var i = 0; i < 3; i++) {
   // make 3 functions
   funcArray[i] = function() {
@@ -295,7 +275,7 @@ for (var j = 0; j < 3; j++) {
 </pre>
 
 
-  <!-- var myFunctions = [];
+      <!-- var myFunctions = [];
 for (var i = 0; i < 3; i++) {
   // let's create 3 functions
   myFunctions[i] = function() {
@@ -328,15 +308,15 @@ funcArray[3](); //returns 3
 console.log(funcArray);
 
 var funcArray = []; -->
-  <pre class="brdr-w ctr w50"></pre>
+      <pre class="brdr-w ctr w50"></pre>
 
-</div>
+  </div>
 
-<div class="simple-frame">
-  <h3 class="chtitle wh">Pass by reference vs Pass by value</h3> All primitives pass by value.
-  <div class="col-2">Primitives establish an address. A place in memory. a = 5; let's say I copy that with... a = b; b's val doesn't <em>look</em> or <em>point to</em> that address. b; // 5 is, in fact a copy of a.
-    <span class="ltblue">a = 50;</span> The value at a's orig address has changed, <br />but... b; // still --5❗️
-    <pre class="prettyprint">a = 5;
+  <div class="simple-frame">
+    <h3 class="chtitle wh">Pass by reference vs Pass by value</h3> All primitives pass by value.
+    <div class="col-2">Primitives establish an address. A place in memory. a = 5; let's say I copy that with... a = b; b's val doesn't <em>look</em> or <em>point to</em> that address. b; // 5 is, in fact a copy of a.
+      <span class="ltblue">a = 50;</span> The value at a's orig address has changed, <br />but... b; // still --5❗️
+      <pre class="prettyprint">a = 5;
 b = a;
 a = 50;
 console.log(a);
@@ -344,14 +324,13 @@ console.log(a);
 console.log(b);
 // 5
 </pre>
-  </div>
-  <hr> All objects <span class="wh">(including functions)</span> pass by reference.<br />
-  <div class="col-2 med dkblue"><pre class="med dkblue">I have two chicks: "chirpie" & "tweetie".
+    </div>
+    <hr> All objects <span class="wh">(including functions)</span> pass by reference.<br />
+    <div class="col-2 med dkblue"><pre class="med dkblue">I have two chicks: "chirpie" & "tweetie".
     <pre class="dkbg w20 sm">var chirpie = {feathers: "yellow"};
-var tweetie = chirpie;</pre>(left-to-right) the "=" recognizes chirpie as an Object. It then, creates an 'alias' for tweetie <em>pointing to</em> chirpie. This is <strong><b class="underline">pass by reference</b></strong>
-If I <em>mutate</em> chirpie with<pre class="dkbg w20 sm">chirpie.feathers = "purple";</pre>
-..tweetie will also mutate.</pre>
-    <pre class="prettyprint w30">
+var tweetie = chirpie;</pre>(left-to-right) the "=" recognizes chirpie as an Object. It then, creates an 'alias' for tweetie <em>pointing to</em> chirpie. This is <strong><b class="underline">pass by reference</b></strong> If I <em>mutate</em> chirpie
+      with<pre class="dkbg w20 sm">chirpie.feathers = "purple";</pre> ..tweetie will also mutate.</pre>
+      <pre class="prettyprint w30">
 var chirpie = {feathers: "yellow"};
 var tweetie = chirpie;
 console.log(chirpie);
@@ -365,14 +344,14 @@ console.log(tweetie);
 
 // Object {feathers: "purple"}
 </pre>
-  </div>
-  <hr>
-  <h3><span class="ltred">Important:</span> the "=" operator creates a place in memory.</h3> The equals operator will see the left side of this statement as unfamiliar and create a new space for it.
+    </div>
+    <hr>
+    <h3><span class="ltred">Important:</span> the "=" operator creates a place in memory.</h3> The equals operator will see the left side of this statement as unfamiliar and create a new space for it.
 
-  <pre class="w40 prettyprint">...
+    <pre class="w40 prettyprint">...
 <pre class="ltbg w20 sm">  tweetie = {feathers: "black"};</pre> console.log("chirpie", chirpie); console.log("tweetie", tweetie); // chirpie Object {feathers: "purple"} // tweetie Object {feathers: "black"}</pre>
-  <hr> Once more...
-  <pre class="prettyprint w80 linenums">  var chirpie = {feathers: "yellow"};
+    <hr> Once more...
+    <pre class="prettyprint w80 linenums">  var chirpie = {feathers: "yellow"};
 var tweetie = chirpie;
 console.log('chirpie.feathers: ', chirpie.feathers);
 console.log('tweetie.feathers: ', tweetie.feathers);
@@ -390,16 +369,16 @@ console.log('chirpie.feathers: ', chirpie.feathers);
 console.log('tweetie.feathers: ', tweetie.feathers);
 // chirpie.feathers:  purple
 // tweetie.feathers:  green</pre> 🔶 --Notice: I didn't change the original! Changing either--bird changes the val at the address in memory. Both return "purple" becase they are both links or "references" the same place in memory! ⚠️ --This is special.
-  Equals operator creates a totally new place in memory. both birds are referencing a different places!
-</div>
+    Equals operator creates a totally new place in memory. both birds are referencing a different places!
+  </div>
 
-<div class="framed6">
-  <h3 class="chtitle dkred">🐜The "'this'/ self" bug in Javascript🐜</h3>
-<pre class="dkbg w40">var pet = "dog";  // global variable
+  <div class="framed6">
+    <h3 class="chtitle dkred">🐜The "'this'/ self" bug in Javascript🐜</h3>
+    <pre class="dkbg w40">var pet = "dog";  // global variable
 
 <span class="ltgreen sm">I can also use 'this' to put a var on the Global Scope</span>
 this.pet = "dog";  // also global</pre>
-<pre class="prettyprint w60">
+    <pre class="prettyprint w60">
 var myDog = {
 name: "Skipper",
 log: function() {
@@ -413,7 +392,7 @@ myDog.log(); // Skippy
 
 // Straightforward and expected.
 // The second property updates the object by calling 'this' within that property.</pre> However, what if I refer to 'this' inside that property with a function?
-<pre class="prettyprint w60">
+    <pre class="prettyprint w60">
 var myDog = {
 name: "Skipper",
 log: function() {
@@ -434,17 +413,17 @@ myDog.log();
 // 1st update Skippy
 // after secondUpDate:  Skippy ⁉️
 </pre>
-<div class="col-2 simple-frame2">The problem (or BUG) is: that second 'this' (inside secondUpdate) puts input's value on the global Object! Try it!
-  <pre class="prettyprint w20">console.log(name);
+    <div class="col-2 simple-frame2">The problem (or BUG) is: that second 'this' (inside secondUpdate) puts input's value on the global Object! Try it!
+      <pre class="prettyprint w20">console.log(name);
 // Scooter ‼️</pre>
-  <span class="navy">The execution context that is created by secondUpdate funk
+      <span class="navy">The execution context that is created by secondUpdate funk
 makes 'this' point to the Global Object!
 
 <img src="./img/thisglobal.jpg" class="w10" alt="this global">
 Now, there is uncertainty about which object 'this' is pointing to.
 </span>
-</div>
-<pre class="dkbg dkmango"><h3 class="chtitle ltblue">The solution for this bug is the following: We store 'this' on to a variable "self" or "that".</h3>
+    </div>
+    <pre class="dkbg dkmango"><h3 class="chtitle ltblue">The solution for this bug is the following: We store 'this' on to a variable "self" or "that".</h3>
 var myDog = {
 name: "Skipper",
 log: function() {
@@ -465,11 +444,12 @@ myDog.log();
 
 <pre class="prettyprint w40">//1st update Skippy
 //after secondUpDate:  Scooter</pre>
-</pre>
-</div>
+    </pre>
+  </div>
 
-<div class="simple-frame"><h3 class="chtitle dkblue">How to set up defaults in a function using "||" operator</h3>
-<pre class="prettyprint">
+  <div class="simple-frame">
+    <h3 class="chtitle dkblue">How to set up defaults in a function using "||" operator</h3>
+    <pre class="prettyprint">
 function moodGreet(name, greet, mood) {
 mood = mood || "fine";
 greet = greet || "How's it going?";
@@ -1263,13 +1243,9 @@ for (var i = 0; i < purps.length; i++) {
 
 
   <div class="slate-skyblue-fr">
-    <h3 class="chtitle">Recursion</h3>
-The BASE CASE is "when you want to stop recursing"
-The first line of any recursion OUGHT to be the base case because you want to avoid stack overflows.
+    <h3 class="chtitle">Recursion</h3> The BASE CASE is "when you want to stop recursing" The first line of any recursion OUGHT to be the base case because you want to avoid stack overflows. Give Fn a maximum output & start it with a number...
 
-Give Fn a maximum output & start it with a number...
-
-<pre class="prettyprint linenums w40">function basicRecursion(max, current) {
+    <pre class="prettyprint linenums w40">function basicRecursion(max, current) {
   if (current > max) return;
   console.log('current', current);
   basicRecursion(max, current + 1);
@@ -1282,13 +1258,8 @@ basicRecursion(6, 1);
 // current 3
 // current 4
 // current 5
-// current 6</pre>
-
-
-
-I. Fibonacci: the sum of the two prior numbers past the 2nd index in the sequence
-(albeit, an extremely inefficient fibonacci)
-<pre class="prettyprint w40 linenums">
+// current 6</pre> I. Fibonacci: the sum of the two prior numbers past the 2nd index in the sequence (albeit, an extremely inefficient fibonacci)
+    <pre class="prettyprint w40 linenums">
   function fib(num) {
   // First we establish the base case
     if (num <= 2) return 1;
@@ -1296,12 +1267,8 @@ I. Fibonacci: the sum of the two prior numbers past the 2nd index in the sequenc
   }
 
   console.log(fib(6));
-</pre>
-
-
-
-II. Factorial
-<pre class="prettyprint linenums w40">function factorial(n) {
+</pre> II. Factorial
+    <pre class="prettyprint linenums w40">function factorial(n) {
     if(n< 2) {
       return 1;
     } else {
@@ -1569,7 +1536,7 @@ pbj.summary();
   console.log(ruben.toString()); // returns  error
   console.log(ruben instanceof Object); // returns  false
 </pre>
-<pre class="prettyprint w50">var ruben = Object.create(null);
+    <pre class="prettyprint w50">var ruben = Object.create(null);
   ruben.kind = "ruben"
   ruben.meat = "corned beef"
   ruben.veg = "sauerkraut"
@@ -1579,7 +1546,7 @@ pbj.summary();
   }
   ruben.summary();
   console.log(ruben.toString()); // error console.log(ruben instanceof Object); // false</pre>
-</pre>
+    </pre>
 
     <h2 class="wh">IV.</h2>
     <h4 class="dkmango">Finally, the constructor Function</h4>
@@ -1708,6 +1675,78 @@ var divByThrees = array.reduce(function(arr, val){
 },[]);
 
 console.log(divByThrees);   // [3, 6, 9]</pre>
+<h3 class="chtitle wh">.reduce() to create an object of objects</h3>
+JSON Object --An array of arrays of Strings
+<pre class="prettyprint w50 ctr">[
+	["condor", "Kevin", "rodents", "home: North America"],
+	["parakeet", "Paula", "seeds", "home: Chicago"],
+	["stork", "Stephanie", "fish", "home: Florida"],
+	["Owl", "Alfredo", "mice", "home: California"]
+]</pre>
+We create a promise and handlers for when it screws up.
+<pre class="w50 ctr dkbg shadn softwhite sm"><span class="mango">var output;</span>
+var promise = new Promise(function(resolve, reject) {
+  var data = $.get("./data/birds.JSON")<span class="green">// do something async </span>
+
+  if (data) {
+    resolve(data);
+  }
+  else {
+    reject(Error("It broke"));
+  }
+});
+promise.then(function(result) {
+<pre class="prettyprint w40 med">output = result.reduce((bird, array) => {
+    bird[array[0]] = bird[array[0]] || [];
+    bird[array[0]].push({
+      type: array[0],
+      name: array[1],
+      food: array[2],
+      home: array[3]
+    });
+    return bird;
+  }, {})</pre>
+console.log(JSON.stringify(output, null, 2))<span class="green">"pretty prints" json to console</span>
+}, function(err) {
+  console.log("OH SHIT!", err); // Error: "It broke"
+});</pre>
+<pre class="prettyprint w40 dkbg sm ctr wh">{
+  "condor": [
+    {
+      "type": "condor",
+      "name": "Kevin",
+      "food": "rodents",
+      "home": "home: North America"
+    }
+  ],
+  "parakeet": [
+    {
+      "type": "parakeet",
+      "name": "Paula",
+      "food": "seeds",
+      "home": "home: Chicago"
+    }
+  ],
+  "stork": [
+    {
+      "type": "stork",
+      "name": "Stephanie",
+      "food": "fish",
+      "home": "home: Florida"
+    }
+  ],
+  "Owl": [
+    {
+      "type": "Owl",
+      "name": "Alfredo",
+      "food": "mice",
+      "home": "home: California"
+    }
+  ]
+}</pre>
+
+Thanks to <a target="_blank" href="https://youtu.be/1DMolJ2FrNY">Fun Fun Function</a> for this idea
+<hr class="w50">
     <div class="framed5">
       <h3 class="chtitle">Filter out string items from an array with filter();</h3>
       <pre class="prettyprint w40">function filter_list(l) {
@@ -2185,7 +2224,7 @@ body {
 
 
 
-  <div class="slate-skyblue-fr">
+  <div class="dkbg brdr-b">
     <h4 class="w20 ctr">events (Lynda)</h4>
     <h5>Adding event listeners</h5>
     <h6>Bascially they are no different in appearance from jQuery's events ('...on.('click', function(){}'...etc)</h6>
@@ -2228,15 +2267,14 @@ This is called capturing the event in <em class="dkorange underline">the Bubblin
   The event handlers fire in the order in which they were registered.
 </pre></div>
     <h4 class="w60 dkblue">One more example:</h4>
-    <div class="caption-box">
+    <div class="dkbg2 brown">
       <img class="fRight w10" src="./img/link1.png" alt="link1">
       <br>
-      < div <span class="dkorange">id="myDiv"></span>
-        < div>
-          < a <span class="dkorange">id="coralLink"</span> href="https://www.google.com">LINK
-            < /a>
-              < /div>
-                < /div>
+    < div <span class="orange">id="myDiv"></span>
+      < div>
+        < a <span class="orange">id="coralLink"</span> href="https://www.google.com">LINK< /a>
+      < /div>
+    < /div>
     </div><br><pre class="prettyprint">
     var myDiv = document.getElementById('myDiv');
     var coralLink = document.getElementById('coralLink');
