@@ -6,6 +6,38 @@
 
   <!--
 -->
+<div class="simple-frame">
+  <h1 class="chtitle thin softwhite">.filter() with ES6</h1>
+<h3>First, it is important to realize that .filter() uses an expression as its body.<br />
+So...
+<pre class="prettyprint w50 ctr">cars.filter(ride => if(ride.style ==="luxury"){ return etc, etc...});</pre>
+This is not going to work. "if" is, of course, a statement.
+<br />.filter() needs a boolean, so...</h3>
+<pre class="prettyprint w40 ctr">cars.filter(ride => ride.style == 'luxury');</pre>
+<hr>
+  <pre class="prettyprint w40 ctr">
+    let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+    // Before...
+    let es5Odds = numbers.filter(function(number) {
+      return number % 2;
+    });
+    console.log(es5Odds);
+
+    // After...
+    let es6Odds = numbers.filter(number => number % 2);
+    console.log(es6Odds);
+</pre><br />
+<p>Here we have an example of filter returning odds</p>
+<pre class="prettyprint w50 ctr">const someNums = [1, 2, 3, 4];
+ const oddsOfSomeNums = someNums.filter(nums => nums % 2)
+// 1 3
+</pre>
+<br />
+
+
+</div>
+<hr>
 <div class="simple-wine-frame thin softwhite"><h3 class="chtitle">Template & tagged strings</h3>
 
 <h3 class="softwhite">A simple template string gives us this</h3>
@@ -221,7 +253,7 @@ Everything inside the block prior to the 'let' declaration is known as the <span
   </div>
   <hr>
   <div class="framed6">
-    <h1 class="chtitle thin dkorange">.map() with ES6</h1>
+    <h1 class="chtitle thin softwhite">.map() with ES6</h1>
     <h4>Note: <em class="ivr">implicit return</em></h4>
     <pre class="prettyprint w40 ctr">
 var riceCrispies = [

@@ -1660,9 +1660,16 @@ function groomer(inputObj) { //takes object and removes 'nat' prop
   </pre>
 
   </div>
-  <div class="forest-red-fr">
-    <h3 class="chtitle">reduce()</h3>
+  <div class="simple-frame">
+    <h1 class="chtitle coral">reduce()</h1>
     <h4 class="ltgreen">This method reduces entire array to a single value</h4>
+    <pre class="prettyprint w60">const sent = "these should be capitalized";
+
+const capped = sent.split(' ').reduce(function(result, word) {
+  result.push((word.charAt(0).toUpperCase() + word.substr(1)))
+ return result}, []).join(' ')
+
+// These Should Be Capitalized</pre>
     <pre class="prettyprint">
 var array= [2,3,4,5,6,7];
 
