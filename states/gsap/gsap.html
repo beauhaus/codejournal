@@ -27,17 +27,27 @@ Then, the function definitions.
     Init.play();
   });
 </div>
-
-<pre class="w50">GSAP callbacks give you 3 choices:
-
-{ ... , onStart:<em class="ltblue">funkName</em> }<br>
-<code>function <span class="ltblue">funkName</span>() { console.log("Started!")}</code>
-
-{ ... , onUpdate:<em class="sand">funkName</em> }<br>
-<code>function <span class="sand">funkName</span>() { console.log("We're running!")}</code>
-
-{ ... , onComplete:<em class="ltred">funkName</em> }<br>
-<code>function <span class="ltred">funkName</span>() { console.log("Done!")}</code></pre>
+<h3 class="chtitle ltgrey"><code>onComplete</code>VS<code>onCompleteParams</code></h3>
+<div class="shadn ctr w60"><code class="wh">onComplete:<span class="ltblue">FunkName</span></code><i class="orange">function call</i>
+<code class="wh">onCompleteParams:<span class="ltblue">Funk Params</span></code>REMEMBER: It's plural! --<i class="orange">expects an array.</i>
+</div>
+<pre class="prettyprint w50 ctr">
+  var Anim = tm.to(thing, 2, {
+    x: 500,
+    y: 225,
+    rotation: 90,
+    alpha: 0.5,
+    paused: true,
+    onComplete: Init,
+    onCompleteParams: [thing]
+  });
+  function Init(obj) {
+    tm.to(obj, 2, { x: 0, y: 0, rotation: 0, alpha: 1, paused: false });
+  }
+  playBtn.click(function() {
+    Anim.play();
+  });
+</pre>
 </div>
 <hr>
 <div class="brdr-w grey-bg">
