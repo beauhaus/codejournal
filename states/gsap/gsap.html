@@ -4,7 +4,42 @@
   <div class="gsap-entry entry">
     <pre>
 <!--entire page pre-->
+<div class="forest-red-fr dk-frame"><h3 class="chtitle pastY">GSAP: Start/End Code (on Buttons.click(<code class="coral">~function~</code>))<br />Plus:<code>onComplete</code>feature of GSAP</h3>
+<h3 class="chtitle"><code>play();</code>works in tandem with <code>{..., pause:true}</code></h3>
+<div class="col-2">
+var definitions and code.
+<pre class="prettyprint w40">
+  var beachBall = $('.beachBall');
+  var playBtn = $('#play');
+  var returnBtn = $('#return');
+  const tm = TweenMax;
 
+  var Anim = tm.to(beachBall, 2, { x: 500, y: 225, rotation: 90, alpha: 0.5, paused: true });
+  var Init = tm.to(beachBall, 2, { x: 0, y: 0, rotation: 0, alpha: 1, paused: true });
+  </pre>
+Then, the function definitions.
+<pre class="prettyprint w40">
+  playBtn.click(function() {
+    Anim.play();
+  });
+
+  returnBtn.click(function() {
+    Init.play();
+  });
+</div>
+
+<pre class="w50">GSAP callbacks give you 3 choices:
+
+{ ... , onStart:<em class="ltblue">funkName</em> }<br>
+<code>function <span class="ltblue">funkName</span>() { console.log("Started!")}</code>
+
+{ ... , onUpdate:<em class="sand">funkName</em> }<br>
+<code>function <span class="sand">funkName</span>() { console.log("We're running!")}</code>
+
+{ ... , onComplete:<em class="ltred">funkName</em> }<br>
+<code>function <span class="ltred">funkName</span>() { console.log("Done!")}</code></pre>
+</div>
+<hr>
 <div class="brdr-w grey-bg">
   <h2 class="chtitle">Animating html boxes vs. svg boxes with GSAP</h2>
     <div class="fRight intrinsic-ratio-wrapper w40">
