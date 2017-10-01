@@ -28,10 +28,11 @@ Then, the function definitions.
   });
 </div>
 <h3 class="chtitle ltgrey"><code>onComplete</code>VS<code>onCompleteParams</code></h3>
-<div class="shadn ctr w60"><code class="wh">onComplete:<span class="ltblue">FunkName</span></code><i class="orange">function call</i>
-<code class="wh">onCompleteParams:<span class="ltblue">Funk Params</span></code>REMEMBER: It's plural! --<i class="orange">expects an array.</i>
+<div class="shadn ctr w60 ltbg3"><code class="wh">onComplete:<span class="ivr">FunkName</span></code><i class="orange">function call</i>
+<code class="wh">onCompleteParams:<span class="ivr">Funk Params</span></code>REMEMBER: It's plural! --<i class="orange">expects an array.</i>
 </div>
 <pre class="prettyprint w50 ctr">
+  var num = .5;
   var Anim = tm.to(thing, 2, {
     x: 500,
     y: 225,
@@ -39,7 +40,7 @@ Then, the function definitions.
     alpha: 0.5,
     paused: true,
     onComplete: Init,
-    onCompleteParams: [thing]
+    onCompleteParams: [num]
   });
   function Init(obj) {
     tm.to(obj, 2, { x: 0, y: 0, rotation: 0, alpha: 1, paused: false });
@@ -225,15 +226,9 @@ The Solution: GSAP's stagger method or "stagger tween".<pre class="prettyprint w
   tl2.staggerFrom(button, .5, {y: -100, ease:Power4.easeOut}, 0.1);</pre>
 💥Boom! --3 lines of code.
 <h4 class="paleY">Of course, there's also <code class="wh">.staggerTo</code> and <code class="wh">.staggerFromTo</code> which requires two abscissa objects</h4>
-<pre class="dkbg w20"><code class="sm paleY">
-tl2.<span class="ltgreen">staggerFromTo</span>(button, .5,
-      {autoAlpha: 0,
-               y: -100,
-            ease:Power4.easeOut
-      },
-      {autoAlpha: 1,
-               y:600
-      }, 0.1);</code></pre>
+<pre class="dkbg w50"><code class="sm paleY">tl2.<span class="ltgreen">staggerFromTo</span>(button, .5,
+      {autoAlpha: 0, y: -100, ease:Power4.easeOut},
+      {autoAlpha: 1,y:600}, 0.1);</code></pre>
 <h3 class="dkred">(In fact, <code>autoAlpha 0</code> is superfluous, here. So let's refactor.)</h3>
 Or, simply...
 

@@ -1008,6 +1008,9 @@ div.svg-entry {
   background-color: rgba(160, 182, 184, 0.6);
   padding: 2%; }
 
+.ltbg3 {
+  background-color: rgba(128, 128, 128, 0.35); }
+
 .trans {
   color: transparent; }
 

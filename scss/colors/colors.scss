@@ -170,6 +170,9 @@
   background-color: map-get($colors, ltbg2);
   padding: 2%;
 }
+.ltbg3 {
+  background-color: map-get($colors, trans30);
+}
 
 .trans {
   color: transparent;
