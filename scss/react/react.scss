@@ -8,7 +8,7 @@ div.react-entry {
   border: 1px solid map-get($colors, ivr);
   & .chtitle {
     font-family: map-get($fonts, Thin);
-    color: map-get($colors, dkorange);
+    color: map-get($colors, dkred);
   }
 }
 .react-frame-light {
