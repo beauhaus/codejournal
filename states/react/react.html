@@ -52,14 +52,14 @@ So, we only need a "Stateless Functional Component". We only need render();
 2) Delete the "render() { ...}"
 3) Put the whole thing on a function definition returning the whole thing.
 4) Make sure this function is passed <em class="dkorange med">props</em>...
-
+5) remove <em>this</em> it is undefined
 <pre class="prettyprint w50 ctr">import React from 'react';
 
 const Winner = (props) => {
   return (
       < header className="employee-of-month">
           < h1>Congratulations!< /h1>
-          < h2 className="tagline">{this.props.winner}< /h2>
+          < h2 className="tagline">{props.winner}< /h2>
           < h3 className="jobtitle">< /h3>
           < h5 className="department">< /h5>
       < /header >
