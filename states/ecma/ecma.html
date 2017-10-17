@@ -8,8 +8,48 @@
 
 <!--
 -->
-<div class="simple-wine-frame">
+<div class="simple-wine-frame brdr-b ctr">
+  <h1 class="ctrtxt paleY">Fizz-Buzz <i class="softwhite med">solved with a ternary</i></h1>
 
+<h3 class="chtitle w30 med grey-bg">var nums = [93, 55, 30, 202];</h3>
+
+<pre class="ctr prettyprint w50">var response = function(input) {
+    var ans = [];
+    input.forEach(function(element) {
+      if ( !(element%3) && !(element%5) ) { // 0 + 0 = truthy
+         ans.push("fizzBuzz!")
+       }else if(!(element%3)){ // 0 = truthy
+            ans.push("fizz!")
+        }else if(!(element%5)){ // 0 = truthy
+            ans.push("Buzz!")
+        }else {
+          ans.push(element)
+        }
+    });
+    return ans;
+}
+
+response(nums);
+</pre>
+<p>A reasonable if/else if approach using modulus rendering a zero to trigger an identification of a "fizz" or "buzz"</p>
+<hr>
+<h1 class="softsand ctrtxt">The ternary approach...</h1>
+<pre class="prettyprint w80 ctr shadn">nums.forEach(function(elem, idx, array){
+    let ternAns = (!(elem%3 + elem%5)) ? "FizzBuzz": ((elem%3 ===0)? "Fizz":((elem%5===0)? "Buzz": "neither"));
+    console.log(`${elem} is: ${ternAns}`);
+})
+
+/*
+"93 is: Fizz"
+"55 is: Buzz"
+"30 is: FizzBuzz"
+"202 is: neither"
+*/</pre>
+<div class="plain-frame1 w60 ctr">
+  <p>1st test <code>!(elem%3 + elem%5) ?</code> passes, assign <span>"FizzBuzz" :</span>fails... test for "fizz"</p>
+  <p>2nd test <code>(!(elem%5)) ?</code> passes, assign <span>"Fizz" :</span>fails... test for "buzz"</p>
+  <p>3rd test <code>!(elem%5) ?</code> passes, assign <span>"Buzz" :</span>fails...<code>assign</code>"neither""</p>
+</div>
 </div>
 
 <div class="framed8">
