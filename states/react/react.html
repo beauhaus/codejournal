@@ -4,7 +4,32 @@
   <div class="react-entry entry">
     <pre>
     <!--entire page pre-->
+<div class="plain-frame1">
+   <h2 class="chtitle">Replacing a constructor call and super() with a class property. <em>(es7)</em></h2>
 
+  Before...
+  <pre class="prettyprint w40">class Btn extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      counter: 0
+    };
+  }
+  render() {
+    return < button>{this.state.counter}< / button>;
+  }
+}</pre>
+After...
+<pre class="prettyprint w40">class Btn extends React.Component{
+	var state = {counter:0};
+    render() {
+      return (
+        < button>{this.state.counter}< / button>
+      )
+    }
+  }</pre>
+
+</div>
     <div class="softsand-bg brdr-b dkblue">
       <h1 class="ctrtxt softwhite thin">Sample react static component <em class="softred">...reformatted</em></h1>
       <h5 class="fRight">With special thanks to <a target="_blank" href="https://reactforbeginners.com/">Wesbos</a></h5>
