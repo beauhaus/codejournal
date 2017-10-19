@@ -7,6 +7,8 @@
 <div class="plain-frame1">
    <h2 class="chtitle">Replacing a constructor call and super() with a class property. <em>(es7)</em></h2>
 
+   <p class="fRight dkbg">(c/o  <a  href="https://app.pluralsight.com/library/courses/react-js-getting-started/table-of-contents" target="_blank">Pluralsight</a>)</p>
+
   Before...
   <pre class="prettyprint w40">class Btn extends React.Component {
   constructor(props) {
@@ -28,6 +30,82 @@ After...
       )
     }
   }</pre>
+
+  Placing a clickHandler and a prototype function on a class.
+  <pre class="ctr prettyprint w40">class Btn extends React.Component{
+	state = {counter:0};
+  handleClick =() => { // handleClick is a prototype function on this class...
+  //the keyword 'this' acts as a component instance that is sent to the DOM
+    this.setState({
+      counter: this.state.counter + 1
+    });
+	}
+    render() {
+      return (
+        < button onClick={this.handleClick}>
+        {this.state.counter}
+        < / button>
+      )
+    }
+  }</pre>
+  <h3>Avoiding Race-conditions...</h3>
+  React's setState method is async. So multiple state-calls can be batched for performance. Therefore, the general rule is:
+  Whenever you need to update a component's state using a value from the current state -- Use the other contract of setState() method--
+  which is a function instead of an object.
+  <br />
+  This function receives a previousState object...and the func returns the object which we want to use.
+
+  <pre class="prettyprint brdr-w w40 ctr"> handleClick =() => {
+    this.setState((prevState) => {
+    	return {
+      	counter: prevState.counter + 1
+    	}
+    });
+	}</pre>
+  **You only need to use this if your update depends on the current state.
+  **Also... using es6 we can get rid of the return & curlies...
+  <pre class="prettyprint brdr-w w40 ctr"> handleClick =() => {
+    this.setState((prevState) => {
+    	return {
+      	counter: prevState.counter + 1
+    	}
+    });
+	}</pre>
+<hr>
+<h3 class="chtitle">Two components... One that feeds & one that reads.</h3>
+<pre class="prettyprint w50 ctr">class Btn extends React.Component{
+  render() {
+    return (
+      < button onClick={this.props.onClickFunction}>Add< / button>
+    )
+  }
+}
+const Result =(props) => {
+  return (
+    < div>{props.getCounter}< / div>
+  )
+}
+class App extends React.Component {
+  state = {counter:0};
+
+  incrementCounter = () => {
+  	  this.setState((prevState) => ({
+      	counter: prevState.counter + 1
+    }));
+  }
+
+  render() {
+    	return (
+      	< div>
+      	  < Btn onClickFunction={this.incrementCounter}/>
+      	  < Result getCounter={this.state.counter}/>
+      	< / div>
+      )
+    }
+  }
+ReactDOM.render(<App/>, mountNode);</pre>
+Here, the state changes on the App component level...(i.e. the Parent). So there is access to it from both sub-components Btn & Result.
+
 
 </div>
     <div class="softsand-bg brdr-b dkblue">
