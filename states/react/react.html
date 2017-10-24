@@ -4,6 +4,56 @@
   <div class="react-entry entry">
     <pre>
     <!--entire page pre-->
+    <div class="plain-frame3"><h2 class="chtitle">Test</h2>
+<pre class="w50 prettyprint ctr">
+class Button extends React.Component {
+  clickHandle = () => {
+  	this.props.clickFunk(this.props.modifier)
+  }
+  render() {
+    return (
+      < button onClick={this.clickHandle}>{this.props.modifier}< / button>
+    )
+  }
+};
+</pre>
+<p>A simple class Button component with a clickhandler. We know that clickFunk is on props and likely in the parent "App" class component.</p>
+<pre class="w50 prettyprint ctr">
+const Result =(props) => {
+ 	colors = ["red", "blue", "green", "orange", "gold", "grey", "white", "black", "navy", "burlywood", "lightgreen", "fuchsia", "slategrey", "purple"];
+
+	rezStyle = { color: colors[props.read] };
+
+	return (
+      < h1 style={this.rezStyle}>Color Number: {props.read}< / h1>
+    )
+}
+</pre>
+<p>Array of colors placed in function component. props.read will be revealed to be an incrementing/decrementing number selecting indices in the array to determine component styles.</p>
+<pre class="w50 prettyprint ctr">
+  class App extends React.Component {
+  	state = { counter: 0};
+
+    modify = (modifier) => {
+       this.setState((prevState) => ({
+            counter: prevState.counter + modifier
+          }))
+      }
+
+  render() {
+    	return (
+      	< div>
+      	  < Button modifier={1} clickFunk={this.modify}/>
+      	  < Button modifier={-1} clickFunk={this.modify}/>
+          < Result read={this.state.counter}/>
+      	< / div>
+      )
+    }
+  }</pre>
+<p>One button modifies up, one button modifies down. ClickFunk triggers modify. <em>prevState</em>, here, is important to avoid a race-condition in case values in a larg application are batched.
+<br />
+PrevState is used often in the case that state is updated with itsown state.</p>
+    </div>
 <div class="plain-frame1">
    <h2 class="chtitle">Replacing a constructor call and super() with a class property. <em>(es7)</em></h2>
 
