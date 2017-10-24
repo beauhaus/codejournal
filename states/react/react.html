@@ -4,7 +4,9 @@
   <div class="react-entry entry">
     <pre>
     <!--entire page pre-->
-    <div class="plain-frame3"><h2 class="chtitle">Test</h2>
+    <div class="plain-frame3"><img class="w20 fRight" src="./img/colornum.png" alt="colornum">
+      <h2 class="chtitle">Two Buttons iterating on an array to style a component</h2>
+
 <pre class="w50 prettyprint ctr">
 class Button extends React.Component {
   clickHandle = () => {
@@ -53,7 +55,15 @@ const Result =(props) => {
 <p>One button modifies up, one button modifies down. ClickFunk triggers modify. <em>prevState</em>, here, is important to avoid a race-condition in case values in a larg application are batched.
 <br />
 PrevState is used often in the case that state is updated with itsown state.</p>
-    </div>
+
+<div class="softsand-bg wh"><h4>Perhaps the most important line of code (for the meantime) is the clickhandler at in the button class component<br />
+<code class="dkblue">clickHandle = () => {
+  this.props.clickFunk(this.props.modifier)
+}</code><br />
+it calls clickFunk and uses the hardcoded number inside of the btn component's "token"(< Button / >) inside of the parent App class component.</h4>
+</div>
+</div>
+<hr>
 <div class="plain-frame1">
    <h2 class="chtitle">Replacing a constructor call and super() with a class property. <em>(es7)</em></h2>
 
