@@ -9,6 +9,87 @@
 <!--
 -->
 
+<div class="framed1">
+  <h2 class="chtitle orange">A few notes about <em>this</em> & <em>that</em>...And a nice feature of ES6 functions</h2>
+
+IFFE's are isolated from accessing the <em>this</em> scope of their parents. Often,<code>this.</code>can be disappointing & frustrating & make you want to commit murder.
+
+<pre class="prettyprint w60 ctr">
+const user = {
+  name: "Joe",
+  fruits: [ "🍏", "🍐"],
+  printLikes: function() {
+    this.fruits.forEach(function(fruit) {
+      console.log(this.name + " likes "+ fruit);
+    })
+  //iffes don't have a bound 'this' value
+  }
+}
+user.printLikes()
+// likes 🍏
+// likes 🍐
+// NO NAME is returned
+</pre>
+<h3 class="chtitle">However, we can create a that variable to equal this outside the forEach loop as an "anchor" to allow the reference to its parent scope</h3>
+
+<pre class="prettyprint w60 ctr">
+const user2 = {
+  name: "Jill",
+  fruits: [ "🍓", "🍌"],
+  printLikes: function() {
+    var that = this;
+    this.fruits.forEach(function(fruit) {
+      console.log(that.name + " likes "+ fruit);
+    })
+  }
+}
+user2.printLikes()
+
+// Jill likes 🍓
+// Jill likes 🍌
+</pre>
+<h3 class="chtitle">ES6 NOTE: An arrow doesn't bind its own 'this' value. ES6 FUNKS use the 'this' value of the context they were created in.</h3>
+
+<pre class="prettyprint w60 ctr">
+const user3 = {
+  name: "ES6Jill",
+  fruits: [ "🍉", "🍇"],
+  printLikes: function() {
+    this.fruits.forEach((fruit) => {
+      console.log(this.name + " likes "+ fruit);
+    })
+  }
+}
+user3.printLikes()
+
+// ES6Jill likes 🍉
+// ES6Jill likes 🍇
+</pre>
+
+<h3>For this very reason, there are places you DON'T WANT TO USE arrow functions & those are methods...  </h3>
+<pre class="prettyprint">const user3 = {
+  name: "ES6Jill",
+  fruits: [ "🍉", "🍇"],
+printLikes: () => {
+  this.fruits.forEach((fruit) => {
+    console.log(this.name + " likes " + fruit);
+  })
+}
+}
+user3.printLikes()
+// THIS THROWS A TYPE-ERROR
+</pre>
+<h2 class="softwhite">Es6 method definition syntax <span class="sand">(No colon, no frills, just the method)</span></h2>
+<pre class="dk-frame w50 ctr"><code>const user3 = {
+  name: "ES6Jill",
+  <span class="paleY">printLikes () {
+    this.fruits.forEach((fruit) => {
+      console.log(this.name + " likes " + fruit);
+    })
+  }</code></span>
+}</pre>
+</div>
+<hr>
 <div class="framed8">
   <h3 class="chtitle">Find Dupes with a hashmap</h3>
 
