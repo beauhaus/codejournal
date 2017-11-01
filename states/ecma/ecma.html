@@ -8,6 +8,29 @@
 
 <!--
 -->
+<div class="framed8">
+  <h3 class="chtitle">Find Dupes with a hashmap</h3>
+<pre class="prettyprint w50 ctr">
+function findDupes(arr) {
+  var obj = {}; // hash
+  var dupes = [];
+  var output;
+  for (let i = 0; i< arr.length; i++) {
+    if(!obj[arr[i]]){ // if key doesn't exist create it
+      obj[arr[i]] = 1; // assign val "1"
+    } else {
+      let dupe = arr[i]; //obj[arr[i]] exists in obj so... "else"
+      console.log(`Added ${dupe} to dupes.`)
+      dupes.push(arr[i]);
+    }
+  }
+  console.log(`Dupes array: [${dupes}]`)
+  return dupes;
+}
+findDupes([2,5,8,7,5,2,8]);
+</pre>
+This is much more time-efficient than simply using arrays.
+</div>
 <div class="simple-wine-frame brdr-b ctr">
   <h1 class="ctrtxt paleY">Fizz-Buzz <i class="softwhite med">solved with a ternary</i></h1>
 
