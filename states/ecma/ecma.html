@@ -10,6 +10,8 @@
 -->
 <div class="framed8">
   <h3 class="chtitle">Find Dupes with a hashmap</h3>
+
+<code>var array = [2,5,8,7,5,2,8];</code>
 <pre class="prettyprint w50 ctr">
 function findDupes(arr) {
   var obj = {}; // hash
@@ -27,9 +29,21 @@ function findDupes(arr) {
   console.log(`Dupes array: [${dupes}]`)
   return dupes;
 }
-findDupes([2,5,8,7,5,2,8]);
+findDupes(array);
 </pre>
 This is much more time-efficient than simply using arrays.
+<h3 class="chtitle">A forEach loop example:</h3>
+<pre class="prettyprint w50 ctr">
+var findDupes = (arr) => {
+    let obj = {};
+    let dupes = [];
+    array.forEach((item, index) =>{
+        (!obj[item]) ? obj[item]=1 : dupes.push(item);
+    })
+    return dupes;
+}
+var dupesExample1 = findDupes(array);
+</pre>
 </div>
 <div class="simple-wine-frame brdr-b ctr">
   <h1 class="ctrtxt paleY">Fizz-Buzz <i class="softwhite med">solved with a ternary</i></h1>
