@@ -4,6 +4,62 @@
   <div class="react-entry entry">
     <pre>
     <!--entire page pre-->
+<div class="framed4">
+<h1 class="ctrtxt thin softwhite">A word on the && operator in React and conditional rendering</h1>
+<pre class="dk-frame prettyprint w60 ctr">
+var thirsty = false;
+var drink = "Water";
+console.log(thirsty && drink)
+// false (expected and unremarkable.)
+
+var hungry = true;
+var dessert = "Cake";
+console.log(hungry && dessert)
+// Cake
+// The boolean is ignored and the string is returned (!)
+</pre>
+<p class="thin">We can exploit this in react in order to set up concise "conditional rendering"</p>
+<pre class="prettyprint w60 ctr">
+var table7 = {
+    id: 7,
+    appetizer: "Calamari",
+    entree: "Chicken Picatta",
+    age: 19,
+    drink: "Gin & Tonic",
+    defaultDrink: "water"
+}
+var table12 = {
+    id: 12,
+    appetizer: "Cobb Salad",
+    entree: "Pizza",
+    age: 32,
+    drink: "Pinot Noir",
+    defaultDrink: "water"
+}
+var template4 = (
+    < div>
+        < h1>Dinner order for table: {table7.id}< / h1>
+        < h2>Appetizer: {table7.appetizer}< / h2>
+        < h2>Entree: {(table7.entree)}< / h2>
+        < h3>Drink: {(table7.age >= 21 && table7.drink) || table7.defaultDrink}< / h3>
+    < hr/ >
+        < h1>Dinner order for table: {table12.id}< / h1>
+        < h2>Appetizer: {table12.appetizer}< / h2>
+        < h2>Entree: {(table12.entree)}< / h2>
+        < h3>Drink: {(table12.age >= 21 && table12.drink) || table12.defaultDrink}< / h3>
+    < /div>
+)
+</pre>
+<p>The guy at table7 is trying to pass off as older, the waiter cards him and so he gets water.</p>
+NOTE: This line would simply render and empty H3 tag:
+<code class="med softsand ctr">< h3>{(table7.age >= 21 && table7.drink)}< / h3></code>
+<h2>This can be solved by putting the H3 in the javascript expression!</h2>
+<pre class="prettyprint w50 ctr">{( (table7.age >= 21) && (< h3>table7.drink< / h3>) )}</pre>
+    </div>
+
+
+
+    <hr />
     <div class="plain-frame3"><img class="w20 fRight" src="./img/colornum.png" alt="colornum">
       <h2 class="chtitle">Two Buttons iterating on an array to style a component</h2>
       <div class="brdr-w">
