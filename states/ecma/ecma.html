@@ -94,7 +94,7 @@ user3.printLikes()
   <pre class="dkbg w40">const user1 = {
       name: "Jeff",
       cities: ["Hong Kong", "Tokyo", "Seoul"],
-      printPlacesLived: function () {
+      printPlacesLived () {
          this.cities.forEach(function (city) {
               console.log(this.name + " lived in "+ city);
          });
@@ -105,7 +105,7 @@ user3.printLikes()
   <pre class="dkbg w40">const user1 = {
       name: "Jeff",
       cities: ["Hong Kong", "Tokyo", "Seoul"],
-      printPlacesLived: function () {
+      printPlacesLived () {
          this.cities.forEach(<span class="ltred">function (city) {
            console.log(this.name + " lived in "+ city);
          }</span>);
@@ -118,7 +118,7 @@ user3.printLikes()
 <pre class="dkbg ctr w40">const user = {
     name: "Andrew",
     cities: ["Houston", "Paris", "Los Angeles"],
-    printPlacesLived: function () {
+    printPlacesLived() {
        this.cities.forEach(<span class="ltgreen">(city)=> {
             console.log(this.name + " lived in "+ city);
        }</span>);
@@ -129,6 +129,28 @@ user.printPlacesLived();
 <p>Why? Because the arrow Fn doesn't bind itsown 'this' value.
 However, do this to the method iself the printPlacesLived doesn't bind itsown 'this' value and wont be able to access this.cities</p>
 </div>
+<div class="brdr-w simple-frame">
+  <h2 class="chtitle dkblue">CHALLENGE: this needs to be refactored. We have a method that doesn't use es6 syntax, variables that are created needlessly and an arrow function that is too verbose.</h2>
+<pre class="prettyprint w40 ctr">const user = {
+    name: "Andrew",
+    cities: ["Houston", "Paris", "Los Angeles"],
+    printPlacesLived: function () {
+       const nuArray = this.cities.map((city)=> {
+            return this.name + ` lived in ${city}`;
+       });
+       return nuArray;
+    }
+}</pre>
+<h2 class="chtitle dkblue">SOLUTION:</h2>
+<pre class="prettyprint w50 ctr ans">const user = {
+    name: "Andrew",
+    cities: ["Houston", "Paris", "Los Angeles"],
+    printPlacesLived () {
+       return this.cities.map((city)=> this.name + ` lived in ${city}`);
+    }
+}</pre>
+</div>
+
 <hr>
 <div class="framed8">
   <h3 class="chtitle">Find Dupes with a hashmap</h3>
