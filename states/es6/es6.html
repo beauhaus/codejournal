@@ -6,6 +6,31 @@
 
   <!--
 -->
+  <div class="framed8">
+  <h2 class="chtitle dkblue">CHALLENGE: this needs to be refactored.</h2>
+  <h3 class="paleY"> We have a method that doesn't use es6 syntax, variables that are created needlessly and an arrow function that is too verbose.</h3>
+<pre class="prettyprint w40 ctr">const user = {
+    name: "Andrew",
+    cities: ["Houston", "Paris", "Los Angeles"],
+    printPlacesLived: function () {
+       const nuArray = this.cities.map((city)=> {
+            return this.name + ` lived in ${city}`;
+       });
+       return nuArray;
+    }
+}</pre>
+<h2 class="chtitle dkblue">SOLUTION:</h2>
+<div class="ans"><pre class="prettyprint ctr">const user = {
+    name: "Andrew",
+    cities: ["Houston", "Paris", "Los Angeles"],
+    printPlacesLived () {
+       return this.cities.map((city)=> this.name + ` lived in ${city}`);
+    }
+}</pre></div>
+</div>
+<hr>
+
+
 <div class="simple-frame">
   <h1 class="chtitle thin softwhite">.filter() with ES6</h1>
 <h3>First, it is important to realize that .filter() uses an expression as its body.<br />
