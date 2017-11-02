@@ -50,7 +50,7 @@ user2.printLikes()
 </pre>
 <h3 class="chtitle">ES6 NOTE: An arrow doesn't bind its own 'this' value. ES6 FUNKS use the 'this' value of the context they were created in.</h3>
 
-<pre class="prettyprint w60 ctr">
+<pre class="prettyprint w40 ctr">
 const user3 = {
   name: "ES6Jill",
   fruits: [ "🍉", "🍇"],
@@ -67,7 +67,7 @@ user3.printLikes()
 </pre>
 
 <h3>For this very reason, there are places you DON'T WANT TO USE arrow functions & those are methods...  </h3>
-<pre class="prettyprint">const user3 = {
+<pre class="prettyprint w40 ctr">const user3 = {
   name: "ES6Jill",
   fruits: [ "🍉", "🍇"],
 printLikes: () => {
@@ -88,6 +88,46 @@ user3.printLikes()
     })
   }</code></span>
 }</pre>
+
+<h3>Check your understanding: What lines of code will throw an error and why?</h3>
+<div class="framed4 col-2 ctr">
+  <pre class="dkbg w40">const user1 = {
+      name: "Jeff",
+      cities: ["Hong Kong", "Tokyo", "Seoul"],
+      printPlacesLived: function () {
+         this.cities.forEach(function (city) {
+              console.log(this.name + " lived in "+ city);
+         });
+      }
+  }
+  user1.printPlacesLived();
+  </pre>
+  <pre class="dkbg w40">const user1 = {
+      name: "Jeff",
+      cities: ["Hong Kong", "Tokyo", "Seoul"],
+      printPlacesLived: function () {
+         this.cities.forEach(<span class="ltred">function (city) {
+           console.log(this.name + " lived in "+ city);
+         }</span>);
+      }
+  }
+  user1.printPlacesLived();
+  </pre>
+</div>
+<h1>FTFY👍🏼</h1>
+<pre class="dkbg ctr w40">const user = {
+    name: "Andrew",
+    cities: ["Houston", "Paris", "Los Angeles"],
+    printPlacesLived: function () {
+       this.cities.forEach(<span class="ltgreen">(city)=> {
+            console.log(this.name + " lived in "+ city);
+       }</span>);
+    }
+}
+user.printPlacesLived();
+</pre>
+<p>Why? Because the arrow Fn doesn't bind itsown 'this' value.
+However, do this to the method iself the printPlacesLived doesn't bind itsown 'this' value and wont be able to access this.cities</p>
 </div>
 <hr>
 <div class="framed8">
