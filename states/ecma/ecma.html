@@ -8,7 +8,25 @@
 
 <!--
 -->
+<div class="framed1 dkbg">
+  <h3 class="chtitle wh">A common use of <strong class="paleY clean">!!</strong> to force a "true" or "false" from a truthy/falsey value</h3>
+  <p>In some environments empty strings are simply ignored and do not return the keyword "true" or "false"
+<br />In order to force this, it is common to use '!!'</p>
 
+<pre class="prettyprint ctr w40">
+const milkJug1 = 'Half full';
+
+const haveMilk =((milk="") =>  !!milk); // defaults to empty string & coerces boolean
+
+const bottle1 = haveMilk();
+const bottle2 = haveMilk(milkJug1);
+
+console.log("bottle1", bottle1) // false
+console.log("bottle2", bottle2) // true
+</pre>
+</div>
+
+<hr>
 <div class="framed1">
   <h2 class="chtitle orange">A few notes about <em>this</em> & <em>that</em>...And a nice feature of ES6 functions</h2>
 
@@ -30,9 +48,9 @@ user.printLikes()
 // likes 🍐
 // NO NAME is returned
 </pre>
-<h3 class="chtitle">However, we can create a that variable to equal this outside the forEach loop as an "anchor" to allow the reference to its parent scope</h3>
+    <h3 class="chtitle">However, we can create a that variable to equal this outside the forEach loop as an "anchor" to allow the reference to its parent scope</h3>
 
-<pre class="prettyprint w60 ctr">
+    <pre class="prettyprint w60 ctr">
 const user2 = {
   name: "Jill",
   fruits: [ "🍓", "🍌"],
@@ -48,9 +66,9 @@ user2.printLikes()
 // Jill likes 🍓
 // Jill likes 🍌
 </pre>
-<h3 class="chtitle">ES6 NOTE: An arrow doesn't bind its own 'this' value. ES6 FUNKS use the 'this' value of the context they were created in.</h3>
+    <h3 class="chtitle">ES6 NOTE: An arrow doesn't bind its own 'this' value. ES6 FUNKS use the 'this' value of the context they were created in.</h3>
 
-<pre class="prettyprint w40 ctr">
+    <pre class="prettyprint w40 ctr">
 const user3 = {
   name: "ES6Jill",
   fruits: [ "🍉", "🍇"],
@@ -66,8 +84,8 @@ user3.printLikes()
 // ES6Jill likes 🍇
 </pre>
 
-<h3>For this very reason, there are places you DON'T WANT TO USE arrow functions & those are methods...  </h3>
-<pre class="prettyprint w40 ctr">const user3 = {
+    <h3>For this very reason, there are places you DON'T WANT TO USE arrow functions & those are methods...  </h3>
+    <pre class="prettyprint w40 ctr">const user3 = {
   name: "ES6Jill",
   fruits: [ "🍉", "🍇"],
 printLikes: () => {
@@ -79,8 +97,8 @@ printLikes: () => {
 user3.printLikes()
 // THIS THROWS A TYPE-ERROR
 </pre>
-<h2 class="softwhite">Es6 method definition syntax <span class="sand">(No colon, no frills, just the method)</span></h2>
-<pre class="dk-frame w50 ctr"><code>const user3 = {
+    <h2 class="softwhite">Es6 method definition syntax <span class="sand">(No colon, no frills, just the method)</span></h2>
+    <pre class="dk-frame w50 ctr"><code>const user3 = {
   name: "ES6Jill",
   <span class="paleY">printLikes () {
     this.fruits.forEach((fruit) => {
@@ -89,9 +107,9 @@ user3.printLikes()
   }</code></span>
 }</pre>
 
-<h3>Check your understanding: What lines of code will throw an error and why?</h3>
-<div class="framed4 col-2 ctr">
-  <pre class="dkbg w40">const user1 = {
+    <h3>Check your understanding: What lines of code will throw an error and why?</h3>
+    <div class="framed4 col-2 ctr">
+      <pre class="dkbg w40">const user1 = {
       name: "Jeff",
       cities: ["Hong Kong", "Tokyo", "Seoul"],
       printPlacesLived () {
@@ -102,7 +120,7 @@ user3.printLikes()
   }
   user1.printPlacesLived();
   </pre>
-  <pre class="dkbg w40">const user1 = {
+      <pre class="dkbg w40">const user1 = {
       name: "Jeff",
       cities: ["Hong Kong", "Tokyo", "Seoul"],
       printPlacesLived () {
@@ -113,9 +131,9 @@ user3.printLikes()
   }
   user1.printPlacesLived();
   </pre>
-</div>
-<h1>FTFY👍🏼</h1>
-<pre class="dkbg ctr w40">const user = {
+    </div>
+    <h1>FTFY👍🏼</h1>
+    <pre class="dkbg ctr w40">const user = {
     name: "Andrew",
     cities: ["Houston", "Paris", "Los Angeles"],
     printPlacesLived() {
@@ -126,16 +144,15 @@ user3.printLikes()
 }
 user.printPlacesLived();
 </pre>
-<p>Why? Because the arrow Fn doesn't bind itsown 'this' value.
-However, do this to the method iself the printPlacesLived doesn't bind itsown 'this' value and wont be able to access this.cities</p>
-</div>
+    <p>Why? Because the arrow Fn doesn't bind itsown 'this' value. However, do this to the method iself the printPlacesLived doesn't bind itsown 'this' value and wont be able to access this.cities</p>
+  </div>
 
-<hr>
-<div class="framed8">
-  <h3 class="chtitle">Find Dupes with a hashmap</h3>
+  <hr>
+  <div class="framed8">
+    <h3 class="chtitle">Find Dupes with a hashmap</h3>
 
-<code>var array = [2,5,8,7,5,2,8];</code>
-<pre class="prettyprint w50 ctr">
+    <code>var array = [2,5,8,7,5,2,8];</code>
+    <pre class="prettyprint w50 ctr">
 function findDupes(arr) {
   var obj = {}; // hash
   var dupes = [];
@@ -153,10 +170,9 @@ function findDupes(arr) {
   return dupes;
 }
 findDupes(array);
-</pre>
-This is much more time-efficient than simply using arrays.
-<h3 class="chtitle">A forEach loop example:</h3>
-<pre class="prettyprint w50 ctr">
+</pre> This is much more time-efficient than simply using arrays.
+    <h3 class="chtitle">A forEach loop example:</h3>
+    <pre class="prettyprint w50 ctr">
 var findDupes = (arr) => {
     let obj = {};
     let dupes = [];
@@ -167,13 +183,13 @@ var findDupes = (arr) => {
 }
 var dupesExample1 = findDupes(array);
 </pre>
-</div>
-<div class="simple-wine-frame brdr-b ctr">
-  <h1 class="ctrtxt paleY">Fizz-Buzz <i class="softwhite med">solved with a ternary</i></h1>
+  </div>
+  <div class="simple-wine-frame brdr-b ctr">
+    <h1 class="ctrtxt paleY">Fizz-Buzz <i class="softwhite med">solved with a ternary</i></h1>
 
-<h3 class="chtitle w30 med grey-bg">var nums = [93, 55, 30, 202];</h3>
+    <h3 class="chtitle w30 med grey-bg">var nums = [93, 55, 30, 202];</h3>
 
-<pre class="ctr prettyprint w50">var response = function(input) {
+    <pre class="ctr prettyprint w50">var response = function(input) {
     var ans = [];
     input.forEach(function(element) {
       if ( !(element%3) && !(element%5) ) { // 0 + 0 = truthy
@@ -191,10 +207,10 @@ var dupesExample1 = findDupes(array);
 
 response(nums);
 </pre>
-<p>A reasonable if/else if approach using modulus rendering a zero to trigger an identification of a "fizz" or "buzz"</p>
-<hr>
-<h1 class="softsand ctrtxt">The ternary approach...</h1>
-<pre class="prettyprint w80 ctr shadn">nums.forEach(function(elem, idx, array){
+    <p>A reasonable if/else if approach using modulus rendering a zero to trigger an identification of a "fizz" or "buzz"</p>
+    <hr>
+    <h1 class="softsand ctrtxt">The ternary approach...</h1>
+    <pre class="prettyprint w80 ctr shadn">nums.forEach(function(elem, idx, array){
     let ternAns = (!(elem%3 + elem%5)) ? "FizzBuzz": ((elem%3 ===0)? "Fizz":((elem%5===0)? "Buzz": "neither"));
     console.log(`${elem} is: ${ternAns}`);
 })
@@ -205,19 +221,18 @@ response(nums);
 "30 is: FizzBuzz"
 "202 is: neither"
 */</pre>
-<div class="plain-frame1 w60 ctr">
-  <p>1st test <code>!(elem%3 + elem%5) ?</code> passes, assign <span>"FizzBuzz" :</span>fails... test for "fizz"</p>
-  <p>2nd test <code>(!(elem%5)) ?</code> passes, assign <span>"Fizz" :</span>fails... test for "buzz"</p>
-  <p>3rd test <code>!(elem%5) ?</code> passes, assign <span>"Buzz" :</span>fails...<code>assign</code>"neither""</p>
-</div>
-</div>
+    <div class="plain-frame1 w60 ctr">
+      <p>1st test <code>!(elem%3 + elem%5) ?</code> passes, assign <span>"FizzBuzz" :</span>fails... test for "fizz"</p>
+      <p>2nd test <code>(!(elem%5)) ?</code> passes, assign <span>"Fizz" :</span>fails... test for "buzz"</p>
+      <p>3rd test <code>!(elem%5) ?</code> passes, assign <span>"Buzz" :</span>fails...<code>assign</code>"neither""</p>
+    </div>
+  </div>
 
-<div class="framed8">
-  <h3 class="chtitle wh">Douglas Crockford<a target="_blank" href="http://www.crockford.com/javascript/private.html"> ,here,</a> has lots to say about Public, Private & Privileged Properties (or <em>"members"</em>) of Objects that are quite useful</h3>
-<p>Let's say you are a stalker and are obsessed with Taylor Swift.
-<br />You follower her all around in a perfectly non-creepy way, constantly asking for selfies, autographs and her email address.<br />
---OH! Here she is now!</p>
-<pre class="prettyprint w50 ctr">
+  <div class="framed8">
+    <h3 class="chtitle wh">Douglas Crockford<a target="_blank" href="http://www.crockford.com/javascript/private.html"> ,here,</a> has lots to say about Public, Private & Privileged Properties (or <em>"members"</em>) of Objects that are quite useful</h3>
+    <p>Let's say you are a stalker and are obsessed with Taylor Swift.
+      <br />You follower her all around in a perfectly non-creepy way, constantly asking for selfies, autographs and her email address.<br /> --OH! Here she is now!</p>
+    <pre class="prettyprint w50 ctr">
 function CelebConstructor(nickName,phone) {
   this.phone = phone;
   var email = "taytay@gmail.com";
@@ -529,7 +544,8 @@ console.log(b);
     <div class="col-2 med dkblue"><pre class="med dkblue">I have two chicks: "chirpie" & "tweetie".
     <pre class="dkbg w20 sm">var chirpie = {feathers: "yellow"};
 var tweetie = chirpie;</pre>(left-to-right) the "=" recognizes chirpie as an Object. It then, creates an 'alias' for tweetie <em>pointing to</em> chirpie. This is <strong><b class="underline">pass by reference</b></strong> If I <em>mutate</em> chirpie
-      with<pre class="dkbg w20 sm">chirpie.feathers = "purple";</pre> ..tweetie will also mutate.</pre>
+      with
+      <pre class="dkbg w20 sm">chirpie.feathers = "purple";</pre> ..tweetie will also mutate.</pre>
       <pre class="prettyprint w30">
 var chirpie = {feathers: "yellow"};
 var tweetie = chirpie;
@@ -659,6 +675,8 @@ moodGreet("Ben", "Hi.")
 // Hi. I'm Ben. I'm feeling fine
 </pre>
   </div>
+
+<hr>
   <div class="framed2 dkbg2">
     <h2 class="chtitle ltgrey">Object.defineProperty(<em class="orange">object</em>)</h2>
     <h4 class="wh">We have a simple object returning a useful string to place onto an element.</h4>
@@ -1875,16 +1893,14 @@ var divByThrees = array.reduce(function(arr, val){
 },[]);
 
 console.log(divByThrees);   // [3, 6, 9]</pre>
-<h3 class="chtitle wh">.reduce() to create an object of objects</h3>
-JSON Object --An array of arrays of Strings
-<pre class="prettyprint w50 ctr">[
+    <h3 class="chtitle wh">.reduce() to create an object of objects</h3> JSON Object --An array of arrays of Strings
+    <pre class="prettyprint w50 ctr">[
 	["condor", "Kevin", "rodents", "home: North America"],
 	["parakeet", "Paula", "seeds", "home: Chicago"],
 	["stork", "Stephanie", "fish", "home: Florida"],
 	["Owl", "Alfredo", "mice", "home: California"]
-]</pre>
-We create a promise and handlers for when it screws up.
-<pre class="w50 ctr dkbg shadn softwhite sm"><span class="mango">var output;</span>
+]</pre> We create a promise and handlers for when it screws up.
+    <pre class="w50 ctr dkbg shadn softwhite sm"><span class="mango">var output;</span>
 var promise = new Promise(function(resolve, reject) {
   var data = $.get("./data/birds.JSON")<span class="green">// do something async </span>
 
@@ -1905,12 +1921,9 @@ promise.then(function(result) {
       home: array[3]
     });
     return bird;
-  }, {})</pre>
-console.log(JSON.stringify(output, null, 2))<span class="green">"pretty prints" json to console</span>
-}, function(err) {
-  console.log("OH SHIT!", err); // Error: "It broke"
-});</pre>
-<pre class="prettyprint w40 dkbg sm ctr wh">{
+  }, {})</pre> console.log(JSON.stringify(output, null, 2))<span class="green">"pretty prints" json to console</span> }, function(err) { console.log("OH SHIT!", err); // Error: "It broke" });
+    </pre>
+    <pre class="prettyprint w40 dkbg sm ctr wh">{
   "condor": [
     {
       "type": "condor",
@@ -1943,10 +1956,8 @@ console.log(JSON.stringify(output, null, 2))<span class="green">"pretty prints" 
       "home": "home: California"
     }
   ]
-}</pre>
-
-Thanks to <a target="_blank" href="https://youtu.be/1DMolJ2FrNY">Fun Fun Function</a> for this idea
-<hr class="w50">
+}</pre> Thanks to <a target="_blank" href="https://youtu.be/1DMolJ2FrNY">Fun Fun Function</a> for this idea
+    <hr class="w50">
     <div class="framed5">
       <h3 class="chtitle">Filter out string items from an array with filter();</h3>
       <pre class="prettyprint w40">function filter_list(l) {
@@ -2470,11 +2481,12 @@ This is called capturing the event in <em class="dkorange underline">the Bubblin
     <div class="dkbg2 brown">
       <img class="fRight w10" src="./img/link1.png" alt="link1">
       <br>
-    < div <span class="orange">id="myDiv"></span>
-      < div>
-        < a <span class="orange">id="coralLink"</span> href="https://www.google.com">LINK< /a>
-      < /div>
-    < /div>
+      < div <span class="orange">id="myDiv"></span>
+        < div>
+          < a <span class="orange">id="coralLink"</span> href="https://www.google.com">LINK
+            < /a>
+              < /div>
+                < /div>
     </div><br><pre class="prettyprint">
     var myDiv = document.getElementById('myDiv');
     var coralLink = document.getElementById('coralLink');
