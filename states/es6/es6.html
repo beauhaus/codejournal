@@ -6,6 +6,110 @@
 
   <!--
 -->
+<div class="simple-frame">
+  <h1 class="chtitle wh thin">Extending a class is easy.</h1>
+  <p>Passengers are on the next shuttle to Boston. Many Commuters have luggage, some dont.</p><br />
+  <pre class="prettyprint w50 ctr">class Passenger {
+  constructor(id, seatNum){
+    this.id = id;
+    this.seatNum = seatNum
+  }
+  printTicket() {
+    return`Passenger ${this.id} is ready to board.`;
+  }
+  getInfo() {
+    return`Passenger ${this.id} is in seat# ${this.seatNum}`;
+  }
+}
+
+const johnathanPie = new Passenger(153, "F-18");
+console.log(johnathanPie.getInfo())
+</pre>
+<p>Here, we have two methods that deliver the args sent in to the definition of<code>johnathanPie</code><br />
+Below, we will extend the Passenger to determine luggage description & call it Commuter.<br />
+We create a constructor with the params of the parent class <em class="ltred">PLUS a "baggage" param</em>.<br />
+We then call super with parent params and place the new luggage var on this:<code>this.baggage = baggage;</code>
+</p>
+<hr>
+<pre class="prettyprint w50 ctr">class Passenger {
+  constructor(id, seatNum){
+    this.id = id;
+    this.seatNum = seatNum
+  }
+  printTicket() {
+    return`Passenger ${this.id} is ready to board.`;
+  }
+  getInfo() {
+    return`Passenger ${this.id} is in seat# ${this.seatNum}`;
+  }
+}
+class Commuter extends Passenger{
+  constructor(id, seatNum, luggage) {
+    super(id, seatNum)
+    this.luggage = luggage;
+    console.log(this.luggage)
+  }
+}
+
+const johnathanPie = new Commuter(153, "F-18", "Samsonite");
+console.log(johnathanPie.getInfo())
+
+// Samsonite
+// Passenger 153 is in seat# F-18
+</pre>
+<hr>
+<p>We can conditionally render whether Commuters have a bag by OVERRIDING the getInfo method in this extended Commuter class...</p>
+<pre class="prettyprint w40 ctr">hasBags() {
+  return !!this.luggage;
+}</pre>
+<p>This is an easy way to return a boolean from a string that has been coerced.<br />
+We put it to good use in an if clause...</p>
+<pre class="dkbg w50 ctr codePro">class Passenger {
+  constructor(id, seatNum){
+    this.id = id;
+    this.seatNum = seatNum
+  }
+  printTicket() {
+    return`Passenger ${this.id} is ready to board.`;
+  }
+  getInfo() {
+    return`Passenger ${this.id} is in seat# ${this.seatNum}`;
+  }
+}
+
+class Commuter extends Passenger{
+  constructor(id, seatNum, <span class="paleY">luggage</span>) {
+    super(id, seatNum)
+    <span class="paleY">this.luggage = luggage;</span>
+  }
+  hasBags() {
+    return !!this.luggage;
+  }
+  getInfo() {
+    var details = super.getInfo();
+
+    <span class="paleY">if(this.hasBags()){
+      details += ` Bag description: ${this.luggage}`
+    }</span>
+
+    return details;
+  }
+}
+
+const johnathanPie = new Commuter(153, "F-18", <span class="paleY">"Guitar Case"</span>);
+console.log(johnathanPie.getInfo())
+
+<span class="ltgreen">
+// Passenger 153 is in seat# F-18 Bag description: Guitar Case
+</span>
+</pre>
+
+
+<pre class="dkbg3 brdr-w w50">
+</pre>
+
+
+</div>
   <div class="framed8">
   <h2 class="chtitle dkblue">CHALLENGE: this needs to be refactored.</h2>
   <h3 class="paleY"> We have a method that doesn't use es6 syntax, variables that are created needlessly and an arrow function that is too verbose.</h3>
