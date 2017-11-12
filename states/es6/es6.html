@@ -25,6 +25,7 @@
 const johnathanPie = new Passenger(153, "F-18");
 console.log(johnathanPie.getInfo())
 </pre>
+<br>
 <p>Here, we have two methods that deliver the args sent in to the definition of<code>johnathanPie</code><br />
 Below, we will extend the Passenger to determine luggage description & call it Commuter.<br />
 We create a constructor with the params of the parent class <em class="ltred">PLUS a "baggage" param</em>.<br />
@@ -59,11 +60,11 @@ console.log(johnathanPie.getInfo())
 </pre>
 <hr>
 <p>We can conditionally render whether Commuters have a bag by OVERRIDING the getInfo method in this extended Commuter class...</p>
-<pre class="prettyprint w40 ctr">hasBags() {
+<pre class="prettyprint w20 ctr">hasBags() {
   return !!this.luggage;
 }</pre>
 <p>This is an easy way to return a boolean from a string that has been coerced.<br />
-We put it to good use in an if clause...</p>
+We put it to good use in an if clause by calling it...</p>
 <pre class="dkbg w50 ctr codePro">class Passenger {
   constructor(id, seatNum){
     this.id = id;
@@ -99,15 +100,63 @@ class Commuter extends Passenger{
 const johnathanPie = new Commuter(153, "F-18", <span class="paleY">"Guitar Case"</span>);
 console.log(johnathanPie.getInfo())
 
+const sueKim = new Commuter(231, "B-17")
+console.log(sueKim.getInfo())
 <span class="ltgreen">
 // Passenger 153 is in seat# F-18 Bag description: Guitar Case
+// Passenger 231 is in seat# B-17
 </span>
 </pre>
+<p>SueKim has no bags...</p>
+<hr>
+<h2 class="chtitle ctr wh">Hue, Saturation, Lightness, Alpha Machine</h2>
+<pre class="softblue-bg sm ctr brdr-w w50">
 
+  class Hsl {
+    constructor(name = "white", hue = null, sat = null, light = null) {
+      this.name = name;
+      this.hue = hue;
+      this.sat = sat;
+      this.light = light;
+    }
+    getInfo() {
+      return `The color's name is ${this.name}`;
+    }
 
-<pre class="dkbg3 brdr-w w50">
+    getRule() {
+      return `${this.hue}, ${this.sat}%, ${this.light}`;
+    }
+  }
+
+  class Hsla extends Hsl {
+
+    constructor(name, hue, sat, light, alpha) {
+      super(name, hue, sat, light);
+      this.alpha = alpha;
+    }
+
+    hasAlpha() {
+      return !!this.alpha;
+    }
+
+    getRule() {
+      var rule = super.getRule();
+
+      if (this.hasAlpha()) {
+        rule = `${rule},${this.alpha}`; <span class="dkblue">--adding alpha</span>
+      }
+
+      return `(${rule})`;
+    }
+  }
+
+  const background = new Hsla("slateRed",0, 15, 23 )
+  console.log(background.getRule())
+
+  const txtColor = new Hsla("Blood", 0, 65, 30, 3);
+  console.log(txtColor.getRule());
+
 </pre>
-
 
 </div>
   <div class="framed8">
