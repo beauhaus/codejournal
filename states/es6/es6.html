@@ -140,24 +140,32 @@ console.log(sueKim.getInfo())
     }
 
     getRule() {
-      var rule = super.getRule();
+    var rule = super.getRule();
+    var a = '';
 
-      if (this.hasAlpha()) {
-        rule = `${rule},${this.alpha}`; <span class="dkblue">--adding alpha</span>
-      }
-
-      return `(${rule})`;
+    if (this.hasAlpha()) {
+      rule = `${rule},${this.alpha}`;
+      a = "a";
     }
+
+    return `hsl${a}(${rule})`;
+  }
+
   }
 
   const background = new Hsla("slateRed",0, 15, 23 )
   console.log(background.getRule())
+  <span class="ltgreen">
+  // "hsl(0, 15%, 23)"
+  </span>
 
   const txtColor = new Hsla("Blood", 0, 65, 30, 3);
   console.log(txtColor.getRule());
-
+<span class="ltgreen">
+//  hsla(0, 65%, 30,3)
+</span>
 </pre>
-
+<hr>
 </div>
   <div class="framed8">
   <h2 class="chtitle dkblue">CHALLENGE: this needs to be refactored.</h2>
