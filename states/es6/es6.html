@@ -108,9 +108,39 @@ console.log(sueKim.getInfo())
 </span>
 </pre>
 <p>SueKim has no bags...</p>
+<hr />
+<h3>One more for good measure: <em class="dkblue">Checking for VIP status</em> </h3>
+<pre class="prettyprint w50 ctr">...
+
+  class Vip extends Passenger {
+    constructor(id, seatNum, status) {
+      super(id, seatNum);
+      this.status = status;
+    }
+  hasStatus() {
+    return !!this.status;
+  }
+    getInfo() {
+      let vipDetails = super.getInfo();
+      if(this.hasStatus()) {
+        vipDetails = `Passenger ${this.id} in ${this.seatNum} is a ${this.status} VIP.`
+      }
+      return vipDetails;
+    }
+  }
+
+  const johnathanPie = new Vip(153, "F-18", "Gold");
+  console.log(johnathanPie.getInfo())
+
+  const sueKim = new Vip(231, "B-17", "Platinum")
+  console.log(sueKim.getInfo())
+
+// "Passenger 153 in F-18 is a Gold VIP."
+// "Passenger 231 in B-17 is a Platinum VIP."
+</pre>
 <hr>
 <h2 class="chtitle ctr wh">Hue, Saturation, Lightness, Alpha Machine</h2>
-<pre class="softblue-bg sm ctr brdr-w w50">
+<pre class="softblue-bg ctr brdr-w w50">
 
   class Hsl {
     constructor(name = "white", hue = null, sat = null, light = null) {
@@ -165,8 +195,8 @@ console.log(sueKim.getInfo())
 //  hsla(0, 65%, 30,3)
 </span>
 </pre>
-<hr>
 </div>
+<hr>
   <div class="framed8">
   <h2 class="chtitle dkblue">CHALLENGE: this needs to be refactored.</h2>
   <h3 class="paleY"> We have a method that doesn't use es6 syntax, variables that are created needlessly and an arrow function that is too verbose.</h3>
