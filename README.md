@@ -2,7 +2,9 @@
 This is a current project of notes and references that I am curating to study and to accelerate my build process. #[Kaizen](https://en.wikipedia.org/wiki/Kaizen)🤓
 ###### codejournal includes notes, examples & advice on the following:
 ### Journal
-These are daily quick journal Entries: This is my "daily standup". What I did yesterday and what is on my todo list for today. End of the day (3am?-ish) --I revisit this and mark off what I've accomplished.
+Daily journal entries in lieu of a "daily standup". What I did yesterday and what is on my todo list for today--identifying/anticipating potential painpoints. 
+
+@End of the day (3am?-ish) --I revisit this and mark off what I've accomplished.
 ### Angularjs
 Setup, implementation of Angulars awesomeness. Notes on scope inheritance, pitfalls of same... built-in & custom directives, filters, 3rd-parties
 ### Sass/CSS3
