@@ -6,9 +6,47 @@
     <pre>
       <!--entire page pre-->
 
-<!--
-hsl(0, 71%, 60%)
-hsl(0, 65%, 30%)-->
+<div class="simple-frame1 dkbg3 brdr-b">
+  <h1 class="chtitle offWhite">.sort() uses</h1>
+  <p>A built-in alphabetical sorting feature & it's application to integers.</p>
+
+  <p>Just append <em>.sort()</em> and boom, you're done.</p>
+  <pre class="prettyprint w40 ctr">
+var arr = ["cheetah", "bear", "ardvark"];
+var res = arr.sort();
+
+console.log(res); 
+// ["ardvark", "bear", "cheetah"]</pre>
+<p>Here, <em>.sort()</em> needs some logic to help it along.</p>
+<pre class="prettyprint w40 ctr">
+var members = [
+  {name:"Mia", age: 82},
+  {name:"Joe", age: 22},
+  {name:"Sal", age: 42},
+  {name:"Jen", age: 30}
+];
+
+var sortedMem = members.sort((a,b) => {
+  if(a.age> b.age) {
+    return 1;
+  } else {
+    return -1;
+  }
+})
+console.log(sortedMem);
+/*
+[Object {age: 22, name: "Joe"},
+ Object {ge: 30, name: "Jen"},
+ Object {ge: 42, name: "Sal"},
+ Object {age: 82,name: "Mia"}]
+*/
+</pre>
+<p class="orange thin">This can be very nicely refactored with a ternary</p>
+<pre class="prettyprint w40 ctr">...
+var sortedMem = members.sort((a,b) => a.age> b.age? 1: -1);
+...</pre>
+</div>
+
 <div class="framed1 dkbg">
   <h3 class="chtitle wh">A common use of <strong class="paleY clean">!!</strong> to force a "true" or "false" from a truthy/falsey value</h3>
   <p>In some environments you will want undefined or empty strings to return the keyword "true" or "false"
