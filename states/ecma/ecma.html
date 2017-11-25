@@ -41,6 +41,7 @@ console.log(sortedMem);
  Object {age: 82,name: "Mia"}]
 */
 </pre>
+<a class="fRight" href="https://javascript30.com/">c/o wesbosJS30</a>
 <p class="orange thin">This can be very nicely refactored with a ternary</p>
 <pre class="prettyprint w40 ctr">...
 var sortedMem = members.sort((a,b) => a.age> b.age? 1: -1);
@@ -89,7 +90,7 @@ user.printLikes()
 </pre>
     <h3 class="chtitle">However, we can create a that variable to equal this outside the forEach loop as an "anchor" to allow the reference to its parent scope</h3>
 
-    <pre class="prettyprint w60 ctr">
+<pre class="prettyprint w60 ctr">
 const user2 = {
   name: "Jill",
   fruits: [ "🍓", "🍌"],
