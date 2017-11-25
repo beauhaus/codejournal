@@ -1,5 +1,5 @@
 # codejournal
-This is a collection of notes and references that I am curating to study and to accelerate my build process. #[Kaizen](https://en.wikipedia.org/wiki/Kaizen)🤓
+This is a collection of notes & references that I am curating to study and to accelerate my build process. #[Kaizen](https://en.wikipedia.org/wiki/Kaizen)🤓
 ###### codejournal includes notes, examples & advice on the following:
 ### Journal
 Daily journal entries in lieu of a "daily standup". What I did yesterday and what is on my todo list for today--identifying/anticipating potential painpoints. 
