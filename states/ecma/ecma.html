@@ -6,6 +6,38 @@
     <pre>
       <!--entire page pre-->
 
+    
+
+<div class="simple-frame">
+  <h1 class="chtitle dkblue thin">DOM stuff I never learned properly...</h1>
+  <h3 class="chtitle dkblue">Get Element according to attribute and value</h3>
+
+  
+  <pre class="prettyprint w60 ctr">
+let all = document.querySelectorAll('*'); //The object returned is a NodeList.
+
+  const gimmeElem = (att, val) => {
+    let gotIt = [];
+    all.forEach(elem => {
+      let attrVal = elem.getAttribute(att);
+      if (attrVal === val) {
+        gotIt.push(elem);
+      }
+    })
+    console.log(gotIt[0]);
+    return gotIt;
+  }
+
+  gimmeElem("data-js-name", "myButton")
+      
+  </pre> 
+  
+<p>This works quite nicely returning something like:</p>
+<pre class="prettyprint w40 ctr">"< button data-js-name='myButton'>My Button< / button>"</pre>
+
+</div>
+
+
 <div class="simple-frame1 dkbg3 brdr-b">
   <h1 class="chtitle offWhite">.sort() uses</h1>
   <p>A built-in alphabetical sorting feature & it's application to integers.</p>
