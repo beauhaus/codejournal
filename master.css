@@ -434,7 +434,7 @@ pre {
   color: black;
   border: 1px solid black;
   box-shadow: inset 1px 1px 12px 2px black;
-  background-color: rgba(242, 225, 165, 0.5); }
+  background-color: rgba(219, 193, 168, 0.5); }
 
 .top-right-box {
   border: 1px solid maroon;
@@ -446,7 +446,7 @@ pre {
   z-index: 10; }
 
 .sm {
-  font-size: 0.90909vw; }
+  font-size: 0.9090909091vw; }
 
 .med {
   font-size: 1.5vw; }
@@ -524,7 +524,7 @@ img.neighbors-item {
   background-color: rgba(30, 35, 55, 0.6); }
 
 .ltbg3 {
-  background-color: rgba(242, 225, 165, 0.5); }
+  background-color: rgba(219, 193, 168, 0.5); }
 
 .brdr-w {
   padding: 1%;
