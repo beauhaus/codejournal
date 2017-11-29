@@ -7,9 +7,75 @@
   <div class="ecma-entry entry">
     <pre>
       <!--entire page pre-->
+
+
+      <div class="framed1 brdr-w">
+        <h1 class="chtitle orange">A little big of Ajax api callin'</h1>
+        <p>Here's a boilerplate ajax call to github api.</p>
+<pre class="prettyprint w50 ctr">
+var a = new XMLHttpRequest();
+a.addEventListener('readystatechange', function(r) {
+  if(r.target.status === 200) {
+    console.log(r.target.response);
+  }
+});
+
+a.open('GET', 'https://api.github.com/users/beauvelop', true); // when this is run, then the event is triggered.
+// r.target to actually get the object that was captured by the event.
+
+a.send();
+</pre>
+<p>Ugh, what a mess! Let's clean it up with using the fetch() api</p>
+<pre class="prettyprint w50 ctr">
+//GO FETCH!
+
+fetch('https://api.github.com/users/beauvelop')
+  .then(function(r){
+    console.log(r.status)
+    return r.json()
+  })
+  .then(function(j){
+    console.log(j)
+  })
+</pre>
+<p>Either of the above will yield the following</p>
+<pre class="w60 ctr"><code class="sm">{
+    "login": "Beauvelop",
+    "id": 16019425,
+    "avatar_url": "https://avatars0.githubusercontent.com/u/16019425?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/Beauvelop",
+    "html_url": "https://github.com/Beauvelop",
+    "followers_url": "https://api.github.com/users/Beauvelop/followers",
+    "following_url": "https://api.github.com/users/Beauvelop/following{/other_user}",
+    "gists_url": "https://api.github.com/users/Beauvelop/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/Beauvelop/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/Beauvelop/subscriptions",
+    "organizations_url": "https://api.github.com/users/Beauvelop/orgs",
+    "repos_url": "https://api.github.com/users/Beauvelop/repos",
+    "events_url": "https://api.github.com/users/Beauvelop/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/Beauvelop/received_events",
+    "type": "User",
+    "site_admin": false,
+    "name": "Beau",
+    "company": null,
+    "blog": "https://beauvelop.github.io/",
+    "location": "North America",
+    "email": null,
+    "hireable": null,
+    "bio": "@beau_dev",
+    "public_repos": 95,
+    "public_gists": 0,
+    "followers": 4,
+    "following": 35,
+    "created_at": "2015-11-25T15:35:24Z",
+    "updated_at": "2017-11-17T18:37:53Z"
+  }</code></pre>
+      </div>
+      <hr>
 <div class="simple-wine-frame ltbg ctr">
   <h1 class="chtitle dkblue">dispatchEvent()</h1>
-  <p>There are a great many uses to dispatchEvent. It is the last Fn Call after creating a custom event. <a href="https://www.udemy.com/js-and-react-for-devs/learn/v4/content">Cassidy Williams Excellent JS/React course has a quick intro to it in her 5th video in this series, but MDN is much more verbose & exhaustive</a></p>
+  <p class="dkblue thin">There are a great many uses to dispatchEvent. It is the last Fn Call after creating a custom event.  <br>Cassidy Williams <a href="https://www.udemy.com/js-and-react-for-devs/learn/v4/content"> JS/React course</a> has a quick intro to it in her 5th video in this series, but MDN is much more verbose & exhaustive</p>
   <a class="fRight" href="https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Creating_and_triggering_events">c/o MDN</a>
   <pre class="prettyprint w50 ctr">
 document.body.addEventListener('timeEvent', stateTime);
@@ -27,7 +93,7 @@ var myCust = new CustomEvent('timeEvent', {
 document.body.dispatchEvent(myCust)</pre>
   
 </div>          
-
+<hr>
 
 <div class="plain-frame1">
   <h1 class="chtitle softred">The Versatility of .reduce()</h1>
