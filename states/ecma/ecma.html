@@ -8,8 +8,43 @@
     <pre>
       <!--entire page pre-->
 
-    
 
+
+<div class="plain-frame1">
+  <h1 class="chtitle softred">The Versatility of .reduce()</h1>
+  <h2>Double each item in an array...</h2>
+  <p>.reduce() brings an array down to a single value and must return something</p>
+<pre class="prettyprint w40 ctr">const arr = [2, 4, 6];
+const dubs = arr.reduce(function(total, amt) {
+  total.push(amt*2);
+  return total;
+}, [])
+// here we return an array that began as empty...
+console.log(dubs); //(3) [4, 8, 12]</pre>
+<hr class="w50 ctr">
+<h2>Tally up the occurrences of an item with .reduce()</h2>
+<code class="dkbg3 w60 ctr">const things = ["⭐️", "🌖","☀️", "🌨", "🌖","⭐️", "⭐️", "🌨","☀️", "🌨", "⭐️", "🌖","☀️"];</code>
+<br>
+<pre class="dkbg w60 ctr"><code class="ivr">
+const tally = things.reduce((tally, thing) => {
+  if (!tally[thing]) {
+      <span class="orange">tally[thing] = 1;</span>
+  } else {
+      <span class="ltgreen">tally[thing] += 1;</span>
+  }
+      return tally;
+}, {})
+
+<h6 class="orange">// the if-clause sets up the keys and vals as 1 for each key<br>
+// "if it doesn't exist,create that key/val pair" for each</h6>
+<h6 class="ltgreen">// ...the else-clause is reached once a key for it exists, then adds + 1 !</h6>
+console.log(tally)
+</code></pre>
+</div>
+
+
+
+  
 <div class="simple-frame">
   <h1 class="chtitle dkblue thin">DOM stuff I never learned properly...</h1>
   <h3 class="chtitle dkblue">Get Element according to attribute and value</h3>
@@ -3164,10 +3199,3 @@ btn.on('click', function() {
 
 </div>
 
-<!-- <h2 class="ltblue">TITLEHERE</h2>
-<h4><a target="_blank" href="LINKADDY">LINKTITLE</a></h4>
-<pre class="prettyprint w80">
-  CODEPLACEHOLDER
-</pre>
-<p>CAPTION PLACEHOLDER</p>
--->
