@@ -7,7 +7,25 @@
   <div class="ecma-entry entry">
     <pre>
       <!--entire page pre-->
+<div class="simple-wine-frame ltbg ctr">
+  <h1 class="chtitle dkblue">dispatchEvent()</h1>
+  <a class="fRight" href="https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Creating_and_triggering_events">c/o MDN</a>
+  <pre class="prettyprint w50 ctr">
+document.body.addEventListener('timeEvent', stateTime);
 
+function stateTime(e) {
+  alert("Evt time is: " + e.detail);
+}
+
+/* cust evt object */
+
+var myCust = new CustomEvent('timeEvent', {
+  'detail': new Date()
+})
+
+document.body.dispatchEvent(myCust)</pre>
+  
+</div>          
 
 
 <div class="plain-frame1">
