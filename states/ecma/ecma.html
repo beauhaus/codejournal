@@ -7,8 +7,47 @@
   <div class="ecma-entry entry">
     <pre>
       <!--entire page pre-->
+<div class="ctr softblue-fr">
+  <h1 class="chtitle paleY">This is a nice little puzzle to work through a thorny object</h1>
+<p>You might even find it fun!</p>
+  <pre class="prettyprint ctr w50">
+var clues = {
+  json: [
+    [
+      'is',
+      {
+        because: 'fun',
+        it: 'love',
+        so: "!"
+      },
+    ],
+    [
+      'love',
+      {
+        I: 'much',
+        is: 'really',
+      },
+    ],
+  ],
+};
+/* Make a sentence */
 
+var I = Object.keys(clues.json[1][1])[0];
+var really = clues.json[1][1].is;
+var love = clues.json[0][1].it;
+var json = Object.keys(clues)[0].toUpperCase();
+var because = Object.keys(clues.json[0][1])[0];
+var it = Object.keys(clues.json[0][1])[1]
+var is = Object.keys(clues.json[1][1])[1];
+var so = Object.keys(clues.json[0][1])[2]
+var much = clues.json[1][1].I;
+var fun = clues.json[0][1].because;
+var exclamation = clues.json[0][1].so;
 
+console.log(I, really, love, json, because, it, is, so, much, fun, exclamation)
+</pre>
+</div>
+<hr>
       <div class="framed1 brdr-w">
         <h1 class="chtitle orange">A little big of Ajax api callin'</h1>
         <p>Here's a boilerplate ajax call to github api.</p>
