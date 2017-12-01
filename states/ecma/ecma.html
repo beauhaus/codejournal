@@ -7,6 +7,42 @@
   <div class="ecma-entry entry">
     <pre>
       <!--entire page pre-->
+
+<div class="ctr softbrown-fr">
+  <h1 class="chtitle">Kyle Simpson's 4 rules of this.</h1 class="chtitle">
+  <p> Default rule: implicit /default binding.
+      [with ‘use strict’;  —this defaults to undefined] —without ‘use strict’; —> it’s the global scope.</p>
+  <pre class="prettyprint w50 ctr">
+ function happy() {
+   let msg = "I am happy because I ate " + this.food;
+   return msg;
+ }
+
+ var dessert = { food: 'ice cream', happy: happy };
+ var snack = { food: 'popcorn', happy: happy };
+
+happy(); // Default binding rule... (NB: If 'use strict'; is used... when this it is called,
+ // this will be undefined & 'this.food' --> "...cannot read 'food' of undefined..." error)
+
+ var dh = dessert.happy();
+ var sh = snack.happy();
+ 
+  console.log(dh); // I am happy because I ate ice cream
+  console.log(sh); // I am happy because I ate ice cream
+  
+ 
+ 
+  </pre>
+  <h2> Rule One: "Whatever containing object has a reference to the call at the call site.... then when it's called, that is the scope of this..."
+      it doesn't matter where the Fn is declared--where it gets called "the call site" is everything.
+     1. default global binding
+     2. implicit binding
+     3. explicit binding (call/apply)
+     3.5 "hard-binding" problem
+     4
+    </h2>
+</div>
+      <hr>
 <div class="ctr softblue-fr">
   <h1 class="chtitle paleY">This is a nice little puzzle to work through a thorny object</h1>
 <p>You might even find it fun!</p>
