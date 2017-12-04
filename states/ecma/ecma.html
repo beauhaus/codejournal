@@ -2947,7 +2947,14 @@ var names = people.map(foo => foo.name);
     } // it's only going to spit out what we want</pre>
     <img class="w40 shadn ctr" src="./img/nodefilter.jpg" alt="nodefilter">
     <h3 class="ivr">Here we only get anything if it equals what was queried.</h3>
+  <p>A better example is let's say I have an input of an array, but I want to deal exclusively with positive numbers and separate the chaff of strings, booleans, etc...
 
+  <h3>.filter() is ideal and easy-peasy</h3>
+  <pre class="prettyprint w40 ctr">
+    var nums = [1,2,"three", 4, null, 6, undefined, 7];
+    var realnums = nums.filter(item => !isNaN(item))
+  </pre>
+  </p>
   </div>
   <div class="simple-frame2">
     <h5>Audio Player (with some"> bugs)</h5>
