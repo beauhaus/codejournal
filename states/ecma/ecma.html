@@ -8,9 +8,127 @@
     <pre>
       <!--entire page pre-->
 
+      <div class="framed8 ctr">
+        <h1 class="chtiltle">A simple use-case for recursion: random matcher of 2 of 10 people</h1>
+        <p>Ten people, each are single and wanna mingle... I have ten people (objects) in an array.</p>
+<pre class="prettyprint w40 ctr">{
+  name: 'Ann',
+  id: 1,
+  gender: 'female',
+  favFood: ['Korean', 'Indian', 'Mexican'],
+  friends: [],
+},
+{
+  name: 'Ben',
+  id: 2,
+  gender: 'male',
+  favFood: ['Fast', 'Vegetarian', 'Chinese'],
+  friends: [],
+},
+{
+  name: 'Cho',
+  id: 3,
+  gender: 'male',
+  favFood: ['Indian', 'Cuban', 'French'],
+  friends: [],
+},
+{
+  name: 'Don',
+  id: 4,
+  gender: 'male',
+  favFood: ['Chinese', 'Cuban', 'Thai'],
+  friends: [],
+}
+...</pre>
+        <p>All I have to do is pick a person, and match them with a random target "new friend". <br>However...you don't want to end up on a date with yourself. (We've all had dates like that--amirite...? <em>...*ahem</em>).<br><br></p>
+<h2 class="chtitle wh"> Well, it turns out, we need recursion.</h2>
+<p>I test for a match in an if statement (is this person going to wind up matched with himself? --if so, run this function again. and test again, and so on.</p>
+<pre class="prettyprint w60 ctr">let randyEmployee = () => employee_list[Math.floor(Math.random() * 10)].name;
+          
+function matchMaker(empName) {
+  var self = empName.toLowerCase();
+  let nuFriend = randyEmployee().toLowerCase();
+  console.log("Trying to match self: ", self, " with nuFriend: ", nuFriend)
+  if (self !== nuFriend) {
+    console.log(`${self}'s nuFriend is ${nuFriend}`);
+    return nuFriend;
+  } else {
+    console.log("Noop, try again...")
+    matchMaker(empName);
+  }
+}
+matchMaker("Don");</pre>
+      </div>
+
+<div class="simple-frame ctr">
+  <h1 class="chtitle wh">Function Currying: An example in steps...</h1>
+  <p class="dkblue">First, let's look at a string building function...</p>
+  <pre class="prettyprint ctr w50">
+let sandwich =(bread, meat, condiment) =>
+  `I would like ${meat} sandwich on ${bread} with ${condiment}`
+
+  console.log(sandwich('a roll', 'ham', 'mustard'))
+  //I would like ham sandwich on a roll with mustard"
+   </pre>
+  <p class="dkblue">Now, let's make a function returning a function returning a function.
+--Each time, the function takes in an argument.</p>
+<pre class="prettyprint w50 ctr">
+let sandwich =
+  bread =>
+    meat =>
+      condiment =>
+        `I would like ${meat} sandwich on ${bread} with ${condiment}`
+
+console.log(sandwich('rye')('roast beef')('mayo'));
+</pre>
+
+</div>
+<hr>
+      <div class="simple-frame1 dkbg3 brdr-b">
+        <h3 class="chtitle">.call() .apply() with a simple example</h3>
+        <p>Let's say we need a workout routine for 3 days per week. We construct 3 objects for Mon./Wed./Fri.</p>
+<pre class="prettyprint ctr w60">  
+var wed = {
+  day: "Wednesdays",
+  muscle: "triceps"
+};
+var mon = {
+  day: "Monday",
+  muscle: "biceps"
+};
+
+var fri = {
+  day: "Friday",
+  muscle: "deltoids"
+};
+// Now we create a function to compose a workout routine:
+
+function lifting(exercise, lbs, reps) {
+  let routine = 
+  `${this.day} is ${this.muscle} day. So we do ${reps} reps of ${exercise} at ${lbs}lbs.`;
+  console.log(routine);
+}
+</pre>
+<h2>And now, for the magical bit...</h2>
+<pre class="prettyprint ctr w60">
+<span class="fRight sm brdr-w w20">/*
+We establish the context explicitly with the first param of .call() and simultaneously invoke that function.<br>
+The subsequent args get fed into the params of the Fn signature.
+*/</span>
+lifting.apply(mon, ["curls", 12, 10]);
+//"Wednesdays is triceps day. So we do 3 reps of scull-crushers at 15 lbs."
+lifting.call(wed, "scull-crushers", 15, 3);
+//"Friday is deltoids day. So we do 5 reps of flys at 20 lbs."
+lifting.call(fri, "flys", 20, 5);
+//"Monday is biceps day. So we do 10 reps of curls at 12 lbs."
+</pre>
+<p>As has been exhaustively repeated, the only difference between call and apply are the syntax. 
+<span class="orange">Apply needs an array.</span></p>
+
+      </div>
 <div class="simple-wine-frame ctr brdr-w">
-  <h1 class="chtitle">Contrived example of fizzbuzz illstrating the use of .bind()</h1>
-  <p></p>
+  <h1 class="chtitle">Contrived example of fizzbuzz illustrating the use of .bind()</h1>
+
 <pre class="prettyprint w60 ctr">'use strict';
 function mod(shout, modulo, testNum) {
   var work = testNum % modulo;
@@ -70,7 +188,7 @@ buzz!
 </div>
 
 <div class="ctr softbrown-fr">
-  <h1 class="chtitle">Kyle Simpson's 4 rules of this.</h1 class="chtitle">
+  <h1 class="chtitle">Javscript's 4 rules of this. (c/o Kyle Simpson)</h1 class="chtitle">
   <p> Default rule: implicit /default binding.
       [with ‘use strict’;  —this defaults to undefined] —without ‘use strict’; —> it’s the global scope.</p>
   <pre class="prettyprint w50 ctr">
