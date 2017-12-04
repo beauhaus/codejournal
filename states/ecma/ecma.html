@@ -9,7 +9,7 @@
       <!--entire page pre-->
 
       <div class="framed8 ctr">
-        <h1 class="chtiltle">A simple use-case for recursion: random matcher of 2 of 10 people</h1>
+        <h1 class="chtiltle">A simple use-case for recursion: random matcher for 2 of 10 people</h1>
         <p>Ten people, each are single and wanna mingle... I have ten people (objects) in an array.</p>
 <pre class="prettyprint w40 ctr">{
   name: 'Ann',
@@ -40,24 +40,27 @@
   friends: [],
 }
 ...</pre>
-        <p>All I have to do is pick a person, and match them with a random target "new friend". <br>However...you don't want to end up on a date with yourself. (We've all had dates like that--amirite...? <em>...*ahem</em>).<br><br></p>
+  <p>All I have to do is pick a person, and match them with a random target "new friend". <br>However...you don't want to end up on a date with yourself. (We've all had dates like that--amirite...? <em>...*ahem</em>).<br><br></p>
 <h2 class="chtitle wh"> Well, it turns out, we need recursion.</h2>
 <p>I test for a match in an if statement (is this person going to wind up matched with himself? --if so, run this function again. and test again, and so on.</p>
 <pre class="prettyprint w60 ctr">let randyEmployee = () => employee_list[Math.floor(Math.random() * 10)].name;
           
-function matchMaker(empName) {
-  var self = empName.toLowerCase();
-  let nuFriend = randyEmployee().toLowerCase();
-  console.log("Trying to match self: ", self, " with nuFriend: ", nuFriend)
-  if (self !== nuFriend) {
-    console.log(`${self}'s nuFriend is ${nuFriend}`);
-    return nuFriend;
-  } else {
-    console.log("Noop, try again...")
-    matchMaker(empName);
+  let randyEmployee = () => employee_list[Math.floor(Math.random() * 10)].name;
+  
+  function matchMaker(empName) {
+    let self = empName.toLowerCase();
+    let nuFriend = randyEmployee().toLowerCase();
+    
+    if (self !== nuFriend) {
+      console.log(`${self}'s nuFriend is ${nuFriend}`);
+      return nuFriend;
+    } else {
+      console.log("Noop, try again...")
+      matchMaker(empName);
+    }
   }
-}
-matchMaker("Don");</pre>
+  matchMaker("Don");
+  matchMaker("ira");</pre>
       </div>
 
 <div class="simple-frame ctr">
