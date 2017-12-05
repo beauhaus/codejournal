@@ -7,7 +7,46 @@
   <div class="ecma-entry entry">
     <pre>
       <!--entire page pre-->
+<div class="framed4">
+  <h1 class="chtitle">Object Destructuring</h1>
+  <p>Simply putting values onto keys as variables is dead-easy<br>
+  I have an object:</p>
+  <pre class="dkbg2 w40 ctr">
+    let person =
+    {
+      first: 'jill',
+      last: "williamson",
+      gender: 'female',
+      favFood: ['Italian', 'Eastern', 'Doritos'],
+      city: "New Haven",
+    };
+  </pre>
+  <p>I place each key onto a var thus:</p>
+  <code class="med wh dkbg">let {first, last, gender, favFood, city} = person;</code>
+  <p>...which renders</p>
+  <pre class="prettyprint w40 ctr">/*
+    {first: 'jill',
+    last: 'williamson',
+    gender: 'female',
+    favFood: [ 'Korean', 'Indian', 'Snack' ],
+    city: 'New Haven' }
+*/</pre>
+<p>I can add a default prop to this object with a value:</p>
 
+<code class="med wh dkbg">let {first, last, gender, favFood, city, friend="Lucy"} = person;</code>
+<p>This will render the exact same thing</p>
+<pre class="prettyprint w40 ctr">/*
+  {first: 'jill',
+  last: 'williamson',
+  gender: 'female',
+  favFood: [ 'Korean', 'Indian', 'Snack' ],
+  city: 'New Haven' }
+*/</pre>
+<p>However, logging the var "friend"</p>
+<pre class="prettyprint w30 ctr">console.log(friend) // Lucy</pre>
+  <p></p>
+</div>
+<hr>
       <div class="framed8 ctr">
         <h1 class="chtiltle">A simple use-case for recursion: random matcher for 2 of 10 people</h1>
         <p>Ten people, each are single and wanna mingle... I have ten people (objects) in an array.</p>
