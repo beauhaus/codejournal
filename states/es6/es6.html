@@ -6,6 +6,103 @@
 
   <!--
 -->
+<div class="framed4">
+    <h1 class="chtitle">Object Destructuring</h1>
+    <br>
+    <h2 class="chtitle wh thin">Simply putting value class="chtitle wh thin"s onto keys as variables is dead-easy</h2>
+    <h3>I have an object</h3>
+  <pre class="dkbg2 w30 ctr">let person =
+  {
+    first: 'jill',
+    last: "williamson",
+    gender: 'female',
+    favFood: ['Italian', 'Eastern', 'Doritos'],
+    city: "New Haven",
+  };</pre>
+    <p>I place each key onto a var thus:</p>
+    <br>
+    <code class="med wh dkbg">let {first, last, gender, favFood, city} = person;</code>
+    <br>
+    <br>
+<br>
+  <pre class="prettyprint w30 ctr">console.log(person);
+/*
+  {first: 'jill',
+  last: 'williamson',
+  gender: 'female',
+  favFood: [ 'Korean', 'Indian', 'Snack' ],
+  city: 'New Haven' }
+  */</pre><br>
+  <p>I can add a prop to this object with a default value:</p>
+  <br>
+  <code class="med wh dkbg">let {first, last, gender, favFood, city, friend="Lucy"} = person;</code>
+  <br>
+  <br>
+  <p>This will render the exact same thing</p>
+  <pre class="prettyprint w30 ctr">console.log(person);
+  /*
+    {first: 'jill',
+    last: 'williamson',
+    gender: 'female',
+    favFood: [ 'Korean', 'Indian', 'Snack' ],
+    city: 'New Haven' }
+  */</pre>
+  <br>
+  <p>However, logging the var "friend" yields...</p>
+  <pre class="prettyprint w30 ctr">console.log(friend) // Lucy</pre><hr class="w40">
+  <p>Let's verify what is happening here by iterating over an object's props after destructuring & declaring a default prop:</p><br>
+  <pre class="prettyprint w40 ctr">
+  var dog = {
+    name: "Barky",
+    ears: "Long"
+  };
+  
+  let {name, ears, tail= "Wagging"}= dog;
+  
+  let i = 1;
+  for(var prop in dog) {
+    console.log(`Prop${i}: ${[prop]}`)
+    i++;
+  }</pre>
+  <p>this returns:</p>
+  <pre class="prettyprint w20 ctr">// Prop1: name
+// Prop2: ears</pre>
+  <br>
+  <p>The es5 way of using dot notation cannot access the newly assigned prop --because it isn't a prop <em>per se</em> it's a variable.</p>
+  <pre class="prettyprint w50 ctr">console.log(dog.name) //female
+  console.log(gender) //female
+  
+  console.log(person.friend) //undefined
+  console.log(friend) //Lucy
+  </pre><br>
+  <h2 class="clean">To be clear, object destructuring is the same as declaring vars with these keynames and auto-generating their values from the<code class="paleY">object<em class="orange">.key</em></code>I do this to avoid writing the following laborious code:</h2>
+  <pre class="prettyprint w20 ctr">...
+var first = person.first;
+var last = person.last;
+...</pre><hr class="w40">
+  <p>--Let's say I don't like those prop-names (as variables) in the person object.<br>
+  All we need to do is swap the prop names (of original object) for new variable names: </p>
+  <pre class="prettyprint w60 ctr">let {name: firstName, ears: earlength, tailStatus= "Wagging"}= dog;
+  console.log(firstName) // Barky
+  console.log(earlength) // Long
+  console.log(tailStatus) // Wagging
+  </pre>
+  <hr>
+  <h2><strong class="softwhite">Look Closely:</strong> I've done 3 important es6 things in one line of code!</h2>
+  <pre class="shadn w60 softwhite">
+  1) Destructure this object & simultaneously
+  2) Exchange those prop names in the place of new var names & and simultaneously...
+  3) Add another property with a value if we'd like.</pre>  
+
+  <h2>Yet another aspect to destructuring is multiple assignation: assigning to many variables one-single value.</h2>
+<pre class="prettyprint w40 ctr">
+var {number:age, number:friendsTotal, number:bankbalance} = {number: 0};
+// console.log(age) // 0
+// console.log(friendsTotal) // 0
+// console.log(bankbalance) // 0
+</pre>
+  </div>
+<hr>
 <div class="simple-frame">
   <h1 class="chtitle wh thin">Extending a class is easy.</h1>
   <p>Passengers are on the next shuttle to Boston. Many Commuters have luggage, some dont.</p><br />
