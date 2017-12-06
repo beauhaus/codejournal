@@ -9,7 +9,7 @@
 <div class="framed4">
     <h1 class="chtitle">Object Destructuring</h1>
     <br>
-    <h2 class="chtitle wh thin">Simply putting value class="chtitle wh thin"s onto keys as variables is dead-easy</h2>
+    <h2 class="chtitle wh thin">Simply putting values onto keys as variables is dead-easy</h2>
     <h3>I have an object</h3>
   <pre class="dkbg2 w30 ctr">let person =
   {
@@ -22,7 +22,14 @@
     <p>I place each key onto a var thus:</p>
     <br>
     <code class="med wh dkbg">let {first, last, gender, favFood, city} = person;</code>
-    <br>
+    <br><br><br>
+    <pre class="prettyprint w40 ctr">
+console.log(first) // jill
+console.log(last) // williamson
+console.log(gender) // female
+console.log(favFood) // ['Italian', 'Eastern', 'Doritos']
+console.log(city) // New Haven
+   </pre>
     <br>
 <br>
   <pre class="prettyprint w30 ctr">console.log(person);
@@ -70,12 +77,12 @@
   <br>
   <p>The es5 way of using dot notation cannot access the newly assigned prop --because it isn't a prop <em>per se</em> it's a variable.</p>
   <pre class="prettyprint w50 ctr">console.log(dog.name) //female
-  console.log(gender) //female
-  
-  console.log(person.friend) //undefined
-  console.log(friend) //Lucy
+console.log(gender) //female
+
+console.log(person.friend) //undefined
+console.log(friend) //Lucy
   </pre><br>
-  <h2 class="clean">To be clear, object destructuring is the same as declaring vars with these keynames and auto-generating their values from the<code class="paleY">object<em class="orange">.key</em></code>I do this to avoid writing the following laborious code:</h2>
+  <h2 class="clean">To be clear, object destructuring is the same as declaring vars with these keynames and auto-generating their values from the<code class="paleY">object<em class="orange">.key</em></code>I do this to avoid writing the following laborious code:</h2><br>
   <pre class="prettyprint w20 ctr">...
 var first = person.first;
 var last = person.last;
@@ -94,12 +101,22 @@ var last = person.last;
   2) Exchange those prop names in the place of new var names & and simultaneously...
   3) Add another property with a value if we'd like.</pre>  
 
-  <h2>Yet another aspect to destructuring is multiple assignation: assigning to many variables one-single value.</h2>
+  <h2>Yet another aspect to destructuring is multiple assignation: assigning to many variables one-single value.</h2><br>
 <pre class="prettyprint w40 ctr">
 var {number:age, number:friendsTotal, number:bankbalance} = {number: 0};
 // console.log(age) // 0
 // console.log(friendsTotal) // 0
 // console.log(bankbalance) // 0
+</pre>
+
+<h2>Destructuring arrays ALSO works!</h2>
+<pre class="ltbg2 med shadn w40 ctr">
+    let dessert = ["🍪", "🍩", "🍰"];
+    let [choice1, choice2, choice3] = dessert;
+    
+    console.log(choice1) // 🍪
+    console.log(choice2) // 🍩
+    console.log(choice3) // 🍰
 </pre>
   </div>
 <hr>
