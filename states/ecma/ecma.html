@@ -25,11 +25,52 @@
 
 var myPrim = "copyable but immutable";
 
-updatePrim(myPrim)</pre>
-    <h2></h2>
-    <p></p>
-    <pre class="prettyprint w50 ctr"></pre>
-  </div>
+updatePrim(myPrim)</pre><hr>
+    <h2>Here we have an simple object with 2 props... <em class="paleY">.arrProp</em> & <em class="paleY">.funcProp</em></h2>
+  <p></p>
+<pre class="prettyprint linenums w30 ctr">myObj = {
+  arrProp: [],
+  funcProp: function() {}
+}
+console.log(myObj) //{ arrProp: [], funcProp: [Function] }
+</pre>
+<p></p>
+<pre class="prettyprint linenums w30 ctr">myObj = {
+    arrProp: [],
+    funcProp: function() {}
+  }
+  console.log(myObj)
+  function updateObj(inputObj) {
+    inputObj.arrProp =["🍓"];
+    inputObj.funcProp = () => {console.log("Updated!")}
+    inputObj.objProp = {"veg": "🥦"};
+  }
+  
+  updateObj(myObj)
+  
+  console.log(myObj)
+  
+  // (sanity check...)
+  myObj.funcProp() // Updated!</pre>
+  <p></p>
+<pre class="prettyprint linenums w30 ctr">myObj = {
+    arrProp: [],
+    funcProp: function() {}
+  }
+  console.log(myObj)
+  function updateObj(inputObj) {
+    inputObj.arrProp =["🍓"];
+    inputObj.funcProp = () => {console.log("Updated!")}
+    inputObj.objProp = {"veg": "🥦"};
+  }
+  
+  updateObj(myObj)
+  
+  console.log(myObj)
+  
+  // (sanity check...)
+  myObj.funcProp() // Updated!</pre>
+</div>
   <hr>
   <div class="framed8 ctr">
     <h1 class="chtiltle">A simple use-case for recursion: random matcher for 2 of 10 people</h1>
