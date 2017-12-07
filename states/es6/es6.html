@@ -6,6 +6,23 @@
 
   <!--
 -->
+<div class="framed3">
+  <h1>What you should know about es6's this in arrow functions</h1>
+  <p>The way arrow functions work in es6 functions needs close attention:</p>
+  <pre class="prettyprint w50 ctr">
+    var control = {
+      var self = this;
+      btn.addEventListener('click', function() {
+        self.doSomething(...);
+      })
+    }
+  </pre>
+
+
+  <p></p>
+  <pre class="prettyprint w50 ctr"></pre>
+</div>
+
 <div class="framed4">
     <h1 class="chtitle">Object Destructuring</h1>
     <br>

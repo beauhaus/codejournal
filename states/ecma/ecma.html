@@ -8,10 +8,33 @@
     <pre>
       <!--entire page pre-->
 
-      <div class="framed8 ctr">
-        <h1 class="chtiltle">A simple use-case for recursion: random matcher for 2 of 10 people</h1>
-        <p>Ten people, each are single and wanna mingle... I have ten people (objects) in an array.</p>
-<pre class="prettyprint w40 ctr">{
+<div class="ctr softbrown-fr">
+  <h1 class="chtitle coral">Pass by value vs pass by reference</h1>
+  <h1 class="chtitle">Strings and nums (ie. primitives) are passed by value while Objects are passed by reference.</h1>
+  <p class="softwhite">This updater will attempt to modify a var.<br><br> It is successful because the "input" that's 'declared' in the Fn signature is, in fact, a copy of the var that is passed to updatePrim when it is called.</p>
+  <br>
+  <span class="softwhite">Pass by value</span>
+  <pre class="prettyprint w40 linenums ctr">function updatePrim(input) {
+  input = "copied"
+  input.amt = 200;
+  input.sum = "hello"
+  console.log(input) //copied 
+  console.log(input.sum) // undefined
+  console.log(input.amt) // undefined
+}
+
+var myPrim = "copyable but immutable";
+
+updatePrim(myPrim)</pre>
+    <h2></h2>
+    <p></p>
+    <pre class="prettyprint w50 ctr"></pre>
+  </div>
+  <hr>
+  <div class="framed8 ctr">
+    <h1 class="chtiltle">A simple use-case for recursion: random matcher for 2 of 10 people</h1>
+    <p>Ten people, each are single and wanna mingle... I have ten people (objects) in an array.</p>
+    <pre class="prettyprint w40 ctr">{
   name: 'Ann',
   id: 1,
   gender: 'female',
@@ -40,10 +63,16 @@
   friends: [],
 }
 ...</pre>
-  <p>All I have to do is pick a person, and match them with a random target "new friend". <br>However...you don't want to end up on a date with yourself. (We've all had dates like that--amirite...? <em>...*ahem</em>).<br><br></p>
-<h2 class="chtitle wh"> Well, it turns out, we need recursion.</h2>
-<p>I test for a match in an if statement (is this person going to wind up matched with himself? --if so, run this function again. and test again, and so on.</p>
-<pre class="prettyprint w60 ctr">let randyEmployee = () => employee_list[Math.floor(Math.random() * 10)].name;
+    <p>All I have to do is pick a person, and match them with a random target "new friend".
+      <br>However...you don't want to end up on a date with yourself. (We've all had dates like that--amirite...?
+      <em>...*ahem</em>).
+      <br>
+      <br>
+    </p>
+    <h2 class="chtitle wh"> Well, it turns out, we need recursion.</h2>
+    <p>I test for a match in an if statement (is this person going to wind up matched with himself? --if so, run this function
+      again. and test again, and so on.</p>
+    <pre class="prettyprint w60 ctr">let randyEmployee = () => employee_list[Math.floor(Math.random() * 10)].name;
           
   let randyEmployee = () => employee_list[Math.floor(Math.random() * 10)].name;
   
@@ -61,21 +90,20 @@
   }
   matchMaker("Don");
   matchMaker("ira");</pre>
-      </div>
+  </div>
 
-<div class="simple-frame ctr">
-  <h1 class="chtitle wh">Function Currying: An example in steps...</h1>
-  <p class="dkblue">First, let's look at a string building function...</p>
-  <pre class="prettyprint ctr w50">
+  <div class="simple-frame ctr">
+    <h1 class="chtitle wh">Function Currying: An example in steps...</h1>
+    <p class="dkblue">First, let's look at a string building function...</p>
+    <pre class="prettyprint ctr w50">
 let sandwich =(bread, meat, condiment) =>
   `I would like ${meat} sandwich on ${bread} with ${condiment}`
 
   console.log(sandwich('a roll', 'ham', 'mustard'))
   //I would like ham sandwich on a roll with mustard"
    </pre>
-  <p class="dkblue">Now, let's make a function returning a function returning a function.
---Each time, the function takes in an argument.</p>
-<pre class="prettyprint w50 ctr">
+    <p class="dkblue">Now, let's make a function returning a function returning a function. --Each time, the function takes in an argument.</p>
+    <pre class="prettyprint w50 ctr">
 let sandwich =
   bread =>
     meat =>
@@ -85,12 +113,12 @@ let sandwich =
 console.log(sandwich('rye')('roast beef')('mayo'));
 </pre>
 
-</div>
-<hr>
-      <div class="simple-frame1 dkbg3 brdr-b">
-        <h3 class="chtitle">.call() .apply() with a simple example</h3>
-        <p>Let's say we need a workout routine for 3 days per week. We construct 3 objects for Mon./Wed./Fri.</p>
-<pre class="prettyprint ctr w60">  
+  </div>
+  <hr>
+  <div class="simple-frame1 dkbg3 brdr-b">
+    <h3 class="chtitle">.call() .apply() with a simple example</h3>
+    <p>Let's say we need a workout routine for 3 days per week. We construct 3 objects for Mon./Wed./Fri.</p>
+    <pre class="prettyprint ctr w60">  
 var wed = {
   day: "Wednesdays",
   muscle: "triceps"
@@ -112,8 +140,8 @@ function lifting(exercise, lbs, reps) {
   console.log(routine);
 }
 </pre>
-<h2>And now, for the magical bit...</h2>
-<pre class="prettyprint ctr w60">
+    <h2>And now, for the magical bit...</h2>
+    <pre class="prettyprint ctr w60">
 <span class="fRight sm brdr-w w20">/*
 We establish the context explicitly with the first param of .call() and simultaneously invoke that function.<br>
 The subsequent args get fed into the params of the Fn signature.
@@ -125,14 +153,15 @@ lifting.call(wed, "scull-crushers", 15, 3);
 lifting.call(fri, "flys", 20, 5);
 //"Monday is biceps day. So we do 10 reps of curls at 12 lbs."
 </pre>
-<p>As has been exhaustively repeated, the only difference between call and apply are the syntax. 
-<span class="orange">Apply needs an array.</span></p>
+    <p>As has been exhaustively repeated, the only difference between call and apply are the syntax.
+      <span class="orange">Apply needs an array.</span>
+    </p>
 
-      </div>
-<div class="simple-wine-frame ctr brdr-w">
-  <h1 class="chtitle">Contrived example of fizzbuzz illustrating the use of .bind()</h1>
+  </div>
+  <div class="simple-wine-frame ctr brdr-w">
+    <h1 class="chtitle">Contrived example of fizzbuzz illustrating the use of .bind()</h1>
 
-<pre class="prettyprint w60 ctr">'use strict';
+    <pre class="prettyprint w60 ctr">'use strict';
 function mod(shout, modulo, testNum) {
   var work = testNum % modulo;
     console.log(`${shout} test with ${testNum}`)
@@ -144,13 +173,13 @@ function mod(shout, modulo, testNum) {
   }
 }
 </pre>
-<p>The<code>shout</code>parameter is to allow for the identification of the type of test</p>
-<p>.bind() here simply copies the function and uses it for it's own, bespoke, purpose.
-  Like call() and apply(), the first parameter establishes the context for this. 
-  (Here, it's not practically significant for this snippet).
-</p>
+    <p>The
+      <code>shout</code>parameter is to allow for the identification of the type of test</p>
+    <p>.bind() here simply copies the function and uses it for it's own, bespoke, purpose. Like call() and apply(), the first
+      parameter establishes the context for this. (Here, it's not practically significant for this snippet).
+    </p>
 
-<pre class="prettyprint w60 ctr">
+    <pre class="prettyprint w60 ctr">
 // 'this' must be placed in the Fn signature
 var fizztest = mod.bind(this, 'fizz', 3); // ALWAYS will do %3
 var buzztest = mod.bind(this, 'buzz', 5); // ALWAYS will do %5
@@ -188,13 +217,13 @@ buzz test with 500
 buzz!
 */
 </pre>
-</div>
+  </div>
 
-<div class="ctr softbrown-fr">
-  <h1 class="chtitle">Javscript's 4 rules of this. (c/o Kyle Simpson)</h1 class="chtitle">
-  <p> Default rule: implicit /default binding.
-      [with ‘use strict’;  —this defaults to undefined] —without ‘use strict’; —> it’s the global scope.</p>
-  <pre class="prettyprint w50 ctr">
+  <div class="ctr softbrown-fr">
+    <h1 class="chtitle">Javscript's 4 rules of this. (c/o Kyle Simpson)</h1 class="chtitle">
+    <p> Default rule: implicit /default binding. [with ‘use strict’; —this defaults to undefined] —without ‘use strict’; —> it’s
+      the global scope.</p>
+    <pre class="prettyprint w50 ctr">
  function happy() {
    let msg = "I am happy because I ate " + this.food;
    return msg;
@@ -215,20 +244,18 @@ happy(); // Default binding rule... (NB: If 'use strict'; is used... when this i
  
  
   </pre>
-  <h2> Rule One: "Whatever containing object has a reference to the call at the call site.... then when it's called, that is the scope of this..."
-      it doesn't matter where the Fn is declared--where it gets called "the call site" is everything.
-     1. default global binding
-     2. implicit binding
-     3. explicit binding (call/apply)
-     3.5 "hard-binding" problem
-     4
+    <h2> Rule One: "Whatever containing object has a reference to the call at the call site.... then when it's called, that is
+      the scope of this..." it doesn't matter where the Fn is declared--where it gets called "the call site" is everything.
+      1. default global binding 2. implicit binding 3. explicit binding (call/apply) 3.5 "hard-binding" problem 4
     </h2>
-</div>
-      <hr>
-<div class="ctr softblue-fr">
-  <h1 class="chtitle paleY">A nice little puzzle to work through a thorny JSON object</h1>
-<p>You might even find it fun! --Write a sentence with all that is available in this JSON object accessing both keys and values👍🏼</p>
-  <pre class="prettyprint ctr w60">
+  </div>
+  <hr>
+  <div class="ctr softblue-fr">
+    <h1 class="chtitle paleY">A nice little puzzle to work through a thorny JSON object</h1>
+    <p>You might even find it fun! --Write a sentence with all that is available in this JSON object accessing both keys and
+      values👍🏼
+    </p>
+    <pre class="prettyprint ctr w60">
 <span class="ans sm fRight">
 var I = Object.keys(clues.json[1][1])[0];
 var really = clues.json[1][1].is;
@@ -264,12 +291,12 @@ var clues = {
 
 console.log(I, really, love, json, because, it, is, so, much, fun, exclamation)
 </pre>
-</div>
-<hr>
-      <div class="framed1 brdr-w">
-        <h1 class="chtitle orange">A little big of Ajax api callin'</h1>
-        <p>Here's a boilerplate ajax call to github api.</p>
-<pre class="prettyprint w50 ctr">
+  </div>
+  <hr>
+  <div class="framed1 brdr-w">
+    <h1 class="chtitle orange">A little big of Ajax api callin'</h1>
+    <p>Here's a boilerplate ajax call to github api.</p>
+    <pre class="prettyprint w50 ctr">
 var a = new XMLHttpRequest();
 a.addEventListener('readystatechange', function(r) {
   if(r.target.status === 200) {
@@ -282,8 +309,8 @@ a.open('GET', 'https://api.github.com/users/beauvelop', true); // when this is r
 
 a.send();
 </pre>
-<p>Ugh, what a mess! Let's clean it up with using the fetch() api</p>
-<pre class="prettyprint w50 ctr">
+    <p>Ugh, what a mess! Let's clean it up with using the fetch() api</p>
+    <pre class="prettyprint w50 ctr">
 //GO FETCH!
 
 fetch('https://api.github.com/users/beauvelop')
@@ -295,8 +322,8 @@ fetch('https://api.github.com/users/beauvelop')
     console.log(j)
   })
 </pre>
-<p>Either of the above will yield the following</p>
-<pre class="w60 ctr"><code class="sm">{
+    <p>Either of the above will yield the following</p>
+    <pre class="w60 ctr"><code class="sm">{
     "login": "Beauvelop",
     "id": 16019425,
     "avatar_url": "https://avatars0.githubusercontent.com/u/16019425?v=4",
@@ -328,13 +355,15 @@ fetch('https://api.github.com/users/beauvelop')
     "created_at": "2015-11-25T15:35:24Z",
     "updated_at": "2017-11-17T18:37:53Z"
   }</code></pre>
-      </div>
-      <hr>
-<div class="simple-wine-frame ltbg ctr">
-  <h1 class="chtitle dkblue">dispatchEvent()</h1>
-  <p class="dkblue thin">There are a great many uses to dispatchEvent. It is the last Fn Call after creating a custom event.  <br>Cassidy Williams <a href="https://www.udemy.com/js-and-react-for-devs/learn/v4/content"> JS/React course</a> has a quick intro to it in her 5th video in this series, but MDN is much more verbose & exhaustive</p>
-  <a class="fRight" href="https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Creating_and_triggering_events">c/o MDN</a>
-  <pre class="prettyprint w50 ctr">
+  </div>
+  <hr>
+  <div class="simple-wine-frame ltbg ctr">
+    <h1 class="chtitle dkblue">dispatchEvent()</h1>
+    <p class="dkblue thin">There are a great many uses to dispatchEvent. It is the last Fn Call after creating a custom event.
+      <br>Cassidy Williams
+      <a href="https://www.udemy.com/js-and-react-for-devs/learn/v4/content"> JS/React course</a> has a quick intro to it in her 5th video in this series, but MDN is much more verbose & exhaustive</p>
+    <a class="fRight" href="https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Creating_and_triggering_events">c/o MDN</a>
+    <pre class="prettyprint w50 ctr">
 document.body.addEventListener('timeEvent', stateTime);
 
 function stateTime(e) {
@@ -348,26 +377,26 @@ var myCust = new CustomEvent('timeEvent', {
 })
 
 document.body.dispatchEvent(myCust)</pre>
-  
-</div>          
-<hr>
 
-<div class="plain-frame1">
-  <h1 class="chtitle softred">The Versatility of .reduce()</h1>
-  <h2>Double each item in an array...</h2>
-  <p>.reduce() brings an array down to a single value and must return something</p>
-<pre class="prettyprint w40 ctr">const arr = [2, 4, 6];
+  </div>
+  <hr>
+
+  <div class="plain-frame1">
+    <h1 class="chtitle softred">The Versatility of .reduce()</h1>
+    <h2>Double each item in an array...</h2>
+    <p>.reduce() brings an array down to a single value and must return something</p>
+    <pre class="prettyprint w40 ctr">const arr = [2, 4, 6];
 const dubs = arr.reduce(function(total, amt) {
   total.push(amt*2);
   return total;
 }, [])
 // here we return an array that began as empty...
 console.log(dubs); //(3) [4, 8, 12]</pre>
-<hr class="w50 ctr">
-<h2>Tally up the occurrences of an item with .reduce()</h2>
-<code class="dkbg3 w60 ctr">const things = ["⭐️", "🌖","☀️", "🌨", "🌖","⭐️", "⭐️", "🌨","☀️", "🌨", "⭐️", "🌖","☀️"];</code>
-<br>
-<pre class="dkbg w60 ctr"><code class="ivr">
+    <hr class="w50 ctr">
+    <h2>Tally up the occurrences of an item with .reduce()</h2>
+    <code class="dkbg3 w60 ctr">const things = ["⭐️", "🌖","☀️", "🌨", "🌖","⭐️", "⭐️", "🌨","☀️", "🌨", "⭐️", "🌖","☀️"];</code>
+    <br>
+    <pre class="dkbg w60 ctr"><code class="ivr">
 const tally = things.reduce((tally, thing) => {
   if (!tally[thing]) {
       <span class="orange">tally[thing] = 1;</span>
@@ -382,17 +411,17 @@ const tally = things.reduce((tally, thing) => {
 <h6 class="ltgreen">// ...the else-clause is reached once a key for it exists, then adds + 1 !</h6>
 console.log(tally)
 </code></pre>
-</div>
+  </div>
 
 
 
-  
-<div class="simple-frame">
-  <h1 class="chtitle dkblue thin">DOM stuff I never learned properly...</h1>
-  <h3 class="chtitle dkblue">Get Element according to attribute and value</h3>
 
-  
-  <pre class="prettyprint w60 ctr">
+  <div class="simple-frame">
+    <h1 class="chtitle dkblue thin">DOM stuff I never learned properly...</h1>
+    <h3 class="chtitle dkblue">Get Element according to attribute and value</h3>
+
+
+    <pre class="prettyprint w60 ctr">
 let all = document.querySelectorAll('*'); //The object returned is a NodeList.
 
   const gimmeElem = (att, val) => {
@@ -459,8 +488,8 @@ console.log(sortedMem);
     <pre class="prettyprint w40 ctr">...
 var sortedMem = members.sort((a,b) => a.age> b.age? 1: -1);
 ...</pre>
-<p>Or... Even more readable.</p>
-<pre class="prettyprint w40 ctr">
+    <p>Or... Even more readable.</p>
+    <pre class="prettyprint w40 ctr">
 var arr = [2, 3, 4, 5, 6, 20, 12, 15];
 arr.sort(function(a,b) {
   return a-b;
@@ -533,7 +562,8 @@ user2.printLikes()
 // Jill likes 🍌
 </pre>
     <h3 class="chtitle">ES6 NOTE: An arrow doesn't bind its own 'this' value. ES6 FUNKS use the 'this' value of the context they were created
-      in.</h3>
+      in.
+    </h3>
 
     <pre class="prettyprint w40 ctr">
 const user3 = {
@@ -738,9 +768,12 @@ console.log(taylorSwift.selfieRequest()) // "Sure!"
 </pre>
 
     <p>Enquiring minds want to know what phone she uses.
-      <br />She's shopping around for an endorsement deal with Samsung so she has her publicist announce the public property of the<code>taylorSwift</code>Object
+      <br />She's shopping around for an endorsement deal with Samsung so she has her publicist announce the public property of
+      the
+      <code>taylorSwift</code>Object
       <br /> This is done using a method built on the prototype.
-      <br />A publicist is placed on the <code>CelebConstructor</code> prototype to receive an opinion parameter as a reason for
+      <br />A publicist is placed on the
+      <code>CelebConstructor</code> prototype to receive an opinion parameter as a reason for
       <em>her</em> choice.
       <br /> (This can be used on future celebs created this way...)</p>
     <pre class="prettyprint w60 ctr">
@@ -753,13 +786,15 @@ CelebConstructor.prototype.whatPhone = function(opinion) {
 taylorSwift.whatPhone("it's fancy!"); // Tay-tay likes the iPhone X because it's fancy!
 </pre>
 
-    <h2 class="chtitle wh">Let's discuss something<code>Private</code></h2>
+    <h2 class="chtitle wh">Let's discuss something
+      <code>Private</code>
+    </h2>
     <p>There are "Private Methods" & "Private variables"
       <br /> Private members are made by the constructor. Ordinary vars and parameters of the constructor become the private members.
     </p>
 
     <div class="framed1 w60 ctr">
-     <pre> function CelebConstructor(nickName, phone,
+      <pre> function CelebConstructor(nickName, phone,
         <span class="orange">prop</span>) { this.phone = phone; this.nickName = nickName; this.selfieResponse = "Sure!";
         <span class="orange">var email = "taytay@gmail.com";</span>
         <span class="orange">var selfieLimit = prop;</span>
@@ -879,8 +914,7 @@ console.log(tay.selfieRequest()); // Get Lost!
       </span>
     </div>
     <p>Here's how we create a promise. </p>
-    <a class="sm right" href="https://developers.google.com/web/fundamentals/getting-started/primers/promises"
-      target="_blank">Jake Archibald</a>
+    <a class="sm right" href="https://developers.google.com/web/fundamentals/getting-started/primers/promises" target="_blank">Jake Archibald</a>
     <pre class="prettyprint w40 ctr">
   var promise = new Promise(function(resolve, reject) {
     // do a thing, possibly async, then…
@@ -2487,8 +2521,7 @@ jim.opinion.call(liz, "vanilla", "Sherbert" );
       <br /> If no args are fed in, choose the defaults after "||". 2. Of course, 'name' and 'verb' props exist.
       <br /> However, the
       <em class="y">${this.name}</em> allows for them to be 'hijacked' with call(); 3. line 16 'hijacks' the jim object's 'opinion' method.
-      <br
-      />
+      <br />
       <span class="ltgreen">liz.opinion();</span> renders //
       <span class="ans med ltgreen">Hi, I'm Elizabeth. I adore oh--anything a la mode.</span>
       <br />
@@ -2947,14 +2980,15 @@ var names = people.map(foo => foo.name);
     } // it's only going to spit out what we want</pre>
     <img class="w40 shadn ctr" src="./img/nodefilter.jpg" alt="nodefilter">
     <h3 class="ivr">Here we only get anything if it equals what was queried.</h3>
-  <p>A better example is let's say I have an input of an array, but I want to deal exclusively with positive numbers and separate the chaff of strings, booleans, etc...
+    <p>A better example is let's say I have an input of an array, but I want to deal exclusively with positive numbers and separate
+      the chaff of strings, booleans, etc...
 
-  <h3>.filter() is ideal and easy-peasy</h3>
-  <pre class="prettyprint w40 ctr">
+      <h3>.filter() is ideal and easy-peasy</h3>
+      <pre class="prettyprint w40 ctr">
     var nums = [1,2,"three", 4, null, 6, undefined, 7];
     var realnums = nums.filter(item => !isNaN(item))
   </pre>
-  </p>
+    </p>
   </div>
   <div class="simple-frame2">
     <h5>Audio Player (with some"> bugs)</h5>
@@ -3418,7 +3452,8 @@ btn.after('< h4>You cancelled it.< /h4>')
       <em class="navy">timeID</em>)
     </div>
     <h6>This is not part of some javascript browser's timer, but part of the browser's paint pipeline. It is more efficient and
-      performant.</h6>
+      performant.
+    </h6>
     <pre class="prettyprint w40">
 function drawText() {
   btn.after('< hr /> < h1>Boom!< /h1>')
@@ -3551,4 +3586,3 @@ btn.on('click', function() {
 
 
 </div>
-
