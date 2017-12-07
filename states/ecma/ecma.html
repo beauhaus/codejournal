@@ -28,27 +28,25 @@ var myPrim = "copyable but immutable";
 updatePrim(myPrim)</pre><hr>
     <h2>Here we have an simple object with 2 props... <em class="paleY">.arrProp</em> & <em class="paleY">.funcProp</em></h2>
   <p></p>
-<pre class="prettyprint linenums w30 ctr">myObj = {
+<pre class="prettyprint linenums w60 ctr">myObj = {
   arrProp: [],
   funcProp: function() {}
 }
-console.log(myObj) //{ arrProp: [], funcProp: [Function] }
+console.log(myObj) 
+//  { arrProp: [], funcProp: [Function] }
 </pre>
-<p></p>
-<pre class="prettyprint linenums w30 ctr">myObj = {
-    arrProp: [],
-    funcProp: function() {}
-  }
-  console.log(myObj)
-  function updateObj(inputObj) {
-    inputObj.arrProp =["🍓"];
-    inputObj.funcProp = () => {console.log("Updated!")}
-    inputObj.objProp = {"veg": "🥦"};
-  }
-  
-  updateObj(myObj)
-  
-  console.log(myObj)
+<p>Now, I compose a function that attempts to change vals on those "keys"</p>
+<pre class="prettyprint linenums w60 ctr">
+function updateObj(inputObj) {
+  inputObj.arrProp =["🍓"];
+  inputObj.funcProp = () => {console.log("Updated!")}
+  inputObj.objProp = {"veg": "🥦"};
+}
+updateObj(myObj) // call it passing a reference to that object in memory.</pre>
+<p><code>console.logg</code>-ing it reveals that--by virtue of being an object--a pointer to that location in memory enables me to change the original, rather than make a copy.</p>
+<pre class="prettyprint linenums w30 ctr">{ arrProp: [ '🍓' ],
+    funcProp: [Function],
+    objProp: { veg: '🥦' } }
   
   // (sanity check...)
   myObj.funcProp() // Updated!</pre>
