@@ -25,26 +25,32 @@
 
 var myPrim = "copyable but immutable";
 
-updatePrim(myPrim)</pre><hr>
-    <h2>Here we have an simple object with 2 props... <em class="paleY">.arrProp</em> & <em class="paleY">.funcProp</em></h2>
-  <p></p>
-<pre class="prettyprint linenums w60 ctr">myObj = {
+updatePrim(myPrim)</pre>
+    <hr>
+    <h2>Here we have an simple object with 2 props...
+      <em class="paleY">.arrProp</em> &
+      <em class="paleY">.funcProp</em>
+    </h2>
+    <p></p>
+    <pre class="prettyprint linenums w60 ctr">myObj = {
   arrProp: [],
   funcProp: function() {}
 }
 console.log(myObj) 
 //  { arrProp: [], funcProp: [Function] }
 </pre>
-<p>Now, I compose a function that attempts to change vals on those "keys"</p>
-<pre class="prettyprint linenums w60 ctr">
+    <p>Now, I compose a function that attempts to change vals on those "keys"</p>
+    <pre class="prettyprint linenums w60 ctr">
 function updateObj(inputObj) {
   inputObj.arrProp =["🍓"];
   inputObj.funcProp = () => {console.log("Updated!")}
   inputObj.objProp = {"veg": "🥦"};
 }
 updateObj(myObj) // call it passing a reference to that object in memory.</pre>
-<p><code>console.logg</code>-ing it reveals that--by virtue of being an object--a pointer to that location in memory enables me to change the original, rather than make a copy.</p>
-<pre class="prettyprint linenums w30 ctr">/*
+    <p>
+      <code>console.logg</code>-ing it reveals that--by virtue of being an object--a pointer to that location in memory enables me to change the original,
+      rather than make a copy.</p>
+    <pre class="prettyprint linenums w30 ctr">/*
 { 
   arrProp: [ '🍓' ],
   funcProp: [Function],
@@ -52,11 +58,12 @@ updateObj(myObj) // call it passing a reference to that object in memory.</pre>
 }
 */</pre>
 
-  <p>Finally a sanity check to see if that <em>funcProp</em> has been changed successfully...</p>
-<pre class="prettyprint linenums w30 ctr">
+    <p>Finally a sanity check to see if that
+      <em>funcProp</em> has been changed successfully...</p>
+    <pre class="prettyprint linenums w30 ctr">
   // (sanity check...)
   myObj.funcProp() // Updated!</pre>
-</div>
+  </div>
   <hr>
   <div class="framed8 ctr">
     <h1 class="chtiltle">A simple use-case for recursion: random matcher for 2 of 10 people</h1>
@@ -765,14 +772,14 @@ response(nums);
 
   <div class="framed8">
     <h1 class="chtitle wh">Douglas Crockford
-    <a target="_blank" href="http://www.crockford.com/javascript/private.html"> ,here,</a> has lots to say about Public, Private & Privileged Properties (or
-    <em>"members"</em>) of Objects that are quite useful</h1>
+      <a target="_blank" href="http://www.crockford.com/javascript/private.html"> ,here,</a> has lots to say about Public, Private & Privileged Properties (or
+      <em>"members"</em>) of Objects that are quite useful</h1>
     <p>Let's say your hobby is collecting celebrity autographs & you've become obsessed with Taylor Swift.
-      <br />You follower her all around (in a non-creepy way), constantly asking for selfies, autographs...You want to wear the same clothes, you have the same hairdo & you want to use the same phone as she does.
+      <br />You follower her all around (in a non-creepy way), constantly asking for selfies, autographs...You want to wear the
+      same clothes, you have the same hairdo, etc...
       <br />--Wait! Here she is now!</p>
     <pre class="prettyprint w50 ctr">
-function CelebConstructor(nickName,phone) {
-  this.phone = phone;
+function CelebConstructor(nickName) {
   var email = "taytay@gmail.com";
   this.nickName = nickName;
   this.selfieResponse = "Sure!";
@@ -782,9 +789,9 @@ function CelebConstructor(nickName,phone) {
 }
 </pre>
 
-    <p>Well, she isn't "here", yet... We have to create an instance of her, give her a phone, then ask for a selfie.</p>
+    <p>Well, she isn't "here", yet... We have to create an instance of her, then get up the courage to ask for a selfie.</p>
     <pre class="prettyprint w60 ctr">
-var taylorSwift = new CelebConstructor("Tay-tay", "iPhone X");
+var taylorSwift = new CelebConstructor("Tay-tay");
 console.log(taylorSwift instanceof CelebConstructor); // true  (...sanity check)
 console.log(CelebConstructor.prototype.isPrototypeOf(taylorSwift)) // true (...OCD check)</pre>
     <p>You ask for a selfie and she says "sure"!</p>
@@ -792,33 +799,17 @@ console.log(CelebConstructor.prototype.isPrototypeOf(taylorSwift)) // true (...O
 console.log(taylorSwift.selfieRequest()) // "Sure!"
 </pre>
 
-    <p>Enquiring minds want to know what phone she uses.
-      <br />
-  <div class="w60 simple-frame dkbg2 ctr"><h3 class="chtitle paleY">Backstory:</h3>
-    <span class="sand thin">Tay's currently shopping around for an endorsement deal with Samsung so she has her publicist announce the public property of the <span class="wh">taylorSwift</span> Object<br>
-    <br />This is done using a method built on the prototype.
-    <br />A publicist is placed on the
-    <code>CelebConstructor</code> prototype to receive an opinion parameter as a reason for
-    <em>her</em> choice.
-    <br /> (This can be used on future celebs created this way...)</div>
-    
-  <pre class="prettyprint w60 ctr">
-CelebConstructor.prototype.whatPhone = function(opinion) {
-   let statement = `${this.nickName} likes the ${this.phone} because ${opinion}`;
-   console.log(statement)
-   return statement;
- }
-// this method can then be invoked with a bespoke reason at the time.
-taylorSwift.whatPhone("it's fancy!"); // Tay-tay likes the iPhone X because it's fancy!
-</pre>
-
-    <h2 class="chtitle wh">...but, before going on, we should discuss something<em> private</em></h2>
+    <h2 class="chtitle wh">...but, before going on, we should discuss something
+      <em> private</em>
+    </h2>
     <p>There are "Private Methods" & "Private variables"
-      <br /> Private members are made by the constructor. Ordinary vars and parameters of the constructor become the private members.</p>
+      <br /> Private members are made by the constructor.
+      <br> Ordinary vars and parameters of the constructor become the private members.</p>
 
     <pre class="framed1 w60 ctr clean">
-function CelebConstructor(nickName, phone, <span class="orange">prop</span>) { 
-  this.phone = phone; this.nickName = nickName; this.selfieResponse = "Sure!";
+function CelebConstructor(nickName, <span class="orange">prop</span>) { 
+  this.nickName = nickName; 
+  this.selfieResponse = "Sure!";
   <span class="orange">var email = "taytay@gmail.com";</span>
   <span class="orange">var selfieLimit = prop;</span>
   <span class="paleY">var that = this;</span> 
@@ -828,7 +819,7 @@ function CelebConstructor(nickName, phone, <span class="orange">prop</span>) {
   }; 
 }
 
-var tay = new CelebConstructor('Tay-tay', 'iPhoneX', 3);
+var tay = new CelebConstructor('Tay-tay', 3);
 tay.selfieRequest();
 <i class="ltgreen">// Sure!</i>
 console.log(tay.nickName);
@@ -836,32 +827,37 @@ console.log(tay.nickName);
 console.log(tay.email);
 <i class="ltgreen"> // undefined</i>
 </pre>
-    <h4>This constructor makes three private instance variables: prop, selfieLimit, and that.
+    <h2>This constructor makes three private instance variables:
+      <code class="orange">prop</code>,
+      <code class="orange">selfieLimit</code>, and
+      <code class="paleY">that</code>.
       <br />They are attached to the object, but they are not accessible to the outside, nor are they accessible to the object's
       own public methods.
-      <br />They are accessible to private methods.
-      <span class="y">Private methods</span> are inner functions of the constructor.</h4>
+      <br />They
+      <em>are</em> accessible to private methods.
+      <span class="y">Private methods</span> are inner functions of the constructor.</h2>
     <h3>Take a close look at
-      <code>var that = this;</code>
-      <br />By convention, we make a private that variable. This is used to make the object available to the private methods.</h3>
-    <br />
+      <code class="paleY">var that = this;</code>
+      <br />By convention, we make a private
+      <code class="paleY">that</code>variable.
+      <code class="paleY">that</code>is used conduit to "expose" the object to the private methods.</h3>
     <p>Let's add a
       <span class="y">private method</span>
     </p>
 
-    <pre class="prettyprint w50 ctr">
-function CelebConstructor(nickName, phone, <span class="orange">prop</span>) {
-  this.phone = phone;
+    <pre class="prettyprint w40 ctr">
+function CelebConstructor(nickName, <span class="orange">prop</span>) {
   this.nickName = nickName;
   this.selfieResponse = prop;
   var email = "taytay@gmail.com";
   this.selfieLimit = 3;
   var that = this;
+
   this.selfieRequest = function() {
     return this.selfieResponse;
   };
 
-  <span class="y">function cameraShy() {  <span class="ltgreen">// or.... var cameraShy = function() {</span>
+  <span class="y">function cameraShy() { 
     if (selfieLimit > 0) {
         selfieLimit -= 1;
         return true;
@@ -872,20 +868,20 @@ function CelebConstructor(nickName, phone, <span class="orange">prop</span>) {
 
 }
 
-var tay = new CelebConstructor('Tay-tay', 'iPhoneX', "Sure!");
+var tay = new CelebConstructor('Tay-tay', "Sure!");
 </pre>
 
     <h3 class="chtitle wh">
       <code>cameraShy</code> is a private method: An inner function of the constructor that can access
       <code>selfieLimit</code>
       <br />We know taylorSwift has limited patience, but we don't know
-      <em>how</em> limited. Because it's on a private variable.
-      <br />
+      <em>how</em> limited.
+      <br>That data is only accessed from the private variable
+      <code class="paleY">selfieLimit</code>
       <code>cameraShy</code>examines selfieLimit and decrements it...
       <br />This will be called with a
       <span class="paleY">"Privileged Method"</span> and put to good use...3 times.</h3>
-    <pre class="prettyprint w50 ctr">function CelebConstructor(nickName, phone, <span class="orange">prop</span>) {
-  this.phone = phone;
+    <pre class="prettyprint w50 ctr">function CelebConstructor(nickName, <span class="orange">prop</span>) {
     this.nickName = nickName;
     this.selfieResponse = prop;
     var email = 'taytay@gmail.com';
@@ -905,23 +901,28 @@ var tay = new CelebConstructor('Tay-tay', 'iPhoneX', "Sure!");
         return cameraShy() ? that.selfieResponse : "Get Lost";
     };</span>
 }
-var tay = new CelebConstructor('Tay-tay', 'iPhoneX', 'Sure!');
+var tay = new CelebConstructor('Tay-tay', 'Sure!');
 
 console.log(tay.selfieRequest()); // Sure!
 console.log(tay.selfieRequest()); // Sure!
 console.log(tay.selfieRequest()); // Sure!
-console.log(tay.selfieRequest()); // Get Lost!
+console.log(tay.selfieReque // Get Lost!
 
 </pre>
-    <h3 class="chtitle">The important point is that the privileged method
-      <code>selfieRequest</code>puts
-      <code>selfieResponse</code>onto
-      <em class="paleY">that</em>temporarily...
-      <br> So long as Tay-tay's patience hasn't run out. (via the private method
-      <code>cameraShy()</code>)</h3>
+    <h2 class="chtitle">The important point is that the privileged method
+      <span class="wh">selfieRequest</span> puts <span class="wh">selfieResponse</span> onto <em class="paleY">that</em> temporarily...
+      <br> So long as Tay-tay's patience hasn't run out.
+      <br> (via the private method <span class="wh">cameraShy()</span> )</h2>
     <div class="ctr w40 simple-frame dkbg wh thin">
-      <span class="orange">Private methods can, of course, be function statements</span> var cameraShy = function() { if (selfieLimit > 0) { selfieLimit
-      -= 1; return true; } else { return false; } };
+      <span class="orange">Private methods can, of course, be function statements</span>
+      <pre class="w50 ctr">var cameraShy = function() { 
+  if (selfieLimit > 0) { 
+    selfieLimit -= 1;
+    return true; 
+  } else { 
+    return false; 
+  } 
+};</pre>
 
     </div>
 
