@@ -44,28 +44,16 @@ function updateObj(inputObj) {
 }
 updateObj(myObj) // call it passing a reference to that object in memory.</pre>
 <p><code>console.logg</code>-ing it reveals that--by virtue of being an object--a pointer to that location in memory enables me to change the original, rather than make a copy.</p>
-<pre class="prettyprint linenums w30 ctr">{ arrProp: [ '🍓' ],
-    funcProp: [Function],
-    objProp: { veg: '🥦' } }
-  
-  // (sanity check...)
-  myObj.funcProp() // Updated!</pre>
-  <p></p>
-<pre class="prettyprint linenums w30 ctr">myObj = {
-    arrProp: [],
-    funcProp: function() {}
-  }
-  console.log(myObj)
-  function updateObj(inputObj) {
-    inputObj.arrProp =["🍓"];
-    inputObj.funcProp = () => {console.log("Updated!")}
-    inputObj.objProp = {"veg": "🥦"};
-  }
-  
-  updateObj(myObj)
-  
-  console.log(myObj)
-  
+<pre class="prettyprint linenums w30 ctr">/*
+{ 
+  arrProp: [ '🍓' ],
+  funcProp: [Function],
+  objProp: { veg: '🥦' } 
+}
+*/</pre>
+
+  <p>Finally a sanity check to see if that <em>funcProp</em> has been changed successfully...</p>
+<pre class="prettyprint linenums w30 ctr">
   // (sanity check...)
   myObj.funcProp() // Updated!</pre>
 </div>
@@ -103,8 +91,7 @@ updateObj(myObj) // call it passing a reference to that object in memory.</pre>
 }
 ...</pre>
     <p>All I have to do is pick a person, and match them with a random target "new friend".
-      <br>However...you don't want to end up on a date with yourself. (We've all had dates like that--amirite...?
-      <em>...*ahem</em>).
+      <br>However...you don't want to end up on a date with yourself.
       <br>
       <br>
     </p>
@@ -777,13 +764,12 @@ response(nums);
   </div>
 
   <div class="framed8">
-    <h3 class="chtitle wh">Douglas Crockford
-      <a target="_blank" href="http://www.crockford.com/javascript/private.html"> ,here,</a> has lots to say about Public, Private & Privileged Properties (or
-      <em>"members"</em>) of Objects that are quite useful</h3>
-    <p>Let's say you are a stalker and are obsessed with Taylor Swift.
-      <br />You follower her all around in a perfectly non-creepy way, constantly asking for selfies, autographs and her email
-      address.
-      <br /> --OH! Here she is now!</p>
+    <h1 class="chtitle wh">Douglas Crockford
+    <a target="_blank" href="http://www.crockford.com/javascript/private.html"> ,here,</a> has lots to say about Public, Private & Privileged Properties (or
+    <em>"members"</em>) of Objects that are quite useful</h1>
+    <p>Let's say your hobby is collecting celebrity autographs & you've become obsessed with Taylor Swift.
+      <br />You follower her all around (in a non-creepy way), constantly asking for selfies, autographs...You want to wear the same clothes, you have the same hairdo & you want to use the same phone as she does.
+      <br />--Wait! Here she is now!</p>
     <pre class="prettyprint w50 ctr">
 function CelebConstructor(nickName,phone) {
   this.phone = phone;
@@ -800,50 +786,56 @@ function CelebConstructor(nickName,phone) {
     <pre class="prettyprint w60 ctr">
 var taylorSwift = new CelebConstructor("Tay-tay", "iPhone X");
 console.log(taylorSwift instanceof CelebConstructor); // true  (...sanity check)
-</pre>
+console.log(CelebConstructor.prototype.isPrototypeOf(taylorSwift)) // true (...OCD check)</pre>
     <p>You ask for a selfie and she says "sure"!</p>
     <pre class="prettyprint w60 ctr">
 console.log(taylorSwift.selfieRequest()) // "Sure!"
 </pre>
 
     <p>Enquiring minds want to know what phone she uses.
-      <br />She's shopping around for an endorsement deal with Samsung so she has her publicist announce the public property of
-      the
-      <code>taylorSwift</code>Object
-      <br /> This is done using a method built on the prototype.
-      <br />A publicist is placed on the
-      <code>CelebConstructor</code> prototype to receive an opinion parameter as a reason for
-      <em>her</em> choice.
-      <br /> (This can be used on future celebs created this way...)</p>
-    <pre class="prettyprint w60 ctr">
+      <br />
+  <div class="w60 simple-frame dkbg2 ctr"><h3 class="chtitle paleY">Backstory:</h3>
+    <span class="sand thin">Tay's currently shopping around for an endorsement deal with Samsung so she has her publicist announce the public property of the <span class="wh">taylorSwift</span> Object<br>
+    <br />This is done using a method built on the prototype.
+    <br />A publicist is placed on the
+    <code>CelebConstructor</code> prototype to receive an opinion parameter as a reason for
+    <em>her</em> choice.
+    <br /> (This can be used on future celebs created this way...)</div>
+    
+  <pre class="prettyprint w60 ctr">
 CelebConstructor.prototype.whatPhone = function(opinion) {
    let statement = `${this.nickName} likes the ${this.phone} because ${opinion}`;
    console.log(statement)
    return statement;
  }
-// She then invokes the method...
+// this method can then be invoked with a bespoke reason at the time.
 taylorSwift.whatPhone("it's fancy!"); // Tay-tay likes the iPhone X because it's fancy!
 </pre>
 
-    <h2 class="chtitle wh">Let's discuss something
-      <code>Private</code>
-    </h2>
+    <h2 class="chtitle wh">...but, before going on, we should discuss something<em> private</em></h2>
     <p>There are "Private Methods" & "Private variables"
-      <br /> Private members are made by the constructor. Ordinary vars and parameters of the constructor become the private members.
-    </p>
+      <br /> Private members are made by the constructor. Ordinary vars and parameters of the constructor become the private members.</p>
 
-    <div class="framed1 w60 ctr">
-      <pre> function CelebConstructor(nickName, phone,
-        <span class="orange">prop</span>) { this.phone = phone; this.nickName = nickName; this.selfieResponse = "Sure!";
-        <span class="orange">var email = "taytay@gmail.com";</span>
-        <span class="orange">var selfieLimit = prop;</span>
-        <span class="paleY">var that = this;</span> this.selfieRequest = function() { return this.selfieResponse; }; } var tay = new CelebConstructor('Tay-tay',
-        'iPhoneX', 3); tay.selfieRequest();
-        <i class="ltgreen">// Sure!</i> tay.nickName;
-        <i class="ltgreen"> // Tay-tay</i> tay.email;
-        <i class="ltgreen"> // undefined</i>
-      </pre>
-    </div>
+    <pre class="framed1 w60 ctr clean">
+function CelebConstructor(nickName, phone, <span class="orange">prop</span>) { 
+  this.phone = phone; this.nickName = nickName; this.selfieResponse = "Sure!";
+  <span class="orange">var email = "taytay@gmail.com";</span>
+  <span class="orange">var selfieLimit = prop;</span>
+  <span class="paleY">var that = this;</span> 
+  
+  this.selfieRequest = function() { 
+    return this.selfieResponse; 
+  }; 
+}
+
+var tay = new CelebConstructor('Tay-tay', 'iPhoneX', 3);
+tay.selfieRequest();
+<i class="ltgreen">// Sure!</i>
+console.log(tay.nickName);
+<i class="ltgreen"> // Tay-tay</i>
+console.log(tay.email);
+<i class="ltgreen"> // undefined</i>
+</pre>
     <h4>This constructor makes three private instance variables: prop, selfieLimit, and that.
       <br />They are attached to the object, but they are not accessible to the outside, nor are they accessible to the object's
       own public methods.
