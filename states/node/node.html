@@ -1,58 +1,85 @@
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
 <div class="node-container">
-  <aside><span class="rot90">{{state}}</span></aside>
+  <aside>
+    <span class="rot90">{{state}}</span>
+  </aside>
   <div class="node-entry entry">
-<pre>
-<div class="simple-frame3 thin softbrown-bg ltgrey">
-  <h2 class="chtitle softblue clean">The power & utility of express-session: Creating a Cart</h2>
+    <pre>
+<div class="framed8">
+  <h1 class="chtitle softwhite clean">The "Reveal Module Pattern" in node</h1>
+  <p>The truth is, there are several ways under the sun to access code from other modules. Here, we'll discuss 4.<br>
+    The good news--? --They're not complicated if you understand objects. </p>
+  <pre class="shadn w40 ctr">
+      <code class="med navy"><span>📂</span>node_files</code>
+      file<code class="med navy"><span>📄</span>app.js</code>
+      folder<code class="med navy"><span>📂</span>films</code>
+            file<code class="med navy"><span>📄</span>one.js</code>
+            file<code class="med navy"><span>📄</span>two.js</code>
+            file<code class="med navy"><span>📄</span>three.js</code>
+            file<code class="med navy"><span>📄</span>four.js</code>
+</pre>
 
-Express-session places a temporary identifier onto verbs (GET, POST, etc...) on every req & res...
-This same id is put into the header of the request.
+    <!-- This is a standard and popular way to conceal methods in a file and expose only what you wish to by using an object.</p> -->
 
-This is essentially a <em>"session object"</em> containing a reference to, for example, a favorited thing, a liked thing or an item to place in a cart.
+    <h3 class="chtitle dkblue"> This is a test for discussing the follwing code </h3>
+    <div class="simple-frame">
+<span>app.js</span><pre class="prettyprint w60 ctr">
+<span class="fRight sm brdr-w w20">// This one line requires that will "cull", essentially, a collection of files or code.</span>
+var filmFest = require("./films");
 
-Session can contain information about the user like user_id, favorites, profile info, etc.
+// The only comand you'll need for this: "node app.js"
+</pre>
+    </div>
+    <p></p>
+    <pre class="prettyprint w60 ctr"></pre>
+    <p></p>
+    <pre class="prettyprint w60 ctr"></pre>
+    <p></p>
+  </div>
+  <hr>
+  <div class="simple-frame3 thin softbrown-bg ltgrey">
+    <h2 class="chtitle softblue clean">The power & utility of express-session: Creating a Cart</h2>
 
-<div class="w50 brdr-b ctr ctrtxt">This is in the header of the post request.
-<i class="sm softred">"set-cookie →connect.sid=s%3AjyEJOdIS5FGB6qw2-Gj.............; Path=/; HttpOnly"</i>
-(with sid meaning "session id")</div>
+    Express-session places a temporary identifier onto verbs (GET, POST, etc...) on every req & res... This same id is put into
+    the header of the request. This is essentially a
+    <em>"session object"</em> containing a reference to, for example, a favorited thing, a liked thing or an item to place in
+    a cart. Session can contain information about the user like user_id, favorites, profile info, etc.
 
-With session installed and required <pre class="w30 prettyprint">var session = require("express-session");</pre>
+    <div class="w50 brdr-b ctr ctrtxt">This is in the header of the post request.
+      <i class="sm softred">"set-cookie →connect.sid=s%3AjyEJOdIS5FGB6qw2-Gj.............; Path=/; HttpOnly"</i>
+      (with sid meaning "session id")</div>
 
-We place it in <code>app.use()</code> since it will be placed on every req. & res.
-We, then, call session code... which is, essentially, a config object.
-<pre class="w30 prettyprint">app.use(session({
+    With session installed and required
+    <pre class="w30 prettyprint">var session = require("express-session");</pre> We place it in
+    <code>app.use()</code> since it will be placed on every req. & res. We, then, call session code... which is, essentially, a config object.
+    <pre class="w30 prettyprint">app.use(session({
   secret: config.sessionSecret,
   saveUninitialized: false,
   resave: false
-}));</pre>
-
-(this secret can be stored in a "config.json" file in the root directory. Let's place the port there as well.)
-<span class="ltgreen">config.json</span>
-<div class="ctr dkbg3 med w40"><code class="sm">{
+}));</pre> (this secret can be stored in a "config.json" file in the root directory. Let's place the port there as well.)
+    <span class="ltgreen">config.json</span>
+    <div class="ctr dkbg3 med w40">
+      <code class="sm">{
     "sessionSecret" : "lkjsdflkjsdflkj",
     "PORT": 4040
-  }</code></div>
-Then, of course, modify our listener
-<span class="ltgreen">index.js</span>
-<pre class="ctr prettyprint w40">app.listen(config.PORT, function() {
+  }</code>
+    </div>
+    Then, of course, modify our listener
+    <span class="ltgreen">index.js</span>
+    <pre class="ctr prettyprint w40">app.listen(config.PORT, function() {
     console.log("Listening on PORT:", config.PORT;
-  });</pre>
-
-I place endpoints for a cart:
-<pre class="prettyprint w50 ctr">
+  });</pre> I place endpoints for a cart:
+    <pre class="prettyprint w50 ctr">
 app.get('/cart', cartCtrl.index);
-app.post('/cart', cartCtrl.create);</pre>
-
-Then, I require and create a controller file
-<pre class="prettyprint w40 ctr">var cartCtrl = require("./controllers/cart_ctrl");</pre>
+app.post('/cart', cartCtrl.create);</pre> Then, I require and create a controller file
+    <pre class="prettyprint w40 ctr">var cartCtrl = require("./controllers/cart_ctrl");</pre>
 
 
-<span class="ltgreen">cart_ctrl.js</span>
-<div class="ctr dkbg3 med w40"><span class="mango sm">// var meals = require("../models/cart");
-NOTE: Cart info is stored on session! So, of course, we don't need a model...</span>
+    <span class="ltgreen">cart_ctrl.js</span>
+    <div class="ctr dkbg3 med w40">
+      <span class="mango sm">// var meals = require("../models/cart"); NOTE: Cart info is stored on session! So, of course, we don't need a model...</span>
 
-<code class="sm">module.exports = {
+      <code class="sm">module.exports = {
   index: function(req, res, next) {
     res.status(200).json(req.session.cart);
   },
@@ -64,17 +91,23 @@ NOTE: Cart info is stored on session! So, of course, we don't need a model...</s
     req.session.cart.push(req.body);
     res.status(200).json(req.session.cart);
   }
-}</code></div>
+}</code>
+    </div>
 
 
-</div>
-<hr>
+  </div>
+  <hr>
 
-  <div class="slate-skyblue-fr ctr"><h2 class="chtitle lg thin">Back to Front:<i class="med"> Connecting node files to your html</i></h2>
+  <div class="slate-skyblue-fr ctr">
+    <h2 class="chtitle lg thin">Back to Front:
+      <i class="med"> Connecting node files to your html</i>
+    </h2>
     <h2 class="thin">Now that all endpoints are done... there are 3 remaining steps to connect</h2>
 
-<p><span class="lg paleY">I. </span>index.js needs a reference to an <span class="wh">"assets"</span> folder</p>
-<pre class="prettyprint w40 ctr">...
+    <p>
+      <span class="lg paleY">I. </span>index.js needs a reference to an
+      <span class="wh">"assets"</span> folder</p>
+    <pre class="prettyprint w40 ctr">...
 
 app.use(express.static('assets'));
 app.use(bodyParser.json());
@@ -82,8 +115,9 @@ app.use(bodyParser.json());
 // must be placed before the app.use(bodyParser.json());
 ...</pre>
 
-<p><span class="lg paleY">II. </span>In the root directory, create the following:</p>
-<pre class="shadn w40 ctr">
+    <p>
+      <span class="lg paleY">II. </span>In the root directory, create the following:</p>
+    <pre class="shadn w40 ctr">
   New folder<code class="med navy"><span>📂</span>assets</code>
         New file<code class="med navy"><span>📄</span>index.html</code>
         New folder<code class="med navy"><span>📂</span>css</code>
@@ -92,20 +126,28 @@ app.use(bodyParser.json());
               New file<code class="med navy"><span>📄</span>myScript.js</code>
 </pre>
 
-<p><span class="lg paleY">III. </span>Restart nodemon<br />      Look for<code>http://localhost:5000/index.html</code><br />      Check devtools network panel for "all"</p>
-<div class="ctr w40"><img class="w40 ctr" src="./img/network1.jpg" alt="network panel in devtools showing html, css & js assets">
-</div>
-<h4 class="chtitle mutedOrange"><span class="softred">IMPORTANT:</span> It's very important that we avoid any clashes of names, files, or paths between Front-End code and Back-end<br />
-Therefore, it is common to see endpoint paths looking like this:</h4>
-<pre class="ctr brdr-w w40">
+    <p>
+      <span class="lg paleY">III. </span>Restart nodemon
+      <br /> Look for
+      <code>http://localhost:5000/index.html</code>
+      <br /> Check devtools network panel for "all"</p>
+    <div class="ctr w40">
+      <img class="w40 ctr" src="./img/network1.jpg" alt="network panel in devtools showing html, css & js assets">
+    </div>
+    <h4 class="chtitle mutedOrange">
+      <span class="softred">IMPORTANT:</span> It's very important that we avoid any clashes of names, files, or paths between Front-End code and
+      Back-end
+      <br /> Therefore, it is common to see endpoint paths looking like this:</h4>
+    <pre class="ctr brdr-w w40">
   app.get('<span class="softred">/api</span>/meals', mealsCtrl.index);
   app.get('<span class="softred">/api</span>/meals/:id', logQuery, mealsCtrl.show);
   app.post('<span class="softred">/api</span>/meals', logQuery, mealsCtrl.create);
   app.put('<span class="softred">/api</span>/meals/:id', logQuery, mealsCtrl.update);
   app.delete('<span class="softred">/api</span>/meals/:id', mealsCtrl.destroy);</pre>
-</div>
-  <div class="framed8"><h3 class="chtitle">A nice bit of middleware to log queries</h3>
-<pre class="dkbg ltgrey">...
+  </div>
+  <div class="framed8">
+    <h3 class="chtitle">A nice bit of middleware to log queries</h3>
+    <pre class="dkbg ltgrey">...
 var PORT = 5000;
 <div class="fRight w40 thin ltgreen">This is a simple bit of code to help in debugging and logging certain queries on certain endpoints<br />
 It isn't necessary on each.<br />
@@ -134,22 +176,17 @@ app.delete('/meals/:id', mealsCtrl.destroy);
   </div>
   <hr>
   <div class="framed6">
-    <h3 class="chtitle">Refactoring our <em>index.js</em> file for modularity</h3>
-    We have a problem. Our index.js file's endpoints are heavy. There's no modularity. Let's fix this.
+    <h3 class="chtitle">Refactoring our
+      <em>index.js</em> file for modularity</h3>
+    We have a problem. Our index.js file's endpoints are heavy. There's no modularity. Let's fix this. Create a new folder
+    <code
+      class="med navy">
+      <span>📂</span>controllers</code>and a new file
+      <code class="med navy"><span>📄</span>meal_ctrl.js</code> in mealsCtrl.js I create an object with similar RESTful method names (to avoid namespace clashes) for each endpoint
+      <div class="brdr-w w30 ltgrey ctr ctrtxt CodePro">GET -> index GET(/:id) -> show POST -> create PUT -> update DELETE -> destroy</div>
 
-    Create a new folder<code class="med navy"><span>📂</span>controllers</code>and a new file<code class="med navy"><span>📄</span>meal_ctrl.js</code>
-
-
-
-in mealsCtrl.js I create an object with similar RESTful method names (to avoid namespace clashes) for each endpoint
-<div class="brdr-w w30 ltgrey ctr ctrtxt CodePro">GET  -> index
-GET(/:id) -> show
-POST -> create
-PUT -> update
-DELETE -> destroy</div>
-
-We need to take the "meat" (the function) out of each endpoint and place each onto those new keys in that object.
-<pre class="w40 ctr dkbg3 CodePro">app.get('/meals', <span class="dkbg mango">function(req, res, next) {
+      We need to take the "meat" (the function) out of each endpoint and place each onto those new keys in that object.
+      <pre class="w40 ctr dkbg3 CodePro">app.get('/meals', <span class="dkbg mango">function(req, res, next) {
   if(req.query.cuisine) {
     var queriedMeals = meals.filter(function(meals) {
       return meals.cuisine === req.query.cuisine;
@@ -157,10 +194,9 @@ We need to take the "meat" (the function) out of each endpoint and place each on
     res.status(200).json(queriedMeals);
     }
   return res.status(200).json(meals);
-}</span>)</pre>
-
-Put this object on an export command...<code class="ltgreen">meal_ctrl.js</code>
-<pre class="prettyprint dkbg2 w40 ctr">
+}</span>)</pre> Put this object on an export command...
+      <code class="ltgreen">meal_ctrl.js</code>
+      <pre class="prettyprint dkbg2 w40 ctr">
 module.exports = {
 
   index: function(req, res, next) {
@@ -196,24 +232,20 @@ module.exports = {
   }
 
 }
-</pre>
-
-We, then require it in index.js
-<pre class="prettyprint w40">var mealsCtrl = require("./controllers/meal_ctrl");</pre>(".js" not necessary in Node.js paths)
-
-Finally, we need to clean up the endpoints to reference the imported object
-<pre class="dkbg">app.get('/meals', mealsCtrl.index);
+</pre> We, then require it in index.js
+      <pre class="prettyprint w40">var mealsCtrl = require("./controllers/meal_ctrl");</pre>(".js" not necessary in Node.js paths) Finally, we need to clean up the endpoints to reference the imported object
+      <pre class="dkbg">app.get('/meals', mealsCtrl.index);
 app.get('/meals/:id', mealsCtrl.show);
 app.post('/meals', mealsCtrl.create);
 app.put('/meals/:id',logQuery, mealsCtrl.update);;
 app.delete('/meals/:id', mealsCtrl.destroy);</pre>
-<span class="ltgreen">We've dried up lots of code, but we're not done yet.</span>
+      <span class="ltgreen">We've dried up lots of code, but we're not done yet.</span>
 
-We can increase the modularity by extracting the Array that we query into a new file.
+      We can increase the modularity by extracting the Array that we query into a new file. Create a new folder
+      <code class="med navy"><span>📂</span>models</code>and a new file
+      <code class="med navy"><span>📄</span>meals.js</code>
 
-Create a new folder<code class="med navy"><span>📂</span>models</code>and a new file<code class="med navy"><span>📄</span>meals.js</code>
-
-<pre class="w30 dkblue ltbg ctr">module.exports = [{
+      <pre class="w30 dkblue ltbg ctr">module.exports = [{
     "entree": "Burgers",
     "dessert": "Ice Cream",
     "cuisine": "American"
@@ -230,30 +262,35 @@ Create a new folder<code class="med navy"><span>📂</span>models</code>and a ne
   }
 ];</pre>
 
-<h4 class="chtitle dkblue"><span class="softred">IMPORTANT:</span> We next require this Object FROM WITHIN THE<code class="dkred">meal_ctrl.js</code>file!</h4>
-<h4>Therefore, we need: <br> <code class="dkblue med">var meals = require("../models/meals");</code> </h4>
-  <h4 class="chtitle softred clean">DO NOT FAIL TO NOTICE: the "../" that takes us back to the root of the directory to find the models folder</h4>
+      <h4 class="chtitle dkblue">
+        <span class="softred">IMPORTANT:</span> We next require this Object FROM WITHIN THE
+        <code class="dkred">meal_ctrl.js</code>file!</h4>
+      <h4>Therefore, we need:
+        <br>
+        <code class="dkblue med">var meals = require("../models/meals");</code> </h4>
+      <h4 class="chtitle softred clean">DO NOT FAIL TO NOTICE: the "../" that takes us back to the root of the directory to find the models folder</h4>
 
 
   </div>
   <hr>
-<div class="simple-frame4"><h3 class="chtitle">Example of a <em>index.js</em> file with one simple endpoint</h3>
-<div class="fRight w40">
-<span class="sm wh">01.</span> We've introduced two bits of middle-ware here. We call express on app for each endpoint.
+  <div class="simple-frame4">
+    <h3 class="chtitle">Example of a
+      <em>index.js</em> file with one simple endpoint</h3>
+    <div class="fRight w40">
+      <span class="sm wh">01.</span> We've introduced two bits of middle-ware here. We call express on app for each endpoint. Express provides
+      functions for REST routes, header handling & methods for parsing POST requests.
 
-Express provides functions for REST routes, header handling & methods for parsing POST requests.
+      <span class="sm wh">04.</span>establishes the port that listens on an infinite loop (on local server)
 
-<span class="sm wh">04.</span>establishes the port that listens on an infinite loop (on local server)
+      <span class="sm wh">08.</span> (obect to query is in this file for now, but belongs elsewhere for modularity).
 
-<span class="sm wh">08.</span> (obect to query is in this file for now, but belongs elsewhere for modularity).
+      <span class="sm wh">25.</span> bodyParser is called on each request with this line and adds it to the req.
 
-<span class="sm wh">25.</span> bodyParser is called on each request with this line and adds it to the req.
+      <span class="sm wh">30.</span> "res" simply is an empty object that you build to create a response
 
-<span class="sm wh">30.</span> "res" simply is an empty object that you build to create a response
-
-<span class="sm wh">34.</span>runs on the "nodemon" command in terminal to confirm that server is ready for a request.
-</div>
-<pre class="prettyprint w40 linenums pRel">
+      <span class="sm wh">34.</span>runs on the "nodemon" command in terminal to confirm that server is ready for a request.
+    </div>
+    <pre class="prettyprint w40 linenums pRel">
 var express = require('express');
 var bodyParser = require('body-parser');
 
@@ -290,60 +327,76 @@ app.listen(PORT, function() {
   console.log("Listening on", PORT);
 });
 </pre>
-<h3>Given the first arg of app.get(/meals, ...) All will be available at <code class="paleY">localhost:5000/meals</code></h3>
-<hr>
-<p class="med">From here, handling a variable id is very straightforward. Our object is an Array of Objects
-
-Let's imagine our path looks like this: <code class="dkred">localhost:5000/meals/<span class="ltred">1</span></code>
-
-A modified<code class="ltgreen">GET</code>can provide for that index in the array in the following way:</p>
-<pre class="prettyprint w50 ctr">app.get('/meals/:id', function(req, res, next) {
+    <h3>Given the first arg of app.get(/meals, ...) All will be available at
+      <code class="paleY">localhost:5000/meals</code>
+    </h3>
+    <hr>
+    <p class="med">From here, handling a variable id is very straightforward. Our object is an Array of Objects Let's imagine our path looks
+      like this:
+      <code class="dkred">localhost:5000/meals/<span class="ltred">1</span></code> A modified
+      <code class="ltgreen">GET</code>can provide for that index in the array in the following way:</p>
+    <pre class="prettyprint w50 ctr">app.get('/meals/:id', function(req, res, next) {
   var mealID = parseInt(req.params.id);
   res.status(200).json(meals[mealID]);
 })
 </pre>
-<h3 class="w60 ctr">The var<code>mealID</code>will equal any num in that url path &<code>req.params</code>performs this magic.</h3>
+    <h3 class="w60 ctr">The var
+      <code>mealID</code>will equal any num in that url path &
+      <code>req.params</code>performs this magic.</h3>
 
-<h3>A<code class="ltgreen">POST</code>(appends nicely with javascript's<code>.push()</code>method:</h3>
-<pre class="prettyprint w50 ctr">app.post('/meals', function(req, res, next) {
+    <h3>A
+      <code class="ltgreen">POST</code>(appends nicely with javascript's
+      <code>.push()</code>method:</h3>
+    <pre class="prettyprint w50 ctr">app.post('/meals', function(req, res, next) {
   meals.push(req.body);
   res.status(200).json(meals);
 })</pre>
 
-<h3>A<code class="ltgreen">DELETE</code>,too, will need<code>req.params.id</code>to zero-in on an index:</h3>
-<pre class="prettyprint w50 ctr">app.delete('/meals/:id', function(req, res, next) {
+    <h3>A
+      <code class="ltgreen">DELETE</code>,too, will need
+      <code>req.params.id</code>to zero-in on an index:</h3>
+    <pre class="prettyprint w50 ctr">app.delete('/meals/:id', function(req, res, next) {
   var mealID = parseInt(req.params.id);
   var deletedMeal = meals.splice(mealID, 1)[0];
   res.status(200).json(deletedMeal);
 })
 // .splice() returns an array of one. Appending [0] gives us that index.</pre>
 
-<hr>
-<p class="med dkmango">Let's recognize that <br />1)<code class="dkred">localhost:5000/meals</code>is "path"...<br />
-2) The question mark<code class="navy med">?</code> (and what follows) is "query"...</p>
+    <hr>
+    <p class="med dkmango">Let's recognize that
+      <br />1)
+      <code class="dkred">localhost:5000/meals</code>is "path"...
+      <br /> 2) The question mark
+      <code class="navy med">?</code> (and what follows) is "query"...</p>
 
-<br />Example url:
-<h3 class="chtitle"><code class="dkred lg">localhost:5000/meals<span class="softred"><span class="navy med">?</span>cuisine=Italian</span></code></h3>
-<div class="w40 brdr-w ctr">Our<code class="navy lg">?</code>creates an object with key:value pairs</div>
-<pre class="prettyprint w50 ctr">app.get('/meals', function(req, res, next) {
+    <br />Example url:
+    <h3 class="chtitle">
+      <code class="dkred lg">localhost:5000/meals<span class="softred"><span class="navy med">?</span>cuisine=Italian</span></code>
+    </h3>
+    <div class="w40 brdr-w ctr">Our
+      <code class="navy lg">?</code>creates an object with key:value pairs</div>
+    <pre class="prettyprint w50 ctr">app.get('/meals', function(req, res, next) {
   console.log("req.query: ", req.query);
   res.status(200).json(meals);
 })
 // req.query: { cuisine: 'Italian' }</pre>
-<hr>This URL:<br />
-<h3 class="chtitle"><code class="dkred">localhost:5000/meals?cuisine=Italian</code></h3>
-<br />
-<br />Into this endpoint:
-<span class="fRight w20 ltgreen sm">.filter() method will return whatever matches the boolean comparison</span>
-<pre class="w40 ctr prettyprint">app.get('/meals', function(req, res, next) {
+    <hr>This URL:
+    <br />
+    <h3 class="chtitle">
+      <code class="dkred">localhost:5000/meals?cuisine=Italian</code>
+    </h3>
+    <br />
+    <br />Into this endpoint:
+    <span class="fRight w20 ltgreen sm">.filter() method will return whatever matches the boolean comparison</span>
+    <pre class="w40 ctr prettyprint">app.get('/meals', function(req, res, next) {
   var queriedMeals = meals.filter(function(meals) {
     return meals.cuisine === req.query.cuisine;
   })
   res.status(200).json(queriedMeals);
 })</pre>
 
-<br />Renders this result:
-<pre class="w40 ctr dkbg3">[
+    <br />Renders this result:
+    <pre class="w40 ctr dkbg3">[
     {
         "entree": "Linguini",
         "dessert": "Tiramisu",
@@ -351,16 +404,25 @@ A modified<code class="ltgreen">GET</code>can provide for that index in the arra
     }
 ]</pre>
 
-<br />Remember: urls and endpoints are case-sensitive strings.
-<h3 class="paleY"><code>localhost:5000/meals?cuisine=italian</code></h3>
-would give render a sad, lonely, empty array <code class="ltgreen">// []</code>
-<br />
-<br />The same is true for no query!
-<h3 class="paleY"><code>localhost:5000/meals</code></h3>
-again <code class="ltgreen">// []</code>
+    <br />Remember: urls and endpoints are case-sensitive strings.
+    <h3 class="paleY">
+      <code>localhost:5000/meals?cuisine=italian</code>
+    </h3>
+    would give render a sad, lonely, empty array
+    <code class="ltgreen">// []</code>
+    <br />
+    <br />The same is true for no query!
+    <h3 class="paleY">
+      <code>localhost:5000/meals</code>
+    </h3>
+    again
+    <code class="ltgreen">// []</code>
 
-<br><br>How, then, do we configure the above endpoint to handle <em>no</em> queries?<br />
-<pre class="dkbg3 sm w40 ctr">app.get('/meals', function(req, res, next) {
+    <br>
+    <br>How, then, do we configure the above endpoint to handle
+    <em>no</em> queries?
+    <br />
+    <pre class="dkbg3 sm w40 ctr">app.get('/meals', function(req, res, next) {
   <span class="orange">if (req.query.cuisine) {</span>
       var queriedMeals = meals.filter(function(meals) {
       return meals.cuisine === req.query.cuisine;
@@ -371,22 +433,19 @@ again <code class="ltgreen">// []</code>
 })</pre>
 
 
-</div>
-<hr>
+  </div>
+  <hr>
   <div class="forest-red-fr">
-A session is something on the back end that is stored as an ID--associated to an object.
-A cookie is the mechanism by which we pass that ID back and forth.
-
-.sid = session id.
-(express-session is built on top of <em>Connect</em>)
-<img class="w40" src="./img/sessionID.png" alt="sessionID">
-This is what gets tossed back and forth on each of our requests.
+    A session is something on the back end that is stored as an ID--associated to an object. A cookie is the mechanism by which
+    we pass that ID back and forth. .sid = session id. (express-session is built on top of
+    <em>Connect</em>)
+    <img class="w40" src="./img/sessionID.png" alt="sessionID"> This is what gets tossed back and forth on each of our requests.
 
   </div>
 
-<!-- end of pre for all -->
-  </div>
-  <!-- end of entry -->
+  <!-- end of pre for all -->
+</div>
+<!-- end of entry -->
 
 
 </div>
