@@ -13,23 +13,112 @@
       <code class="med navy"><span>📂</span>node_files</code>
       file<code class="med navy"><span>📄</span>app.js</code>
       folder<code class="med navy"><span>📂</span>films</code>
+            file<code class="med navy"><span>📄</span>index.js</code>
             file<code class="med navy"><span>📄</span>one.js</code>
             file<code class="med navy"><span>📄</span>two.js</code>
             file<code class="med navy"><span>📄</span>three.js</code>
             file<code class="med navy"><span>📄</span>four.js</code>
 </pre>
 
-    <!-- This is a standard and popular way to conceal methods in a file and expose only what you wish to by using an object.</p> -->
-
-    <h3 class="chtitle dkblue"> This is a test for discussing the follwing code </h3>
+<h4>app.js "finds" <em class="wh">index.js</em> by default</h4>
     <div class="simple-frame">
-<span>app.js</span><pre class="prettyprint w60 ctr">
-<span class="fRight sm brdr-w w20">// This one line requires that will "cull", essentially, a collection of files or code.</span>
+<span>app.js</span>
+<pre class="prettyprint w60 ctr">
+<span class="fRight sm brdr-w w20">// This one line requires index.js that will "cull", essentially, a collection of files or code.</span>
 var filmFest = require("./films");
 
 // The only comand you'll need for this: "node app.js"
 </pre>
-    </div>
+<span>./films/index.js</span>
+<pre class="prettyprint w60 ctr">
+<span class="fRight sm brdr-w w20">// places one.js's file on the var "one"
+  </span>
+var one = require('./one');
+
+// (we will be filling this file with more requires)
+</pre>
+<span>one.js</span>
+<pre class="prettyprint w60 ctr">
+<span class="fRight sm brdr-w w20">// on the exports object is simply the console.log()</span>
+module.exports = console.log("I'm watching 'One Fine Day'.");
+
+
+</pre>
+<span>./films/index.js</span>
+<pre class="prettyprint w60 ctr">
+<span class="fRight sm brdr-w w20">/* places two.js's file on the var "two"
+and then, the call of that function in index.js */</span>
+var one = require('./one');
+var two = require('./two');
+
+two();
+</pre>
+<span>two.js</span>
+<pre class="prettyprint w60 ctr">
+<span class="fRight sm brdr-w w20">// on the exports object is a Fn to be called from index.js</span>
+module.exports=() => console.log("I'm watching 'Tale of Two Cities'. ")
+
+</pre>
+<span>./films/index.js</span>
+<pre class="prettyprint w60 ctr">
+<span class="fRight sm brdr-w w20">/* 
+Having formed a constructor in three.js... the constructor is called from index.js
+*/</span>var one = require('./one');
+var two = require('./two');
+
+two();
+
+var three = require('./three');
+
+three.film();
+
+</pre>
+<span>three.js</span>
+<pre class="prettyprint w60 ctr">
+<span class="fRight sm brdr-w w20">/* CAREFUL WITH THIS PATTERN
+THAT FILE IS CACHED in NODE's CORE
+--If you call require('./~~~') over & over, (because it's cached) you'll becalling the same cached code.
+It will behave unpredictably. */</span>
+function FilmConstructor() {
+  this.filmName = 'Three Men & a Baby';
+  this.film =() => console.log(`I'm watching "${this.filmName}".`);
+}
+
+module.exports = new FilmConstructor();
+
+</pre>
+<span>./films/index.js</span>
+<pre class="prettyprint w60 ctr">
+<span class="fRight sm brdr-w w20">/* 
+Onto four is placed the required file of code.
+it is then called by four.film();
+*/</span>
+var one = require('./one');
+var two = require('./two');
+two();
+
+var three = require('./three');
+three.film();
+
+var four = require('./four');
+four.film();
+</pre>
+<span>four.js</span>
+<pre class="prettyprint w60 ctr">
+<span class="fRight sm brdr-w w20">/*
+An object is created and returned. A method is be called from index.js
+*/</span>
+var filmMsg = "I'm watching 'Citizen Four'. "
+
+const film = () => console.log(`I'm watching ${filmMsg}`);
+
+module.exports = {
+    film: film
+};
+
+module.exports = {film}; // es6 version
+</pre>
+</div>
     <p></p>
     <pre class="prettyprint w60 ctr"></pre>
     <p></p>
@@ -179,14 +268,13 @@ app.delete('/meals/:id', mealsCtrl.destroy);
     <h3 class="chtitle">Refactoring our
       <em>index.js</em> file for modularity</h3>
     We have a problem. Our index.js file's endpoints are heavy. There's no modularity. Let's fix this. Create a new folder
-    <code
-      class="med navy">
+    <code class="med navy">
       <span>📂</span>controllers</code>and a new file
-      <code class="med navy"><span>📄</span>meal_ctrl.js</code> in mealsCtrl.js I create an object with similar RESTful method names (to avoid namespace clashes) for each endpoint
-      <div class="brdr-w w30 ltgrey ctr ctrtxt CodePro">GET -> index GET(/:id) -> show POST -> create PUT -> update DELETE -> destroy</div>
+    <code class="med navy"><span>📄</span>meal_ctrl.js</code> in mealsCtrl.js I create an object with similar RESTful method names (to avoid namespace clashes) for each endpoint
+    <div class="brdr-w w30 ltgrey ctr ctrtxt CodePro">GET -> index GET(/:id) -> show POST -> create PUT -> update DELETE -> destroy</div>
 
-      We need to take the "meat" (the function) out of each endpoint and place each onto those new keys in that object.
-      <pre class="w40 ctr dkbg3 CodePro">app.get('/meals', <span class="dkbg mango">function(req, res, next) {
+    We need to take the "meat" (the function) out of each endpoint and place each onto those new keys in that object.
+    <pre class="w40 ctr dkbg3 CodePro">app.get('/meals', <span class="dkbg mango">function(req, res, next) {
   if(req.query.cuisine) {
     var queriedMeals = meals.filter(function(meals) {
       return meals.cuisine === req.query.cuisine;
@@ -195,8 +283,8 @@ app.delete('/meals/:id', mealsCtrl.destroy);
     }
   return res.status(200).json(meals);
 }</span>)</pre> Put this object on an export command...
-      <code class="ltgreen">meal_ctrl.js</code>
-      <pre class="prettyprint dkbg2 w40 ctr">
+    <code class="ltgreen">meal_ctrl.js</code>
+    <pre class="prettyprint dkbg2 w40 ctr">
 module.exports = {
 
   index: function(req, res, next) {
@@ -233,19 +321,19 @@ module.exports = {
 
 }
 </pre> We, then require it in index.js
-      <pre class="prettyprint w40">var mealsCtrl = require("./controllers/meal_ctrl");</pre>(".js" not necessary in Node.js paths) Finally, we need to clean up the endpoints to reference the imported object
-      <pre class="dkbg">app.get('/meals', mealsCtrl.index);
+    <pre class="prettyprint w40">var mealsCtrl = require("./controllers/meal_ctrl");</pre>(".js" not necessary in Node.js paths) Finally, we need to clean up the endpoints to reference the imported object
+    <pre class="dkbg">app.get('/meals', mealsCtrl.index);
 app.get('/meals/:id', mealsCtrl.show);
 app.post('/meals', mealsCtrl.create);
 app.put('/meals/:id',logQuery, mealsCtrl.update);;
 app.delete('/meals/:id', mealsCtrl.destroy);</pre>
-      <span class="ltgreen">We've dried up lots of code, but we're not done yet.</span>
+    <span class="ltgreen">We've dried up lots of code, but we're not done yet.</span>
 
-      We can increase the modularity by extracting the Array that we query into a new file. Create a new folder
-      <code class="med navy"><span>📂</span>models</code>and a new file
-      <code class="med navy"><span>📄</span>meals.js</code>
+    We can increase the modularity by extracting the Array that we query into a new file. Create a new folder
+    <code class="med navy"><span>📂</span>models</code>and a new file
+    <code class="med navy"><span>📄</span>meals.js</code>
 
-      <pre class="w30 dkblue ltbg ctr">module.exports = [{
+    <pre class="w30 dkblue ltbg ctr">module.exports = [{
     "entree": "Burgers",
     "dessert": "Ice Cream",
     "cuisine": "American"
@@ -262,13 +350,13 @@ app.delete('/meals/:id', mealsCtrl.destroy);</pre>
   }
 ];</pre>
 
-      <h4 class="chtitle dkblue">
-        <span class="softred">IMPORTANT:</span> We next require this Object FROM WITHIN THE
-        <code class="dkred">meal_ctrl.js</code>file!</h4>
-      <h4>Therefore, we need:
-        <br>
-        <code class="dkblue med">var meals = require("../models/meals");</code> </h4>
-      <h4 class="chtitle softred clean">DO NOT FAIL TO NOTICE: the "../" that takes us back to the root of the directory to find the models folder</h4>
+    <h4 class="chtitle dkblue">
+      <span class="softred">IMPORTANT:</span> We next require this Object FROM WITHIN THE
+      <code class="dkred">meal_ctrl.js</code>file!</h4>
+    <h4>Therefore, we need:
+      <br>
+      <code class="dkblue med">var meals = require("../models/meals");</code> </h4>
+    <h4 class="chtitle softred clean">DO NOT FAIL TO NOTICE: the "../" that takes us back to the root of the directory to find the models folder</h4>
 
 
   </div>
