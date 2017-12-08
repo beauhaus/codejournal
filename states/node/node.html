@@ -8,7 +8,7 @@
 <div class="framed8">
   <h1 class="chtitle softwhite clean">The "Reveal Module Pattern" in node</h1>
   <h2>The reveal module pattern is a way of exposing only the properties and methods you wish to be used via a returned object.</h2>
-  <p>The truth is, there are several ways under the sun to access code from other modules. Here, we'll discuss 4.<br>
+  <p>The truth is, there are several ways under the sun to access code from other modules. Here, we'll discuss 4. The first three are trivial. They are steps toward an understanding of our "module pattern".<br>
     The good news--? --They're not complicated if you understand objects. </p>
   <pre class="shadn w40 ctr">
       <code class="med navy"><span>📂</span>node_files</code>
@@ -28,9 +28,9 @@
 <span class="fRight sm brdr-w w20">// This one line requires index.js that will "cull", essentially, a collection of files or code.</span>
 var filmFest = require("./films");
 
-// The only comand you'll need for this: "node app.js"
+// The only command you'll need for this: "node app.js"
 </pre>
-<hr>
+<hr><h1 class="ltred thin">I.</h1>
 <span>./films/index.js</span>
 <pre class="prettyprint w60 ctr">
 <span class="fRight sm brdr-w w20">// places one.js's file on the var "one"
@@ -41,12 +41,12 @@ var one = require('./one');
 </pre>
 <span>one.js</span>
 <pre class="prettyprint w60 ctr">
-<span class="fRight sm brdr-w w20">// on the exports object is simply the console.log()</span>
+<span class="fRight sm brdr-w w20">// on the exports object is simply the console.log(~~~)</span>
 module.exports = console.log("I'm watching 'One Fine Day'.");
 
 
 </pre>
-<hr>
+<hr><h1 class="ltred thin">II.</h1>
 <span>./films/index.js</span>
 <pre class="prettyprint w60 ctr">
 <span class="fRight sm brdr-w w20">/* places two.js's file on the var "two"
@@ -62,7 +62,7 @@ two();
 module.exports=() => console.log("I'm watching 'Tale of Two Cities'. ")
 
 </pre>
-<hr>
+<hr><h1 class="ltred thin">III.</h1>
 <span>./films/index.js</span>
 <pre class="prettyprint w60 ctr">
 <span class="fRight sm brdr-w w20">/* 
@@ -91,7 +91,7 @@ function FilmConstructor() {
 module.exports = new FilmConstructor();
 
 </pre>
-<hr>
+<hr><h1 class="ltred thin">IV. "Module Pattern"</h1>
 <span>./films/index.js</span>
 <pre class="prettyprint w60 ctr">
 <span class="fRight sm brdr-w w20">/* 
@@ -125,7 +125,7 @@ module.exports = {film}; // es6 version
 </pre>
 </div>
   </div>
-  
+
   <hr>
   <div class="simple-frame3 thin softbrown-bg ltgrey">
     <h2 class="chtitle softblue clean">The power & utility of express-session: Creating a Cart</h2>
