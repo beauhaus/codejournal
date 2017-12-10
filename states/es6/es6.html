@@ -5,9 +5,24 @@
   </aside>
   <div class="es6-entry entry">
     <!-- pre for entire page -->
+FIXME: this needs an edit
+    <!-- <div class="framed3">
+      <h1>What you should know about es6's this in arrow functions</h1>
+      <p>The way arrow functions work in es6 functions needs close attention:</p>
+      <pre class="prettyprint w50 ctr">
+    var control = {
+      var self = this;
+      btn.addEventListener('click', function() {
+        self.doSomething(...);
+      })
+    }
+  </pre>
 
-    <!--
--->
+
+      <p></p>
+      <pre class="prettyprint w50 ctr"></pre>
+    </div>
+ -->
 
 
     <hr>
@@ -43,10 +58,10 @@ function sortIterateEs6(arr) {
 sortIterateEs6(myArray)
 </pre> 
 
-<h2>There is also a fancy-schmancy number generator at the bottom of the docs, exploiting an undefined argument in the syntax...</h2>
 
-Using arrow functions and Array.from
-<pre class="prettyprint w30">
+<h2 class="thin ghost">There is also a fancy-schmancy number generator at the bottom of the docs, exploiting an undefined argument in the syntax...</h2>
+
+<pre class="prettyprint w30 ctr brdr-w">
 // Using an arrow function as the map function to
 // manipulate the elements
 
@@ -61,23 +76,6 @@ Array.from({length: 5}, (v, i) => i);
 </pre>
 </div>
     <hr>
-    <div class="framed3">
-      <h1>What you should know about es6's this in arrow functions</h1>
-      <p>The way arrow functions work in es6 functions needs close attention:</p>
-      <pre class="prettyprint w50 ctr">
-    var control = {
-      var self = this;
-      btn.addEventListener('click', function() {
-        self.doSomething(...);
-      })
-    }
-  </pre>
-
-
-      <p></p>
-      <pre class="prettyprint w50 ctr"></pre>
-    </div>
-
     <div class="framed4">
       <h1 class="chtitle">Object Destructuring</h1>
       <br>
