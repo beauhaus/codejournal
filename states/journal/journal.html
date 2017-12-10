@@ -20,7 +20,52 @@
       <li>PLACEHOLDERDONETASKS</li>
     </ol>
     <hr />
+<blockquote class="twitter-tweet" data-dnt="true" data-align="right" data-width="20vw" data-cards="hidden" data-lang="en">
+      <p lang="en" dir="ltr"><a href="https://twitter.com/kentcdodds?ref_src=twsrc%5Etfw">@kentcdodds</a> I LOVE the pace of your videos. No fluff. Quickly teaches concepts so you can go figure them out yourselves. I wish everything was taught like this. <a href="https://t.co/BHoHfSghx3">https://t.co/BHoHfSghx3</a></p>&mdash; Tim Edwards (@tim_shane) <a href="https://twitter.com/tim_shane/status/938833014733369345?ref_src=twsrc%5Etfw">December 7, 2017</a></blockquote>
   -->
+  <h2 class="date">Friday December 9th, 2017</h2>
+  <h4 class="sleep">Slept: 5 hours</h4><br><br>
+  <h3 class="subtitle">Lots of react training going through the life-cycle. I came upon the following issue:
+<pre class="w40 brdr-w dkblue ctr sm">
+class MyGreatComponent extends React.Component {
+  constructor() {
+    super();
+    <span class="ltred">this.state = {timeElapsed: 0}</span>
+  }
+...
+<span class="black clean">If you are going to use <em>this.state</em> syntax, React says you MUST use <em>this.setState</em>...</span>
+
+componentDidMount() {
+  this.interval = setInterval(this.elapseTime.bind(this), 1000);
+  <span class="ltred">
+      this.setState(
+        {
+            start: new Date()
+        }
+    )
+  </span>
+}
+...</pre>
+--In other news, worked all weekend on syllabus for my kids. It's going to be a great deal of careful hand-holding... Considering using svg to give them a visual "payoff" for iterating over arrays. If it's not executed carefully, it's a recipe for frustration.</h3>
+
+<blockquote class="twitter-tweet" data-dnt="true" data-align="right" data-width="20vw" data-cards="hidden" data-lang="en">
+
+  <p lang="en" dir="ltr"><a href="https://twitter.com/kentcdodds?ref_src=twsrc%5Etfw">@kentcdodds</a> I LOVE the pace of your videos. No fluff. Quickly teaches concepts so you can go figure them out yourselves. I wish everything was taught like this. <a href="https://t.co/BHoHfSghx3">https://t.co/BHoHfSghx3</a></p>&mdash; Tim Edwards (@tim_shane) <a href="https://twitter.com/tim_shane/status/938833014733369345?ref_src=twsrc%5Etfw">December 7, 2017</a></blockquote>  
+<br>
+
+<h3>To do:</h3>
+  <ol class="todo">
+    <li>Several components done for react app.</li>
+    <li></li>
+    <li><span class="ltred">Potential Blocks:</span></li>
+  </ol><br>
+  <h3>Done: </h3>
+  <ol class="done">
+    <li>PLACEHOLDERDONETASKS</li>
+  </ol>
+  <hr />
+    
+
     <h2 class="date">Wednesday December 6th, 2017</h2>
     <h4 class="sleep">Slept: 6 hours</h4><br><br>
     <h3 class="subtitle">Node work, es6 work on destructuring exercises, revisiting examples of pass by ref/value and placing a decent example in ecma view.
