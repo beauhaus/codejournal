@@ -1,15 +1,70 @@
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
 <div class="es6-container">
-  <aside><span class="rot90">{{state}}</span></aside>
+  <aside>
+    <span class="rot90">{{state}}</span>
+  </aside>
   <div class="es6-entry entry">
-  <!-- pre for entire page -->
+    <!-- pre for entire page -->
 
-  <!--
+    <!--
 -->
-<div class="framed3">
-  <h1>What you should know about es6's this in arrow functions</h1>
-  <p>The way arrow functions work in es6 functions needs close attention:</p>
-  <pre class="prettyprint w50 ctr">
+
+
+    <hr>
+    <div class="brdr-w dkbg ctr softsand">
+      <h1 class="chtitle thin">Array.from(): new in 2015</h1>
+      <h3 class="wh"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from">MDN</a> has all you need to know about Array.from() but it needs some examples to solidify understanding.</h3>
+    <br>
+    
+<p>First, the old way...</p>    
+<pre class="prettyprint w60 ctr">
+var myArray = ["Clooney", "Pitt", "Pacino", "Newman", "Pattinson", "Gadot", "Johansson", "Jennifer Lawrence", "Felicity Jones", "Robin Wright"];
+
+function sortIterate(arr) {
+  var nuArr = [];
+  myArray.map(function(item) {
+    nuArr.push(item)
+  })
+  return nuArr.sort();
+}
+
+sortIterate(myArray)
+</pre>
+    
+<p>Now, in 2015's ES6 a much more concise method.</p>
+
+<pre class="prettyprint w30 ctr">
+function sortIterateEs6(arr) {
+  const args = Array.from(arr);
+  return args.sort();
+  
+}
+
+sortIterateEs6(myArray)
+</pre> 
+
+<h2>There is also a fancy-schmancy number generator at the bottom of the docs, exploiting an undefined argument in the syntax...</h2>
+
+Using arrow functions and Array.from
+<pre class="prettyprint w30">
+// Using an arrow function as the map function to
+// manipulate the elements
+
+Array.from([1, 2, 3], x => x + x);      
+// [2, 4, 6]
+
+// Generate a sequence of numbers
+// Since the array is initialized with `undefined` on each position,
+// the value of `v` below will be `undefined`
+Array.from({length: 5}, (v, i) => i);
+// [0, 1, 2, 3, 4]
+</pre>
+</div>
+    <hr>
+    <div class="framed3">
+      <h1>What you should know about es6's this in arrow functions</h1>
+      <p>The way arrow functions work in es6 functions needs close attention:</p>
+      <pre class="prettyprint w50 ctr">
     var control = {
       var self = this;
       btn.addEventListener('click', function() {
@@ -19,16 +74,16 @@
   </pre>
 
 
-  <p></p>
-  <pre class="prettyprint w50 ctr"></pre>
-</div>
+      <p></p>
+      <pre class="prettyprint w50 ctr"></pre>
+    </div>
 
-<div class="framed4">
-    <h1 class="chtitle">Object Destructuring</h1>
-    <br>
-    <h2 class="chtitle wh thin">Simply putting values onto keys as variables is dead-easy</h2>
-    <h3>I have an object</h3>
-  <pre class="dkbg2 w30 ctr">let person =
+    <div class="framed4">
+      <h1 class="chtitle">Object Destructuring</h1>
+      <br>
+      <h2 class="chtitle wh thin">Simply putting values onto keys as variables is dead-easy</h2>
+      <h3>I have an object</h3>
+      <pre class="dkbg2 w30 ctr">let person =
   {
     first: 'jill',
     last: "williamson",
@@ -36,34 +91,37 @@
     favFood: ['Italian', 'Eastern', 'Doritos'],
     city: "New Haven",
   };</pre>
-    <p>I place each key onto a var thus:</p>
-    <br>
-    <code class="med wh dkbg">let {first, last, gender, favFood, city} = person;</code>
-    <br><br><br>
-    <pre class="prettyprint w40 ctr">
+      <p>I place each key onto a var thus:</p>
+      <br>
+      <code class="med wh dkbg">let {first, last, gender, favFood, city} = person;</code>
+      <br>
+      <br>
+      <br>
+      <pre class="prettyprint w40 ctr">
 console.log(first) // jill
 console.log(last) // williamson
 console.log(gender) // female
 console.log(favFood) // ['Italian', 'Eastern', 'Doritos']
 console.log(city) // New Haven
    </pre>
-    <br>
-<br>
-  <pre class="prettyprint w30 ctr">console.log(person);
+      <br>
+      <br>
+      <pre class="prettyprint w30 ctr">console.log(person);
 /*
   {first: 'jill',
   last: 'williamson',
   gender: 'female',
   favFood: [ 'Korean', 'Indian', 'Snack' ],
   city: 'New Haven' }
-  */</pre><br>
-  <p>I can add a prop to this object with a default value:</p>
-  <br>
-  <code class="med wh dkbg">let {first, last, gender, favFood, city, friend="Lucy"} = person;</code>
-  <br>
-  <br>
-  <p>This will render the exact same thing</p>
-  <pre class="prettyprint w30 ctr">console.log(person);
+  */</pre>
+      <br>
+      <p>I can add a prop to this object with a default value:</p>
+      <br>
+      <code class="med wh dkbg">let {first, last, gender, favFood, city, friend="Lucy"} = person;</code>
+      <br>
+      <br>
+      <p>This will render the exact same thing</p>
+      <pre class="prettyprint w30 ctr">console.log(person);
   /*
     {first: 'jill',
     last: 'williamson',
@@ -71,11 +129,13 @@ console.log(city) // New Haven
     favFood: [ 'Korean', 'Indian', 'Snack' ],
     city: 'New Haven' }
   */</pre>
-  <br>
-  <p>However, logging the var "friend" yields...</p>
-  <pre class="prettyprint w30 ctr">console.log(friend) // Lucy</pre><hr class="w40">
-  <p>Let's verify what is happening here by iterating over an object's props after destructuring & declaring a default prop:</p><br>
-  <pre class="prettyprint w40 ctr">
+      <br>
+      <p>However, logging the var "friend" yields...</p>
+      <pre class="prettyprint w30 ctr">console.log(friend) // Lucy</pre>
+      <hr class="w40">
+      <p>Let's verify what is happening here by iterating over an object's props after destructuring & declaring a default prop:</p>
+      <br>
+      <pre class="prettyprint w40 ctr">
   var dog = {
     name: "Barky",
     ears: "Long"
@@ -88,46 +148,54 @@ console.log(city) // New Haven
     console.log(`Prop${i}: ${[prop]}`)
     i++;
   }</pre>
-  <p>this returns:</p>
-  <pre class="prettyprint w20 ctr">// Prop1: name
+      <p>this returns:</p>
+      <pre class="prettyprint w20 ctr">// Prop1: name
 // Prop2: ears</pre>
-  <br>
-  <p>The es5 way of using dot notation cannot access the newly assigned prop --because it isn't a prop <em>per se</em> it's a variable.</p>
-  <pre class="prettyprint w50 ctr">console.log(dog.name) //female
+      <br>
+      <p>The es5 way of using dot notation cannot access the newly assigned prop --because it isn't a prop
+        <em>per se</em> it's a variable.</p>
+      <pre class="prettyprint w50 ctr">console.log(dog.name) //female
 console.log(gender) //female
 
 console.log(person.friend) //undefined
 console.log(friend) //Lucy
-  </pre><br>
-  <h2 class="clean">To be clear, object destructuring is the same as declaring vars with these keynames and auto-generating their values from the<code class="paleY">object<em class="orange">.key</em></code>I do this to avoid writing the following laborious code:</h2><br>
-  <pre class="prettyprint w20 ctr">...
+  </pre>
+      <br>
+      <h2 class="clean">To be clear, object destructuring is the same as declaring vars with these keynames and auto-generating their values
+        from the
+        <code class="paleY">object<em class="orange">.key</em></code>I do this to avoid writing the following laborious code:</h2>
+      <br>
+      <pre class="prettyprint w20 ctr">...
 var first = person.first;
 var last = person.last;
-...</pre><hr class="w40">
-  <p>--Let's say I don't like those prop-names (as variables) in the person object.<br>
-  All we need to do is swap the prop names (of original object) for new variable names: </p>
-  <pre class="prettyprint w60 ctr">let {name: firstName, ears: earlength, tailStatus= "Wagging"}= dog;
+...</pre>
+      <hr class="w40">
+      <p>--Let's say I don't like those prop-names (as variables) in the person object.
+        <br> All we need to do is swap the prop names (of original object) for new variable names: </p>
+      <pre class="prettyprint w60 ctr">let {name: firstName, ears: earlength, tailStatus= "Wagging"}= dog;
   console.log(firstName) // Barky
   console.log(earlength) // Long
   console.log(tailStatus) // Wagging
   </pre>
-  <hr>
-  <h2><strong class="softwhite">Look Closely:</strong> I've done 3 important es6 things in one line of code!</h2>
-  <pre class="shadn w60 softwhite">
+      <hr>
+      <h2>
+        <strong class="softwhite">Look Closely:</strong> I've done 3 important es6 things in one line of code!</h2>
+      <pre class="shadn w60 softwhite">
   1) Destructure this object & simultaneously
   2) Exchange those prop names in the place of new var names & and simultaneously...
-  3) Add another property with a value if we'd like.</pre>  
+  3) Add another property with a value if we'd like.</pre>
 
-  <h2>Yet another aspect to destructuring is multiple assignation: assigning to many variables one-single value.</h2><br>
-<pre class="prettyprint w40 ctr">
+      <h2>Yet another aspect to destructuring is multiple assignation: assigning to many variables one-single value.</h2>
+      <br>
+      <pre class="prettyprint w40 ctr">
 var {number:age, number:friendsTotal, number:bankbalance} = {number: 0};
 // console.log(age) // 0
 // console.log(friendsTotal) // 0
 // console.log(bankbalance) // 0
 </pre>
 
-<h2>Destructuring arrays ALSO works!</h2>
-<pre class="ltbg2 med shadn w40 ctr">
+      <h2>Destructuring arrays ALSO works!</h2>
+      <pre class="ltbg2 med shadn w40 ctr">
     let dessert = ["🍪", "🍩", "🍰"];
     let [choice1, choice2, choice3] = dessert;
     
@@ -135,12 +203,13 @@ var {number:age, number:friendsTotal, number:bankbalance} = {number: 0};
     console.log(choice2) // 🍩
     console.log(choice3) // 🍰
 </pre>
-  </div>
-<hr>
-<div class="simple-frame">
-  <h1 class="chtitle wh thin">Extending a class is easy.</h1>
-  <p>Passengers are on the next shuttle to Boston. Many Commuters have luggage, some dont.</p><br />
-  <pre class="prettyprint w50 ctr">class Passenger {
+    </div>
+    <hr>
+    <div class="simple-frame">
+      <h1 class="chtitle wh thin">Extending a class is easy.</h1>
+      <p>Passengers are on the next shuttle to Boston. Many Commuters have luggage, some dont.</p>
+      <br />
+      <pre class="prettyprint w50 ctr">class Passenger {
   constructor(id, seatNum){
     this.id = id;
     this.seatNum = seatNum
@@ -156,14 +225,17 @@ var {number:age, number:friendsTotal, number:bankbalance} = {number: 0};
 const johnathanPie = new Passenger(153, "F-18");
 console.log(johnathanPie.getInfo())
 </pre>
-<br>
-<p>Here, we have two methods that deliver the args sent in to the definition of<code>johnathanPie</code><br />
-Below, we will extend the Passenger to determine luggage description & call it Commuter.<br />
-We create a constructor with the params of the parent class <em class="ltred">PLUS a "baggage" param</em>.<br />
-We then call super with parent params and place the new luggage var on this:<code>this.baggage = baggage;</code>
-</p>
-<hr>
-<pre class="prettyprint w50 ctr">class Passenger {
+      <br>
+      <p>Here, we have two methods that deliver the args sent in to the definition of
+        <code>johnathanPie</code>
+        <br /> Below, we will extend the Passenger to determine luggage description & call it Commuter.
+        <br /> We create a constructor with the params of the parent class
+        <em class="ltred">PLUS a "baggage" param</em>.
+        <br /> We then call super with parent params and place the new luggage var on this:
+        <code>this.baggage = baggage;</code>
+      </p>
+      <hr>
+      <pre class="prettyprint w50 ctr">class Passenger {
   constructor(id, seatNum){
     this.id = id;
     this.seatNum = seatNum
@@ -189,14 +261,16 @@ console.log(johnathanPie.getInfo())
 // Samsonite
 // Passenger 153 is in seat# F-18
 </pre>
-<hr>
-<p>We can conditionally render whether Commuters have a bag by OVERRIDING the getInfo method in this extended Commuter class...</p>
-<pre class="prettyprint w20 ctr">hasBags() {
+      <hr>
+      <p>We can conditionally render whether Commuters have a bag by OVERRIDING the getInfo method in this extended Commuter
+        class...
+      </p>
+      <pre class="prettyprint w20 ctr">hasBags() {
   return !!this.luggage;
 }</pre>
-<p>This is an easy way to return a boolean from a string that has been coerced.<br />
-We put it to good use in an if clause by calling it...</p>
-<pre class="dkbg w50 ctr codePro">class Passenger {
+      <p>This is an easy way to return a boolean from a string that has been coerced.
+        <br /> We put it to good use in an if clause by calling it...</p>
+      <pre class="dkbg w50 ctr codePro">class Passenger {
   constructor(id, seatNum){
     this.id = id;
     this.seatNum = seatNum
@@ -238,10 +312,12 @@ console.log(sueKim.getInfo())
 // Passenger 231 is in seat# B-17
 </span>
 </pre>
-<p>SueKim has no bags...</p>
-<hr />
-<h3>One more for good measure: <em class="dkblue">Checking for VIP status</em> </h3>
-<pre class="prettyprint w50 ctr">...
+      <p>SueKim has no bags...</p>
+      <hr />
+      <h3>One more for good measure:
+        <em class="dkblue">Checking for VIP status</em>
+      </h3>
+      <pre class="prettyprint w50 ctr">...
 
   class Vip extends Passenger {
     constructor(id, seatNum, status) {
@@ -269,9 +345,9 @@ console.log(sueKim.getInfo())
 // "Passenger 153 in F-18 is a Gold VIP."
 // "Passenger 231 in B-17 is a Platinum VIP."
 </pre>
-<hr>
-<h2 class="chtitle ctr wh">Hue, Saturation, Lightness, Alpha Machine</h2>
-<pre class="softblue-bg ctr brdr-w w50">
+      <hr>
+      <h2 class="chtitle ctr wh">Hue, Saturation, Lightness, Alpha Machine</h2>
+      <pre class="softblue-bg ctr brdr-w w50">
 
   class Hsl {
     constructor(name = "white", hue = null, sat = null, light = null) {
@@ -326,12 +402,14 @@ console.log(sueKim.getInfo())
 //  hsla(0, 65%, 30,3)
 </span>
 </pre>
-</div>
-<hr>
-  <div class="framed8">
-  <h2 class="chtitle dkblue">CHALLENGE: this needs to be refactored.</h2>
-  <h3 class="paleY"> We have a method that doesn't use es6 syntax, variables that are created needlessly and an arrow function that is too verbose.</h3>
-<pre class="prettyprint w40 ctr">const user = {
+    </div>
+    <hr>
+    <div class="framed8">
+      <h2 class="chtitle dkblue">CHALLENGE: this needs to be refactored.</h2>
+      <h3 class="paleY"> We have a method that doesn't use es6 syntax, variables that are created needlessly and an arrow function that is too
+        verbose.
+      </h3>
+      <pre class="prettyprint w40 ctr">const user = {
     name: "Andrew",
     cities: ["Houston", "Paris", "Los Angeles"],
     printPlacesLived: function () {
@@ -341,28 +419,29 @@ console.log(sueKim.getInfo())
        return nuArray;
     }
 }</pre>
-<h2 class="chtitle dkblue">SOLUTION:</h2>
-<div class="ans"><pre class="prettyprint ctr">const user = {
+      <h2 class="chtitle dkblue">SOLUTION:</h2>
+      <div class="ans">
+        <pre class="prettyprint ctr">const user = {
     name: "Andrew",
     cities: ["Houston", "Paris", "Los Angeles"],
     printPlacesLived () {
        return this.cities.map((city)=> this.name + ` lived in ${city}`);
     }
-}</pre></div>
-</div>
-<hr>
+}</pre>
+      </div>
+    </div>
+    <hr>
 
 
-<div class="simple-frame">
-  <h1 class="chtitle thin softwhite">.filter() with ES6</h1>
-<h3>First, it is important to realize that .filter() uses an expression as its body.<br />
-So...
-<pre class="prettyprint w50 ctr">cars.filter(ride => if(ride.style ==="luxury"){ return etc, etc...});</pre>
-This is not going to work. "if" is, of course, a statement.
-<br />.filter() needs a boolean, so...</h3>
-<pre class="prettyprint w40 ctr">cars.filter(ride => ride.style == 'luxury');</pre>
-<hr>
-  <pre class="prettyprint w40 ctr">
+    <div class="simple-frame">
+      <h1 class="chtitle thin softwhite">.filter() with ES6</h1>
+      <h3>First, it is important to realize that .filter() uses an expression as its body.
+        <br /> So...
+        <pre class="prettyprint w50 ctr">cars.filter(ride => if(ride.style ==="luxury"){ return etc, etc...});</pre> This is not going to work. "if" is, of course, a statement.
+        <br />.filter() needs a boolean, so...</h3>
+      <pre class="prettyprint w40 ctr">cars.filter(ride => ride.style == 'luxury');</pre>
+      <hr>
+      <pre class="prettyprint w40 ctr">
     let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
     // Before...
@@ -374,21 +453,23 @@ This is not going to work. "if" is, of course, a statement.
     // After...
     let es6Odds = numbers.filter(number => number % 2);
     console.log(es6Odds);
-</pre><br />
-<p>Here we have an example of filter returning odds</p>
-<pre class="prettyprint w50 ctr">const someNums = [1, 2, 3, 4];
+</pre>
+      <br />
+      <p>Here we have an example of filter returning odds</p>
+      <pre class="prettyprint w50 ctr">const someNums = [1, 2, 3, 4];
  const oddsOfSomeNums = someNums.filter(nums => nums % 2)
 // 1 3
 </pre>
-<br />
+      <br />
 
 
-</div>
-<hr>
-<div class="simple-wine-frame thin softwhite"><h3 class="chtitle">Template & tagged strings</h3>
+    </div>
+    <hr>
+    <div class="simple-wine-frame thin softwhite">
+      <h3 class="chtitle">Template & tagged strings</h3>
 
-<h3 class="softwhite">A simple template string gives us this</h3>
-<pre class="prettyprint w80 txt-left ctr">
+      <h3 class="softwhite">A simple template string gives us this</h3>
+      <pre class="prettyprint w80 txt-left ctr">
 let num1 = 1;
 let bool = true;
 let sentence = `Fewer things are more ${bool} than that ${num1} plus ${num1} equals ${num1 + num1}`;
@@ -396,15 +477,18 @@ console.log(sentence);
 // Fewer things are more true than that 1 plus 1 equals 2
 </pre>
 
-<br /><h3 class="softwhite">Tagged strings</h3>
-<h3>The component parts of this string are these strings and values concatenated:</h3>
-<div class="dkbg w80 ctr ctrtxt brdr-w">
-<code class="ltgreen"><span class="underline">Fewer things are more </span><span class="softsand">${bool}</span><span class="underline"> than that </span><span class="softsand">${num1}</span><span class="underline"> plus </span><span class="softsand">${num1}</span><span class="underline"> equals </span><span class="softsand">${num1 + num1}</span><span class="ltred">_</span></code>
-</div><br />
+      <br />
+      <h3 class="softwhite">Tagged strings</h3>
+      <h3>The component parts of this string are these strings and values concatenated:</h3>
+      <div class="dkbg w80 ctr ctrtxt brdr-w">
+        <code class="ltgreen"><span class="underline">Fewer things are more </span><span class="softsand">${bool}</span><span class="underline"> than that </span><span class="softsand">${num1}</span><span class="underline"> plus </span><span class="softsand">${num1}</span><span class="underline"> equals </span><span class="softsand">${num1 + num1}</span><span class="ltred">_</span></code>
+      </div>
+      <br />
 
-<div class="chtitle softwhite med">Tagging strings gives us the power to "pre-process" the string. <br />
-We create a function and 'call' that function with the template string as an argument that is <em>splayed</em> into it's component parts</div>
-<pre class="prettyprint w80 ctr">
+      <div class="chtitle softwhite med">Tagging strings gives us the power to "pre-process" the string.
+        <br /> We create a function and 'call' that function with the template string as an argument that is
+        <em>splayed</em> into it's component parts</div>
+      <pre class="prettyprint w80 ctr">
 ...
 
 let tagged = function(strArr, ...vals) {
@@ -415,17 +499,18 @@ let tagged = function(strArr, ...vals) {
 
 tagged`Fewer things are more ${bool} than that ${num1} plus ${num1} equals ${num1 + num1}`;
 </pre>
-<hr>
+      <hr>
 
 
 
 
 
-</div>
-<hr>
-<div class="plain-frame1"><h3 class="chtitle softred">ES6 Object Enhancement & .repeat() method</h3>
-<p>From ES5...</p>
-<pre class="prettyprint w30 ctr">const captainKirk = {
+    </div>
+    <hr>
+    <div class="plain-frame1">
+      <h3 class="chtitle softred">ES6 Object Enhancement & .repeat() method</h3>
+      <p>From ES5...</p>
+      <pre class="prettyprint w30 ctr">const captainKirk = {
   orders: function(order) {
     console.log(`${order}`)
   }
@@ -434,8 +519,8 @@ tagged`Fewer things are more ${bool} than that ${num1} plus ${num1} equals ${num
 
 captainKirk.orders("Make it so.")
 </pre>
-<p>...to ES6</p>
-<pre class="prettyprint w30 ctr">
+      <p>...to ES6</p>
+      <pre class="prettyprint w30 ctr">
 const captainKirk = {
   orders(order) {  // Remove ": function"
     console.log(`${order} `.repeat(5))
@@ -444,20 +529,22 @@ const captainKirk = {
 
 captainKirk.orders("Make it so.")
 </pre>
-<pre class="prettyprint w50 ctr">
+      <pre class="prettyprint w50 ctr">
 // "Make it so. Make it so. Make it so. Make it so. Make it so. "
 </pre>
 
 
 
-</div>
-<hr>
-<div class="simple-frame2">
-  <h2 class="chtitle">Spread Operators</h2><br />
-  <h3 class="chtitle clean">Spread operators are used to expand an 'iterable object' when multiple items are expected.
-  <br />They can be used in Fn calls, Parameter Lists, Array literals, Obj destructuring</h3>
+    </div>
+    <hr>
+    <div class="simple-frame2">
+      <h2 class="chtitle">Spread Operators</h2>
+      <br />
+      <h3 class="chtitle clean">Spread operators are used to expand an 'iterable object' when multiple items are expected.
+        <br />They can be used in Fn calls, Parameter Lists, Array literals, Obj destructuring</h3>
 
-<br /><pre class="prettyprint w60 ctr"> let goodNewsArray = ["John", "Luke", "Mark", "Matthew"];
+      <br />
+      <pre class="prettyprint w60 ctr"> let goodNewsArray = ["John", "Luke", "Mark", "Matthew"];
 
 let guys = function(john="john", paul="paul", george="george", ringo="ringo") {
   return `${john}, ${paul}, ${george} & ${ringo}.`
@@ -466,9 +553,10 @@ let guys = function(john="john", paul="paul", george="george", ringo="ringo") {
 console.log(guys(...goodNewsArray)) // John, Luke, Mark & Matthew.
 </pre>
 
-<br /><br />
-<h3 class="ivr clean">These are also REALLY useful for Array Literals:</h3>
-<pre class="prettyprint ctr w60">
+      <br />
+      <br />
+      <h3 class="ivr clean">These are also REALLY useful for Array Literals:</h3>
+      <pre class="prettyprint ctr w60">
 let beatlesArray = ["john", "paul", "george", "ringo"];
 
 let charliesAngels = ["Kelly","Chris", "Sabrina", "Jill"];
@@ -478,21 +566,21 @@ let dateNight = [...beatlesArray, ...charliesAngels];
 console.log(dateNight);
 // (8) ["john", "paul", "george", "ringo", "Kelly", "Chris", "Sabrina", "Jill"]
 </pre>
-<br />
-<hr>
-<h3 class="chtitle thin">The "Rest Parameter"</h3>
-The function below will join any limitless amount of parameters
-the spread allows us to take an arbitrary number of params!
+      <br />
+      <hr>
+      <h3 class="chtitle thin">The "Rest Parameter"</h3>
+      The function below will join any limitless amount of parameters the spread allows us to take an arbitrary number of params!
 
-<pre class="prettyprint w50 ctr">  const joinUp = function(
+      <pre class="prettyprint w50 ctr">  const joinUp = function(
     return words.join(' ');
   };
   console.log(joinUp('I', 'really', 'am', 'digging', 'es6!'));
 
   //I really am digging es6!
-</pre><br />
-<h3>A neat way to avoid the need for .split('');</h3>
-<pre class="framed8 dkbg wh thin w50 ctr">function joiningFunk(<span class="orange">...words</span>) {     <span class="orange">// (rest parameter)</span>
+</pre>
+      <br />
+      <h3>A neat way to avoid the need for .split('');</h3>
+      <pre class="framed8 dkbg wh thin w50 ctr">function joiningFunk(<span class="orange">...words</span>) {     <span class="orange">// (rest parameter)</span>
   return words.join(' ');
 }
 
@@ -500,16 +588,18 @@ var joined = joiningFunk("I", "want", "to", "join", "these", "words");
 
 console.log(joined); <span class="ltgreen">// I want to join these words</span>
 </pre>
-<br />
+      <br />
 
 
-</div>
-<hr>
-<div class="framed5"><h2 class="chtitle ivr thin">Default Parameters</h2>
+    </div>
+    <hr>
+    <div class="framed5">
+      <h2 class="chtitle ivr thin">Default Parameters</h2>
 
-<h2 class="thin">Default Parameter in a function declaration</h2><br />
-<h4 class="paleY">At invocation if a param isn't passed--Function runs the default in the function signature...</h4>
-  <pre class="prettyprint w50 linenums">
+      <h2 class="thin">Default Parameter in a function declaration</h2>
+      <br />
+      <h4 class="paleY">At invocation if a param isn't passed--Function runs the default in the function signature...</h4>
+      <pre class="prettyprint w50 linenums">
     function entree(fish = 'salmon') {
       console.log(`I think I'll have ${fish}`);
     }
@@ -519,16 +609,23 @@ console.log(joined); <span class="ltgreen">// I want to join these words</span>
     entree('lobster'); // I think I'll have the lobster
   </pre>
 
-<br /><br><h3 class="ctrtxt dkbg3 thin">running grunt es6 to create an es5 example gives us this very cool ternary condition</h3>
+      <br />
+      <br>
+      <h3 class="ctrtxt dkbg3 thin">running grunt es6 to create an es5 example gives us this very cool ternary condition</h3>
 
-<h3 class="brdr-w">var fish = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'salmon';</h3>
+      <h3 class="brdr-w">var fish = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'salmon';</h3>
 
-<span class="sm ivr">if (<em>"there are more than zero args AND the first arg is NOT 'undefined', then run that first arg--Otherwise run it as 'salmon'..."</em>)</span>
+      <span class="sm ivr">if (
+        <em>"there are more than zero args AND the first arg is NOT 'undefined', then run that first arg--Otherwise run it as
+          'salmon'..."
+        </em>)</span>
 
-<hr>
-<h2 class="thin">Default Parameter in a function expression -- With a bonus feature!</h2><br />
-<h3 class="chtitle paleY">We can exploit this feature to add multiple default params <br> default parameters are 'visible' to following or later parameters in the same parameter list</h3>
-  <pre class="prettyprint linenums">
+      <hr>
+      <h2 class="thin">Default Parameter in a function expression -- With a bonus feature!</h2>
+      <br />
+      <h3 class="chtitle paleY">We can exploit this feature to add multiple default params
+        <br> default parameters are 'visible' to following or later parameters in the same parameter list</h3>
+      <pre class="prettyprint linenums">
 var seinfeld = function(food = 'pretzels', adjective = 'thirsty', catchphrase = `These ${food} are making me ${adjective}`) {
   console.log(catchphrase);
 };
@@ -543,8 +640,8 @@ console.log(seinfeld(undefined, 'sick'));
 //These pretzels are making me sick  (If one param is undefined, it will run the default)
     </pre>
 
-</div>
-<hr>
+    </div>
+    <hr>
     <pre>
   <div class="simple-frame2">
     <h3 class="chtitle thin">Block-scopes with <b class="lg wh">let</b> & <b class="lg wh">const</b>: a simple illustration   <br><a target="_blank" href="https://code.tutsplus.com/courses/javascript-es6-fundamentals" class="sm">(c/o Dan Wellman)</a></h3>
@@ -559,17 +656,22 @@ console.log(seinfeld(undefined, 'sick'));
   }
 })();
     </pre>
-    <h5>This, of course, returns: <span class="ans med ltred">Uncaught ReferenceError: block is not defined (or not declared!)</span>
-  Why? (hint: "var" wouldn't throw an error--simply "undefined") --because <span class="ans med ltred">log calls block but let prevents it from being hoisted.</span></h5>
+    <h5>This, of course, returns:
+      <span class="ans med ltred">Uncaught ReferenceError: block is not defined (or not declared!)</span>
+      Why? (hint: "var" wouldn't throw an error--simply "undefined") --because
+      <span class="ans med ltred">log calls block but let prevents it from being hoisted.</span>
+    </h5>
 
 
-    <h6 class=" ctrtxt ivr">Even if the console.log(block) were <em>after</em> the if statement... it would still throw a ref error. </h6>
+    <h6 class=" ctrtxt ivr">Even if the console.log(block) were
+      <em>after</em> the if statement... it would still throw a ref error. </h6>
 
     <div class="dkbg3 w50 ctr brdr-w">
-      <h5>Let has two features:<br />
-    1) 'let' is to create scope to its containing block.<br />
-    2) 'let' is not hoisted.<br />
-    </h5>
+      <h5>Let has two features:
+        <br /> 1) 'let' is to create scope to its containing block.
+        <br /> 2) 'let' is not hoisted.
+        <br />
+      </h5>
       <h4>The temporal Dead-zone:</h4>
       <pre class="prettyprint w30 ctr">
 'use strict';
@@ -582,11 +684,17 @@ console.log(seinfeld(undefined, 'sick'));
   }
 })();
 </pre>
-      <h5>This, too, returns: <span class="med ltred">Uncaught ReferenceError: block is not defined (or not declared!)</span><br />
-Everything inside the block prior to the 'let' declaration is known as the <span class="orange comfort">"Temporal Dead-zone"</span></h5>
+      <h5>This, too, returns:
+        <span class="med ltred">Uncaught ReferenceError: block is not defined (or not declared!)</span>
+        <br /> Everything inside the block prior to the 'let' declaration is known as the
+        <span class="orange comfort">"Temporal Dead-zone"</span>
+      </h5>
     </div>
-    <h4>Let's take a look at <em class="ivr">const</em></h4> It's read-only whose value can't be changed thru reassignment or redeclaration. Like let variables, they are not hoisted.
-    <h4 class="chtitle">Though immutable, passing by reference to change an Object's value <em>DOES</em> work:</h4>
+    <h4>Let's take a look at
+      <em class="ivr">const</em>
+    </h4> It's read-only whose value can't be changed thru reassignment or redeclaration. Like let variables, they are not hoisted.
+    <h4 class="chtitle">Though immutable, passing by reference to change an Object's value
+      <em>DOES</em> work:</h4>
     <pre class="prettyprint w50 ctr">  let obj = {
     testColor: 'Blue'
   };
@@ -596,12 +704,15 @@ Everything inside the block prior to the 'let' declaration is known as the <span
   obj.testColor = 'Fuchsia';
 
   console.log(refToObject_C); // {testColor: "Fuchsia"}</pre>
-    <h5 class="orange">As discussed in the "ecma" view of this site... passing by reference is using an "alias" and so, changes a value indirectly using that alias.</h5>
+    <h5 class="orange">As discussed in the "ecma" view of this site... passing by reference is using an "alias" and so, changes a value indirectly
+      using that alias.</h5>
   </div>
   <hr>
   <div class="framed6">
     <h1 class="chtitle thin softwhite">.map() with ES6</h1>
-    <h4>Note: <em class="ivr">implicit return</em></h4>
+    <h4>Note:
+      <em class="ivr">implicit return</em>
+    </h4>
     <pre class="prettyprint w40 ctr">
 var riceCrispies = [
   {character: "Snap!"},
@@ -613,7 +724,7 @@ var cereal = riceCrispies.map(key => key.character);
 // ["snap!", "Crackle!", "Pop!"]
 </pre>
 
-<pre class="prettyprint w50 ctr">var array = [1,2,3,4,5,6];
+    <pre class="prettyprint w50 ctr">var array = [1,2,3,4,5,6];
 // es5
 let es5Arr = array.map(function(element) { return  element + 1});
 console.log("ES5", es5Arr); // [73, 72, 59, 34, 43]
@@ -623,9 +734,9 @@ var arr3 = [10, 20, 30, 40, 50];
 let es6Arr = arr3.map(element => element + 1);
 console.log("es6", es6Arr); // [73, 72, 59, 34, 43]</pre>
 
-<div class="simple-frame">
-<h3>.map() with array of objects is very straightforward:</h3>
-  <pre class="prettyprint w50">var people = [
+    <div class="simple-frame">
+      <h3>.map() with array of objects is very straightforward:</h3>
+      <pre class="prettyprint w50">var people = [
   {name: "Sue",age: 23},
   {name: "Kim",age: 13},
   {name: "Joe",age: 21}
@@ -635,13 +746,15 @@ var ageArr = people.map(function(person){
   return person.age;
 });
   // [23,13,21]</pre>
-<h3>And in es6</h3>
-  <pre class="prettyprint w40">var ageArr = people.map(person => person.age;)</pre>
-</div>
+      <h3>And in es6</h3>
+      <pre class="prettyprint w40">var ageArr = people.map(person => person.age;)</pre>
+    </div>
   </div>
   <hr>
   <div class="simple-frame2">
-    <h3 class="chtitle">The spread operator: ES6</h3> All you need is <span class="y">...</span> then <i class="y">varName</i>
+    <h3 class="chtitle">The spread operator: ES6</h3> All you need is
+    <span class="y">...</span> then
+    <i class="y">varName</i>
     <pre class="prettyprint w80 col-2">function addItems(a, b, c) {
 
   if (typeof a === 'string') {
@@ -735,7 +848,8 @@ american.info(); // Americans cook chicken in a frying pan with corn oil.
     console.log(prop);
   } // color wheels transmission domestic
 </pre>
-    <em>for in</em> is for objects --but if you <b>must</b> use 'for of', this will work.
+    <em>for in</em> is for objects --but if you
+    <b>must</b> use 'for of', this will work.
     <pre class="prettyprint w40">
   for (var prop of Object.keys(car)) {
     console.log(prop);
@@ -801,7 +915,7 @@ console.log(getTree());
   </div>
   <hr>
   <div class="slate-skyblue-fr">
-    <h3 class="wh ctrtxt">Arrow Functions ("fat-arrow")</h3>
+    <h3 class="wh ctrtxt">Arrow Functions ("ow")</h3>
 
     <div class="brdr-w dkbg ctr ctrtxt">
       Let's remind ourselves of the brevity that arrow funcs allow for:
@@ -813,35 +927,41 @@ console.log(getTree());
 
       <pre class="prettyprint w40 txt-left ctr">function serve(iceCream, flavor) {
     iceCream(flavor);
-  }</pre> I see in the body of the function that <code>serve()</code> is a function and it will subsequently take arg 2 (in the function signature). I have to call this "serve()" with two args. The clumsy way is thus:
+  }</pre> I see in the body of the function that
+      <code>serve()</code> is a function and it will subsequently take arg 2 (in the function signature). I have to call this "serve()" with
+      two args. The clumsy way is thus:
 
-      <code>serve(<span class="paleY underline">function defineFlavor(fruit) {console.log(fruit)}</span><sup class="wh">1</sup>, <span class="lightgreen">"🍋"</span><sup class="wh">2</sup>);</code> All of the extra text in arg <sup class="wh">1</sup>      simply becomes "iceCream" in the function serve() above it. So it's MUCH, much simpler to remove all of that and use an anonymous function instead of all of that mess. Let's clean it up:
+      <code>serve(<span class="paleY underline">function defineFlavor(fruit) {console.log(fruit)}</span><sup class="wh">1</sup>, <span class="lightgreen">"🍋"</span><sup class="wh">2</sup>);</code> All of the extra text in arg
+      <sup class="wh">1</sup> simply becomes "iceCream" in the function serve() above it. So it's MUCH, much simpler to remove all of that
+      and use an anonymous function instead of all of that mess. Let's clean it up:
 
       <pre class="prettyprint w40">serve((fruit) => console.log(fruit), "🍋"); // 🍋</pre>
       <pre class="prettyprint w40">serve((fruit) => console.log(fruit), "🍓"); // 🍓</pre>
-<hr>
+      <hr>
 
-<div class="simple-wine-frame w60 ctr txt-left">
-<pre class="prettyprint w40 txt-left ctr">var order = "Phasers on stun.";
+      <div class="simple-wine-frame w60 ctr txt-left">
+        <pre class="prettyprint w40 txt-left ctr">var order = "Phasers on stun.";
 var issueCommand = (order) => console.log(order);
 var test = issueCommand(order);
 // Phasers on stun.
 </pre>
-<pre class="prettyprint w40 txt-left ctr">
+        <pre class="prettyprint w40 txt-left ctr">
 var issueCommand = (order) => console.log(order);
 issueCommand("Warp factor 2!");
 // Warp factor 2!
 </pre>
-<pre class="prettyprint w40 txt-left ctr">
+        <pre class="prettyprint w40 txt-left ctr">
 var orders = "Make it so.";
 var issueCommand = orders => orders; //Bare essence of ES6 Fn
 var example = issueCommand(orders);
 console.log(example);
 // Make it so.
 </pre>
-<p>The final ES6 funk has no return statement <em>("Implicit return")</em><br />It has no "{}" or "()"</p>
+        <p>The final ES6 funk has no return statement
+          <em>("Implicit return")</em>
+          <br />It has no "{}" or "()"</p>
 
-</div>
+      </div>
     </div>
     <hr> The following works in ES5:
     <pre class="prettyprint w40">
@@ -856,16 +976,22 @@ var ageArr = people.map(function(person){
 });
     // [23,13,21]
 </pre> But in ES6, it's much cleaner code.
-    <span class="y">IF you only have ONE argument</span>, don't use braces<br /> ALSO. <span class="y">If you are only returning one thing</span> and not doing other things in the Fn.
+    <span class="y">IF you only have ONE argument</span>, don't use braces
+    <br /> ALSO.
+    <span class="y">If you are only returning one thing</span> and not doing other things in the Fn.
     <h3 class="ltred">GET RID OF the return statement and the "{}"</h3>
     <pre class="prettyprint w40">var ageArr = people.map(person => person.age;)</pre> Here is a promise callback using an Arrow Function.
-    <span class="ivr"><em>Old way:</em></span>
+    <span class="ivr">
+      <em>Old way:</em>
+    </span>
     <pre class="prettyprint w40">
 $http.get(function('/api/people')
 .then(function(data) {
   return res.data;
 })</pre>
-    <span class="mango"><em>New ES6 way:</em></span>
+    <span class="mango">
+      <em>New ES6 way:</em>
+    </span>
     <pre class="prettyprint w40">
 $http.get(function('/api/people')
 .then(data => res.data)</pre> Don't use arrow functions as method on an object! 'this' breaks everything!
@@ -873,8 +999,7 @@ $http.get(function('/api/people')
   </div>
   <hr>
   <div class="plain-frame3">
-    <h3 class="w60">The "let" keyword.
-  var has 2 kinds of scope. Global and Lexical (or functional) scope.</h3>
+    <h3 class="w60">The "let" keyword. var has 2 kinds of scope. Global and Lexical (or functional) scope.</h3>
     <span class="ivr">This code doesn't throw an error in es5.</span>
     <pre class="ctr prettyprint w40">
   var gimmeSum = function(sum) {
@@ -899,7 +1024,8 @@ $http.get(function('/api/people')
     let total = sum + total;
     return total;
   }</pre>
-    <h3><em class="wh">let</em>'s entire purpose is: block-scoping</h3>
+    <h3>
+      <em class="wh">let</em>'s entire purpose is: block-scoping</h3>
 
   </div>
 
