@@ -4,6 +4,43 @@
   <div class="react-entry entry">
     <pre>
     <!--entire page pre-->
+    <div class="plain-frame1 w90">
+      <h1 class="chtitle">Passing a query from < input > to state </h1>
+
+      <p>For an <span><</span>input> you will need an<code>onChange</code>or<code>onQuery</code>call from the element (component).<br>
+      If using state changes you will need constructor, super() and this.state Object as below...</p>
+      <pre class="prettyprint w60 ctr">class Search extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            query: ''
+        }
+    }
+    handleQuery(query) {
+        query = query.toLowerCase().trim(); //cleanup
+        this.setState(
+            {'query': query}
+        )
+    }
+    render() {
+        return (
+            < div className="search">
+                < SearchBar onQuery={this.handleQuery.bind(this)}/>
+                < Results products={this.props.products} queryResult={this.state}/>
+            < / div>
+        )
+    }
+}
+
+ReactDOM.render(< Search products={products} / >, document.getElementById('app'))
+    </pre>
+    <div class="ctr w60 brdr-w" > <h3 class="chtitle dkblue">Embed this in brain:</h3>
+      <code>onChange</code> occuring on a component (ie an < input >) --> use <code>this.state</code>
+        <br>Using<code>this.state</code>requires a<code>constructor</code>
+        <br>Subsequent references to state require --><code>this.setState</code></div>
+        c/o <a href="https://www.udemy.com/master-advanced-javascript-react/learn/v4/t/lecture/7735146?start=0" target="_blank">Chris Catiglione</a>
+    </div>
+    <hr>
 <div class="framed4">
 <h1 class="ctrtxt thin softwhite">A word on the && operator in React and conditional rendering</h1>
 <pre class="dk-frame prettyprint w60 ctr">
