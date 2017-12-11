@@ -8,13 +8,46 @@
     <pre>
       <!--entire page pre-->
 <div class="plain-frame1">
-  <h1 class="clean chtitle">testTitle</h1>
-  <p>explanatory Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis itaque illo quia? Autem aut alias expedita quis voluptate! Ad perspiciatis sequi quod ab, inventore suscipit quam incidunt fuga atque eligendi!</p>
-  <pre class="prettyprint ctr w40">code snippet</pre>
-  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum amet minima minus commodi quam pariatur autem! Aut doloremque culpa rem sapiente fugit voluptas rerum nulla, eius iusto neque praesentium recusandae!</p>
-  <pre class="prettyprint ctr w40">codesnippet</pre>
-  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque tempore suscipit quibusdam a laudantium! Possimus laboriosam velit consequuntur quam aut error magni facere tempore, ut quidem veritatis iure fugiat ipsa.</p>
+  <h1 class="clean chtitle dkblue">String.prototype<em class="softred">.match()</em></h1>
+  <h3>.match() is a method on a String. (often works in tandem with regex but works fine without)</h3>
+  <p>If the string matches the expression, it will return an Array containing the entire matched string as the first element, followed by any results captured in parentheses. If there were no matches, null is returned.</p>
+  <pre class="prettyprint ctr w50">"That is going to take a while".match("take");
+
+// [ 'take', index: 17, input: 'That is going to take a while' ]</pre>
+        <p>Having searched through a string, it returns an array of three items:<p>
+<pre class="framed8 w40 ctr">1) the value found
+2) the index of beginning letter 
+3) Entire string searched</pre>
+
+<p>Here, we have an Array of longer strings. We map through the array and then work .match() in each phrase.</p>
+<pre class="prettyprint w80 ctr"><span class="fRight w30 sm brdr-w">/*
+[ null,
+null,
+null,
+null,
+['proud', index: 8, input: 'I am so proud of you'],
+null,
+null,
+null,
+null,
+null ]
+*/</span>
+var emotions = ['I am hungry',
+                'Sad to see you go',
+                'Feeling peckish?',
+                'Are you excited?',
+                'I am so proud of you',
+                'Just relax already',
+                'We are delighted to meet you',
+                'Are you excited?',
+                'Sorry to disappoint you',
+                'It terrified me'];
+
+emotions.map(item => item.match("proud"))
+</pre>
+  
   <pre class="prettyprint ctr w40">snippet</pre>
+  <p>c/o <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match">MDN</a></p>
 </div>
 <hr>
 
