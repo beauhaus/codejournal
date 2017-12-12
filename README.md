@@ -1,7 +1,21 @@
 # codejournal
-This is a collection of notes & references that I am curating to study and to accelerate my build process. #[Kaizen](https://en.wikipedia.org/wiki/Kaizen)🤓
-###### codejournal includes notes, examples & advice on the following:
-### Journal
+This is a collection of notes, snippets and lessons for web code.
+
+
+([Kaizen](https://en.wikipedia.org/wiki/Kaizen) FTW)
+
+
+|angular-view|purpose|progress|comments|
+|:-----------|:-------|:------|:----|
+|index.html|welcome|done (but needs a better menu-bar)|I don't love the layout|
+|Daily-Standup|journal-entries, reflections, goodies from twitter|semi-daily progress report|Happy with the css & typography|
+|Grid|basic walkthrough to get up&running in css-grid c/o [Rachel Andrews][rachelA]|only 4 or 5 entry-lessons|Needs updates and short-hand. Much has been learnt since|
+|css-sass|walkthrough to get set up & minor notes on css. Helpful as a quick-reference|Begging for future modifications| TBH: a discussion of css-naming needs to be added. (OOCSS? SMACSS? BEM?)|
+|SVG|set-up, optimization, pitfalls, perf & rendering dos & donts|Updates coming this week|Top-right box needs resizing and typography overhaul|
+|||||
+
+
+# Grid
 Daily journal entries in lieu of a "daily standup". What I did yesterday and what is on my todo list for today--identifying/anticipating potential pain-points. 
 
 @End of the day (3am?-ish) --I revisit this and mark off what I've accomplished.
@@ -31,3 +45,5 @@ Will include embedded codepens as soon as I can figure those damned things out i
 These are simply a miscellany of notes & snippets.
 ***
 (code-prettify is used for all syntax highlighting)
+
+[rachelA]: https://www.youtube.com/watch?v=Dz9BzY21Zks&list=PLQkVA6z3dFvbnBJetfYDAF3-cG_ubgdZR
