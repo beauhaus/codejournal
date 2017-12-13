@@ -16,10 +16,11 @@ This is a collection of notes, snippets and lessons for web code.
 <!-- |jquery|||| -->
 
 
-# Grid
-Daily journal entries in lieu of a "daily standup". What I did yesterday and what is on my todo list for today--identifying/anticipating potential pain-points. 
+Daily journal entries in lieu of a "daily standup". 
+* + todo
+* + potential blocks
+* + done (& reflection)
 
-@End of the day (3am?-ish) --I revisit this and mark off what I've accomplished.
 ### Angularjs
 Setup, implementation of Angulars awesomeness. Notes on scope inheritance, pitfalls of same... built-in & custom directives, filters, 3rd-parties
 ### Sass/CSS3
