@@ -10,9 +10,10 @@ This is a collection of notes, snippets and lessons for web code.
 |index.html|welcome|done (but needs a better menu-bar)|I don't love the layout|
 |Daily-Standup|journal-entries, reflections, goodies from twitter|semi-daily progress report|Happy with the css & typography|
 |Grid|basic walkthrough to get up&running in css-grid c/o [Rachel Andrews][rachelA]|only 4 or 5 entry-lessons|Needs updates and short-hand. Much has been learnt since|
-|css-sass|walkthrough to get set up & minor notes on css. Helpful as a quick-reference|Begging for future modifications| TBH: a discussion of css-naming needs to be added. (OOCSS? SMACSS? BEM?)|
+|Css-Sass|walkthrough to get set up & minor notes on css. Helpful as a quick-reference|Begging for future modifications| TBH: a discussion of css-naming needs to be added. (OOCSS? SMACSS? BEM?)|
 |SVG|set-up, optimization, pitfalls, perf & rendering dos & donts|Updates coming this week|Top-right box needs resizing and typography overhaul|
-|||||
+
+<!-- |jquery|||| -->
 
 
 # Grid

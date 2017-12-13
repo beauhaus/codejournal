@@ -58,19 +58,10 @@ class MyGreatComponent extends React.Component {
     <span class="ltred">this.state = {timeElapsed: 0}</span>
   }
 ...
-<span class="black clean">If you are going to use <em>this.state</em> syntax, React says you MUST use <em>this.setState</em>...</span>
+<span class="black clean">If you are going to use <em>this.state</em> in the contstructor, React says you MUST use <em>this.setState({...})</em> in queryHandler Fn...</span>
 
-componentDidMount() {
-  this.interval = setInterval(this.elapseTime.bind(this), 1000);
-  <span class="ltred">
-      this.setState(
-        {
-            start: new Date()
-        }
-    )
-  </span>
-}
-...</pre>
+<img class="w30" src="./img/setstate.png" alt="set state image">
+
 --In other news, worked all weekend on syllabus for my kids. It's going to be a great deal of careful hand-holding... Considering using svg to give them a visual "payoff" for iterating over arrays. If it's not executed carefully, it's a recipe for frustration.</h3>
 
 <blockquote class="twitter-tweet" data-dnt="true" data-align="right" data-width="20vw" data-cards="hidden" data-lang="en">
