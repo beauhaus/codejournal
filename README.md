@@ -5,7 +5,7 @@ This is a collection of notes, snippets and lessons for web code.
 ([Kaizen](https://en.wikipedia.org/wiki/Kaizen) FTW)
 
 
-|angular-view|purpose|progress|comments|
+|app-view|purpose|progress|comments|
 |:-----------|:-------|:------|:----|
 |index.html|welcome|done (but needs a better menu-bar)|I don't love the layout|
 |Daily-Standup|journal-entries, reflections, goodies from twitter|semi-daily progress report|Happy with the css & typography|
@@ -16,10 +16,12 @@ This is a collection of notes, snippets and lessons for web code.
 <!-- |jquery|||| -->
 
 
-Daily journal entries in lieu of a "daily standup". 
-* + todo
-* + potential blocks
-* + done (& reflection)
+### Daily Standup:
+#### Journal entries in lieu of a stand-up
+ + todo
+ + potential blocks
+ + done (& reflection)
+    * notable tweets & link on a dev topic/article
 
 ### Angularjs
 Setup, implementation of Angulars awesomeness. Notes on scope inheritance, pitfalls of same... built-in & custom directives, filters, 3rd-parties
