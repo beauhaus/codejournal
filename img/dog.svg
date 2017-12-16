@@ -1,0 +1,76 @@
+<svg  xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 696 608">
+<style>
+#tongue-line {
+  /*fill: grey;*/
+  stroke-width: 5;
+  stroke: black;
+}
+#nose-front {
+  fill: rgb(45, 39, 38);
+}
+.mouth{fill:none;
+  stroke:#42210b;
+  stroke-width:6
+}
+.ear{
+  fill: #8c6239;
+  stroke: black;
+  stroke-width:3;
+}
+svg#dog {
+  border: 1px solid fuchsia;
+  width: 500px;
+}
+#head {
+  fill: url(#brown-gradient);
+  stroke: black;
+  stroke-width: 3;
+}
+
+#spot {
+  fill: #8c6239;
+}
+
+#lt-brow {
+  fill: none;
+  stroke: black;
+}
+#rt-brow {
+  fill: none;
+  stroke: black;
+}
+#dog-hair {
+  fill: url(#brown-gradient);
+  stroke: black;
+}
+
+</style>
+  <linearGradient id="brown-gradient" x1="76" x2="625" y1="453" y2="198" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#8c6239"/>
+    <stop offset="1" stop-color="#c69c6d"/>
+  </linearGradient>
+
+  <ellipse id="head" cx="350" cy="327" rx="305" ry="270"/>
+  <ellipse id="spot" cx="254" cy="277" rx="67" ry="102"/>
+
+  <path id="lt-brow" d="M195 283c5-16 62-32 85-25"/>
+  <path id="rt-brow"  d="M511 283c-6-17-64-32-86-23"/>
+
+  <path id="tongue" fill="#ff7bac" d="M353 528c-12 0-23-3-32-6l-3-1-10-3-3-2c-9-3-16-7-24-12-7 18-14 43-10 63l1 4c3 19 25 30 42 18 6-3 9-8 13-12l3-3c11-13 16-30 22-45l1-1z"/>
+
+  <path id="tongue-line" d="M313 521c-12 26-21 53-18 54"/>
+
+  <ellipse class="eye" id="rt-nostril" cx="419" cy="331" rx="16" ry="26"/>
+  <ellipse class="eye" id="lt-nostril" cx="278" cy="331" rx="16" ry="26"/>
+
+  <path id="dog-hair" d="M436 69c10-19 10-45 42-53-40 1-92 11-104 42 6-17 7-39 31-50-33 0-75 11-82 37 1-14 10-36 34-37-46-3-92 25-97 58"/>
+  <path class="ear" id="ear-lt" d="M33 193A230 230 0 0 0 4 300c-1 36 20 86 62 87 4 0 11-3 12-8 14-47 25-94 45-137l17-32c17-31 40-58 71-79 14-9 16-29 3-40-6-6-14-8-22-8-11 0-22 1-32 4-44 12-85 38-109 77l-18 29z"/>
+  <path class="ear" id="ear-rt" d="M660 193a230 230 0 0 1 29 107c1 36-20 86-62 87-4 0-11-3-12-8-14-47-25-94-45-137l-16-32c-18-31-41-58-71-79-14-9-17-29-4-40 6-6 14-8 22-8 11 0 22 1 32 4 44 12 85 38 109 77l18 29z"/>
+
+  <path id="nose-back" d="M402 391c-6 30-23 73-59 71-6 0-11-3-16-6-5-4-9-8-12-13l-10-17-7-17c-3-8-4-16-3-24 5-29 39-39 65-34l13 4 10 5c4 3 8 5 11 9l5 6c2 5 3 10 3 16z"/>
+  <path id="nose-front"  d="M387 391c-5 22-8 51-32 59-34 11-51-31-54-58-1-8 0-15 5-21 14-16 38-18 58-12 5 2 11 5 15 9 5 6 7 12 8 20v3z"/>
+
+  <path class="mouth" id="mouth" d="M269 495c40 40 145 38 188-5" />
+  <path class="mouth" id="lip-line" d="M346 462v59-59z" />
+
+    </svg>
