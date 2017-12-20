@@ -28,8 +28,8 @@
   <h3 class="subtitle"><a href="https://github.com/Beauvelop/gulp_scaffold" target="_blank">Gulp Scaffold</a> repo is completely completed.<br>
   Been doing lots of SVG components to be manipulated in codepen for upcoming spring Javascript class. Objects, Arrays, Loops (God help me explain syntax to an 8-year old),functions, function calls & click-events...
 --came across an interesting problem with <img src="./img/treesvg.png" alt="svg gree" class="w40 ctr">
-The issue is, I have all those leaves--out of Illustrator each with an individual linear gradient. Since each gradient is the same, I removed all but one and pointed them all (259 of them) to the one instance of the color gradient
-<pre class="prettyprint w50 ctr">
+<br>The issue is, I have all those leaves--out of Illustrator each with an individual linear gradient. Since each gradient is the same, I removed all but one and pointed them all (259 of them) to the one instance of the color gradient
+<pre class="ltbg w80 ctr dkblue">
     < linearGradient id="a" x1="162" x2="162" y1="103" y2="89" gradientTransform="rotate(-59 261 53)" gradientUnits="userSpaceOnUse" >
         < stop offset="0" stop-color="#39b54a" / >
         < stop offset="1" stop-color="#006837" / >
@@ -45,14 +45,35 @@ The issue is, I have all those leaves--out of Illustrator each with an individua
    */
 </pre>
 The problem is rather than each having the gradient... they all--as a collective whole--"participate" in the color gradient.
+Rather than selecting the < g> with a class I tried this<br>
+<code>< path class="leaf" id="leaf1" d="M255 165l2-2-1-3-2-1-10-2 5 10 2 1h3l1-3z" / ></code>
+And..? -No dice. As expected (...🙄) --why? because, of course, they're all referring to the exact same gradient.
+Therefore, it's the gradient that must be modified each time & not the code referring to it.<br>
+The <em>referent</em> must be modified and not the reference.
+
+My instinct tells me that I can solve this with sass loops. --Something, TBQH, I never studied.
+So I know what's on my todo list.
+
+Finally, I did a lot of curriculum dev today.<br>
+<img class="w40 ctr" src="./img/up.png" alt="up house"><br>
+I illustrator-ed this to look like the house from the film "Up"... (on the last day of class we're going to make baloons and try to make it fly ;) )
+<br>
+<br>
+My plan is to build many component parts, animals, celestial objects (meteors, planets, aliens, etc). --Create/Place them in the browser and then animate them.
+<br>
+Next, we'll do sounds, etc, etc...<br>
+<img src="./img/landscape.png" alt="landscape.png image">
+<br>
+Almost every single element in this entire picture as well as future additions (meteors, a comet, passing airplanes, a sun, changing day to night-time and back, clouds, aliens, etc...) All of these things will be hoverable or clickable.<br>
+It's got SO much potential.
 </h3>
   
   <br>
   <h3>To do:</h3>
   <ol class="todo">
-    <li>Gulp Task entry</li>
-    <li>Styling inline in react for HCC project (using .js not the imported 3rd Party) </li>
-    <li><span class="ltred">Potential Blocks:</span>none</li>
+    <li>Sass loops & entry into codejournal</li>
+    <li>Give a decent explanation of how preserveAspectRatio="none" is completely meaningless without the viewBox. <a href="https://css-tricks.com/scale-svg/" target="_blank">css tricks</a></li>
+    <li><span class="ltred">Potential Blocks:</span> I'm exhausted.</li>
   </ol><br>
   <h3>Done: </h3>
   <ol class="done">
