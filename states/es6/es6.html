@@ -5,7 +5,7 @@
   </aside>
   <div class="es6-entry entry">
     <!-- pre for entire page -->
-FIXME: this needs an edit
+<!-- FIXME: this needs an edit -->
     <!-- <div class="framed3">
       <h1>What you should know about es6's this in arrow functions</h1>
       <p>The way arrow functions work in es6 functions needs close attention:</p>
@@ -24,7 +24,264 @@ FIXME: this needs an edit
     </div>
  -->
 
+ <hr>
 
+ <div class="framed2 wh">
+     <h1 class="chtitle softblue thin">Object.defineProperty(<span class="wh">object</span>)</h1>
+     <div class="">
+ <pre class="prettyprint w50 ctr">var vwBug = {
+     name: 'Buggy',
+     speed: 45,
+     color: 'orange',
+   };</pre>
+   <p>Here, I'll add a "print task" with Obj.defineProperty();
+       NOTE: the props of this ONLY EFFECT THIS PROPERTY!</p>
+   <pre class="prettyprint w50 ctr">Object.defineProperty(vwBug, 'printDetails', {
+     value: function() {
+       console.log(
+         `Name ${this.name}, Speed: ${this.speed}, Color:  ${this.color}`
+       );
+     },
+     writable: true, // whether changeable
+     enumerable: false, // whether Obj.keys()|| loops can iterate...
+     configurable: true, // whether settings are changeable
+   });
+   
+   vwBug.printDetails(); // Name Buggy, Speed: 45, Color: orange
+   </pre>
+ 
+   <p>writable: false --You can't alter or over-write this property accidentally.</p>
+ <pre class="prettyprint w40 ctr">
+   var keys = Object.keys(vwBug);
+   console.log(keys); //[ 'name', 'topMPH', 'color', 'printDetails' ]</pre>
+ 
+   
+   /* --Let's say I want to loop thru the props of this vwBug, but I want it to look clean --I don't want this helper method "printDetails" in the list...
+   Then, I simply set enumerable to "false" */
+   <pre class="prettyprint w40 ctr">
+   // (after "enumerable: false"...)
+   console.log(keys); //[ 'name', 'topMPH', 'color' ]
+   </pre>
+   <p>configurable is set to true if these props are to be changed further down the code. "false" locks this property.</p>
+     </div>
+     <hr class="w40 ctr">
+     <h4 class="wh">We have a simple object returning a useful string to place onto an element.</h4>
+ <pre class="prettyprint ctr w60">
+ var colorHSL = {
+   hue: 180,
+   saturation: 50,
+   lightness: 50,
+   output: function() {
+     var colorString =  "color: hsl(" + this.hue + ", " + this.saturation + "%, " + this.lightness + "%);";
+     console.log(colorString);
+   }
+ }
+ 
+ colorHSL.output();
+ 
+ // color: hsl(180, 50%, 50%);
+ </pre>
+     <span class="med wh">I can create further properties on this object using
+       <em>Object.defineProperty()</em> passing in 3 arguments.</span>
+     <ol class="w40 condensed-list">
+       <li>the modified object.</li>
+       <li>the name of the new property.</li>
+       <li>a javascript object which I can configure.
+     </ol>
+     <pre class="prettyprint ctr w40">
+     Object.defineProperty(colorHSL, "modSat", {
+       value: function(amount) {
+         this.saturation += amount;
+         this.output();
+       }
+     })
+ 
+     colorHSL.modSat(30);
+     // color: hsl(180, 80%, 50%);
+ 
+     Object.defineProperty(colorHSL, "modHue", {
+       value: function(amount) {
+         this.hue += amount;
+         this.output();
+       }
+     })
+ 
+     colorHSL.modHue(50);
+     // color: hsl(230, 80%, 50%);
+     Object.defineProperty(colorHSL, "modLight", {
+       value: function(amount) {
+         this.lightness += amount;
+         this.output();
+       }
+     })
+ 
+     colorHSL.modLight(-20);
+     // color: hsl(230, 80%, 30%);
+   </pre>
+     <p>Very nice. I can add properties/methods to the object to modify it using the "value:" keyword... Now let's try this with
+       a property...giving colorHSL's hue a default of 90;</p>
+ <pre class="framed6 w50">Object.defineProperty(colorHSL, "modHue", {
+   value: 90
+ })
+ 
+ <span>Now let's update it...</span>
+ colorHSL.modHue(-50);
+ console.log(colorHSL.output());
+ </pre>
+ 
+     <h3>Let's add another property to our colorHSL object. We will make this a default</h3>
+     <h3>._hue (by convention, an "_" may be prepended)</h3>
+     <pre class="framed6 w60">
+ Object.defineProperty(colorHSL, "_hue", {
+   value: 90
+ })
+ 
+ colorHSL._hue = 0;   // THIS line throws a TypeError!
+ <h3 class="ltgreen">"You cannot assign '0' to read-only property"</h3>
+ console.log(colorHSL._hue);
+ 
+ <h4 class="paleY ctr w50">Here we have one very useful feature of .defineProperty();
+ 
+ "_hue" will never be changed --unless, a flag "writable: true" is added to the object</h4>
+ 
+ Object.defineProperty(colorHSL, "_hue", {
+  value: 90,
+  <span class="mango">writable: true</span>
+ })
+ 
+ <h4 class="paleY ctr w50">We, now, can modify and return the new value</h4>
+ 
+ colorHSL._hue = 200;
+ console.log(colorHSL._hue);<span class="ltgreen thin">  // 200</span>
+ </pre>
+     <p>(enumerable: true --is also a possible boolean flag)</p>
+     <hr>
+     <h2 class="chtitle thin">The power of getters & setters using .defineProperty()</h2>
+ 
+     <h4 class="wh">HSL colors in CSS have a range of values within which the rule applies. hue: 0 - 360 & the others 0-100%. Let's start
+       from scratch setting each property at "0"</h4>
+ 
+     <pre class="prettyprint ctr w60">var colorHSL = {
+   _hue: 0,
+   _saturation: 0,
+   _lightness: 0,
+   output: function() {
+     var colorString=  "color: hsl(" + this._hue + ", " + this._saturation + "%, " + this._lightness + "%);";
+     console.log(colorString);
+   }
+ }
+ colorHSL.output();
+ </pre>
+ 
+     <h4 class="ctr ltgreen">
+       <span class="mango">This returns: </span>color: hsl(0, 0%, 0%);</h4>
+ 
+     <p class="softsand">Now instead of
+       <em>"value:"</em> I use
+       <span class="paleY">get:</span> &
+       <span class="paleY">set:</span> to modify the property.</p>
+     <pre class="framed6 ctr w50">Object.defineProperty(colorHSL, "hue", {
+    get: function() {
+      console.log(this._hue);
+      return this._hue;
+    },
+ <span class="wh sm thin">This "get:" method is clear enough. It will always reach into coloHSL and return the _hue property. <br>
+ However, with<code class="dkorange">set</code>, I must be careful to respect the bounds of acceptable CSS hsl values.
+ I allow for<code class="dkorange">set</code> to accept an argument<code class="ltgreen">input</code>
+ But, I set a "filter" of sorts --only accepting a new input that meets a condition...</span>
+    set: function(<span class="ltgreen">input</span>) {
+      if <span class="dkorange">(input>=0 && input <= 360)</span> {
+        this._hue = input;
+        console.log(`New Hue value: ${this._hue}`);
+      }
+    }
+  })
+ <span class="wh sm thin">... if the new input doesn't meet the condition, a new value is not set and the default colorHSL._hue returns
+ <span class="ltgreen">// color: hsl(0, 0%, 0%);</span>
+ 
+ ... if the new input meets the condition, a new value is sent to colorHSL._hue
+ <span class="ltgreen">// New Hue value: 200</span>
+ 
+ --finally, a sanity check;
+ <code class="wh">colorHSL.output();</code>
+ <span class="ltgreen">// color: hsl(200, 0%, 0%);</span>
+ </span>
+ </pre>
+     <h3 class="ltgreen med">Proof of concept available:
+       <a href="https://codepen.io/beau_dev/full/brNZXB/"> here</a>
+     </h3>
+     <p>Completed .js code here</p>
+     <pre class="prettyprint linenums w50">
+ 'use strict';
+ 
+ var centerDiv = document.querySelector(".hsl-div");
+ var enterBtn = document.querySelector(".enter-btn");
+ var outputTxt =document.querySelector(".output-code");
+ var inputHue =document.querySelector(".input-hue");
+ var inputSat =document.querySelector(".input-sat");
+ var inputLight =document.querySelector(".input-light");
+ 
+ 
+ 
+ // HSL obj containing defaults
+ var colorHSL = {
+   _hue: 50,
+   _saturation: 50,
+   _lightness: 50,
+   output: function() {
+     var colorString=  `hsl(${this._hue}, ${this._saturation}%, ${this._lightness}%)`;
+     return colorString;
+   }
+ }
+ 
+ Object.defineProperty(colorHSL, "hue", {
+   get: function() {
+     console.log(this._hue);
+     return this._hue;
+   },
+   set: function(input) {
+     if (input>=0 && input <= 360) {
+       this._hue = input;
+     }
+   }
+ })
+ 
+  Object.defineProperty(colorHSL, "saturation", {
+    get: function() {
+      console.log(this._saturation);
+      return this._saturation;
+    },
+    set: function(input) {
+      if(input>=0 && input <= 100) {
+        this._saturation = input;
+      }
+    }
+  })
+ 
+  Object.defineProperty(colorHSL, "lightness", {
+    get: function() {
+      return this._lightness;
+    },
+    set: function(input) {
+      if(input>=0 && input <= 100) {
+        this._lightness = input;
+      }
+    }
+  })
+ 
+ 
+ /*----------------click event ------------------*/
+ enterBtn.addEventListener('click', () => {
+   colorHSL.hue = inputHue.value;
+   colorHSL.lightness = inputLight.value;
+   colorHSL.saturation = inputSat.value;
+   let result = colorHSL.output();
+ 
+   centerDiv.style.backgroundColor = result;
+   outputTxt.textContent = result;
+ })</pre>
+ </div>
+ 
     <hr>
     <div class="brdr-w dkbg ctr softsand">
       <h1 class="chtitle thin">Array.from(): new in 2015</h1>
