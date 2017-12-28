@@ -23,6 +23,49 @@
       <pre class="prettyprint w50 ctr"></pre>
     </div>
  -->
+ <div class="framed2">
+   <h1>A bit about arrows & this vs es5 funks & this</h1>
+   <p>The <em>this</em> binding works just fine, here.</p>
+   <pre class="prettyprint w50 ctr">const teddyES5 = {
+    name: "Teddy",
+    kind: "bear",
+    printDesc: function() {
+        console.log(`${this.name} is a ${this.kind}`)
+    }
+}
+teddyES5.printDesc(); // Teddy is a bear.
+</pre>
+<p>We run into a problem with es6 methods because => Funks don't bind theirown <em>this</em> value.</p>
+   <pre class="prettyprint w50 ctr">
+const teddyES6 = {
+    name: "Teddy",
+    kind: "bear",
+    printDesc: () => {
+        console.log(`${this.name} is a ${this.kind}`)
+    }
+}
+teddyES6.printDesc(); // "ERR: can't read name of undefined"
+// => Fn doesn't bind itsown 'this' value. it uses window --so using es6 in a method sucks.
+</pre>
+<p>HOWEVER... if we use, say, an => wrapped in an es5... <em>this</em> will work.<br>
+Take a look at <em>this.name</em> below...</p>
+   <pre class="prettyprint w50 ctr">
+
+const teddyCombo = {
+    name: "Teddy",
+    kind: "bear",
+    favFoods: ["salmon", "humans"],
+    printFood: function() {
+        this.favFoods.forEach(item => console.log(this.name + ` ${item}`));
+    }
+}
+teddyCombo.printFood(); // (this.name reference is legit!)
+/*
+Teddy salmon
+app.js:77 Teddy humans
+*/
+</pre>
+ </div>
 
  <hr>
 
