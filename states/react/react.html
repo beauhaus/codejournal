@@ -1,9 +1,107 @@
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=desert"></script>
 <div class="react-container">
   <aside><span class="rot90">{{state}}</span></aside>
+
   <div class="react-entry entry">
     <pre>
     <!--entire page pre-->
+<div class="simple-wine-frame thin softwhite">
+  <h1 class="ctrtxt">.bind() sanity check with React</h1>
+  <h2 class="softsand">.bind() issues in React are simple and solveable. They are not an idiosyncrasy of react or es6. It's just basic JS logic.</h2>
+  <p>Below, in this component. The<code>console.log</code>within the clickHandler has lost it's 'this' -binding...</p>
+  <pre class="prettyprint w60 ctr">class Button extends React.Component {
+    handleClick() {
+        console.log(this.props.shoppingList);
+        // Uncaught TypeError: Cannot read property 'props" of null
+    }
+    render() {
+        return (
+            < div>
+                < button onClick={this.handleClick}>CLICK ME!< / button>
+                {this.props.shoppinglist.map(item => < li key={item}>{item}< / li>)}
+                // NB: 'this' works here!
+            < / div>
+        )
+    }
+}</pre>
+<code>this.handleClick</code>has lost it's binding...
+<p class="dkbg1 w50 ctr ltred">Uncaught TypeError: Cannot read property 'map' of undefined</p>
+<p>To understand the above, let's take a look at a regular ordinary object...</p>
+  <h2 class="softsand ctrtxt">Expected 'this' context within an object.</h2>
+  <p>CJ has a car, so he will commute by car, as always.</p>
+  <pre class="prettyprint w50 ctr">const CJ = {
+  name: "CJ",
+  car: true,
+  commute() {
+    console.log(`${this.name} will take the`, this.car? "car": "subway");
+  }
+};
+
+CJ.commute() // CJ will take the car.</pre>
+  <p>When we place this expected behavior (function) onto a variable, we <em>abstract</em> the method call from it's original context... <br><br>
+  We will lose the <em>'this'</em>-binding in both places in the method.
+  <pre class="prettyprint w50 ctr">
+  CJTransport = CJ.commute;
+  CJTransport();
+  //  will take the subway
+  </pre>
+  <code>this.car? "car": "subway"</code> tests as an empty string so...<br></p>
+  we have empty strings for both <code>this.name & this.car</code>
+  <h2 class="ctrtxt orange">The fix is dead-easy...</h2>
+  <p>Having lost the 'this' binding, we recover it with<code>.bind(CJ)</code></p>
+  <pre class="prettyprint w50 ctr">const CJ = {
+  name: "CJ",
+  car: true,
+  commute() {
+    console.log(`${this.name} will take the`, this.car? "car": "subway");
+  }
+};
+
+CJTransport = CJ.commute.bind(CJ);
+CJTransport();
+//  CJ will take the car.</pre>
+
+  <h2 class="softsand ctrtxt">We can even change this binding on the fly with a fancy-schmancy (albeit, ugly) inline object!</h2>
+
+  <pre class="prettyprint ctr w50">TJEveningPlans = CJ.commute.bind({name: "TJ", car: true});
+  TJEveningPlans(); // TJ will take the car</pre>
+<hr class="w40">
+<h1 class="ctrtxt orange">Let's Solve this for the React Component above</h1>
+<pre class="prettyprint ctr w80"><div class="fRight brdr-w sm">
+//binding fixed!
+//but this is extremely expensive
+//this calls .bind() for EACH render (!)
+//Seriously, No bueno...
+</div>class Button extends React.Component {
+    handleClick() {
+        console.log(this.props.shoppingList);
+    }
+    render() {
+        return (
+            < div>
+                < button onClick={this.handleClick.bind(this)}>CLICK ME!< / button>
+                {this.props.shoppingList.map(item => < li key={item}>{item}< / li>)}
+            < / div>
+        )
+    }
+}
+
+class ShoppingApp extends React.Component {
+    render() {
+        const shoppingList = ["milk", "eggs", "coffee", "bacon"];
+
+        return (
+            < div >
+                < Button shoppingList={shoppingList} / >
+            < / div >
+        )
+    }
+}
+
+ReactDOM.render(< ShoppingApp />, document.getElementById('app'));
+</pre>
+</div>
+    <hr>
     <div class="plain-frame1 w90">
       <h1 class="chtitle">Passing a query from < input > to state </h1>
 

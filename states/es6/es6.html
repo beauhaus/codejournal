@@ -5,7 +5,7 @@
   </aside>
   <div class="es6-entry entry">
     <!-- pre for entire page -->
-<!-- FIXME: this needs an edit -->
+    <!-- FIXME: this needs an edit -->
     <!-- <div class="framed3">
       <h1>What you should know about es6's this in arrow functions</h1>
       <p>The way arrow functions work in es6 functions needs close attention:</p>
@@ -23,10 +23,11 @@
       <pre class="prettyprint w50 ctr"></pre>
     </div>
  -->
- <div class="framed2">
-   <h1>A bit about arrows & this vs es5 funks & this</h1>
-   <p>The <em>this</em> binding works just fine, here.</p>
-   <pre class="prettyprint w50 ctr">const teddyES5 = {
+    <div class="framed2">
+      <h1>A bit about arrows & this vs es5 funks & this</h1>
+      <p>The
+        <em>this</em> binding works just fine, here.</p>
+      <pre class="prettyprint w50 ctr">const teddyES5 = {
     name: "Teddy",
     kind: "bear",
     printDesc: function() {
@@ -35,8 +36,9 @@
 }
 teddyES5.printDesc(); // Teddy is a bear.
 </pre>
-<p>We run into a problem with es6 methods because => Funks don't bind theirown <em>this</em> value.</p>
-   <pre class="prettyprint w50 ctr">
+      <p>We run into a problem with es6 methods because => Funks don't bind theirown
+        <em>this</em> value.</p>
+      <pre class="prettyprint w50 ctr">
 const teddyES6 = {
     name: "Teddy",
     kind: "bear",
@@ -47,9 +49,11 @@ const teddyES6 = {
 teddyES6.printDesc(); // "ERR: can't read name of undefined"
 // => Fn doesn't bind itsown 'this' value. it uses window --so using es6 in a method sucks.
 </pre>
-<p>HOWEVER... if we use, say, an => wrapped in an es5... <em>this</em> will work.<br>
-Take a look at <em>this.name</em> below...</p>
-   <pre class="prettyprint w50 ctr">
+      <p>HOWEVER... if we use, say, an => wrapped in an es5...
+        <em>this</em> will work.
+        <br> Take a look at
+        <em>this.name</em> below...</p>
+      <pre class="prettyprint w50 ctr">
 
 const teddyCombo = {
     name: "Teddy",
@@ -65,21 +69,21 @@ Teddy salmon
 app.js:77 Teddy humans
 */
 </pre>
- </div>
+    </div>
 
- <hr>
+    <hr>
 
- <div class="framed2 wh">
-     <h1 class="chtitle softblue thin">Object.defineProperty(<span class="wh">object</span>)</h1>
-     <div class="">
- <pre class="prettyprint w50 ctr">var vwBug = {
+    <div class="framed2 wh">
+      <h1 class="chtitle softblue thin">Object.defineProperty(
+        <span class="wh">object</span>)</h1>
+      <div class="">
+        <pre class="prettyprint w50 ctr">var vwBug = {
      name: 'Buggy',
      speed: 45,
      color: 'orange',
    };</pre>
-   <p>Here, I'll add a "print task" with Obj.defineProperty();
-       NOTE: the props of this ONLY EFFECT THIS PROPERTY!</p>
-   <pre class="prettyprint w50 ctr">Object.defineProperty(vwBug, 'printDetails', {
+        <p>Here, I'll add a "print task" with Obj.defineProperty(); NOTE: the props of this ONLY EFFECT THIS PROPERTY!</p>
+        <pre class="prettyprint w50 ctr">Object.defineProperty(vwBug, 'printDetails', {
      value: function() {
        console.log(
          `Name ${this.name}, Speed: ${this.speed}, Color:  ${this.color}`
@@ -92,24 +96,21 @@ app.js:77 Teddy humans
    
    vwBug.printDetails(); // Name Buggy, Speed: 45, Color: orange
    </pre>
- 
-   <p>writable: false --You can't alter or over-write this property accidentally.</p>
- <pre class="prettyprint w40 ctr">
+
+        <p>writable: false --You can't alter or over-write this property accidentally.</p>
+        <pre class="prettyprint w40 ctr">
    var keys = Object.keys(vwBug);
-   console.log(keys); //[ 'name', 'topMPH', 'color', 'printDetails' ]</pre>
- 
-   
-   /* --Let's say I want to loop thru the props of this vwBug, but I want it to look clean --I don't want this helper method "printDetails" in the list...
-   Then, I simply set enumerable to "false" */
-   <pre class="prettyprint w40 ctr">
+   console.log(keys); //[ 'name', 'topMPH', 'color', 'printDetails' ]</pre> /* --Let's say I want to loop thru the props of this vwBug, but I want it to look clean --I don't want this helper
+        method "printDetails" in the list... Then, I simply set enumerable to "false" */
+        <pre class="prettyprint w40 ctr">
    // (after "enumerable: false"...)
    console.log(keys); //[ 'name', 'topMPH', 'color' ]
    </pre>
-   <p>configurable is set to true if these props are to be changed further down the code. "false" locks this property.</p>
-     </div>
-     <hr class="w40 ctr">
-     <h4 class="wh">We have a simple object returning a useful string to place onto an element.</h4>
- <pre class="prettyprint ctr w60">
+        <p>configurable is set to true if these props are to be changed further down the code. "false" locks this property.</p>
+      </div>
+      <hr class="w40 ctr">
+      <h4 class="wh">We have a simple object returning a useful string to place onto an element.</h4>
+      <pre class="prettyprint ctr w60">
  var colorHSL = {
    hue: 180,
    saturation: 50,
@@ -124,14 +125,14 @@ app.js:77 Teddy humans
  
  // color: hsl(180, 50%, 50%);
  </pre>
-     <span class="med wh">I can create further properties on this object using
-       <em>Object.defineProperty()</em> passing in 3 arguments.</span>
-     <ol class="w40 condensed-list">
-       <li>the modified object.</li>
-       <li>the name of the new property.</li>
-       <li>a javascript object which I can configure.
-     </ol>
-     <pre class="prettyprint ctr w40">
+      <span class="med wh">I can create further properties on this object using
+        <em>Object.defineProperty()</em> passing in 3 arguments.</span>
+      <ol class="w40 condensed-list">
+        <li>the modified object.</li>
+        <li>the name of the new property.</li>
+        <li>a javascript object which I can configure.
+      </ol>
+      <pre class="prettyprint ctr w40">
      Object.defineProperty(colorHSL, "modSat", {
        value: function(amount) {
          this.saturation += amount;
@@ -161,9 +162,9 @@ app.js:77 Teddy humans
      colorHSL.modLight(-20);
      // color: hsl(230, 80%, 30%);
    </pre>
-     <p>Very nice. I can add properties/methods to the object to modify it using the "value:" keyword... Now let's try this with
-       a property...giving colorHSL's hue a default of 90;</p>
- <pre class="framed6 w50">Object.defineProperty(colorHSL, "modHue", {
+      <p>Very nice. I can add properties/methods to the object to modify it using the "value:" keyword... Now let's try this
+        with a property...giving colorHSL's hue a default of 90;</p>
+      <pre class="framed6 w50">Object.defineProperty(colorHSL, "modHue", {
    value: 90
  })
  
@@ -171,10 +172,10 @@ app.js:77 Teddy humans
  colorHSL.modHue(-50);
  console.log(colorHSL.output());
  </pre>
- 
-     <h3>Let's add another property to our colorHSL object. We will make this a default</h3>
-     <h3>._hue (by convention, an "_" may be prepended)</h3>
-     <pre class="framed6 w60">
+
+      <h3>Let's add another property to our colorHSL object. We will make this a default</h3>
+      <h3>._hue (by convention, an "_" may be prepended)</h3>
+      <pre class="framed6 w60">
  Object.defineProperty(colorHSL, "_hue", {
    value: 90
  })
@@ -197,14 +198,14 @@ app.js:77 Teddy humans
  colorHSL._hue = 200;
  console.log(colorHSL._hue);<span class="ltgreen thin">  // 200</span>
  </pre>
-     <p>(enumerable: true --is also a possible boolean flag)</p>
-     <hr>
-     <h2 class="chtitle thin">The power of getters & setters using .defineProperty()</h2>
- 
-     <h4 class="wh">HSL colors in CSS have a range of values within which the rule applies. hue: 0 - 360 & the others 0-100%. Let's start
-       from scratch setting each property at "0"</h4>
- 
-     <pre class="prettyprint ctr w60">var colorHSL = {
+      <p>(enumerable: true --is also a possible boolean flag)</p>
+      <hr>
+      <h2 class="chtitle thin">The power of getters & setters using .defineProperty()</h2>
+
+      <h4 class="wh">HSL colors in CSS have a range of values within which the rule applies. hue: 0 - 360 & the others 0-100%. Let's start
+        from scratch setting each property at "0"</h4>
+
+      <pre class="prettyprint ctr w60">var colorHSL = {
    _hue: 0,
    _saturation: 0,
    _lightness: 0,
@@ -215,15 +216,15 @@ app.js:77 Teddy humans
  }
  colorHSL.output();
  </pre>
- 
-     <h4 class="ctr ltgreen">
-       <span class="mango">This returns: </span>color: hsl(0, 0%, 0%);</h4>
- 
-     <p class="softsand">Now instead of
-       <em>"value:"</em> I use
-       <span class="paleY">get:</span> &
-       <span class="paleY">set:</span> to modify the property.</p>
-     <pre class="framed6 ctr w50">Object.defineProperty(colorHSL, "hue", {
+
+      <h4 class="ctr ltgreen">
+        <span class="mango">This returns: </span>color: hsl(0, 0%, 0%);</h4>
+
+      <p class="softsand">Now instead of
+        <em>"value:"</em> I use
+        <span class="paleY">get:</span> &
+        <span class="paleY">set:</span> to modify the property.</p>
+      <pre class="framed6 ctr w50">Object.defineProperty(colorHSL, "hue", {
     get: function() {
       console.log(this._hue);
       return this._hue;
@@ -250,11 +251,11 @@ app.js:77 Teddy humans
  <span class="ltgreen">// color: hsl(200, 0%, 0%);</span>
  </span>
  </pre>
-     <h3 class="ltgreen med">Proof of concept available:
-       <a href="https://codepen.io/beau_dev/full/brNZXB/"> here</a>
-     </h3>
-     <p>Completed .js code here</p>
-     <pre class="prettyprint linenums w50">
+      <h3 class="ltgreen med">Proof of concept available:
+        <a href="https://codepen.io/beau_dev/full/brNZXB/"> here</a>
+      </h3>
+      <p>Completed .js code here</p>
+      <pre class="prettyprint linenums w50">
  'use strict';
  
  var centerDiv = document.querySelector(".hsl-div");
@@ -323,16 +324,17 @@ app.js:77 Teddy humans
    centerDiv.style.backgroundColor = result;
    outputTxt.textContent = result;
  })</pre>
- </div>
- 
+    </div>
+
     <hr>
     <div class="brdr-w dkbg ctr softsand">
       <h1 class="chtitle thin">Array.from(): new in 2015</h1>
-      <h3 class="wh"><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from">MDN</a> has all you need to know about Array.from() but it needs some examples to solidify understanding.</h3>
-    <br>
-    
-<p>First, the old way...</p>    
-<pre class="prettyprint w60 ctr">
+      <h3 class="wh">
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from">MDN</a> has all you need to know about Array.from() but it needs some examples to solidify understanding.</h3>
+      <br>
+
+      <p>First, the old way...</p>
+      <pre class="prettyprint w60 ctr">
 var myArray = ["Clooney", "Pitt", "Pacino", "Newman", "Pattinson", "Gadot", "Johansson", "Jennifer Lawrence", "Felicity Jones", "Robin Wright"];
 
 function sortIterate(arr) {
@@ -345,10 +347,10 @@ function sortIterate(arr) {
 
 sortIterate(myArray)
 </pre>
-    
-<p>Now, in 2015's ES6 a much more concise method.</p>
 
-<pre class="prettyprint w30 ctr">
+      <p>Now, in 2015's ES6 a much more concise method.</p>
+
+      <pre class="prettyprint w30 ctr">
 function sortIterateEs6(arr) {
   const args = Array.from(arr);
   return args.sort();
@@ -356,12 +358,13 @@ function sortIterateEs6(arr) {
 }
 
 sortIterateEs6(myArray)
-</pre> 
+</pre>
 
 
-<h2 class="thin ghost">There is also a fancy-schmancy number generator at the bottom of the docs, exploiting an undefined argument in the syntax...</h2>
+      <h2 class="thin ghost">There is also a fancy-schmancy number generator at the bottom of the docs, exploiting an undefined argument in the
+        syntax...</h2>
 
-<pre class="prettyprint w30 ctr brdr-w">
+      <pre class="prettyprint w30 ctr brdr-w">
 // Using an arrow function as the map function to
 // manipulate the elements
 
@@ -374,7 +377,7 @@ Array.from([1, 2, 3], x => x + x);
 Array.from({length: 5}, (v, i) => i);
 // [0, 1, 2, 3, 4]
 </pre>
-</div>
+    </div>
     <hr>
     <div class="framed4">
       <h1 class="chtitle">Object Destructuring</h1>
