@@ -1,4 +1,4 @@
-# THIS CODE IS IN RETIREMENT (being ported to React 16 from Angular.js)
+# THIS CODE IS IN RETIREMENT (Currently being ported to React 16 from Angular.js)
 ## Codejournal
 This is a collection of notes, snippets and lessons for web code.
 
